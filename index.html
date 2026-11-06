@@ -13,13 +13,15 @@
     *{box-sizing:border-box}
     html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;padding:0}
     body{background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.19),transparent 32%),radial-gradient(ellipse at 88% 18%,rgba(255,54,174,.12),transparent 28%),radial-gradient(ellipse at 50% 95%,rgba(0,194,255,.10),transparent 34%),var(--bg);color:var(--text);font-family:"Cairo",Inter,system-ui,sans-serif;min-height:100vh}
+    body.light{--bg:#f3f2fb;--bg2:#fff;--panel:rgba(255,255,255,.85);--panel2:rgba(30,20,70,.045);--text:#171329;--muted:#68617e;--line:rgba(91,62,150,.16);background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.1),transparent 32%),#f3f2fb}
     a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}
     .wrap{width:min(1160px,calc(100% - 28px));margin:auto;box-sizing:border-box}
     .topbar{position:sticky;top:0;z-index:50;background:rgba(8,7,19,.85);backdrop-filter:blur(22px);border-bottom:1px solid var(--line);width:100%}
+    body.light .topbar{background:rgba(245,243,252,.85)}
     .nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%}
     .brand{display:flex;align-items:center;gap:8px;font-family:Inter,"Cairo",sans-serif;font-weight:900;font-size:20px;white-space:nowrap}
     .brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink) 58%,var(--blue));color:white;font-size:18px}
-    .nav-actions{display:flex;align-items:center;gap:6px}.nav-select{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:6px 8px;font-size:12px;max-width:110px}
+    .nav-actions{display:flex;align-items:center;gap:6px}.nav-select{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:6px 8px;font-size:12px;max-width:120px}
     .hero{padding:50px 0 30px;text-align:center;position:relative;width:100%}
     .eyebrow{display:inline-flex;gap:6px;align-items:center;padding:5px 12px;border:1px solid #a45cff55;border-radius:999px;background:#8e4cff12;color:#d6baff;font-size:12px}
     .hero h1{font-size:clamp(30px,6vw,55px);line-height:1.2;margin:18px auto 12px;font-weight:900;max-width:100%}
@@ -80,26 +82,37 @@
   </style>
 </head>
 <body>
-<a href="https://wa.me/201094122436" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">💬</a>
+<a id="waButton" href="#" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">💬</a>
 <header class="topbar">
   <div class="wrap nav">
     <a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
     <div class="nav-actions">
-      <select class="nav-select" id="language"><option value="ar">🌐 العربية</option><option value="en">🌐 English</option></select>
-      <select class="nav-select" id="theme"><option value="base">✨ الأساسي</option><option value="dark">🌙 داكن</option><option value="light">☀️ فاتح</option></select>
+      <select class="nav-select" id="language">
+        <option value="ar">🌐 العربية</option>
+        <option value="en">🌐 English</option>
+        <option value="es">🌐 Español</option>
+        <option value="zh">🌐 中文</option>
+        <option value="pt">🌐 Português</option>
+        <option value="fr">🌐 Français</option>
+        <option value="ru">🌐 Русский</option>
+      </select>
+      <select class="nav-select" id="theme">
+        <option value="base">✨ الأساسي</option>
+        <option value="light">☀️ الفاتح</option>
+      </select>
     </div>
   </div>
 </header>
 <main id="homeView">
   <section class="hero wrap">
-    <div class="eyebrow"><span class="live-dot"></span>مساحتك الرقمية الذكية</div>
-    <h1>كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span></h1>
-    <p>مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.</p>
-    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." autocomplete="off"></div>
-    <div class="hero-stats"><span><b id="toolCount">34</b> أداة متاحة</span><span>⚡ سريع وآمن 100%</span></div>
+    <div class="eyebrow" data-i18n="eyebrow">مساحتك الرقمية الذكية</div>
+    <h1 data-i18n="heroTitle">كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span></h1>
+    <p data-i18n="heroDesc">مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.</p>
+    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." data-i18n-ph="searchPh" autocomplete="off"></div>
+    <div class="hero-stats"><span><b id="toolCount">34</b> <span data-i18n="toolsAvailable">أداة متاحة</span></span><span>⚡ <span data-i18n="fastSecure">سريع وآمن 100%</span></span></div>
   </section>
   <section class="section wrap">
-    <div class="section-head"><div><h2>استكشف الأدوات</h2><p>اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites">♡ المفضلة</button></div>
+    <div class="section-head"><div><h2 data-i18n="exploreTools">استكشف الأدوات</h2><p data-i18n="chooseTool">اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button></div>
     <div class="categories" id="categories"></div>
     <div class="tools-grid" id="toolsGrid"></div>
   </section>
@@ -108,99 +121,403 @@
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-about"><a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a><p>منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p></div>
-      <div><div class="footer-title">روابط مهمة</div><nav class="footer-links"><a href="#about" data-page="about">من نحن</a><a href="#contact" data-page="contact">اتصل بنا</a><a href="#terms" data-page="terms">شروط الاستخدام</a></nav></div>
-      <div><div class="footer-title">السياسات</div><nav class="footer-links"><a href="#privacy" data-page="privacy">سياسة الخصوصية</a><a href="#cookies" data-page="cookies">ملفات الارتباط</a><a href="#copyright" data-page="copyright">حقوق الملكية</a></nav></div>
+      <div class="footer-about"><a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a><p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p></div>
+      <div><div class="footer-title" data-i18n="quickLinks">روابط مهمة</div><nav class="footer-links"><a href="#about" data-page="about" data-i18n="about">من نحن</a><a href="#contact" data-page="contact" data-i18n="contact">اتصل بنا</a><a href="#terms" data-page="terms" data-i18n="terms">شروط الاستخدام</a></nav></div>
+      <div><div class="footer-title" data-i18n="policies">السياسات</div><nav class="footer-links"><a href="#privacy" data-page="privacy" data-i18n="privacy">سياسة الخصوصية</a><a href="#cookies" data-page="cookies" data-i18n="cookies">ملفات الارتباط</a><a href="#copyright" data-page="copyright" data-i18n="copyright">حقوق الملكية</a></nav></div>
     </div>
-    <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. جميع الحقوق محفوظة.</span></div>
+    <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span></div>
   </div>
 </footer>
 <div class="modal-backdrop" id="toolModal" role="dialog"><div class="modal"><div class="modal-head"><h2 id="modalTitle">الأداة</h2><button class="close" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
 <div class="toast" id="toast"></div>
 <script>
-const translations={
-ar:{all:'كل الأدوات',text:'النصوص والكتابة',dev:'المبرمجين والموقع',image:'الصور والرسومات',productivity:'الإنتاجية',media:'الوسائط وملفات PDF',open:'افتح الأداة',copy:'نسخ النتيجة',copied:'تم النسخ',output:'النتيجة'},
-en:{all:'All Tools',text:'Text & Writing',dev:'Developer Tools',image:'Images',productivity:'Productivity',media:'Media & PDF',open:'Open tool',copy:'Copy result',copied:'Copied',output:'Result'}
+const WHATSAPP_NUM = '201094122436';
+const waMsg = encodeURIComponent('مرحبا هـيـمــا انا اتواصل معك بخصوص موقع hema tools');
+document.getElementById('waButton').href = `https://wa.me/${WHATSAPP_NUM}?text=${waMsg}`;
+
+const translations = {
+  ar: {
+    eyebrow: 'مساحتك الرقمية الذكية',
+    heroTitle: 'كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span>',
+    heroDesc: 'مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.',
+    searchPh: 'ابحث عن أداة...',
+    toolsAvailable: 'أداة متاحة',
+    fastSecure: 'سريع وآمن 100%',
+    exploreTools: 'استكشف الأدوات',
+    chooseTool: 'اختر الأداة المناسبة وابدأ مباشرة.',
+    favorites: '♡ المفضلة',
+    all: 'كل الأدوات',
+    text: 'النصوص والكتابة',
+    dev: 'المبرمجين والموقع',
+    image: 'الصور والرسومات',
+    productivity: 'الإنتاجية',
+    media: 'الوسائط وملفات PDF',
+    open: 'افتح الأداة',
+    copy: 'نسخ النتيجة',
+    copied: 'تم النسخ',
+    output: 'النتيجة',
+    footerDesc: 'منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.',
+    quickLinks: 'روابط مهمة',
+    about: 'من نحن',
+    contact: 'اتصل بنا',
+    terms: 'شروط الاستخدام',
+    policies: 'السياسات',
+    privacy: 'سياسة الخصوصية',
+    cookies: 'ملفات الارتباط',
+    copyright: 'حقوق الملكية',
+    rights: 'جميع الحقوق محفوظة.'
+  },
+  en: {
+    eyebrow: 'Your smart digital space',
+    heroTitle: 'Every tool you need,<br><span class="gradient-text">in one place.</span>',
+    heroDesc: 'A curated collection of free digital tools to complete your tasks quickly and privately in your browser.',
+    searchPh: 'Search for a tool...',
+    toolsAvailable: 'tools available',
+    fastSecure: 'Fast & 100% Secure',
+    exploreTools: 'Explore Tools',
+    chooseTool: 'Choose the right tool and get started.',
+    favorites: '♡ Favorites',
+    all: 'All Tools',
+    text: 'Text & Writing',
+    dev: 'Developer Tools',
+    image: 'Images & Graphics',
+    productivity: 'Productivity',
+    media: 'Media & PDF',
+    open: 'Open Tool',
+    copy: 'Copy Result',
+    copied: 'Copied',
+    output: 'Result',
+    footerDesc: 'A local and secure digital tools platform to help you with everyday tasks.',
+    quickLinks: 'Quick Links',
+    about: 'About Us',
+    contact: 'Contact Us',
+    terms: 'Terms of Use',
+    policies: 'Policies',
+    privacy: 'Privacy Policy',
+    cookies: 'Cookies',
+    copyright: 'Copyright',
+    rights: 'All rights reserved.'
+  },
+  es: {
+    eyebrow: 'Tu espacio digital inteligente',
+    heroTitle: 'Todas las herramientas que necesitas,<br><span class="gradient-text">en un solo lugar.</span>',
+    heroDesc: 'Una colección de herramientas digitales gratuitas para completar tus tareas de forma rápida y privada.',
+    searchPh: 'Buscar una herramienta...',
+    toolsAvailable: 'herramientas disponibles',
+    fastSecure: 'Rápido y 100% seguro',
+    exploreTools: 'Explorar Herramientas',
+    chooseTool: 'Elige la herramienta adecuada y empieza.',
+    favorites: '♡ Favoritos',
+    all: 'Todas',
+    text: 'Texto y Escritura',
+    dev: 'Desarrollador',
+    image: 'Imágenes',
+    productivity: 'Productividad',
+    media: 'Medios y PDF',
+    open: 'Abrir',
+    copy: 'Copiar resultado',
+    copied: 'Copiado',
+    output: 'Resultado',
+    footerDesc: 'Plataforma de herramientas digitales locales y seguras.',
+    quickLinks: 'Enlaces rápidos',
+    about: 'Sobre nosotros',
+    contact: 'Contacto',
+    terms: 'Términos de uso',
+    policies: 'Políticas',
+    privacy: 'Política de privacidad',
+    cookies: 'Cookies',
+    copyright: 'Derechos de autor',
+    rights: 'Todos los derechos reservados.'
+  },
+  zh: {
+    eyebrow: '您的智能数字空间',
+    heroTitle: '您需要的所有工具，<br><span class="gradient-text">尽在一个地方。</span>',
+    heroDesc: '精选的免费数字工具集合，可帮助您在浏览器中快速私密地完成任务。',
+    searchPh: '搜索工具...',
+    toolsAvailable: '个可用工具',
+    fastSecure: '快速且100%安全',
+    exploreTools: '探索工具',
+    chooseTool: '选择合适的工具并立即开始。',
+    favorites: '♡ 收藏',
+    all: '全部工具',
+    text: '文本与写作',
+    dev: '开发人员',
+    image: '图像',
+    productivity: '生产力',
+    media: '媒体与PDF',
+    open: '打开工具',
+    copy: '复制结果',
+    copied: '已复制',
+    output: '结果',
+    footerDesc: '本地安全的数字工具平台，助您处理日常任务。',
+    quickLinks: '快速链接',
+    about: '关于我们',
+    contact: '联系我们',
+    terms: '使用条款',
+    policies: '政策',
+    privacy: '隐私政策',
+    cookies: 'Cookie政策',
+    copyright: '版权',
+    rights: '版权所有.'
+  },
+  pt: {
+    eyebrow: 'Seu espaço digital inteligente',
+    heroTitle: 'Todas as ferramentas que você precisa,<br><span class="gradient-text">em um só lugar.</span>',
+    heroDesc: 'Uma coleção de ferramentas digitais gratuitas para realizar suas tarefas com rapidez e privacidade.',
+    searchPh: 'Pesquisar ferramenta...',
+    toolsAvailable: 'ferramentas disponíveis',
+    fastSecure: 'Rápido e 100% seguro',
+    exploreTools: 'Explorar Ferramentas',
+    chooseTool: 'Escolha a ferramenta certa e comece.',
+    favorites: '♡ Favoritos',
+    all: 'Todas',
+    text: 'Texto e Escrita',
+    dev: 'Desenvolvedor',
+    image: 'Imagens',
+    productivity: 'Produtividade',
+    media: 'Mídia e PDF',
+    open: 'Abrir',
+    copy: 'Copiar resultado',
+    copied: 'Copiado',
+    output: 'Resultado',
+    footerDesc: 'Plataforma de ferramentas digitais locais e seguras.',
+    quickLinks: 'Links rápidos',
+    about: 'Sobre nós',
+    contact: 'Contato',
+    terms: 'Termos de uso',
+    policies: 'Políticas',
+    privacy: 'Política de privacidade',
+    cookies: 'Cookies',
+    copyright: 'Direitos autorais',
+    rights: 'Todos os direitos reservados.'
+  },
+  fr: {
+    eyebrow: 'Votre espace numérique intelligent',
+    heroTitle: 'Tous les outils dont vous avez besoin,<br><span class="gradient-text">en un seul endroit.</span>',
+    heroDesc: 'Une collection d\'outils numériques gratuits pour accomplir vos tâches rapidement et en toute confidentialité.',
+    searchPh: 'Rechercher un outil...',
+    toolsAvailable: 'outils disponibles',
+    fastSecure: 'Rapide et 100% sécurisé',
+    exploreTools: 'Explorer les outils',
+    chooseTool: 'Choisissez le bon outil et commencez.',
+    favorites: '♡ Favoris',
+    all: 'Tous',
+    text: 'Texte & Écriture',
+    dev: 'Développeur',
+    image: 'Images',
+    productivity: 'Productivité',
+    media: 'Médias & PDF',
+    open: 'Ouvrir',
+    copy: 'Copier le résultat',
+    copied: 'Copié',
+    output: 'Résultat',
+    footerDesc: 'Plateforme d\'outils numériques locaux et sécurisés.',
+    quickLinks: 'Liens rapides',
+    about: 'À propos',
+    contact: 'Contact',
+    terms: 'Conditions d\'utilisation',
+    policies: 'Politiques',
+    privacy: 'Politique de confidentialité',
+    cookies: 'Cookies',
+    copyright: 'Droits d\'auteur',
+    rights: 'Tous droits réservés.'
+  },
+  ru: {
+    eyebrow: 'Ваше умное цифровое пространство',
+    heroTitle: 'Все необходимые инструменты<br><span class="gradient-text">в одном месте.</span>',
+    heroDesc: 'Подборка бесплатных цифровых инструментов для быстрого и конфиденциального выполнения задач в браузере.',
+    searchPh: 'Поиск инструмента...',
+    toolsAvailable: 'доступных инструментов',
+    fastSecure: 'Быстро и безопасно на 100%',
+    exploreTools: 'Обзор инструментов',
+    chooseTool: 'Выберите подходящий инструмент и начните.',
+    favorites: '♡ Избранное',
+    all: 'Все',
+    text: 'Текст и письмо',
+    dev: 'Разработчик',
+    image: 'Изображения',
+    productivity: 'Продуктивность',
+    media: 'Медиа и PDF',
+    open: 'Открыть',
+    copy: 'Копировать результат',
+    copied: 'Скопировано',
+    output: 'Результат',
+    footerDesc: 'Локальная и безопасная платформа цифровых инструментов.',
+    quickLinks: 'Ссылки',
+    about: 'О нас',
+    contact: 'Контакты',
+    terms: 'Условия',
+    policies: 'Политика',
+    privacy: 'Политика конфиденциальности',
+    cookies: 'Cookies',
+    copyright: 'Авторские права',
+    rights: 'Все права защищены.'
+  }
 };
-const tools=[
-{id:'word',icon:'🔢',cat:'text',name:'عداد الكلمات',desc:'حساب الكلمات والحروف والجمل والأسطر فوراً.'},
-{id:'case',icon:'🔠',cat:'text',name:'تغيير حالة الأحرف',desc:'تحويل حالة الأحرف الكبيرة والصغيرة والعنوانية.'},
-{id:'clean',icon:'🧹',cat:'text',name:'تنظيف النص',desc:'حذف المسافات الزائدة والأسطر الفارغة.'},
-{id:'json',icon:'{ }',cat:'dev',name:'منسق JSON',desc:'تنسيق أكواد JSON والتحقق من صحتها واكتشاف الأخطاء.'},
-{id:'base64',icon:'🔐',cat:'dev',name:'Base64',desc:'تشفير وفك ترميز النصوص بصيغة Base64.'},
-{id:'url',icon:'🔗',cat:'dev',name:'ترميز URL',desc:'ترميز وفك ترميز عناوين الروابط URL Encoding.'},
-{id:'password',icon:'🛡️',cat:'productivity',name:'مولد كلمات المرور',desc:'إنشاء كلمات مرور عشوائية قوية ومخصصة.'},
-{id:'image',icon:'🖼️',cat:'image',name:'ضغط الصور',desc:'ضغط الصور بصيغ WebP و JPEG.'},
-{id:'color',icon:'🎨',cat:'image',name:'منتقي الألوان',desc:'اختيار الألوان ومعرفة قيم HEX و RGB و HSL.'},
-{id:'gradient',icon:'🌈',cat:'image',name:'مولد التدرجات',desc:'تصميم تدرجات لونية واستخراج كود CSS.'},
-{id:'timestamp',icon:'⏱️',cat:'dev',name:'محول Unix Timestamp',desc:'تحويل Unix Timestamp إلى تواريخ وأوقات دقيقة.'},
-{id:'markdown',icon:'📝',cat:'text',name:'معاينة Markdown',desc:'كتابة ومعاينة تنسيقات Markdown فورياً.'},
-{id:'regex',icon:'🔍',cat:'dev',name:'مختبر Regex',desc:'اختبار التعبيرات النمطية Regular Expressions.'},
-{id:'sql',icon:'🗄️',cat:'dev',name:'منسق SQL',desc:'تنسيق وترتيب استعلامات قواعد البيانات SQL.'},
-{id:'jwt',icon:'🔑',cat:'dev',name:'محلل JWT',desc:'فك وفحص محتويات JSON Web Tokens.'},
-{id:'imgpdf',icon:'📑',cat:'media',name:'تحويل الصور إلى PDF',desc:'دمج مجموعة صور وتحويلها إلى ملف PDF مرتب.'},
-{id:'qrcode',icon:'📱',cat:'productivity',name:'مولد QR Code',desc:'توليد باركود QR للروابط والنصوص.'},
-{id:'decor',icon:'✨',cat:'text',name:'زخرفة النصوص',desc:'زخرفة النصوص والأسماء بالعربية والإنجليزية.'},
-{id:'htmlfmt',icon:'🌐',cat:'dev',name:'HTML Formatter',desc:'تنسيق وتنظيف وترتيب أكواد HTML.'},
-{id:'cssfmt',icon:'🎨',cat:'dev',name:'CSS Formatter',desc:'تنسيق وترتيب قواعد أكواد CSS.'},
-{id:'jsfmt',icon:'⚡',cat:'dev',name:'JavaScript Formatter',desc:'تنسيق وتحسين بنية أكواد JavaScript.'},
-{id:'xmlfmt',icon:'📋',cat:'dev',name:'XML Formatter',desc:'تنسيق وتحقق من بنية ملفات XML.'},
-{id:'hashgen',icon:'🔒',cat:'dev',name:'Hash Generator',desc:'توليد تشفير الهاش الآمن (MD5, SHA-256).'},
-{id:'uuidgen',icon:'🆔',cat:'dev',name:'UUID Generator',desc:'توليد معرفات فريدة عالمياً UUID v4.'},
-{id:'diffchk',icon:'⚖️',cat:'dev',name:'Diff Checker',desc:'مقارنة نصين واكتشاف الفروقات بينهما.'},
-{id:'percentcalc',icon:'📊',cat:'productivity',name:'حاسبة النسبة المئوية',desc:'حساب النسب المئوية والزيادة والنقصان بسهولة.'},
-{id:'caloriecalc',icon:'🥗',cat:'productivity',name:'حاسبة السعرات الحرارية',desc:'حساب احتياج الجسم اليومي من السعرات الحرارية (BMR).'},
-{id:'mediaconv',icon:'🔄',cat:'media',name:'محول الوسائط MP3/MP4',desc:'تحويل ملفات الوسائط والصوت بين الصيغ المتاحة.'},
-{id:'colorpicker',icon:'🎨',cat:'dev',name:'أكواد ألوان المبرمجين',desc:'اختعار ومعرفة أكواد الألوان السداسية والـ RGB.'},
-{id:'imgcrop',icon:'✂️',cat:'image',name:'قص الصور',desc:'قص وتعديل أبعاد الصور بأبعاد مخصصة أو جاهزة.'},
-{id:'imgcolors',icon:'🔍',cat:'image',name:'استخراج ألوان الصورة',desc:'استخراج أكواد HEX و RGB من ملفات الصور.'},
-{id:'splitpdf',icon:'📄',cat:'media',name:'تقسيم ملفات PDF',desc:'تقسيم ملفات PDF الكبيرة إلى أجزاء منفصلة بسهولة.'}
+
+const tools = [
+  {id:'word', icon:'🔢', cat:'text', name:{ar:'عداد الكلمات', en:'Word Counter', es:'Contador de palabras', zh:'字数统计', pt:'Contador de palavras', fr:'Compteur de mots', ru:'Счетчик слов'}, desc:{ar:'حساب الكلمات والحروف والجمل والأسطر فوراً.', en:'Count words, characters, sentences instantly.', es:'Cuenta palabras y caracteres.', zh:'即时统计字数和字符。', pt:'Contar palavras e caracteres.', fr:'Compter les mots et caractères.', ru:'Подсчет слов и символов.'}},
+  {id:'case', icon:'🔠', cat:'text', name:{ar:'تغيير حالة الأحرف', en:'Case Converter', es:'Conversor de mayúsculas', zh:'大小写转换', pt:'Conversor de maiúsculas', fr:'Convertisseur de casse', ru:'Регистр букв'}, desc:{ar:'تحويل حالة الأحرف الكبيرة والصغيرة.', en:'Convert text case.', es:'Convierte mayúsculas y minúsculas.', zh:'转换文本大小写。', pt:'Converter maiúsculas e minúsculas.', fr:'Convertir la casse.', ru:'Изменение регистра.'}},
+  {id:'clean', icon:'🧹', cat:'text', name:{ar:'تنظيف النص', en:'Text Cleaner', es:'Limpiador de texto', zh:'文本清理', pt:'Limpador de texto', fr:'Nettoyeur de texte', ru:'Очистка текста'}, desc:{ar:'حذف المسافات الزائدة والأسطر الفارغة.', en:'Remove extra spaces and empty lines.', es:'Elimina espacios extra.', zh:'删除多余空格和空行。', pt:'Remover espaços extras.', fr:'Supprimer les espaces.', ru:'Удаление лишних пробелов.'}},
+  {id:'json', icon:'{ }', cat:'dev', name:{ar:'منسق JSON', en:'JSON Formatter', es:'Formateador JSON', zh:'JSON格式化', pt:'Formatador JSON', fr:'Formateur JSON', ru:'JSON Форматер'}, desc:{ar:'تنسيق أكواد JSON والتحقق من صحتها.', en:'Format and validate JSON.', es:'Formatea y valida JSON.', zh:'格式化并验证JSON。', pt:'Formatar e validar JSON.', fr:'Formater et valider JSON.', ru:'Форматирование и проверка JSON.'}},
+  {id:'base64', icon:'🔐', cat:'dev', name:{ar:'Base64', en:'Base64 Encoder/Decoder', es:'Base64', zh:'Base64 编解码', pt:'Base64', fr:'Base64', ru:'Base64 Кодек'}, desc:{ar:'تشفير وفك ترميز النصوص بصيغة Base64.', en:'Encode and decode Base64 text.', es:'Codifica y decodifica Base64.', zh:'Base64编码和解码。', pt:'Codificar e decodificar Base64.', fr:'Encoder et décoder Base64.', ru:'Кодирование и декодирование Base64.'}},
+  {id:'url', icon:'🔗', cat:'dev', name:{ar:'ترميز URL', en:'URL Encoder', es:'Codificador URL', zh:'URL编码', pt:'Codificador URL', fr:'Encodeur URL', ru:'URL Кодировщик'}, desc:{ar:'ترميز وفك ترميز عناوين الروابط.', en:'Encode and decode URLs.', es:'Codifica y decodifica URLs.', zh:'URL编码和解码。', pt:'Codificar e decodificar URLs.', fr:'Encoder et décoder les URL.', ru:'Кодирование и декодирование URL.'}},
+  {id:'password', icon:'🛡️', cat:'productivity', name:{ar:'مولد كلمات المرور', en:'Password Generator', es:'Generador de contraseñas', zh:'密码生成器', pt:'Gerador de senhas', fr:'Générateur de mot de passe', ru:'Генератор паролей'}, desc:{ar:'إنشاء كلمات مرور عشوائية قوية.', en:'Generate strong passwords.', es:'Genera contraseñas seguras.', zh:'生成强密码。', pt:'Gerar senhas fortes.', fr:'Générer des mots de passe.', ru:'Генерация надежных паролей.'}},
+  {id:'image', icon:'🖼️', cat:'image', name:{ar:'ضغط الصور', en:'Image Compressor', es:'Compresor de imágenes', zh:'图片压缩', pt:'Compressor de imagem', fr:'Compresseur d\'image', ru:'Сжатие изображений'}, desc:{ar:'ضغط الصور بصيغ WebP و JPEG.', en:'Compress images easily.', es:'Comprime imágenes.', zh:'轻松压缩图片。', pt:'Comprimir imagens.', fr:'Compresser des images.', ru:'Сжатие изображений.'}},
+  {id:'color', icon:'🎨', cat:'image', name:{ar:'منتقي الألوان', en:'Color Picker', es:'Selector de color', zh:'颜色选择器', pt:'Seletor de cores', fr:'Sélecteur de couleur', ru: 'Палитра цветов'}, desc:{ar:'معرفة قيم HEX و RGB و HSL.', en:'Pick colors and get HEX, RGB.', es:'Obtén valores HEX y RGB.', zh:'获取HEX和RGB值。', pt:'Obter HEX e RGB.', fr:'Obtenir HEX et RGB.', ru:'Получить HEX и RGB значения.'}},
+  {id:'gradient', icon:'🌈', cat:'image', name:{ar:'مولد التدرجات', en:'Gradient Generator', es:'Generador de degradados', zh:'渐变生成器', pt:'Gerador de gradiente', fr:'Générateur de dégradé', ru:'Генератор градиентов'}, desc:{ar:'تصميم تدرجات لونية واستخراج كود CSS.', en:'Create gradients and CSS.', es:'Crea degradados CSS.', zh:'创建渐变CSS。', pt:'Criar gradientes CSS.', fr: 'Créer des dégradés CSS.', ru:'Создание градиентов CSS.'}},
+  {id:'timestamp', icon:'⏱️', cat:'dev', name:{ar:'محول Unix Timestamp', en:'Unix Timestamp', es:'Marca de tiempo Unix', zh:'Unix 时间戳', pt:'Timestamp Unix', fr:'Horodatage Unix', ru:'Unix Время'}, desc:{ar:'تحويل Unix Timestamp إلى تواريخ.', en:'Convert Unix Timestamps.', es:'Convierte marcas de tiempo.', zh:'转换Unix时间戳。', pt:'Converter timestamps.', fr:'Convertir les horodatages.', ru:'Конвертация Unix времени.'}},
+  {id:'markdown', icon:'📝', cat:'text', name:{ar:'معاينة Markdown', en:'Markdown Preview', es:'Vista previa Markdown', zh:'Markdown 预览', pt:'Visualização Markdown', fr:'Aperçu Markdown', ru:'Markdown Превью'}, desc:{ar:'كتابة ومعاينة تنسيقات Markdown.', en:'Preview Markdown instantly.', es:'Vista previa de Markdown.', zh:'即时预览Markdown。', pt:'Visualizar Markdown.', fr:'Aperçu Markdown instantané.', ru:'Предпросмотр Markdown.'}},
+  {id:'regex', icon:'🔍', cat:'dev', name:{ar:'مختبر Regex', en:'Regex Tester', es:'Probador Regex', zh:'Regex 测试器', pt:'Testador Regex', fr:'Testeur Regex', ru:'Regex Тестер'}, desc:{ar:'اختبار التعبيرات النمطية.', en:'Test Regular Expressions.', es:'Prueba expresiones regulares.', zh:'测试正则表达式。', pt:'Testar expressões regulares.', fr: 'Tester les expressions régulières.', ru:'Тестирование регулярных выражений.'}},
+  {id:'sql', icon:'🗄️', cat:'dev', name:{ar:'منسق SQL', en:'SQL Formatter', es:'Formateador SQL', zh:'SQL 格式化', pt:'Formatador SQL', fr:'Formateur SQL', ru:'SQL Форматер'}, desc:{ar:'تنسيق وترتيب استعلامات SQL.', en:'Format SQL queries.', es:'Formatea consultas SQL.', zh:'格式化SQL查询。', pt:'Formatar consultas SQL.', fr:'Formater les requêtes SQL.', ru:'Форматирование SQL запросов.'}},
+  {id:'jwt', icon:'🔑', cat:'dev', name:{ar:'محلل JWT', en:'JWT Decoder', es:'Decodificador JWT', zh:'JWT 解码', pt:'Decodificador JWT', fr:'Décodeur JWT', ru:'JWT Декодер'}, desc:{ar:'فك وفحص محتويات JWT.', en:'Decode JSON Web Tokens.', es:'Decodifica JWT.', zh:'解码JWT令牌。', pt:'Decodificar JWT.', fr:'Décoder les JWT.', ru:'Декодирование JWT.'}},
+  {id:'imgpdf', icon:'📑', cat:'media', name:{ar:'تحويل الصور إلى PDF', en:'Images to PDF', es:'Imágenes a PDF', zh:'图片转PDF', pt:'Imagens para PDF', fr:'Images en PDF', ru:'Изображения в PDF'}, desc:{ar:'دمج الصور وتحويلها لملف PDF.', en:'Merge images into PDF.', es:'Combina imágenes en PDF.', zh:'将图片合并为PDF。', pt:'Mesclar imagens em PDF.', fr:'Fusionner des images en PDF.', ru:'Объединение изображений в PDF.'}},
+  {id:'qrcode', icon:'📱', cat:'productivity', name:{ar:'مولد QR Code', en:'QR Code Generator', es:'Generador de código QR', zh:'二维码生成器', pt:'Gerador de QR Code', fr:'Générateur de QR Code', ru:'Генератор QR кодов'}, desc:{ar:'توليد باركود للروابط والنصوص.', en:'Generate QR codes.', es:'Genera códigos QR.', zh:'生成二维码。', pt:'Gerar códigos QR.', fr:'Générer des codes QR.', ru:'Генерация QR кодов.'}},
+  {id:'decor', icon:'✨', cat:'text', name:{ar:'زخرفة النصوص', en:'Text Decorator', es:'Decorador de texto', zh:'文本装饰', pt:'Decorador de texto', fr:'Décorateur de texte', ru:'Декоратор текста'}, desc:{ar:'زخرفة النصوص والأسماء.', en:'Decorate text and names.', es:'Decora textos.', zh:'装饰文本和名称。', pt:'Decorar textos.', fr:'Décorer du texte.', ru:'Декорирование текста.'}},
+  {id:'htmlfmt', icon:'🌐', cat:'dev', name:{ar:'HTML Formatter', en:'HTML Formatter', es:'Formateador HTML', zh:'HTML格式化', pt:'Formatador HTML', fr:'Formateur HTML', ru:'HTML Форматер'}, desc:{ar:'تنسيق وتنظيف أكواد HTML.', en:'Format HTML code.', es:'Formatea HTML.', zh:'格式化HTML代码。', pt:'Formatar HTML.', fr:'Formater le code HTML.', ru:'Форматирование HTML кода.'}},
+  {id:'cssfmt', icon:'🎨', cat:'dev', name:{ar:'CSS Formatter', en:'CSS Formatter', es:'Formateador CSS', zh:'CSS格式化', pt:'Formatador CSS', fr:'Formateur CSS', ru:'CSS Форматер'}, desc:{ar:'تنسيق وترتيب قواعد CSS.', en:'Format CSS code.', es:'Formatea CSS.', zh:'格式化CSS代码。', pt:'Formatatar CSS.', fr:'Formater le code CSS.', ru:'Форматирование CSS кода.'}},
+  {id:'jsfmt', icon:'⚡', cat:'dev', name:{ar:'JavaScript Formatter', en:'JS Formatter', es:'Formateador JS', zh:'JS格式化', pt:'Formatador JS', fr:'Formateur JS', ru:'JS Форматер'}, desc:{ar:'تنسيق وتحسين أكواد JS.', en:'Format JavaScript code.', es:'Formatea JS.', zh:'格式化JS代码。', pt:'Formatatar JS.', fr:'Formater le code JS.', ru:'Форматирование JS кода.'}},
+  {id:'xmlfmt', icon:'📋', cat:'dev', name:{ar:'XML Formatter', en:'XML Formatter', es:'Formateador XML', zh:'XML格式化', pt:'Formatador XML', fr:'Formateur XML', ru:'XML Форматер'}, desc:{ar:'تنسيق والتحقق من بنية XML.', en:'Format XML code.', es:'Formatea XML.', zh:'格式化XML代码。', pt:'Formatatar XML.', fr:'Formater le code XML.', ru:'Форматирование XML кода.'}},
+  {id:'hashgen', icon:'🔒', cat:'dev', name:{ar:'Hash Generator', en:'Hash Generator', es:'Generador Hash', zh:'哈希生成器', pt:'Gerador Hash', fr:'Générateur Hash', ru:'Генератор Hash'}, desc:{ar:'توليد تشفير الهاش MD5 و SHA-256.', en:'Generate Hash (MD5, SHA).', es:'Genera Hash.', zh:'生成哈希值。', pt:'Gerar Hash.', fr:'Générer un Hash.', ru:'Генерация Hash.'}},
+  {id:'uuidgen', icon:'🆔', cat:'dev', name:{ar:'UUID Generator', en:'UUID Generator', es:'Generador UUID', zh:'UUID生成器', pt:'Gerador UUID', fr:'Générateur UUID', ru:'Генератор UUID'}, desc:{ar:'توليد معرفات فريدة UUID v4.', en:'Generate UUID v4.', es:'Genera UUID v4.', zh:'生成UUID v4。', pt:'Gerar UUID v4.', fr:'Générer UUID v4.', ru:'Генерация UUID v4.'}},
+  {id:'diffchk', icon:'⚖️', cat:'dev', name:{ar:'Diff Checker', en:'Diff Checker', es:'Comparador de texto', zh:'文本差异检查', pt:'Diff Checker', fr:'Comparateur de texte', ru:'Сравнение текста'}, desc:{ar:'مقارنة نصين واكتشاف الفروقات.', en:'Compare two texts.', es:'Compara dos textos.', zh:'比较两段文本。', pt:'Comparar dois textos.', fr:'Comparer deux textes.', ru:'Сравнение двух текстов.'}},
+  {id:'percentcalc', icon:'📊', cat:'productivity', name:{ar:'حاسبة النسبة المئوية', en:'Percentage Calculator', es:'Calculadora de porcentajes', zh:'百分比计算器', pt:'Calculadora de porcentagem', fr:'Calculateur de pourcentage', ru:'Калькулятор процентов'}, desc:{ar:'حساب النسب المئوية والزيادة.', en:'Calculate percentages.', es:'Calcula porcentajes.', zh:'计算百分比。', pt:'Calcular porcentagens.', fr:'Calculer des pourcentages.', ru:'Расчет процентов.'}},
+  {id:'caloriecalc', icon:'🥗', cat:'productivity', name:{ar:'حاسبة السعرات الحرارية', en:'Calorie Calculator', es:'Calculadora de calorías', zh:'卡路里计算器', pt:'Calculadora de calorias', fr:'Calculateur de calories', ru:'Калькулятор калорий'}, desc:{ar:'حساب احتياج الجسم اليومي (BMR).', en:'Calculate daily calories (BMR).', es:'Calcula calorías diarias.', zh:'计算每日卡路里。', pt:'Calcular calorias diárias.', fr:'Calculer les calories.', ru:'Расчет калорий.'}},
+  {id:'mediaconv', icon:'🔄', cat:'media', name:{ar:'محول الوسائط MP3/MP4', en:'Media Converter', es:'Conversor multimedia', zh:'媒体转换器', pt:'Conversor de mídia', fr:'Convertisseur multimédia', ru:'Медиа конвертер'}, desc:{ar:'تحويل بين صيغ الوسائط الصوتية.', en:'Convert audio/video formats.', es:'Convierte formatos.', zh:'转换媒体格式。', pt:'Converter formatos de mídia.', fr:'Convertir des formats.', ru:'Конвертация медиа.'}},
+  {id:'colorpicker', icon:'🎨', cat:'dev', name:{ar:'أكواد ألوان المبرمجين', en:'Dev Color Picker', es:'Selector de color Dev', zh:'开发颜色选择器', pt:'Seletor de cores Dev', fr:'Sélecteur de couleur Dev', ru:'Цвета для разработчиков'}, desc:{ar:'اختيار ومعرفة أكواد الألوان.', en:'Pick programmer colors.', es:'Selector de colores.', zh:'开发颜色选择器。', pt:'Seletor de cores.', fr:'Sélecteur de couleur.', ru:'Выбор цвета.'}},
+  {id:'imgcrop', icon:'✂️', cat:'image', name:{ar:'قص الصور', en:'Image Cropper', es:'Recortador de imágenes', zh:'图片裁剪', pt:'Cortador de imagens', fr:'Rogner des images', ru:'Обрезка изображений'}, desc:{ar:'تعديل أبعاد الصور بأبعاد مخصصة.', en:'Crop and resize images.', es:'Recorta imágenes.', zh:',裁剪和调整图片大小。', pt:'Cortar imagens.', fr:'Rogner des images.', ru:'Обрезка изображений.'}},
+  {id:'imgcolors', icon:'🔍', cat:'image', name:{ar:'استخراج ألوان الصورة', en:'Image Color Extractor', es:'Extractor de color', zh:'图片颜色提取', pt:'Extrator de cores', fr:'Extracteur de couleur', ru: 'Экстрактор цветов'}, desc:{ar:'استخراج أكواد HEX و RGB من الصور.', en:'Extract HEX/RGB from images.', es:'Extrae colores de imágenes.', zh:'从图片提取颜色。', pt:'Extrair cores de imagens.', fr:'Extraire les couleurs.', ru:'Извлечение цветов.'}},
+  {id:'splitpdf', icon:'📄', cat:'media', name:{ar:'تقسيم ملفات PDF', en:'Split PDF', es:'Dividir PDF', zh:'拆分PDF', pt:'Dividir PDF', fr:'Diviser PDF', ru: 'Разделить PDF'}, desc:{ar:'تقسيم ملفات PDF الكبيرة.', en:'Split large PDF files.', es:'Divide archivos PDF.', zh:'拆分大型PDF文件。', pt:'Dividir arquivos PDF.', fr:'Diviser des fichiers PDF.', ru:'Разделение PDF файлов.'}}
 ];
-let lang=localStorage.getItem('hema_lang')||'ar',theme=localStorage.getItem('hema_theme')||'base',category='all',favorites=JSON.parse(localStorage.getItem('hema_favs')||'[]'),onlyFav=false;
-const $=s=>document.querySelector(s),t=()=>translations[lang]||translations.ar;
-function applyLanguage(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('#language').value=lang;renderCategories();renderTools()}
-function applyTheme(){document.body.classList.remove('light','dark');if(theme==='light')document.body.classList.add('light');if(theme==='dark')document.body.classList.add('dark');$('#theme').value=theme;localStorage.setItem('hema_theme',theme)}
-function renderCategories(){let cats=['all','text','dev','image','productivity','media'];$('#categories').innerHTML=cats.map(c=>`<button class="chip ${category===c?'active':''}" data-cat="${c}">${t()[c]||c}</button>`).join('')}
-function renderTools(){let q=$('#search').value.trim().toLowerCase();let list=tools.filter(x=>(category==='all'||x.cat===category)&&(!onlyFav||favorites.includes(x.id))&&(`${x.name} ${x.desc} ${x.id}`).toLowerCase().includes(q));$('#toolCount').textContent=list.length;$('#toolsGrid').innerHTML=list.length?list.map(x=>`<article class="tool-card"><div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}">♥</button></div><h3>${x.name}</h3><p>${x.desc}</p><div class="tool-bottom"><span class="tool-tag">${t()[x.cat]||x.cat}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div></article>`).join(''):`<div class="empty">لا توجد أدوات مطابقة</div>`}
-function toast(msg){let el=$('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1900)}
-function copyResult(){let v=$('#toolResult')?.textContent||'';if(!v)return;navigator.clipboard?.writeText(v).then(()=>toast(t().copied))}
-function area(label,id,ph=''){return `<div class="field"><label>${label}</label><textarea id="${id}" placeholder="${ph}"></textarea></div>`}
-function resultBox(){return `<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`}
-function openTool(id){let x=tools.find(z=>z.id===id);if(!x)return;$('#modalTitle').textContent=x.icon+' '+x.name;let body='';
-if(id==='word')body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="result" id="toolResult">الكلمات: 0 | الحروف: 0</div>`;
-else if(id==='password')body=`<div class="field"><label>طول كلمة المرور (أحرف)</label><input id="passLen" type="number" value="16" min="6" max="64"></div><div class="modal-actions"><button class="action" id="genPass">توليد كلمة سر قوية</button></div>`+resultBox();
-else if(id==='percentcalc')body=`<div class="field"><label>ما هي نسبة</label><input id="p1" type="number" placeholder="مثال: 20"></div><div class="field"><label>من الرقم</label><input id="p2" type="number" placeholder="مثال: 200"></div><div class="modal-actions"><button class="action" id="calcPercent">احسب النسبة</button></div>`+resultBox();
-else if(id==='caloriecalc')body=`<div class="field"><label>الوزن (كجم)</label><input id="cWeight" type="number" value="70"></div><div class="field"><label>الطول (سم)</label><input id="cHeight" type="number" value="175"></div><div class="field"><label>العمر (سنوات)</label><input id="cAge" type="number" value="25"></div><div class="field"><label>النوع</label><select id="cGender"><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="modal-actions"><button class="action" id="calcCals">حساب احتياج السعرات</button></div>`+resultBox();
-else if(id==='json')body=area('JSON','toolInput','{"name":"HeMa"}')+`<div class="modal-actions"><button class="action" id="fmtJson">تنسيق</button><button class="action secondary" id="minJson">ضغط</button></div>`+resultBox();
-else if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id))body=area('أدخل الكود','toolInput','اكتب الكود هنا...')+`<div class="modal-actions"><button class="action" id="fmtCode">تنسيق الكود</button></div>`+resultBox();
-else if(id==='uuidgen')body=`<div class="modal-actions"><button class="action" id="genUuid">توليد UUID جديد</button></div>`+resultBox();
-else if(id==='hashgen')body=area('النص','toolInput','اكتب النص...')+`<div class="modal-actions"><button class="action" id="genHash">توليد الهاش</button></div>`+resultBox();
-else if(id==='diffchk')body=area('النص الأول','text1','النص القديم...')+area('النص الثاني','text2','النص الجديد...')+`<div class="modal-actions"><button class="action" id="runDiff">مقارنة</button></div>`+resultBox();
-else if(id==='qrcode')body=`<div class="field"><label>النص أو الرابط</label><input id="qrText" type="text" placeholder="https://example.com"></div><div class="modal-actions"><button class="action" id="makeQr">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`;
-else if(id==='imgcrop'||id==='imgcolors')body=`<div class="field"><label>اختر صورة من جهازك</label><input type="file" id="imgFile" accept="image/*"></div><div class="modal-actions"><button class="action" id="processImg">معالجة الصورة</button></div>`+resultBox();
-else if(id==='splitpdf')body=`<div class="field"><label>اختر ملف PDF</label><input type="file" id="pdfFile" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="runPdfSplit">تقسيم الملف محلياً</button></div>`+resultBox();
-else body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runGeneric">تنفيذ</button></div>`+resultBox();
-$('#modalBody').innerHTML=body;$('#toolModal').classList.add('show');wireTool(id)}
-function wireTool(id){
-const input=$('#toolInput');
-if(id==='word')input.oninput=e=>{let s=e.target.value;$('#toolResult').textContent=`الكلمات: ${(s.trim().match(/\S+/g)||[]).length} | الحروف: ${s.length}`};
-if(id==='password'){$('#genPass').onclick=()=>{let len=parseInt($('#passLen').value)||16;let chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";,./?';let res='';for(let i=0;i<len;i++)res+=chars.charAt(Math.floor(Math.random()*chars.length));$('#toolResult').textContent=res}};
-if(id==='percentcalc'){$('#calcPercent').onclick=()=>{let v1=parseFloat($('#p1').value)||0,v2=parseFloat($('#p2').value)||0;$('#toolResult').textContent=`النتيجة: ${(v1*v2)/100}`}};
-if(id==='caloriecalc'){$('#calcCals').onclick=()=>{let w=parseFloat($('#cWeight').value)||70,h=parseFloat($('#cHeight').value)||175,a=parseFloat($('#cAge').value)||25,gen=$('#cGender').value;let bmr=(gen==='male')?(10*w+6.25*h-5*a+5):(10*w+6.25*h-5*a-161);$('#toolResult' ).textContent=`معدل الحساس الأساسي (BMR): ${bmr.toFixed(1)} سعرة حرارية/يوم\nمع النشاط المعتدل: ${(bmr*1.55).toFixed(1)} سعرة حرارية/يوم`}};
-if(id==='json'){$('#fmtJson').onclick=()=>{try{$('#toolResult').textContent=JSON.stringify(JSON.parse(input.value),null,2)}catch(e){$('#toolResult').textContent='خطأ: '+e.message}};$('#minJson').onclick=()=>{try{$('#toolResult').textContent=JSON.stringify(JSON.parse(input.value))}catch(e){$('#toolResult').textContent='خطأ: '+e.message}}}
-if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id))$('#fmtCode').onclick=()=>{$('#toolResult').textContent=input.value.trim().replace(/>\s*</g,'>\n<')};
-if(id==='uuidgen'){$('#genUuid').onclick=()=>{$('#toolResult').textContent='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{let r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);return v.toString(16)})}}
-if(id==='hashgen'){$('#genHash').onclick=()=>{let s=input.value;let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i),h|=0;$('#toolResult').textContent='Hash: '+Math.abs(h).toString(16)+'a9f2b3e7'}};
-if(id==='diffchk'){$('#runDiff').onclick=()=>{let t1=$('#text1').value,t2=$('#text2').value;$('#toolResult').textContent=(t1===t2)?'النصان متطابقان تماماً ✅':'النصان مختلفان ❌'}};
-if(id==='qrcode'){$('#makeQr').onclick=()=>{let v=$('#qrText').value.trim();if(!v)return;let u=`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}`;$('#toolResult').innerHTML=`<a href="${u}" target="_blank"><img src="${u}" style="border-radius:12px"></a>`}};
-if(id==='imgcrop'||id==='imgcolors'){$('#processImg').onclick=()=>{let f=$('#imgFile').files[0];if(!f){toast('اختر صورة أولاً');return}$('#toolResult.result')||($('div#toolResult').textContent='تم تحميل الصورة بنجاح: '+f.name+'\nالعرض والارتفاع جاهز للمعالجة المحلية.')}};
-if(id==='splitpdf'){$('#runPdfSplit').onclick=()=>{let f=$('#pdfFile').files[0];if(!f){toast('اختر ملف PDF');return}$('#toolResult').textContent='تم اختيار ملف PDF بنجاح: '+f.name+'\nجاري تجهيزه للتقسيم محلياً...'}};
-$('#copyResult')?.addEventListener('click',copyResult)
+
+let lang = localStorage.getItem('hema_lang') || 'ar';
+let theme = localStorage.getItem('hema_theme') || 'base';
+let category = 'all';
+let favorites = JSON.parse(localStorage.getItem('hema_favs') || '[]');
+let onlyFav = false;
+
+const $ = s => document.querySelector(s);
+const t = () => translations[lang] || translations.ar;
+
+function applyLanguage() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  $('#language').value = lang;
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    let k = el.dataset.i18n;
+    if (t()[k]) el.innerHTML = t()[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    let k = el.dataset.i18nPh;
+    if (t()[k]) el.placeholder = t()[k];
+  });
+  renderCategories();
+  renderTools();
 }
-document.addEventListener('click',e=>{let cat=e.target.closest('[data-cat]');if(cat){category=cat.dataset.cat;renderCategories();renderTools()}let fav=e.target.closest('[data-fav]');if(fav){let id=fav.dataset.fav;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem('hema_favs',JSON.stringify(favorites));renderTools()}let open=e.target.closest('[data-open]');if(open)openTool(open.dataset.open)});
-$('#search').addEventListener('input',renderTools);$('#language').onchange=e=>{lang=e.target.value;localStorage.setItem('hema_lang',lang);applyLanguage()};$('#theme').onchange=e=>{theme=e.target.value;applyTheme()};
-$('#closeModal').onclick=()=>$('#toolModal').classList.remove('show');
-$('#year').textContent=new Date().getFullYear();applyTheme();applyLanguage();renderCategories();renderTools();
+
+function applyTheme() {
+  document.body.classList.remove('light');
+  if (theme === 'light') document.body.classList.add('light');
+  $('#theme').value = theme;
+  localStorage.setItem('hema_theme', theme);
+}
+
+function renderCategories() {
+  let cats = ['all', 'text', 'dev', 'image', 'productivity', 'media'];
+  $('#categories').innerHTML = cats.map(c => `<button class="chip ${category === c ? 'active' : ''}" data-cat="${c}">${t()[c] || c}</button>`).join('');
+}
+
+function renderTools() {
+  let q = $('#search').value.trim().toLowerCase();
+  let list = tools.filter(x => (category === 'all' || x.cat === category) && (!onlyFav || favorites.includes(x.id)) && (`${x.name[lang] || x.name.en} ${x.desc[lang] || x.desc.en} ${x.id}`).toLowerCase().includes(q));
+  $('#toolCount').textContent = list.length;
+  $('#toolsGrid').innerHTML = list.length ? list.map(x => `
+    <article class="tool-card">
+      <div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}">♥</button></div>
+      <h3>${x.name[lang] || x.name.en}</h3>
+      <p>${x.desc[lang] || x.desc.en}</p>
+      <div class="tool-bottom"><span class="tool-tag">${t()[x.cat] || x.cat}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div>
+    </article>`).join('') : `<div class="empty">لا توجد أدوات مطابقة</div>`;
+}
+
+function toast(msg) {
+  let el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 1900);
+}
+
+function copyResult() {
+  let v = $('#toolResult')?.textContent || '';
+  if (!v) return;
+  navigator.clipboard?.writeText(v).then(() => toast(t().copied));
+}
+
+function area(label, id, ph='') { return `<div class="field"><label>${label}</label><textarea id="${id}" placeholder="${ph}"></textarea></div>`; }
+function resultBox() { return `<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`; }
+
+function openTool(id) {
+  let x = tools.find(z => z.id === id);
+  if (!x) return;
+  $('#modalTitle').textContent = x.icon + ' ' + (x.name[lang] || x.name.en);
+  let body = '';
+  
+  if(id==='word') body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="result" id="toolResult">الكلمات: 0 | الحروف: 0</div>`;
+  else if(id==='password') body=`<div class="field"><label>طول كلمة المرور (أحرف)</label><input id="passLen" type="number" value="16" min="6" max="64"></div><div class="modal-actions"><button class="action" id="genPass">توليد كلمة سر قوية</button></div>`+resultBox();
+  else if(id==='percentcalc') body=`<div class="field"><label>ما هي نسبة</label><input id="p1" type="number" placeholder="مثال: 20"></div><div class="field"><label>من الرقم</label><input id="p2" type="number" placeholder="مثال: 200"></div><div class="modal-actions"><button class="action" id="calcPercent">احسب النسبة</button></div>`+resultBox();
+  else if(id==='caloriecalc') body=`<div class="field"><label>الوزن (كجم)</label><input id="cWeight" type="number" value="70"></div><div class="field"><label>الطول (سم)</label><input id="cHeight" type="number" value="175"></div><div class="field"><label>العمر (سنوات)</label><input id="cAge" type="number" value="25"></div><div class="field"><label>النوع</label><select id="cGender"><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="modal-actions"><button class="action" id="calcCals">حساب احتياج السعرات</button></div>`+resultBox();
+  else if(id==='json') body=area('JSON','toolInput','{"name":"HeMa"}')+`<div class="modal-actions"><button class="action" id="fmtJson">تنسيق</button><button class="action secondary" id="minJson">ضغط</button></div>`+resultBox();
+  else if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id)) body=area('أدخل الكود','toolInput','اكتب الكود هنا...')+`<div class="modal-actions"><button class="action" id="fmtCode">تنسيق الكود</button></div>`+resultBox();
+  else if(id==='uuidgen') body=`<div class="modal-actions"><button class="action" id="genUuid">توليد UUID جديد</button></div>`+resultBox();
+  else if(id==='hashgen') body=area('النص','toolInput','اكتب النص...')+`<div class="modal-actions"><button class="action" id="genHash">توليد الهاش</button></div>`+resultBox();
+  else if(id==='diffchk') body=area('النص الأول','text1','النص القديم...')+area('النص الثاني','text2','النص الجديد...')+`<div class="modal-actions"><button class="action" id="runDiff">مقارنة</button></div>`+resultBox();
+  else if(id==='qrcode') body=`<div class="field"><label>النص أو الرابط</label><input id="qrText" type="text" placeholder="https://example.com"></div><div class="modal-actions"><button class="action" id="makeQr">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`;
+  else if(id==='imgcrop'||id==='imgcolors') body=`<div class="field"><label>اختر صورة من جهازك</label><input type="file" id="imgFile" accept="image/*"></div><div class="modal-actions"><button class="action" id="processImg">معالجة الصورة</button></div>`+resultBox();
+  else if(id==='splitpdf') body=`<div class="field"><label>اختر ملف PDF</label><input type="file" id="pdfFile" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="runPdfSplit">تقسيم الملف محلياً</button></div>`+resultBox();
+  else body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runGeneric">تنفيذ</button></div>`+resultBox();
+  
+  $('#modalBody').innerHTML = body;
+  $('#toolModal').classList.add('show');
+  wireTool(id);
+}
+
+function wireTool(id) {
+  const input = $('#toolInput');
+  if(id==='word') input.oninput = e => { let s = e.target.value; $('#toolResult').textContent = `الكلمات: ${(s.trim().match(/\S+/g)||[]).length} | الحروف: ${s.length}`; };
+  if(id==='password') $('#genPass').onclick = () => { let len = parseInt($('#passLen').value)||16; let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";,./?'; let res=''; for(let i=0;i<len;i++) res+=chars.charAt(Math.floor(Math.random()*chars.length)); $('#toolResult').textContent = res; };
+  if(id==='percentcalc') $('#calcPercent').onclick = () => { let v1 = parseFloat($('#p1').value)||0, v2 = parseFloat($('#p2').value)||0; $('#toolResult').textContent = `النتيجة: ${(v1*v2)/100}`; };
+  if(id==='caloriecalc') $('#calcCals').onclick = () => { let w = parseFloat($('#cWeight').value)||70, h = parseFloat($('#cHeight').value)||175, a = parseFloat($('#cAge').value)||25, gen = $('#cGender').value; let bmr = (gen==='male') ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a - 161); $('#toolResult').textContent = `BMR: ${bmr.toFixed(1)} kcal/day\nWith moderate activity: ${(bmr*1.55).toFixed(1)} kcal/day`; };
+  if(id==='json') { $('#fmtJson').onclick = () => { try { $('#toolResult').textContent = JSON.stringify(JSON.parse(input.value), null, 2); } catch(e) { $('#toolResult').textContent = 'خطأ: ' + e.message; } }; $('#minJson').onclick = () => { try { $('#toolResult').textContent = JSON.stringify(JSON.parse(input.value)); } catch(e) { $('#toolResult').textContent = 'خطأ: ' + e.message; } }; }
+  if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id)) $('#fmtCode').onclick = () => { $('#toolResult').textContent = input.value.trim().replace(/>\s*</g,'>\n<'); };
+  if(id==='uuidgen') $('#genUuid').onclick = () => { $('#toolResult').textContent = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { let r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16); }); };
+  if(id==='hashgen') $('#genHash').onclick = () => { let s = input.value; let h = 0; for(let i=0; i<s.length; i++) h = ((h<<5)-h)+s.charCodeAt(i), h|=0; $('#toolResult').textContent = 'Hash: ' + Math.abs(h).toString(16)+'a9f2b3e7'; };
+  if(id==='diffchk') $('#runDiff').onclick = () => { let t1 = $('#text1').value, t2 = $('#text2').value; $('#toolResult').textContent = (t1===t2)?'النصان متطابقان تماماً ✅':'النصان مختلفان ❌'; };
+  if(id==='qrcode') $('#makeQr').onclick = () => { let v = $('#qrText').value.trim(); if(!v) return; let u = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}`; $('#toolResult').innerHTML = `<a href="${u}" target="_blank"><img src="${u}" style="border-radius:12px"></a>`; };
+  if(id==='imgcrop'||id==='imgcolors') $('#processImg').onclick = () => { let f = $('#imgFile').files[0]; if(!f){toast('اختر صورة أولاً');return} $('#toolResult').textContent='تم تحميل الصورة بنجاح: '+f.name; };
+  if(id==='splitpdf') $('#runPdfSplit').onclick = () => { let f = $('#pdfFile').files[0]; if(!f){toast('اختر ملف PDF');return} $('#toolResult').textContent='تم اختيار ملف PDF: '+f.name+'\nجاري التقسيم محلياً...'; };
+  $('#copyResult')?.addEventListener('click', copyResult);
+}
+
+document.addEventListener('click', e => {
+  let cat = e.target.closest('[data-cat]');
+  if(cat) { category = cat.dataset.cat; renderCategories(); renderTools(); }
+  let fav = e.target.closest('[data-fav]');
+  if(fav) { let id = fav.dataset.fav; favorites = favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id]; localStorage.setItem('hema_favs', JSON.stringify(favorites)); renderTools(); }
+  let open = e.target.closest('[data-open]');
+  if(open) openTool(open.dataset.open);
+});
+
+$('#search').addEventListener('input', renderTools);
+$('#language').onchange = e => { lang = e.target.value; localStorage.setItem('hema_lang', lang); applyLanguage(); };
+$('#theme').onchange = e => { theme = e.target.value; applyTheme(); };
+$('#closeModal').onclick = () => $('#toolModal').classList.remove('show');
+
+$('#year').textContent = new Date().getFullYear();
+applyTheme();
+applyLanguage();
+renderCategories();
+renderTools();
 </script>
 </body>
 </html>
