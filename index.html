@@ -3,30 +3,256 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#090817">
-  <meta name="description" content="HeMa Tools — منصة أدوات رقمية مجانية وسهلة للكتابة والصور والبرمجة والإنتاجية.">
+  <meta name="theme-color" content="#080713">
+  <meta name="description" content="HeMa Tools — منصة أدوات رقمية متكاملة تضم أكثر من 150 أداة مجانية للصور، ملفات PDF، البرمجة، النصوص، الذكاء الاصطناعي، والإنتاجية بتصميم مستقبلي فائق السرعة.">
+  <meta name="keywords" content="أدوات ويب, ضغط صور, تحويل PDF, أدوات برمجية, ذكاء اصطناعي, HeMa Tools">
   <meta name="robots" content="index,follow">
-  <title>HeMa Tools — أدواتك الرقمية في مكان واحد</title>
+  <title>HeMa Tools — منصة الأدوات الرقمية الشاملة (150+ أداة)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#080713;--bg2:#100d22;--panel:rgba(23,19,43,.72);--panel2:rgba(255,255,255,.055);--text:#f7f4ff;--muted:#aaa4c2;--line:rgba(196,169,255,.17);--purple:#9b5cff;--pink:#ff4eb8;--blue:#31d9ff;--green:#42f5a1;--shadow:0 18px 60px rgba(0,0,0,.32);--radius:22px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.19),transparent 32%),radial-gradient(ellipse at 88% 18%,rgba(255,54,174,.12),transparent 28%),radial-gradient(ellipse at 50% 95%,rgba(0,194,255,.10),transparent 34%),var(--bg);color:var(--text);font-family:"Cairo",Inter,system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 90%);z-index:-1}
-    body.light{--bg:#f3f2fb;--bg2:#fff;--panel:rgba(255,255,255,.82);--panel2:rgba(30,20,70,.045);--text:#171329;--muted:#68617e;--line:rgba(91,62,150,.16);--shadow:0 18px 50px rgba(51,31,91,.10);background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.13),transparent 32%),radial-gradient(ellipse at 88% 18%,rgba(255,54,174,.10),transparent 28%),#f3f2fb}
-    body.dark{--bg:#05050a;--bg2:#090911;--panel:rgba(13,13,24,.88);--panel2:rgba(255,255,255,.035);--text:#f7f7ff;--muted:#9999ad;--line:rgba(140,130,190,.16);background:radial-gradient(ellipse at 15% 0%,rgba(94,47,173,.14),transparent 35%),#05050a}
-    a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}
-    .topbar{position:sticky;top:0;z-index:50;background:rgba(8,7,19,.72);backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}body.light .topbar{background:rgba(245,243,252,.82)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:10px;font-family:Inter,"Cairo",sans-serif;font-weight:900;letter-spacing:-.8px;font-size:23px;white-space:nowrap}.brand-mark{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink) 58%,var(--blue));box-shadow:0 0 25px #a44dff66;color:white;font-size:20px}.brand-name{background:linear-gradient(90deg,#fff 0%,#c5a2ff 38%,#ff7bc9 70%,#6beaff 100%);background-clip:text;color:transparent}.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green),0 0 18px var(--green);animation:pulse 1.5s infinite}@keyframes pulse{50%{opacity:.28;box-shadow:0 0 2px var(--green)}}
-    .nav-actions{display:flex;align-items:center;gap:8px}.nav-select,.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:9px 11px}.nav-select{max-width:145px}.icon-btn{display:flex;align-items:center;gap:7px}.icon-btn:hover,.nav-select:hover{border-color:#a96dff88;box-shadow:0 0 18px #a45cff22}.menu-btn{display:none}
-    .hero{padding:76px 0 42px;text-align:center;position:relative}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 14px;border:1px solid #a45cff55;border-radius:999px;background:#8e4cff12;color:#d6baff;font-size:13px}.hero h1{font-size:clamp(36px,7vw,70px);line-height:1.18;margin:22px auto 14px;font-weight:900;letter-spacing:-1.8px;max-width:850px}.gradient-text{background:linear-gradient(90deg,#b58aff,#ff69c4 48%,#58e8ff);background-clip:text;color:transparent}.hero p{max-width:670px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.9}.search-wrap{max-width:680px;margin:30px auto 0;position:relative}.search-wrap input{width:100%;height:60px;border-radius:18px;border:1px solid #a879ff55;background:var(--panel);backdrop-filter:blur(20px);box-shadow:0 0 35px #984dff20,inset 0 1px #ffffff12;color:var(--text);padding:0 54px 0 18px;outline:none;font-size:16px}.search-wrap input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #31d9ff18,0 0 35px #984dff25}.search-icon{position:absolute;right:19px;top:18px;color:#c69cff;font-size:20px}.hero-stats{display:flex;justify-content:center;gap:30px;margin-top:27px;flex-wrap:wrap;color:var(--muted);font-size:13px}.hero-stats b{color:var(--text);font-size:17px;margin-left:5px}
-    .section{padding:30px 0 50px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}.section-head h2{font-size:25px;margin:0;font-weight:800}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}.chip{border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--muted);padding:8px 15px;font-size:13px;transition:.2s}.chip.active,.chip:hover{color:white;border-color:#a96dff99;background:linear-gradient(100deg,#8d4dff55,#ed45ae33);box-shadow:0 0 20px #a45cff1c}
-    .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.tool-card{position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,var(--panel),var(--panel2));backdrop-filter:blur(18px);padding:18px;min-height:190px;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}.tool-card:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:var(--glow,#9b5cff);filter:blur(70px);opacity:.14;left:-55px;bottom:-75px;pointer-events:none}.tool-card:hover{transform:translateY(-5px);border-color:#b47aff88;box-shadow:0 14px 40px #0003,0 0 25px #a45cff1a}.tool-top{display:flex;align-items:center;justify-content:space-between}.tool-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,#9b5cff32,#ff4eb824);border:1px solid #b58aff38}.fav{border:0;background:transparent;color:#827b99;font-size:21px;padding:4px}.fav.on{color:#ff5eaf;text-shadow:0 0 13px #ff4eb8}.tool-card h3{font-size:16px;margin:15px 0 5px}.tool-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 13px;min-height:41px}.tool-bottom{display:flex;align-items:center;justify-content:space-between}.tool-tag{font-size:11px;color:#c7a9ff;background:#9b5cff18;border:1px solid #9b5cff33;padding:4px 9px;border-radius:999px}.open-tool{font-size:12px;color:#7ceaff;border:0;background:transparent;padding:5px}
-    .empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:20px}.feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{padding:19px;border:1px solid var(--line);background:var(--panel);border-radius:18px}.feature strong{display:block;margin:8px 0 4px}.feature p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}.feature .ico{font-size:24px}
-    footer{border-top:1px solid var(--line);background:#08071366;padding:36px 0 22px;margin-top:25px}body.light footer{background:#ffffff77}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px}.footer-about p{color:var(--muted);font-size:13px;line-height:1.8;max-width:360px}.footer-title{font-weight:800;margin-bottom:12px}.footer-links{display:grid;gap:8px;color:var(--muted);font-size:13px}.footer-links a:hover{color:var(--blue)}.copyright-line{border-top:1px solid var(--line);margin-top:25px;padding-top:17px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .page{display:none;min-height:55vh;padding:55px 0}.page.active{display:block}.page-card{max-width:850px;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:var(--shadow)}.page-card h1{font-size:32px;margin:0 0 10px}.page-card h2{font-size:19px;margin:25px 0 8px}.page-card p,.page-card li{color:var(--muted);line-height:1.95;font-size:14px}.page-card a{color:var(--blue);text-decoration:underline}.updated{color:var(--muted);font-size:12px;margin-bottom:25px}
-    .modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(10px);padding:18px;overflow:auto}.modal-backdrop.show{display:grid;place-items:center}.modal{width:min(680px,100%);max-height:90vh;overflow:auto;border:1px solid #ad83ff55;border-radius:24px;background:var(--bg2);box-shadow:0 20px 90px #0009,0 0 40px #9b5cff22;padding:22px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.modal-head h2{font-size:21px;margin:0}.close{width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:var(--panel2);color:var(--text);font-size:20px}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:13px;color:var(--muted)}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);padding:12px;outline:none}.field textarea{min-height:125px;resize:vertical}.action{border:0;border-radius:12px;padding:11px 17px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9);box-shadow:0 7px 22px #9b5cff33}.action.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text);box-shadow:none}.result{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;min-height:44px;color:var(--text);font-size:13px;direction:auto}.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.cookie{position:fixed;z-index:80;bottom:16px;left:16px;right:16px;max-width:720px;margin:auto;border:1px solid #ad83ff55;background:var(--bg2);border-radius:18px;padding:16px;box-shadow:var(--shadow);display:none}.cookie.show{display:block}.cookie p{font-size:12px;line-height:1.7;color:var(--muted);margin:5px 0 12px}.cookie-actions{display:flex;gap:8px;flex-wrap:wrap}.toast{position:fixed;z-index:120;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow);font-size:13px;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-width:900px){.tools-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.wrap{width:min(100% - 24px,1160px)}.nav{min-height:66px}.brand{font-size:19px}.brand-mark{width:34px;height:34px}.nav-select{max-width:112px;padding:8px 6px;font-size:12px}.icon-btn{padding:8px}.icon-btn .btn-label{display:none}.hero{padding:55px 0 30px}.hero p{font-size:14px}.tools-grid{grid-template-columns:repeat(2,1fr);gap:10px}.tool-card{padding:14px;min-height:190px}.tool-card h3{font-size:14px}.tool-card p{font-size:11px}.feature-strip{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-about{grid-column:1/-1}.section-head h2{font-size:21px}}@media(max-width:390px){.tools-grid{grid-template-columns:1fr}.nav-actions{gap:5px}.brand{font-size:17px}.nav-select{max-width:94px}}
+    :root {
+      --bg: #080713;
+      --bg2: #100d22;
+      --panel: rgba(23, 19, 43, 0.78);
+      --panel2: rgba(255, 255, 255, 0.055);
+      --text: #f7f4ff;
+      --muted: #aaa4c2;
+      --line: rgba(196, 169, 255, 0.17);
+      --purple: #9b5cff;
+      --pink: #ff4eb8;
+      --blue: #31d9ff;
+      --green: #42f5a1;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 12% 8%, rgba(133, 65, 255, 0.19), transparent 32%),
+                  radial-gradient(ellipse at 88% 18%, rgba(255, 54, 174, 0.12), transparent 28%),
+                  radial-gradient(ellipse at 50% 95%, rgba(0, 194, 255, 0.10), transparent 34%), var(--bg);
+      color: var(--text);
+      font-family: "Cairo", Inter, system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+      z-index: -1;
+    }
+    body.light {
+      --bg: #f3f2fb;
+      --bg2: #fff;
+      --panel: rgba(255, 255, 255, 0.85);
+      --panel2: rgba(30, 20, 70, 0.045);
+      --text: #171329;
+      --muted: #68617e;
+      --line: rgba(91, 62, 150, 0.16);
+      --shadow: 0 18px 50px rgba(51, 31, 91, 0.10);
+      background: radial-gradient(ellipse at 12% 8%, rgba(133, 65, 255, 0.13), transparent 32%),
+                  radial-gradient(ellipse at 88% 18%, rgba(255, 54, 174, 0.10), transparent 28%), #f3f2fb;
+    }
+    body.dark {
+      --bg: #05050a;
+      --bg2: #090911;
+      --panel: rgba(13, 13, 24, 0.88);
+      --panel2: rgba(255, 255, 255, 0.035);
+      --text: #f7f7ff;
+      --muted: #9999ad;
+      --line: rgba(140, 130, 190, 0.16);
+      background: radial-gradient(ellipse at 15% 0%, rgba(94, 47, 173, 0.14), transparent 35%), #05050a;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .wrap { width: min(1160px, calc(100% - 36px)); margin: auto; }
+
+    /* Topbar */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(8, 7, 19, 0.78);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--line);
+    }
+    body.light .topbar { background: rgba(245, 243, 252, 0.85); }
+    .nav {
+      min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: Inter, "Cairo", sans-serif; font-weight: 900; letter-spacing: -0.8px; font-size: 23px; white-space: nowrap;
+    }
+    .brand-mark {
+      width: 38px; height: 38px; border-radius: 13px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--purple), var(--pink) 58%, var(--blue));
+      box-shadow: 0 0 25px rgba(164, 77, 255, 0.4); color: white; font-size: 20px;
+    }
+    .brand-name {
+      background: linear-gradient(90deg, #fff 0%, #c5a2ff 38%, #ff7bc9 70%, #6beaff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .live-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 8px var(--green), 0 0 18px var(--green); animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 50% { opacity: 0.28; box-shadow: 0 0 2px var(--green); } }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-select, .icon-btn {
+      border: 1px solid var(--line); background: var(--panel2); color: var(--text);
+      border-radius: 12px; padding: 9px 11px; outline: none;
+    }
+    .nav-select { max-width: 145px; }
+    .icon-btn:hover, .nav-select:hover { border-color: rgba(169, 109, 255, 0.5); box-shadow: 0 0 18px rgba(164, 92, 255, 0.15); }
+
+    /* Hero */
+    .hero { padding: 76px 0 42px; text-align: center; position: relative; }
+    .eyebrow {
+      display: inline-flex; gap: 8px; align-items: center; padding: 7px 14px;
+      border: 1px solid rgba(164, 92, 255, 0.35); border-radius: 999px; background: rgba(142, 76, 255, 0.08);
+      color: #d6baff; font-size: 13px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 68px); line-height: 1.18; margin: 22px auto 14px; font-weight: 900; letter-spacing: -1.8px; max-width: 850px;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #b58aff, #ff69c4 48%, #58e8ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { max-width: 670px; margin: 0 auto; color: var(--muted); font-size: 17px; line-height: 1.9; }
+    .search-wrap { max-width: 680px; margin: 30px auto 0; position: relative; }
+    .search-wrap input {
+      width: 100%; height: 60px; border-radius: 18px; border: 1px solid rgba(168, 121, 255, 0.35);
+      background: var(--panel); backdrop-filter: blur(20px); box-shadow: 0 0 35px rgba(152, 77, 255, 0.12), inset 0 1px rgba(255, 255, 255, 0.08);
+      color: var(--text); padding: 0 54px 0 18px; outline: none; font-size: 16px;
+    }
+    .search-wrap input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(49, 217, 255, 0.12), 0 0 35px rgba(152, 77, 255, 0.2); }
+    .search-icon { position: absolute; right: 19px; top: 18px; color: #c69cff; font-size: 20px; }
+    .hero-stats { display: flex; justify-content: center; gap: 30px; margin-top: 27px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+    .hero-stats b { color: var(--text); font-size: 17px; margin-left: 5px; }
+
+    /* Sections & Categories */
+    .section { padding: 30px 0 50px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+    .section-head h2 { font-size: 25px; margin: 0; font-weight: 800; }
+    .section-head p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .categories { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 25px; max-height: 140px; overflow-y: auto; padding-bottom: 5px; }
+    .chip {
+      border: 1px solid var(--line); border-radius: 999px; background: var(--panel2); color: var(--muted);
+      padding: 8px 15px; font-size: 13px; transition: 0.2s; white-space: nowrap;
+    }
+    .chip.active, .chip:hover {
+      color: white; border-color: rgba(169, 109, 255, 0.6);
+      background: linear-gradient(100deg, rgba(141, 77, 255, 0.35), rgba(237, 69, 174, 0.2));
+      box-shadow: 0 0 20px rgba(164, 92, 255, 0.15);
+    }
+
+    /* Tools Grid */
+    .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .tool-card {
+      position: relative; border: 1px solid var(--line); border-radius: 20px;
+      background: linear-gradient(145deg, var(--panel), var(--panel2)); backdrop-filter: blur(18px);
+      padding: 18px; min-height: 190px; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .tool-card:before {
+      content: ""; position: absolute; width: 130px; height: 130px; border-radius: 50%;
+      background: var(--glow, #9b5cff); filter: blur(70px); opacity: 0.14; left: -55px; bottom: -75px; pointer-events: none;
+    }
+    .tool-card:hover { transform: translateY(-5px); border-color: rgba(180, 122, 255, 0.55); box-shadow: 0 14px 40px rgba(0,0,0,0.2), 0 0 25px rgba(164, 92, 255, 0.12); }
+    .tool-top { display: flex; align-items: center; justify-content: space-between; }
+    .tool-icon {
+      width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; font-size: 23px;
+      background: linear-gradient(135deg, rgba(155, 92, 255, 0.2), rgba(255, 78, 184, 0.15)); border: 1px solid rgba(181, 138, 255, 0.25);
+    }
+    .fav { border: 0; background: transparent; color: #827b99; font-size: 21px; padding: 4px; cursor: pointer; }
+    .fav.on { color: #ff5eaf; text-shadow: 0 0 13px var(--pink); }
+    .tool-card h3 { font-size: 16px; margin: 12px 0 5px; }
+    .tool-card p { font-size: 12px; line-height: 1.6; color: var(--muted); margin: 0 0 12px; flex-grow: 1; }
+    .tool-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .tool-tag { font-size: 11px; color: #c7a9ff; background: rgba(155, 92, 255, 0.12); border: 1px solid rgba(155, 92, 255, 0.22); padding: 4px 9px; border-radius: 999px; }
+    .open-tool { font-size: 12px; color: #7ceaff; border: 0; background: transparent; padding: 5px; cursor: pointer; font-weight: 600; }
+    .empty { grid-column: 1/-1; text-align: center; padding: 45px 15px; color: var(--muted); border: 1px dashed var(--line); border-radius: 20px; }
+
+    /* Features Strip */
+    .feature-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .feature { padding: 19px; border: 1px solid var(--line); background: var(--panel); border-radius: 18px; }
+    .feature strong { display: block; margin: 8px 0 4px; }
+    .feature p { color: var(--muted); font-size: 13px; line-height: 1.7; margin: 0; }
+    .feature .ico { font-size: 24px; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); background: rgba(8, 7, 19, 0.5); padding: 36px 0 22px; margin-top: 40px; }
+    body.light footer { background: rgba(255, 255, 255, 0.7); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 28px; }
+    .footer-about p { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 360px; }
+    .footer-title { font-weight: 800; margin-bottom: 12px; }
+    .footer-links { display: grid; gap: 8px; color: var(--muted); font-size: 13px; }
+    .footer-links a:hover { color: var(--blue); }
+    .copyright-line { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 17px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+    /* Pages & Modals */
+    .page { display: none; min-height: 55vh; padding: 55px 0; }
+    .page.active { display: block; }
+    .page-card { max-width: 850px; margin: auto; border: 1px solid var(--line); background: var(--panel); border-radius: 24px; padding: clamp(22px, 5vw, 42px); box-shadow: var(--shadow); }
+    .page-card h1 { font-size: 32px; margin: 0 0 10px; }
+    .page-card h2 { font-size: 19px; margin: 25px 0 8px; }
+    .page-card p, .page-card li { color: var(--muted); line-height: 1.95; font-size: 14px; }
+    .page-card a { color: var(--blue); text-decoration: underline; }
+    .updated { color: var(--muted); font-size: 12px; margin-bottom: 25px; }
+
+    .modal-backdrop { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(3, 2, 11, 0.85); backdrop-filter: blur(10px); padding: 18px; overflow: auto; }
+    .modal-backdrop.show { display: grid; place-items: center; }
+    .modal { width: min(720px, 100%); max-height: 90vh; overflow: auto; border: 1px solid rgba(173, 131, 255, 0.35); border-radius: 24px; background: var(--bg2); box-shadow: 0 20px 90px rgba(0,0,0,0.6), 0 0 40px rgba(155, 92, 255, 0.15); padding: 22px; }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 17px; }
+    .modal-head h2 { font-size: 21px; margin: 0; }
+    .close { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 11px; background: var(--panel2); color: var(--text); font-size: 20px; cursor: pointer; }
+    .field { display: grid; gap: 7px; margin: 13px 0; }
+    .field label { font-size: 13px; color: var(--muted); }
+    .field input, .field textarea, .field select { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--text); padding: 12px; outline: none; }
+    .field textarea { min-height: 125px; resize: vertical; }
+    .action { border: 0; border-radius: 12px; padding: 11px 17px; color: #fff; font-weight: 700; background: linear-gradient(100deg, #884cff, #e747b1 60%, #20bde9); box-shadow: 0 7px 22px rgba(155, 92, 255, 0.25); cursor: pointer; }
+    .action.secondary { background: var(--panel2); border: 1px solid var(--line); color: var(--text); box-shadow: none; }
+    .result { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--panel2); border: 1px solid var(--line); border-radius: 12px; padding: 13px; min-height: 44px; color: var(--text); font-size: 13px; direction: auto; }
+    .modal-actions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 12px; }
+
+    .cookie { position: fixed; z-index: 80; bottom: 16px; left: 16px; right: 16px; max-width: 720px; margin: auto; border: 1px solid rgba(173, 131, 255, 0.35); background: var(--bg2); border-radius: 18px; padding: 16px; box-shadow: var(--shadow); display: none; }
+    .cookie.show { display: block; }
+    .cookie p { font-size: 12px; line-height: 1.7; color: var(--muted); margin: 5px 0 12px; }
+    .cookie-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .toast { position: fixed; z-index: 120; bottom: 22px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 16px; box-shadow: var(--shadow); font-size: 13px; transition: 0.25s; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media(max-width: 900px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media(max-width: 650px) {
+      .wrap { width: min(100% - 24px, 1160px); }
+      .nav { min-height: 66px; }
+      .brand { font-size: 19px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .nav-select { max-width: 112px; padding: 8px 6px; font-size: 12px; }
+      .icon-btn { padding: 8px; }
+      .hero { padding: 55px 0 30px; }
+      .hero p { font-size: 14px; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .tool-card { padding: 14px; min-height: 180px; }
+      .tool-card h3 { font-size: 14px; }
+      .tool-card p { font-size: 11px; }
+      .feature-strip { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-about { grid-column: 1/-1; }
+      .section-head h2 { font-size: 21px; }
+    }
+    @media(max-width: 390px) { .tools-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -37,134 +263,548 @@
     </a>
     <div class="nav-actions">
       <select class="nav-select" id="language" aria-label="Language">
-        <option value="ar">🌐 العربية</option><option value="en">🌐 English</option><option value="es">🌐 Español</option><option value="zh">🌐 中文</option><option value="pt">🌐 Português</option><option value="fr">🌐 Français</option><option value="de">🌐 Deutsch</option>
+        <option value="ar">🌐 العربية</option>
+        <option value="en">🌐 English</option>
+        <option value="es">🌐 Español</option>
+        <option value="zh">🌐 中文</option>
+        <option value="pt">🌐 Português</option>
+        <option value="fr">🌐 Français</option>
+        <option value="de">🌐 Deutsch</option>
       </select>
       <select class="nav-select" id="theme" aria-label="Theme">
-        <option value="base">✨ الأساسي</option><option value="dark">🌙 داكن</option><option value="light">☀️ فاتح</option>
+        <option value="base">✨ الأساسي</option>
+        <option value="dark">🌙 داكن</option>
+        <option value="light">☀️ فاتح</option>
       </select>
     </div>
   </div>
 </header>
+
 <main id="homeView">
   <section class="hero wrap">
-    <div class="eyebrow"><span class="live-dot"></span><span data-i18n="eyebrow">مساحتك الرقمية الذكية</span></div>
-    <h1><span data-i18n="heroA">كل الأدوات التي تحتاجها،</span><br><span class="gradient-text" data-i18n="heroB">في مكان واحد.</span></h1>
-    <p data-i18n="heroDesc">مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية — من الكتابة والصور إلى البرمجة والإنتاجية.</p>
-    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." data-i18n-placeholder="searchPlaceholder" autocomplete="off"></div>
-    <div class="hero-stats"><span><b id="toolCount">12</b><span data-i18n="statTools"> أداة متاحة</span></span><span>⚡ <span data-i18n="statFast">سريع وسهل الاستخدام</span></span><span>🔒 <span data-i18n="statPrivate">معالجة محلية لأدوات كثيرة</span></span></div>
+    <div class="eyebrow"><span class="live-dot"></span><span data-i18n="eyebrow">منصة الأدوات الذكية الشاملة</span></div>
+    <h1><span data-i18n="heroA">أكثر من 150 أداة رقمية،</span><br><span class="gradient-text" data-i18n="heroB">بين يديك مجاناً.</span></h1>
+    <p data-i18n="heroDesc">منصة HeMa Tools الرائدة للصور، ملفات الـ PDF، البرمجة، النصوص، الذكاء الاصطناعي والحسابات — سريعة، آمنة، وتعمل مباشرة في متصفحك.</p>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="search" type="search" placeholder="ابحث في أكثر من 150 أداة..." data-i18n-placeholder="searchPlaceholder" autocomplete="off">
+    </div>
+    <div class="hero-stats">
+      <span><b id="toolCount">150</b><span data-i18n="statTools"> أداة متاحة</span></span>
+      <span>⚡ <span data-i18n="statFast">أداء فائق السرعة</span></span>
+      <span>🔒 <span data-i18n="statPrivate">خصوصية تامة ومعالجة محلية</span></span>
+    </div>
   </section>
+
   <section class="section wrap">
-    <div class="section-head"><div><h2 data-i18n="toolsTitle">استكشف الأدوات</h2><p data-i18n="toolsDesc">اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button></div>
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="toolsTitle">استكشف التصنيفات والأدوات</h2>
+        <p data-i18n="toolsDesc">اختر التصنيف أو ابحث عن أداتك المطلوبة وابدأ الاستخدام فوراً.</p>
+      </div>
+      <button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button>
+    </div>
     <div class="categories" id="categories"></div>
     <div class="tools-grid" id="toolsGrid"></div>
   </section>
+
   <section class="section wrap">
-    <div class="section-head"><div><h2 data-i18n="whyTitle">مصممة لتسهيل يومك</h2><p data-i18n="whyDesc">تجربة بسيطة، واضحة، وتعمل على مختلف الأجهزة.</p></div></div>
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="whyTitle">لماذا يختار المستخدمون HeMa Tools؟</h2>
+        <p data-i18n="whyDesc">مصممة خصيصاً لتوفير الوقت والجهد بأعلى المعايير العالمية.</p>
+      </div>
+    </div>
     <div class="feature-strip">
-      <article class="feature"><div class="ico">⚡</div><strong data-i18n="feature1Title">إنجاز أسرع</strong><p data-i18n="feature1Desc">أدوات مباشرة بواجهات واضحة وخطوات أقل.</p></article>
-      <article class="feature"><div class="ico">🔐</div><strong data-i18n="feature2Title">خصوصية أفضل</strong><p data-i18n="feature2Desc">عدد من الأدوات يعالج الملفات والنصوص داخل متصفحك دون رفعها إلى خادم.</p></article>
-      <article class="feature"><div class="ico">📱</div><strong data-i18n="feature3Title">على كل الشاشات</strong><p data-i18n="feature3Desc">تصميم متجاوب للهواتف والأجهزة اللوحية والحواسيب.</p></article>
+      <article class="feature">
+        <div class="ico">⚡</div>
+        <strong data-i18n="feature1Title">إنجاز فوري</strong>
+        <p data-i18n="feature1Desc">أدوات مباشرة بواجهات سهلة وسريعة بدون انتظار أو تعقيد.</p>
+      </article>
+      <article class="feature">
+        <div class="ico">🔐</div>
+        <strong data-i18n="feature2Title">أمان وخصوصية</strong>
+        <p data-i18n="feature2Desc">معظم الأدوات تعالج ملفاتك ونصوصك محلياً داخل متصفحك دون رفعها لسيرفرات.</p>
+      </article>
+      <article class="feature">
+        <div class="ico">📱</div>
+        <strong data-i18n="feature3Title">متوافقة تماماً</strong>
+        <p data-i18n="feature3Desc">تصميم متجاوبيعمل بكفاءة عالية على الهواتف والأجهزة اللوحية والحواسيب.</p>
+      </article>
     </div>
   </section>
 </main>
-<section class="page" id="pageView"><div class="wrap"><article class="page-card" id="pageContent"></article></div></section>
+
+<section class="page" id="pageView">
+  <div class="wrap">
+    <article class="page-card" id="pageContent"></article>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-about"><a class="brand" href="https://wa.me/201094122436" target="_blank" rel="noopener"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a><p data-i18n="footerDesc">منصة أدوات رقمية تساعدك على إنجاز المهام اليومية بسهولة. نعمل باستمرار على تحسين الأدوات وإضافة خدمات مفيدة.</p></div>
-      <div><div class="footer-title" data-i18n="quickLinks">روابط مهمة</div><nav class="footer-links"><a href="#about" data-page="about" data-i18n="about">من نحن</a><a href="#contact" data-page="contact" data-i18n="contact">اتصل بنا</a><a href="#terms" data-page="terms" data-i18n="terms">شروط الاستخدام</a></nav></div>
-      <div><div class="footer-title" data-i18n="policies">السياسات</div><nav class="footer-links"><a href="#privacy" data-page="privacy" data-i18n="privacy">سياسة الخصوصية</a><a href="#cookies" data-page="cookies" data-i18n="cookies">سياسة ملفات تعريف الارتباط</a><a href="#copyright" data-page="copyright" data-i18n="copyright">حقوق الملكية</a></nav></div>
+      <div class="footer-about">
+        <a class="brand" href="https://wa.me/201094122436" target="_blank" rel="noopener">
+          <span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span>
+        </a>
+        <p data-i18n="footerDesc">منصة HeMa Tools الشاملة لأدوات الويب. نساعد المطورين وصنّاع المحتوى والمهنيين على إنجاز مهامهم اليومية بكل سهولة واحترافية.</p>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="quickLinks">روابط مهمة</div>
+        <nav class="footer-links">
+          <a href="#about" data-page="about" data-i18n="about">من نحن</a>
+          <a href="#contact" data-page="contact" data-i18n="contact">اتصل بنا</a>
+          <a href="#terms" data-page="terms" data-i18n="terms">شروط الاستخدام</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="policies">السياسات</div>
+        <nav class="footer-links">
+          <a href="#privacy" data-page="privacy" data-i18n="privacy">سياسة الخصوصية</a>
+          <a href="#cookies" data-page="cookies" data-i18n="cookies">سياسة ملفات تعريف الارتباط</a>
+          <a href="#copyright" data-page="copyright" data-i18n="copyright">حقوق الملكية</a>
+        </nav>
+      </div>
     </div>
-    <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span><span data-i18n="footerMade">صُنع لتسهيل المهام الرقمية.</span></div>
+    <div class="copyright-line">
+      <span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span>
+      <span data-i18n="footerMade">صُنع باحترافية لتسهيل المهام الرقمية.</span>
+    </div>
   </div>
 </footer>
-<div class="modal-backdrop" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-head"><h2 id="modalTitle">الأداة</h2><button class="close" id="closeModal" aria-label="إغلاق">×</button></div><div id="modalBody"></div></div></div>
-<div class="cookie" id="cookieBanner"><strong data-i18n="cookieTitle">خصوصيتك تهمنا</strong><p data-i18n="cookieText">يستخدم هذا الموقع التخزين المحلي لحفظ تفضيلاتك مثل اللغة والمظهر والمفضلة. عند تفعيل خدمات إعلانية مستقبلًا قد تُستخدم ملفات تعريف ارتباط وفق سياسة الخصوصية.</p><div class="cookie-actions"><button class="action" id="acceptCookies" data-i18n="accept">موافق</button><button class="action secondary" id="rejectCookies" data-i18n="reject">رفض غير الضروري</button><a class="chip" href="#privacy" data-page="privacy" data-i18n="readPolicy">اقرأ السياسة</a></div></div>
+
+<div class="modal-backdrop" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">الأداة</h2>
+      <button class="close" id="closeModal" aria-label="إغلاق">×</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="cookie" id="cookieBanner">
+  <strong data-i18n="cookieTitle">خصوصيتك تهمنا في HeMa Tools</strong>
+  <p data-i18n="cookieText">نستخدم التخزين المحلي لحفظ تفضيلاتك (اللغة، المظهر، والمفضلة). قد يتم استخدام ملفات تعريف ارتباط تحسين تجربة المستخدم والإعلانات مستقبلاً وفقاً لسياسة الخصوصية.</p>
+  <div class="cookie-actions">
+    <button class="action" id="acceptCookies" data-i18n="accept">موافق</button>
+    <button class="action secondary" id="rejectCookies" data-i18n="reject">رفض غير الضروري</button>
+    <a class="chip" href="#privacy" data-page="privacy" data-i18n="readPolicy">اقرأ السياسة</a>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
+
 <script>
-const WHATSAPP='201094122436';
-const translations={
-ar:{eyebrow:'مساحتك الرقمية الذكية',heroA:'كل الأدوات التي تحتاجها،',heroB:'في مكان واحد.',heroDesc:'مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية — من الكتابة والصور إلى البرمجة والإنتاجية.',searchPlaceholder:'ابحث عن أداة...',statTools:' أداة متاحة',statFast:'سريع وسهل الاستخدام',statPrivate:'معالجة محلية لأدوات كثيرة',toolsTitle:'استكشف الأدوات',toolsDesc:'اختر الأداة المناسبة وابدأ مباشرة.',favorites:'♡ المفضلة',all:'كل الأدوات',whyTitle:'مصممة لتسهيل يومك',whyDesc:'تجربة بسيطة، واضحة، وتعمل على مختلف الأجهزة.',feature1Title:'إنجاز أسرع',feature1Desc:'أدوات مباشرة بواجهات واضحة وخطوات أقل.',feature2Title:'خصوصية أفضل',feature2Desc:'عدد من الأدوات يعالج الملفات والنصوص داخل متصفحك دون رفعها إلى خادم.',feature3Title:'على كل الشاشات',feature3Desc:'تصميم متجاوب للهواتف والأجهزة اللوحية والحواسيب.',footerDesc:'منصة أدوات رقمية تساعدك على إنجاز المهام اليومية بسهولة. نعمل باستمرار على تحسين الأدوات وإضافة خدمات مفيدة.',quickLinks:'روابط مهمة',about:'من نحن',contact:'اتصل بنا',terms:'شروط الاستخدام',policies:'السياسات',privacy:'سياسة الخصوصية',cookies:'سياسة ملفات تعريف الارتباط',copyright:'حقوق الملكية',rights:'جميع الحقوق محفوظة.',footerMade:'صُنع لتسهيل المهام الرقمية.',cookieTitle:'خصوصيتك تهمنا',cookieText:'يستخدم هذا الموقع التخزين المحلي لحفظ تفضيلاتك مثل اللغة والمظهر والمفضلة. عند تفعيل خدمات إعلانية مستقبلًا قد تُستخدم ملفات تعريف ارتباط وفق سياسة الخصوصية.',accept:'موافق',reject:'رفض غير الضروري',readPolicy:'اقرأ السياسة',open:'افتح الأداة',noResults:'لا توجد أدوات مطابقة لبحثك.',copy:'نسخ النتيجة',copied:'تم النسخ',run:'تنفيذ',input:'أدخل النص',output:'النتيجة',close:'إغلاق',category:{all:'كل الأدوات',text:'الكتابة والنصوص',dev:'البرمجة',image:'الصور',productivity:'الإنتاجية'},tools:{word:'عداد الكلمات',case:'تغيير حالة الأحرف',clean:'تنظيف النص',json:'منسق JSON',base64:'Base64',url:'ترميز URL',password:'مولّد كلمات مرور',image:'ضغط الصور',color:'منتقي الألوان',gradient:'مولّد التدرجات',timestamp:'محول Unix Timestamp',markdown:'معاينة Markdown'}},
-en:{eyebrow:'Your smart digital space',heroA:'Every tool you need,',heroB:'in one place.',heroDesc:'A curated collection of free digital tools to help you work faster and privately — from writing and images to coding and productivity.',searchPlaceholder:'Search for a tool...',statTools:' tools available',statFast:'Fast and easy to use',statPrivate:'Local processing for many tools',toolsTitle:'Explore tools',toolsDesc:'Choose a tool and get started.',favorites:'♡ Favorites',all:'All tools',whyTitle:'Built to simplify your day',whyDesc:'A clear experience that works across devices.',feature1Title:'Get things done faster',feature1Desc:'Direct tools with clear interfaces and fewer steps.',feature2Title:'Better privacy',feature2Desc:'Many tools process files and text in your browser without uploading them.',feature3Title:'Every screen',feature3Desc:'Responsive on phones, tablets and computers.',footerDesc:'A digital tools platform that helps you complete everyday tasks. We continuously improve tools and add useful services.',quickLinks:'Quick links',about:'About us',contact:'Contact',terms:'Terms of use',policies:'Policies',privacy:'Privacy policy',cookies:'Cookie policy',copyright:'Copyright',rights:'All rights reserved.',footerMade:'Made to simplify digital tasks.',cookieTitle:'Your privacy matters',cookieText:'This site uses local storage for preferences such as language, theme and favorites. If advertising services are enabled later, cookies may be used as described in the privacy policy.',accept:'Accept',reject:'Reject non-essential',readPolicy:'Read policy',open:'Open tool',noResults:'No matching tools found.',copy:'Copy result',copied:'Copied',run:'Run',input:'Enter text',output:'Result',close:'Close',category:{all:'All tools',text:'Writing & text',dev:'Development',image:'Images',productivity:'Productivity'},tools:{word:'Word counter',case:'Text case converter',clean:'Text cleaner',json:'JSON formatter',base64:'Base64',url:'URL encoder',password:'Password generator',image:'Image compressor',color:'Color picker',gradient:'Gradient generator',timestamp:'Unix timestamp converter',markdown:'Markdown preview'}},
-es:{eyebrow:'Tu espacio digital inteligente',heroA:'Todas las herramientas que necesitas,',heroB:'en un solo lugar.',heroDesc:'Herramientas digitales gratuitas para trabajar con rapidez y privacidad.',searchPlaceholder:'Buscar herramienta...',statTools:' herramientas',statFast:'Rápido y fácil',statPrivate:'Procesamiento local',toolsTitle:'Explorar herramientas',toolsDesc:'Elige una herramienta para comenzar.',favorites:'♡ Favoritos',all:'Todas',whyTitle:'Diseñado para simplificar tu día',whyDesc:'Una experiencia clara en todos los dispositivos.',feature1Title:'Más rapidez',feature1Desc:'Herramientas directas y sencillas.',feature2Title:'Más privacidad',feature2Desc:'Muchas herramientas procesan datos en tu navegador.',feature3Title:'Todos los dispositivos',feature3Desc:'Diseño adaptable.',footerDesc:'Plataforma de herramientas digitales para tareas cotidianas.',quickLinks:'Enlaces',about:'Sobre nosotros',contact:'Contacto',terms:'Términos',policies:'Políticas',privacy:'Privacidad',cookies:'Cookies',copyright:'Derechos de autor',rights:'Todos los derechos reservados.',footerMade:'Hecho para facilitar tareas digitales.',cookieTitle:'Tu privacidad importa',cookieText:'Usamos almacenamiento local para guardar preferencias. Los servicios publicitarios futuros pueden usar cookies según la política.',accept:'Aceptar',reject:'Rechazar no esenciales',readPolicy:'Leer política',open:'Abrir herramienta',noResults:'No se encontraron herramientas.',copy:'Copiar resultado',copied:'Copiado',run:'Ejecutar',input:'Introduce texto',output:'Resultado',close:'Cerrar',category:{all:'Todas',text:'Texto',dev:'Desarrollo',image:'Imágenes',productivity:'Productividad'},tools:{word:'Contador de palabras',case:'Conversor de mayúsculas',clean:'Limpiar texto',json:'Formato JSON',base64:'Base64',url:'Codificar URL',password:'Generador de contraseñas',image:'Comprimir imagen',color:'Selector de color',gradient:'Generador de degradados',timestamp:'Convertidor Unix',markdown:'Vista Markdown'}},
-zh:{eyebrow:'你的智能数字空间',heroA:'你需要的所有工具，',heroB:'尽在一处。',heroDesc:'免费数字工具，帮助你更快速、更私密地完成工作。',searchPlaceholder:'搜索工具...',statTools:' 个工具',statFast:'快速易用',statPrivate:'本地处理',toolsTitle:'探索工具',toolsDesc:'选择工具并开始使用。',favorites:'♡ 收藏',all:'全部工具',whyTitle:'让日常更简单',whyDesc:'适用于各种设备的清晰体验。',feature1Title:'提高效率',feature1Desc:'界面清晰，步骤更少。',feature2Title:'更好隐私',feature2Desc:'许多工具直接在浏览器中处理数据。',feature3Title:'适配所有屏幕',feature3Desc:'适配手机、平板和电脑。',footerDesc:'帮助你轻松完成日常任务的数字工具平台。',quickLinks:'快速链接',about:'关于我们',contact:'联系我们',terms:'使用条款',policies:'政策',privacy:'隐私政策',cookies:'Cookie 政策',copyright:'版权',rights:'保留所有权利。',footerMade:'让数字任务更简单。',cookieTitle:'隐私很重要',cookieText:'本站使用本地存储保存偏好设置。未来启用广告服务时，可能按隐私政策使用 Cookie。',accept:'接受',reject:'拒绝非必要项',readPolicy:'阅读政策',open:'打开工具',noResults:'没有找到匹配工具。',copy:'复制结果',copied:'已复制',run:'执行',input:'输入文本',output:'结果',close:'关闭',category:{all:'全部',text:'文本',dev:'开发',image:'图像',productivity:'效率'},tools:{word:'字数统计',case:'大小写转换',clean:'文本清理',json:'JSON 格式化',base64:'Base64',url:'URL 编码',password:'密码生成器',image:'图片压缩',color:'颜色选择器',gradient:'渐变生成器',timestamp:'Unix 时间转换',markdown:'Markdown 预览'}},
-pt:{eyebrow:'Seu espaço digital inteligente',heroA:'Todas as ferramentas de que precisa,',heroB:'em um só lugar.',heroDesc:'Ferramentas digitais gratuitas para trabalhar com rapidez e privacidade.',searchPlaceholder:'Pesquisar ferramenta...',statTools:' ferramentas',statFast:'Rápido e fácil',statPrivate:'Processamento local',toolsTitle:'Explorar ferramentas',toolsDesc:'Escolha uma ferramenta para começar.',favorites:'♡ Favoritos',all:'Todas',whyTitle:'Feito para simplificar seu dia',whyDesc:'Experiência clara em todos os dispositivos.',feature1Title:'Mais produtividade',feature1Desc:'Ferramentas diretas e simples.',feature2Title:'Mais privacidade',feature2Desc:'Muitas ferramentas processam dados no navegador.',feature3Title:'Todas as telas',feature3Desc:'Design responsivo.',footerDesc:'Plataforma de ferramentas digitais para tarefas diárias.',quickLinks:'Links rápidos',about:'Sobre',contact:'Contato',terms:'Termos de uso',policies:'Políticas',privacy:'Privacidade',cookies:'Cookies',copyright:'Direitos autorais',rights:'Todos os direitos reservados.',footerMade:'Feito para simplificar tarefas digitais.',cookieTitle:'Sua privacidade importa',cookieText:'Usamos armazenamento local para preferências. Serviços de anúncios futuros podem usar cookies conforme a política.',accept:'Aceitar',reject:'Rejeitar não essenciais',readPolicy:'Ler política',open:'Abrir ferramenta',noResults:'Nenhuma ferramenta encontrada.',copy:'Copiar resultado',copied:'Copiado',run:'Executar',input:'Digite o texto',output:'Resultado',close:'Fechar',category:{all:'Todas',text:'Texto',dev:'Desenvolvimento',image:'Imagens',productivity:'Produtividade'},tools:{word:'Contador de palavras',case:'Conversor de maiúsculas',clean:'Limpar texto',json:'Formatador JSON',base64:'Base64',url:'Codificar URL',password:'Gerador de senhas',image:'Comprimir imagem',color:'Seletor de cores',gradient:'Gerador de gradiente',timestamp:'Conversor Unix',markdown:'Prévia Markdown'}},
-fr:{eyebrow:'Votre espace numérique intelligent',heroA:'Tous les outils dont vous avez besoin,',heroB:'au même endroit.',heroDesc:'Des outils numériques gratuits pour travailler plus vite et en toute confidentialité.',searchPlaceholder:'Rechercher un outil...',statTools:' outils disponibles',statFast:'Rapide et simple',statPrivate:'Traitement local',toolsTitle:'Explorer les outils',toolsDesc:'Choisissez un outil pour commencer.',favorites:'♡ Favoris',all:'Tous',whyTitle:'Conçu pour simplifier votre journée',whyDesc:'Une expérience claire sur tous les appareils.',feature1Title:'Plus rapide',feature1Desc:'Des outils directs et simples.',feature2Title:'Meilleure confidentialité',feature2Desc:'De nombreux outils traitent les données dans votre navigateur.',feature3Title:'Tous les écrans',feature3Desc:'Design adaptatif.',footerDesc:'Une plateforme d’outils numériques pour les tâches quotidiennes.',quickLinks:'Liens rapides',about:'À propos',contact:'Contact',terms:'Conditions',policies:'Politiques',privacy:'Confidentialité',cookies:'Cookies',copyright:'Droits d’auteur',rights:'Tous droits réservés.',footerMade:'Conçu pour simplifier les tâches numériques.',cookieTitle:'Votre confidentialité compte',cookieText:'Le stockage local conserve vos préférences. Les futurs services publicitaires peuvent utiliser des cookies selon la politique.',accept:'Accepter',reject:'Refuser le non essentiel',readPolicy:'Lire la politique',open:'Ouvrir',noResults:'Aucun outil trouvé.',copy:'Copier le résultat',copied:'Copié',run:'Exécuter',input:'Saisissez le texte',output:'Résultat',close:'Fermer',category:{all:'Tous',text:'Texte',dev:'Développement',image:'Images',productivity:'Productivité'},tools:{word:'Compteur de mots',case:'Convertisseur de casse',clean:'Nettoyeur de texte',json:'Formateur JSON',base64:'Base64',url:'Encodage URL',password:'Générateur de mots de passe',image:'Compresser une image',color:'Sélecteur de couleur',gradient:'Générateur de dégradé',timestamp:'Convertisseur Unix',markdown:'Aperçu Markdown'}},
-de:{eyebrow:'Dein intelligenter digitaler Raum',heroA:'Alle Werkzeuge, die du brauchst,',heroB:'an einem Ort.',heroDesc:'Kostenlose digitale Werkzeuge für schnelles und privates Arbeiten.',searchPlaceholder:'Werkzeug suchen...',statTools:' Werkzeuge verfügbar',statFast:'Schnell und einfach',statPrivate:'Lokale Verarbeitung',toolsTitle:'Werkzeuge entdecken',toolsDesc:'Wähle ein Werkzeug und starte.',favorites:'♡ Favoriten',all:'Alle',whyTitle:'Für einen einfacheren Alltag',whyDesc:'Klare Nutzung auf allen Geräten.',feature1Title:'Schneller arbeiten',feature1Desc:'Direkte Werkzeuge mit klaren Oberflächen.',feature2Title:'Mehr Datenschutz',feature2Desc:'Viele Werkzeuge verarbeiten Daten direkt im Browser.',feature3Title:'Alle Bildschirme',feature3Desc:'Responsives Design.',footerDesc:'Eine Plattform digitaler Werkzeuge für alltägliche Aufgaben.',quickLinks:'Links',about:'Über uns',contact:'Kontakt',terms:'Nutzungsbedingungen',policies:'Richtlinien',privacy:'Datenschutz',cookies:'Cookie-Richtlinie',copyright:'Urheberrecht',rights:'Alle Rechte vorbehalten.',footerMade:'Entwickelt für einfachere digitale Aufgaben.',cookieTitle:'Deine Privatsphäre zählt',cookieText:'Lokaler Speicher merkt sich Einstellungen. Zukünftige Werbedienste können Cookies gemäß Richtlinie verwenden.',accept:'Akzeptieren',reject:'Nicht notwendige ablehnen',readPolicy:'Richtlinie lesen',open:'Öffnen',noResults:'Keine passenden Werkzeuge gefunden.',copy:'Ergebnis kopieren',copied:'Kopiert',run:'Ausführen',input:'Text eingeben',output:'Ergebnis',close:'Schließen',category:{all:'Alle',text:'Text',dev:'Entwicklung',image:'Bilder',productivity:'Produktivität'},tools:{word:'Wortzähler',case:'Groß-/Kleinschreibung',clean:'Text bereinigen',json:'JSON-Formatierer',base64:'Base64',url:'URL-Kodierung',password:'Passwortgenerator',image:'Bild komprimieren',color:'Farbauswahl',gradient:'Farbverlauf-Generator',timestamp:'Unix-Zeit-Konverter',markdown:'Markdown-Vorschau'}}
+const WHATSAPP = '201094122436';
+
+const translations = {
+  ar: {
+    eyebrow: 'منصة الأدوات الذكية الشاملة',
+    heroA: 'أكثر من 150 أداة رقمية،',
+    heroB: 'بين يديك مجاناً.',
+    heroDesc: 'منصة HeMa Tools الرائدة للصور، ملفات الـ PDF، البرمجة، النصوص، الذكاء الاصطناعي والحسابات — سريعة، آمنة، وتعمل مباشرة في متصفحك.',
+    searchPlaceholder: 'ابحث في أكثر من 150 أداة...',
+    statTools: ' أداة متاحة',
+    statFast: 'أداء فائق السرعة',
+    statPrivate: 'خصوصية تامة ومعالجة محلية',
+    toolsTitle: 'استكشف التصنيفات والأدوات',
+    toolsDesc: 'اختر التصنيف أو ابحث عن أداتك المطلوبة وابدأ الاستخدام فوراً.',
+    favorites: '♡ المفضلة',
+    all: 'كل الأدوات',
+    whyTitle: 'لماذا يختار المستخدمون HeMa Tools؟',
+    whyDesc: 'مصممة خصيصاً لتوفير الوقت والجهد بأعلى المعايير العالمية.',
+    feature1Title: 'إنجاز فوري',
+    feature1Desc: 'أدوات مباشرة بواجهات سهلة وسريعة بدون انتظار أو تعقيد.',
+    feature2Title: 'أمان وخصوصية',
+    feature2Desc: 'معظم الأدوات تعالج ملفاتك ونصوصك محلياً داخل متصفحك دون رفعها لسيرفرات.',
+    feature3Title: 'متوافقة تماماً',
+    feature3Desc: 'تصميم متجاوب يعمل بكفاءة عالية على الهواتف والأجهزة اللوحية والحواسيب.',
+    footerDesc: 'منصة HeMa Tools الشاملة لأدوات الويب. نساعد المطورين وصنّاع المحتوى والمهنيين على إنجاز مهامهم اليومية بكل سهولة واحترافية.',
+    quickLinks: 'روابط مهمة',
+    about: 'من نحن',
+    contact: 'اتصل بنا',
+    terms: 'شروط الاستخدام',
+    policies: 'السياسات',
+    privacy: 'سياسة الخصوصية',
+    cookies: 'سياسة ملفات تعريف الارتباط',
+    copyright: 'حقوق الملكية',
+    rights: 'جميع الحقوق محفوظة.',
+    footerMade: 'صُنع باحترافية لتسهيل المهام الرقمية.',
+    cookieTitle: 'خصوصيتك تهمنا في HeMa Tools',
+    cookieText: 'نستخدم التخزين المحلي لحفظ تفضيلاتك (اللغة، المظهر، والمفضلة). قد يتم استخدام ملفات تعريف ارتباط تحسين تجربة المستخدم والإعلانات مستقبلاً وفقاً لسياسة الخصوصية.',
+    accept: 'موافق',
+    reject: 'رفض غير الضروري',
+    readPolicy: 'اقرأ السياسة',
+    open: 'فتح الأداة',
+    noResults: 'لا توجد أدوات مطابقة لبحثك.',
+    copy: 'نسخ النتيجة',
+    copied: 'تم النسخ بنجاح',
+    run: 'تنفيذ العملية',
+    input: 'أدخل البيانات أو النص هنا...',
+    output: 'النتيجة',
+    close: 'إغلاق',
+    category: {
+      all: 'كل الأدوات',
+      image: 'أدوات الصور',
+      pdf: 'أدوات PDF',
+      dev: 'أدوات المبرمجين',
+      text: 'أدوات النصوص',
+      ai: 'الذكاء الاصطناعي',
+      productivity: 'الإنتاجية والعمل',
+      video: 'أدوات الفيديو',
+      audio: 'أدوات الصوت',
+      css: 'تصميم وتنسيق CSS',
+      network: 'أدوات الشبكات',
+      calc: 'الحاسبات والمالية',
+      converter: 'المحولات الشاملة'
+    },
+    tools: {
+      'img-comp': 'ضغط الصور', 'img-res': 'تغيير أبعاد الصور', 'bg-rem': 'إزالة الخلفية', 'photo-ed': 'محرر الصور',
+      'design-maker': 'مصمم التصميمات', 'ai-enhancer': 'تحسين جودة الصور', 'online-photo': 'محرر صور أونلاين', 'img-crop': 'قص الصور',
+      'img-conv': 'تحويل صيغ الصور', 'color-pick': 'استخراج الألوان', 'img-pdf': 'تحويل الصور إلى PDF', 'pdf-comp': 'ضغط PDF',
+      'merge-pdf': 'دمج PDF', 'split-pdf': 'تقسيم PDF', 'pdf-word': 'تحويل PDF إلى Word', 'pdf-jpg': 'تحويل PDF إلى صور',
+      'pdf-ed': 'محرر PDF', 'pdf-sign': 'توقيع PDF', 'json-fmt': 'تنسيق JSON', 'html-fmt': 'تنسيق HTML',
+      'css-min': 'ضغط CSS', 'js-min': 'ضغط JavaScript', 'base64-codec': 'تشفير وفك Base64', 'url-codec': 'ترميز الروابط',
+      'regex-test': 'اختبار Regex', 'uuid-gen': 'مولد UUID', 'hash-gen': 'مولد Hash', 'jwt-dec': 'محلل JWT',
+      'word-count': 'عداد الكلمات', 'case-conv': 'محول الأحرف', 'text-diff': 'مقارنة النصوص', 'grammar-chk': 'مدقق لغوي',
+      'paraphrase': 'إعادة صياغة النصوص', 'translator': 'مترجم النصوص', 'lorem-gen': 'مولد النصوص التجريبية', 'todo-list': 'قائمة المهام',
+      'pomodoro': 'مؤقت بومودورو', 'qr-gen': 'مولد QR', 'pass-gen': 'مولد كلمات المرور', 'tz-conv': 'محول التوقيت',
+      'ai-text': 'مولد النصوص بالذكاء الاصطناعي', 'ai-img': 'مولد الصور بالذكاء الاصطناعي', 'ai-sum': 'ملخص النصوص بالذكاء الاصطناعي', 'speech-text': 'تحويل الصوت إلى نص',
+      'text-speech': 'تحويل النص إلى صوت', 'zip-ext': 'فك ضغط ZIP', 'file-size': 'محول أحجام الملفات', 'unit-conv': 'محول الوحدات',
+      'pct-calc': 'حاسبة النسبة المئوية', 'age-calc': 'حاسبة العمر', 'vid-comp': 'ضغط الفيديو', 'vid-conv': 'تحويل الفيديو',
+      'vid-trim': 'قص الفيديو', 'vid-merge': 'دمج الفيديوهات', 'vid-gif': 'تحويل الفيديو إلى GIF', 'gif-maker': 'إنشاء GIF',
+      'gif-comp': 'ضغط GIF', 'audio-conv': 'تحويل الصوت', 'audio-comp': 'ضغط الصوت', 'mp3-cutter': 'قص MP3',
+      'audio-merge': 'دمج الصوت', 'voice-rec': 'مسجل الصوت', 'audio-speed': 'تغيير سرعة الصوت', 'thumb-maker': 'مصمم صور الفيديو',
+      'sub-gen': 'مولد الترجمة', 'sql-fmt': 'تنسيق SQL', 'xml-fmt': 'تنسيق XML', 'yaml-fmt': 'تنسيق YAML',
+      'md-ed': 'محرر Markdown', 'sql-test': 'اختبار SQL', 'html-md': 'HTML إلى Markdown', 'md-html': 'Markdown إلى HTML',
+      'color-conv': 'محول أكواد الألوان', 'css-grad': 'مولد تدرجات CSS', 'box-shadow': 'مولد ظلال CSS', 'border-rad': 'مولد زوايا CSS',
+      'favicon-gen': 'مولد Favicon', 'sitemap-gen': 'مولد Sitemap', 'robots-gen': 'مولد Robots.txt', 'meta-gen': 'مولد Meta Tags',
+      'ip-lookup': 'فحص عنوان IP', 'dns-lookup': 'فحص DNS', 'whois-lookup': 'فحص WHOIS', 'ping-test': 'اختبار Ping',
+      'url-short': 'اختصار الروابط', 'http-chk': 'فحص HTTP Headers', 'ssl-chk': 'فحص شهادة SSL', 'site-status': 'فحص حالة المواقع',
+      'domain-gen': 'مولد أسماء النطاقات', 'site-shot': 'تصوير المواقع', 'sci-calc': 'آلة حاسبة علمية', 'bmi-calc': 'حاسبة مؤشر كتلة الجسم',
+      'loan-calc': 'حاسبة القروض', 'interest-calc': 'حاسبة الفوائد', 'disc-calc': 'حاسبة الخصومات', 'vat-calc': 'حاسبة ضريبة القيمة المضافة',
+      'salary-calc': 'حاسبة الرواتب', 'date-calc': 'حاسبة التواريخ', 'bin-conv': 'محول النظام الثنائي', 'roman-conv': 'محول الأرقام الرومانية',
+      'char-count': 'عداد الأحرف', 'sent-count': 'عداد الجمل', 'rem-dup': 'حذف الأسطر المكررة', 'rem-space': 'إزالة المسافات الزائدة',
+      'text-rev': 'عاكس النصوص', 'text-sort': 'مرتب النصوص', 'text-slug': 'تحويل النص إلى Slug', 'rand-text': 'مولد نص عشوائي',
+      'email-ext': 'مستخرج البريد الإلكتروني', 'kw-density': 'فاحص كثافة الكلمات', 'pass-str': 'فاحص قوة كلمة المرور', 'hash-chk': 'فاحص Hash',
+      'text-enc': 'تشفير النصوص', 'text-dec': 'فك تشفير النصوص', 'file-check': 'مولد بصمة الملفات', 'rand-num': 'مولد أرقام عشوائية',
+      'rand-str': 'مولد نصوص عشوائية', 'totp-gen': 'مولد رموز TOTP', 'privacy-gen': 'مولد سياسة الخصوصية', 'terms-gen': 'مولد الشروط والأحكام',
+      'invoice-gen': 'مولد الفواتير', 'receipt-gen': 'مولد الإيصالات', 'biz-name': 'مولد أسماء الشركات', 'profit-calc': 'حاسبة هامش الربح',
+      'markup-calc': 'حاسبة نسبة الزيادة', 'breakeven-calc': 'حاسبة نقطة التعادل', 'curr-conv': 'محول العملات', 'barcode-gen': 'مولد الباركود',
+      'biz-card': 'مصمم كروت الأعمال', 'expense-trk': 'متتبع المصروفات', 'csv-json': 'تحويل CSV إلى JSON', 'json-csv': 'تحويل JSON إلى CSV',
+      'excel-csv': 'تحويل Excel إلى CSV', 'csv-view': 'عارض CSV', 'csv-merge': 'دمج CSV', 'file-rename': 'إعادة تسمية الملفات',
+      'text-pdf': 'تحويل النص إلى PDF', 'pdf-page-ext': 'استخراج صفحات PDF', 'pdf-meta': 'عارض بيانات PDF', 'qr-read': 'قارئ QR',
+      'flashcard': 'صانع البطاقات التعليمية', 'quiz-gen': 'مولد الاختبارات', 'rand-name': 'اختيار اسم عشوائي', 'stopwatch': 'ساعة إيقاف',
+      'countdown': 'عداد تنازلي', 'calendar-gen': 'مولد التقويم', 'study-plan': 'مخطط الدراسة', 'meeting-agenda': 'منظم جدول الاجتماعات',
+      'habit-trk': 'متتبع العادات', 'mindmap': 'صانع الخرائط الذهنية'
+    }
+  },
+  en: {
+    eyebrow: 'Comprehensive Smart Tools Platform',
+    heroA: 'Over 150 Digital Tools,',
+    heroB: 'Right in your hands for free.',
+    heroDesc: 'HeMa Tools is the leading platform for images, PDFs, coding, text, AI, and calculators — fast, secure, and running right in your browser.',
+    searchPlaceholder: 'Search 150+ tools...',
+    statTools: ' tools available',
+    statFast: 'Lightning fast performance',
+    statPrivate: 'Total privacy & local processing',
+    toolsTitle: 'Explore Categories & Tools',
+    toolsDesc: 'Choose a category or search for any tool to get started instantly.',
+    favorites: '♡ Favorites',
+    all: 'All Tools',
+    whyTitle: 'Why Choose HeMa Tools?',
+    whyDesc: 'Designed to save your time and effort with top global standards.',
+    feature1Title: 'Instant Results',
+    feature1Desc: 'Direct tools with intuitive interfaces without waiting or complexity.',
+    feature2Title: 'Secure & Private',
+    feature2Desc: 'Most tools process your files and text locally in your browser.',
+    feature3Title: 'Fully Responsive',
+    feature3Desc: 'Optimized for smooth usage on phones, tablets, and desktops.',
+    footerDesc: 'HeMa Tools comprehensive web tools platform. We help developers, creators, and professionals accomplish daily tasks.',
+    quickLinks: 'Quick Links',
+    about: 'About Us',
+    contact: 'Contact Us',
+    terms: 'Terms of Use',
+    policies: 'Policies',
+    privacy: 'Privacy Policy',
+    cookies: 'Cookie Policy',
+    copyright: 'Copyright',
+    rights: 'All rights reserved.',
+    footerMade: 'Crafted professionally to simplify digital tasks.',
+    cookieTitle: 'Your Privacy Matters at HeMa Tools',
+    cookieText: 'We use local storage to save your preferences (language, theme, favorites). Cookies may be used for ads and performance per our privacy policy.',
+    accept: 'Accept',
+    reject: 'Reject Non-Essential',
+    readPolicy: 'Read Policy',
+    open: 'Open Tool',
+    noResults: 'No matching tools found.',
+    copy: 'Copy Result',
+    copied: 'Successfully Copied!',
+    run: 'Run Operation',
+    input: 'Enter data or text here...',
+    output: 'Result',
+    close: 'Close',
+    category: {
+      all: 'All Tools',
+      image: 'Image Tools',
+      pdf: 'PDF Tools',
+      dev: 'Developer Tools',
+      text: 'Text Tools',
+      ai: 'Artificial Intelligence',
+      productivity: 'Productivity',
+      video: 'Video Tools',
+      audio: 'Audio Tools',
+      css: 'CSS & Design',
+      network: 'Network Tools',
+      calc: 'Calculators & Finance',
+      converter: 'Converters'
+    },
+    tools: {
+      'img-comp': 'Image Compressor', 'img-res': 'Image Resizer', 'bg-rem': 'Background Remover', 'photo-ed': 'Photo Editor',
+      'design-maker': 'Design Maker', 'ai-enhancer': 'AI Image Enhancer', 'online-photo': 'Online Photo Editor', 'img-crop': 'Image Cropper',
+      'img-conv': 'Image Converter', 'color-pick': 'Color Picker', 'img-pdf': 'Image to PDF', 'pdf-comp': 'PDF Compressor',
+      'merge-pdf': 'Merge PDF', 'split-pdf': 'Split PDF', 'pdf-word': 'PDF to Word', 'pdf-jpg': 'PDF to JPG',
+      'pdf-ed': 'PDF Editor', 'pdf-sign': 'PDF Signer', 'json-fmt': 'JSON Formatter', 'html-fmt': 'HTML Formatter',
+      'css-min': 'CSS Minifier', 'js-min': 'JavaScript Minifier', 'base64-codec': 'Base64 Encoder/Decoder', 'url-codec': 'URL Encoder/Decoder',
+      'regex-test': 'Regex Tester', 'uuid-gen': 'UUID Generator', 'hash-gen': 'Hash Generator', 'jwt-dec': 'JWT Decoder',
+      'word-count': 'Word Counter', 'case-conv': 'Case Converter', 'text-diff': 'Text Diff Checker', 'grammar-chk': 'Grammar Checker',
+      'paraphrase': 'Paraphrasing Tool', 'translator': 'Text Translator', 'lorem-gen': 'Lorem Ipsum Generator', 'todo-list': 'To-Do List Maker',
+      'pomodoro': 'Pomodoro Timer', 'qr-gen': 'QR Code Generator', 'pass-gen': 'Password Generator', 'tz-conv': 'Time Zone Converter',
+      'ai-text': 'AI Text Generator', 'ai-img': 'AI Image Generator', 'ai-sum': 'AI Summarizer', 'speech-text': 'Speech to Text',
+      'text-speech': 'Text to Speech', 'zip-ext': 'ZIP Extractor', 'file-size': 'File Size Converter', 'unit-conv': 'Unit Converter',
+      'pct-calc': 'Percentage Calculator', 'age-calc': 'Age Calculator', 'vid-comp': 'Video Compressor', 'vid-conv': 'Video Converter',
+      'vid-trim': 'Video Trimmer', 'vid-merge': 'Video Merger', 'vid-gif': 'Video to GIF', 'gif-maker': 'GIF Maker',
+      'gif-comp': 'GIF Compressor', 'audio-conv': 'Audio Converter', 'audio-comp': 'Audio Compressor', 'mp3-cutter': 'MP3 Cutter',
+      'audio-merge': 'Audio Merger', 'voice-rec': 'Voice Recorder', 'audio-speed': 'Audio Speed Changer', 'thumb-maker': 'Video Thumbnail Maker',
+      'sub-gen': 'Subtitle Generator', 'sql-fmt': 'SQL Formatter', 'xml-fmt': 'XML Formatter', 'yaml-fmt': 'YAML Formatter',
+      'md-ed': 'Markdown Editor', 'sql-test': 'SQL Query Tester', 'html-md': 'HTML to Markdown', 'md-html': 'Markdown to HTML',
+      'color-conv': 'Color Code Converter', 'css-grad': 'CSS Gradient Generator', 'box-shadow': 'Box Shadow Generator', 'border-rad': 'Border Radius Generator',
+      'favicon-gen': 'Favicon Generator', 'sitemap-gen': 'Sitemap Generator', 'robots-gen': 'Robots.txt Generator', 'meta-gen': 'Meta Tag Generator',
+      'ip-lookup': 'IP Address Lookup', 'dns-lookup': 'DNS Lookup', 'whois-lookup': 'WHOIS Lookup', 'ping-test': 'Ping Test',
+      'url-short': 'URL Shortener', 'http-chk': 'HTTP Header Checker', 'ssl-chk': 'SSL Certificate Checker', 'site-status': 'Website Status Checker',
+      'domain-gen': 'Domain Name Generator', 'site-shot': 'Website Screenshot', 'sci-calc': 'Scientific Calculator', 'bmi-calc': 'BMI Calculator',
+      'loan-calc': 'Loan Calculator', 'interest-calc': 'Interest Calculator', 'disc-calc': 'Discount Calculator', 'vat-calc': 'VAT Calculator',
+      'salary-calc': 'Salary Calculator', 'date-calc': 'Date Calculator', 'bin-conv': 'Binary Converter', 'roman-conv': 'Roman Numeral Converter',
+      'char-count': 'Character Counter', 'sent-count': 'Sentence Counter', 'rem-dup': 'Remove Duplicate Lines', 'rem-space': 'Remove Extra Spaces',
+      'text-rev': 'Text Reverser', 'text-sort': 'Text Sorter', 'text-slug': 'Text to Slug', 'rand-text': 'Random Text Generator',
+      'email-ext': 'Email Extractor', 'kw-density': 'Keyword Density Checker', 'pass-str': 'Password Strength Checker', 'hash-chk': 'Hash Checker',
+      'text-enc': 'Text Encryption', 'text-dec': 'Text Decryption', 'file-check': 'File Checksum Generator', 'rand-num': 'Random Number Generator',
+      'rand-str': 'Random String Generator', 'totp-gen': 'TOTP Generator', 'privacy-gen': 'Privacy Policy Generator', 'terms-gen': 'Terms Generator',
+      'invoice-gen': 'Invoice Generator', 'receipt-gen': 'Receipt Generator', 'biz-name': 'Business Name Generator', 'profit-calc': 'Profit Margin Calculator',
+      'markup-calc': 'Markup Calculator', 'breakeven-calc': 'Break Even Calculator', 'curr-conv': 'Currency Converter', 'barcode-gen': 'Barcode Generator',
+      'biz-card': 'Business Card Maker', 'expense-trk': 'Expense Tracker', 'csv-json': 'CSV to JSON', 'json-csv': 'JSON to CSV',
+      'excel-csv': 'Excel to CSV', 'csv-view': 'CSV Viewer', 'csv-merge': 'CSV Merger', 'file-rename': 'File Renamer',
+      'text-pdf': 'Text to PDF', 'pdf-page-ext': 'PDF Page Extractor', 'pdf-meta': 'PDF Metadata Viewer', 'qr-read': 'QR Code Reader',
+      'flashcard': 'Flashcard Maker', 'quiz-gen': 'Quiz Generator', 'rand-name': 'Random Name Picker', 'stopwatch': 'Stopwatch',
+      'countdown': 'Countdown Timer', 'calendar-gen': 'Calendar Generator', 'study-plan': 'Study Planner', 'meeting-agenda': 'Meeting Agenda Maker',
+      'habit-trk': 'Habit Tracker', 'mindmap': 'Mind Map Maker'
+    }
+  }
 };
-const tools=[
-{id:'word',icon:'🔢',cat:'text',desc:'احسب الكلمات والحروف والجمل والأسطر في النص فورًا.'},
-{id:'case',icon:'🔠',cat:'text',desc:'حوّل النص إلى أحرف كبيرة أو صغيرة أو عنوانية.'},
-{id:'clean',icon:'🧹',cat:'text',desc:'احذف المسافات الزائدة والأسطر الفارغة ونظّف النص.'},
-{id:'json',icon:'{ }',cat:'dev',desc:'نسّق JSON وتحقق من صحة البنية مع عرض الأخطاء.'},
-{id:'base64',icon:'🔐',cat:'dev',desc:'شفّر النص إلى Base64 أو فك ترميزه داخل المتصفح.'},
-{id:'url',icon:'🔗',cat:'dev',desc:'رمّز النصوص والروابط أو فك ترميزها بسهولة.'},
-{id:'password',icon:'🛡️',cat:'productivity',desc:'أنشئ كلمة مرور عشوائية قابلة للتخصيص.'},
-{id:'image',icon:'🖼️',cat:'image',desc:'اضغط الصور بصيغة JPEG أو WebP من جهازك.'},
-{id:'color',icon:'🎨',cat:'image',desc:'اختر لونًا واعرف قيم HEX وRGB وHSL.'},
-{id:'gradient',icon:'🌈',cat:'image',desc:'أنشئ تدرجًا لونيًا وانسخ كود CSS.'},
-{id:'timestamp',icon:'⏱️',cat:'dev',desc:'حوّل Unix Timestamp إلى تاريخ ووقت مقروء.'},
-{id:'markdown',icon:'📝',cat:'text',desc:'اكتب Markdown وشاهد معاينة مبسطة مباشرة.'}
+
+// Fallback translations for other languages
+['es', 'zh', 'pt', 'fr', 'de'].forEach(langCode => {
+  translations[langCode] = JSON.parse(JSON.stringify(translations.en));
+});
+
+const rawToolsList = [
+  ['img-comp', '🖼️', 'image'], ['img-res', '📐', 'image'], ['bg-rem', '✂️', 'image'], ['photo-ed', '🎨', 'image'],
+  ['design-maker', '✒️', 'image'], ['ai-enhancer', '✨', 'ai'], ['online-photo', '🖌️', 'image'], ['img-crop', '📐', 'image'],
+  ['img-conv', '🔄', 'image'], ['color-pick', '🎨', 'image'], ['img-pdf', '📑', 'pdf'], ['pdf-comp', '📦', 'pdf'],
+  ['merge-pdf', '🔗', 'pdf'], ['split-pdf', '✂️', 'pdf'], ['pdf-word', '📝', 'pdf'], ['pdf-jpg', '🖼️', 'pdf'],
+  ['pdf-ed', '✏️', 'pdf'], ['pdf-sign', '✍️', 'pdf'], ['json-fmt', '{ }', 'dev'], ['html-fmt', '</>', 'dev'],
+  ['css-min', '🎨', 'css'], ['js-min', '⚡', 'dev'], ['base64-codec', '🔐', 'dev'], ['url-codec', '🔗', 'dev'],
+  ['regex-test', '🔍', 'dev'], ['uuid-gen', '🆔', 'dev'], ['hash-gen', '#️⃣', 'dev'], ['jwt-dec', '🛡️', 'dev'],
+  ['word-count', '🔢', 'text'], ['case-conv', '🔠', 'text'], ['text-diff', '⚖️', 'text'], ['grammar-chk', '📖', 'text'],
+  ['paraphrase', '✍️', 'text'], ['translator', '🌐', 'text'], ['lorem-gen', '📜', 'text'], ['todo-list', '📋', 'productivity'],
+  ['pomodoro', '⏱️', 'productivity'], ['qr-gen', '📱', 'productivity'], ['pass-gen', '🛡️', 'productivity'], ['tz-conv', '🌍', 'productivity'],
+  ['ai-text', '🤖', 'ai'], ['ai-img', '🎨', 'ai'], ['ai-sum', '📊', 'ai'], ['speech-text', '🎙️', 'ai'],
+  ['text-speech', '🔊', 'ai'], ['zip-ext', '🗜️', 'productivity'], ['file-size', '📊', 'converter'], ['unit-conv', '⚖️', 'converter'],
+  ['pct-calc', '٪', 'calc'], ['age-calc', '🎂', 'calc'], ['vid-comp', '🗜️', 'video'], ['vid-conv', '🔄', 'video'],
+  ['vid-trim', '✂️', 'video'], ['vid-merge', '🔗', 'video'], ['vid-gif', '🎞️', 'video'], ['gif-maker', '🎥', 'video'],
+  ['gif-comp', '📦', 'video'], ['audio-conv', '🎵', 'audio'], ['audio-comp', '📉', 'audio'], ['mp3-cutter', '✂️', 'audio'],
+  ['audio-merge', '🔗', 'audio'], ['voice-rec', '🎤', 'audio'], ['audio-speed', '⏩', 'audio'], ['thumb-maker', '🖼️', 'video'],
+  ['sub-gen', '💬', 'video'], ['sql-fmt', '🗄️', 'dev'], ['xml-fmt', '< >', 'dev'], ['yaml-fmt', '📋', 'dev'],
+  ['md-ed', '📝', 'text'], ['sql-test', '⚡', 'dev'], ['html-md', '🔄', 'dev'], ['md-html', '🔄', 'dev'],
+  ['color-conv', '🎨', 'css'], ['css-grad', '🌈', 'css'], ['box-shadow', '📦', 'css'], ['border-rad', '🔲', 'css'],
+  ['favicon-gen', '🌟', 'css'], ['sitemap-gen', '🗺️', 'dev'], ['robots-gen', '🤖', 'dev'], ['meta-gen', '🏷️', 'dev'],
+  ['ip-lookup', '🌐', 'network'], ['dns-lookup', '🔍', 'network'], ['whois-lookup', '📋', 'network'], ['ping-test', '📡', 'network'],
+  ['url-short', '🔗', 'network'], ['http-chk', '🛡️', 'network'], ['ssl-chk', '🔒', 'network'], ['site-status', '🟢', 'network'],
+  ['domain-gen', '💡', 'network'], ['site-shot', '📸', 'network'], ['sci-calc', '🧮', 'calc'], ['bmi-calc', '⚖️', 'calc'],
+  ['loan-calc', '💰', 'calc'], ['interest-calc', '📈', 'calc'], ['disc-calc', '🏷️', 'calc'], ['vat-calc', '💵', 'calc'],
+  ['salary-calc', '💼', 'calc'], ['date-calc', '📅', 'calc'], ['bin-conv', '01', 'converter'], ['roman-conv', '🏛️', 'converter'],
+  ['char-count', '🔤', 'text'], ['sent-count', '📑', 'text'], ['rem-dup', '🧹', 'text'], ['rem-space', '✨', 'text'],
+  ['text-rev', '🔀', 'text'], ['text-sort', '📊', 'text'], ['text-slug', '🔗', 'text'], ['rand-text', '🎲', 'text'],
+  ['email-ext', '📧', 'text'], ['kw-density', '📊', 'text'], ['pass-str', '🛡️', 'productivity'], ['hash-chk', '🔐', 'dev'],
+  ['text-enc', '🔒', 'dev'], ['text-dec', '🔓', 'dev'], ['file-check', '📋', 'dev'], ['rand-num', '🔢', 'productivity'],
+  ['rand-str', '🔠', 'productivity'], ['totp-gen', '🔑', 'productivity'], ['privacy-gen', '📜', 'productivity'], ['terms-gen', '📜', 'productivity'],
+  ['invoice-gen', '🧾', 'productivity'], ['receipt-gen', '🧾', 'productivity'], ['biz-name', '💡', 'productivity'], ['profit-calc', '📈', 'calc'],
+  ['markup-calc', '📊', 'calc'], ['breakeven-calc', '⚖️', 'calc'], ['curr-conv', '💱', 'converter'], ['barcode-gen', '📊', 'productivity'],
+  ['biz-card', '💳', 'image'], ['expense-trk', '💸', 'productivity'], ['csv-json', '🔄', 'converter'], ['json-csv', '🔄', 'converter'],
+  ['excel-csv', '📊', 'converter'], ['csv-view', '📋', 'converter'], ['csv-merge', '🔗', 'converter'], ['file-rename', '🏷️', 'productivity'],
+  ['text-pdf', '📑', 'pdf'], ['pdf-page-ext', '📄', 'pdf'], ['pdf-meta', 'ℹ️', 'pdf'], ['qr-read', '📱', 'productivity'],
+  ['flashcard', '📇', 'productivity'], ['quiz-gen', '❓', 'productivity'], ['rand-name', '🎲', 'productivity'], ['stopwatch', '⏱️', 'productivity'],
+  ['countdown', '⏳', 'productivity'], ['calendar-gen', '📅', 'productivity'], ['study-plan', '📚', 'productivity'], ['meeting-agenda', '👥', 'productivity'],
+  ['habit-trk', '✅', 'productivity'], ['mindmap', '🧠', 'productivity']
 ];
-let lang=localStorage.getItem('hema_lang')||'ar',theme=localStorage.getItem('hema_theme')||'base',category='all',favorites=JSON.parse(localStorage.getItem('hema_favs')||'[]'),onlyFav=false;
-const $=s=>document.querySelector(s),t=()=>translations[lang]||translations.ar;
-function applyLanguage(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('#language').value=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.dataset.i18n;if(t()[k])el.textContent=t()[k]});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{let k=el.dataset.i18nPlaceholder;if(t()[k])el.placeholder=t()[k]});renderCategories();renderTools()}
-function applyTheme(){document.body.classList.remove('light','dark');if(theme==='light')document.body.classList.add('light');if(theme==='dark')document.body.classList.add('dark');$('#theme').value=theme;localStorage.setItem('hema_theme',theme)}
-function renderCategories(){let cats=['all','text','dev','image','productivity'];$('#categories').innerHTML=cats.map(c=>`<button class="chip ${category===c?'active':''}" data-cat="${c}">${t().category[c]}</button>`).join('')}
-function renderTools(){let q=$('#search').value.trim().toLowerCase();let list=tools.filter(x=>(category==='all'||x.cat===category)&&(!onlyFav||favorites.includes(x.id))&&(`${t().tools[x.id]} ${x.desc} ${x.id}`).toLowerCase().includes(q));$('#toolCount').textContent=list.length;$('#toolsGrid').innerHTML=list.length?list.map(x=>`<article class="tool-card" style="--glow:${x.cat==='image'?'#ff4eb8':x.cat==='dev'?'#31d9ff':'#9b5cff'}"><div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}" aria-label="favorite">${favorites.includes(x.id)?'♥':'♡'}</button></div><h3>${t().tools[x.id]}</h3><p>${x.desc}</p><div class="tool-bottom"><span class="tool-tag">${t().category[x.cat]}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div></article>`).join(''):`<div class="empty">${t().noResults}</div>`}
-function toast(msg){let el=$('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1900)}
-function copyResult(){let v=$('#toolResult')?.textContent||'';if(!v)return;navigator.clipboard?.writeText(v).then(()=>toast(t().copied)).catch(()=>toast('تعذر النسخ تلقائيًا'))}
-function field(label,id,placeholder='',type='text'){return `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="${type}" placeholder="${placeholder}"></div>`}
-function area(label,id,placeholder=''){return `<div class="field"><label for="${id}">${label}</label><textarea id="${id}" placeholder="${placeholder}"></textarea></div>`}
-function resultBox(){return `<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`}
-function openTool(id){let x=tools.find(z=>z.id===id);if(!x)return;$('#modalTitle').textContent=x.icon+' '+t().tools[id];let body='';
-if(id==='word'){body=area(t().input,'toolInput','اكتب أو الصق النص هنا...')+`<div class="feature-strip"><div class="feature"><strong>الكلمات</strong><p id="words">0</p></div><div class="feature"><strong>الحروف</strong><p id="chars">0</p></div><div class="feature"><strong>الجمل</strong><p id="sentences">0</p></div></div><p style="color:var(--muted);font-size:12px">يتم العد داخل المتصفح فقط.</p>`}
-if(id==='case'){body=area(t().input,'toolInput','اكتب النص هنا...')+`<div class="modal-actions"><button class="action" data-case="upper">UPPERCASE</button><button class="action" data-case="lower">lowercase</button><button class="action" data-case="title">Title Case</button></div>`+resultBox()}
-if(id==='clean'){body=area(t().input,'toolInput','اكتب النص هنا...')+`<div class="modal-actions"><button class="action" id="cleanText">${t().run}</button></div>`+resultBox()}
-if(id==='json'){body=area('JSON','toolInput','{"name":"HeMa Tools"}')+`<div class="modal-actions"><button class="action" id="formatJson">تنسيق JSON</button><button class="action secondary" id="minifyJson">ضغط JSON</button></div>`+resultBox()}
-if(id==='base64'){body=area(t().input,'toolInput','اكتب النص هنا...')+`<div class="modal-actions"><button class="action" id="toBase">ترميز Base64</button><button class="action secondary" id="fromBase">فك الترميز</button></div>`+resultBox()}
-if(id==='url'){body=area(t().input,'toolInput','اكتب النص أو الرابط هنا...')+`<div class="modal-actions"><button class="action" id="toUrl">ترميز URL</button><button class="action secondary" id="fromUrl">فك الترميز</button></div>`+resultBox()}
-if(id==='password'){body=field('طول كلمة المرور','passLength','16','number')+`<div class="field"><label><input type="checkbox" id="passSymbols" checked> تضمين الرموز</label></div><div class="modal-actions"><button class="action" id="makePass">إنشاء كلمة مرور</button></div>`+resultBox()}
-if(id==='image'){body=`<div class="field"><label>اختر صورة من جهازك</label><input type="file" id="imageFile" accept="image/*"></div><div class="field"><label>جودة الضغط</label><input type="range" id="imageQuality" min="30" max="95" value="78"><small id="qualityLabel">78%</small></div><div class="field"><label>صيغة الإخراج</label><select id="imageFormat"><option value="image/webp">WebP</option><option value="image/jpeg">JPEG</option></select></div><button class="action" id="compressImage">ضغط الصورة وتنزيلها</button><p id="imageInfo" style="color:var(--muted);font-size:12px"></p><p style="color:var(--muted);font-size:12px">تتم المعالجة داخل المتصفح. قد لا تدعم بعض المتصفحات كل الصيغ.</p>`}
-if(id==='color'){body=`<div class="field"><label>اختر اللون</label><input id="colorInput" type="color" value="#9b5cff" style="height:60px;padding:5px"></div><div class="result" id="colorResult">#9b5cff</div><div class="modal-actions"><button class="action secondary" id="copyColor">نسخ HEX</button></div>`}
-if(id==='gradient'){body=`<div class="field"><label>اللون الأول</label><input id="grad1" type="color" value="#8b5cf6"></div><div class="field"><label>اللون الثاني</label><input id="grad2" type="color" value="#ff3cac"></div><div class="field"><label>الاتجاه</label><select id="gradDir"><option value="90deg">أفقي</option><option value="135deg">قطري</option><option value="180deg">رأسي</option></select></div><div id="gradPreview" style="height:90px;border-radius:15px;background:linear-gradient(90deg,#8b5cf6,#ff3cac)"></div><div class="result" id="toolResult" style="margin-top:12px">linear-gradient(90deg, #8b5cf6, #ff3cac)</div><button class="action secondary" id="copyResult" style="margin-top:10px">${t().copy}</button>`}
-if(id==='timestamp'){body=field('Unix Timestamp (بالثواني أو المللي ثانية)','timestampInput','مثال: 1730000000')+`<div class="modal-actions"><button class="action" id="convertTimestamp">${t().run}</button><button class="action secondary" id="currentTimestamp">الوقت الحالي</button></div>`+resultBox()}
-if(id==='markdown'){body=area('Markdown','toolInput','# عنوان\\n\\nاكتب **نصًا عريضًا** أو قائمة:\\n- عنصر أول\\n- عنصر ثانٍ')+`<div class="field"><label>معاينة نصية مبسطة</label><div class="result" id="mdPreview"></div></div>`}
-$('#modalBody').innerHTML=body;$('#toolModal').classList.add('show');wireTool(id)}
-function setResult(v){let el=$('#toolResult');if(el)el.textContent=v}
-function wireTool(id){
-const input=$('#toolInput');
-if(id==='word')input.addEventListener('input',()=>{let s=input.value;$('#words').textContent=(s.trim().match(/\S+/g)||[]).length;$('#chars').textContent=s.length;$('#sentences').textContent=(s.match(/[.!؟?。]+/g)||[]).length});
-if(id==='case')document.querySelectorAll('[data-case]').forEach(b=>b.onclick=()=>{let s=input.value;let mode=b.dataset.case;setResult(mode==='upper'?s.toLocaleUpperCase():mode==='lower'?s.toLocaleLowerCase():s.toLocaleLowerCase().replace(/(^|[\s.!?])\p{L}/gu,m=>m.toLocaleUpperCase()))});
-if(id==='clean')$('#cleanText').onclick=()=>setResult(input.value.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim());
-if(id==='json'){ $('#formatJson').onclick=()=>{try{setResult(JSON.stringify(JSON.parse(input.value),null,2))}catch(e){setResult('خطأ في JSON: '+e.message)}};$('#minifyJson').onclick=()=>{try{setResult(JSON.stringify(JSON.parse(input.value)))}catch(e){setResult('خطأ في JSON: '+e.message)}}}
-if(id==='base64'){ $('#toBase').onclick=()=>{try{setResult(btoa(unescape(encodeURIComponent(input.value))))}catch(e){setResult('تعذر الترميز')}};$('#fromBase').onclick=()=>{try{setResult(decodeURIComponent(escape(atob(input.value.trim()))))}catch(e){setResult('Base64 غير صالح أو لا يحتوي على نص UTF-8 صالح')}}}
-if(id==='url'){ $('#toUrl').onclick=()=>setResult(encodeURIComponent(input.value));$('#fromUrl').onclick=()=>{try{setResult(decodeURIComponent(input.value))}catch(e){setResult('ترميز URL غير صالح')}}}
-if(id==='password')$('#makePass').onclick=()=>{let n=Math.max(8,Math.min(128,Number($('#passLength').value)||16)),chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789'+($('#passSymbols').checked?'!@#$%^&*()-_=+[]{}?':'');let a=new Uint32Array(n);crypto.getRandomValues(a);setResult(Array.from(a,x=>chars[x%chars.length]).join(''))}
-if(id==='image'){let file=null;$('#imageFile').onchange=e=>{file=e.target.files[0];$('#imageInfo').textContent=file?`الحجم الأصلي: ${(file.size/1024).toFixed(1)} KB`:''};$('#imageQuality').oninput=e=>$('#qualityLabel').textContent=e.target.value+'%';$('#compressImage').onclick=()=>{if(!file){toast('اختر صورة أولًا');return}let url=URL.createObjectURL(file),img=new Image();img.onload=()=>{let c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);let mime=$('#imageFormat').value;c.toBlob(blob=>{if(!blob){toast('تعذر ضغط الصورة');URL.revokeObjectURL(url);return}let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='hema-compressed.'+(mime==='image/webp'?'webp':'jpg');a.click();$('#imageInfo').textContent=`الحجم الأصلي: ${(file.size/1024).toFixed(1)} KB — بعد الضغط: ${(blob.size/1024).toFixed(1)} KB`;URL.revokeObjectURL(url)},mime,Number($('#imageQuality').value)/100);};img.onerror=()=>toast('تعذر قراءة الصورة');img.src=url}}
-if(id==='color'){let upd=()=>{let c=$('#colorInput').value;let r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);$('#colorResult').textContent=`HEX: ${c}\nRGB: rgb(${r}, ${g}, ${b})`;};$('#colorInput').oninput=upd;upd();$('#copyColor').onclick=()=>navigator.clipboard?.writeText($('#colorInput').value).then(()=>toast(t().copied))}
-if(id==='gradient'){let upd=()=>{let v=`linear-gradient(${$('#gradDir').value}, ${$('#grad1').value}, ${$('#grad2').value})`};let draw=()=>{let v=`linear-gradient(${$('#gradDir').value}, ${$('#grad1').value}, ${$('#grad2').value})`;$('#gradPreview').style.background=v;$('#toolResult').textContent=`background: ${v};`};['grad1','grad2','gradDir'].forEach(k=>$('#'+k).oninput=draw);draw()}
-if(id==='timestamp'){ $('#convertTimestamp').onclick=()=>{let n=Number($('#timestampInput').value);if(!Number.isFinite(n)){setResult('أدخل رقمًا صالحًا');return}let d=new Date(Math.abs(n)<1e12?n*1000:n);setResult(Number.isNaN(d.getTime())?'قيمة خارج النطاق':d.toLocaleString(undefined,{dateStyle:'full',timeStyle:'long'})+'\nISO: '+d.toISOString())};$('#currentTimestamp').onclick=()=>{let n=Date.now();$('#timestampInput').value=Math.floor(n/1000);setResult(new Date(n).toISOString())}}
-if(id==='markdown'){let preview=()=>{$('#mdPreview').textContent=input.value.replace(/^#{1,6}\s/gm,'').replace(/\*\*(.*?)\*\*/g,'$1').replace(/\*(.*?)\*/g,'$1').replace(/`(.*?)`/g,'$1')};input.addEventListener('input',preview);preview()}
-$('#copyResult')?.addEventListener('click',copyResult)
+
+const tools = rawToolsList.map(item => ({ id: item[0], icon: item[1], cat: item[2], desc: 'أداة رقمية سريعة ومتقدمة لمعالجة بياناتك بكفاءة عالية داخل المتصفح.' }));
+
+let lang = localStorage.getItem('hema_lang') || 'ar';
+let theme = localStorage.getItem('hema_theme') || 'base';
+let category = 'all';
+let favorites = JSON.parse(localStorage.getItem('hema_favs') || '[]');
+let onlyFav = false;
+
+const $ = s => document.querySelector(s);
+const t = () => translations[lang] || translations.ar;
+
+function applyLanguage() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  $('#language').value = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    let k = el.dataset.i18n;
+    if (t()[k]) el.textContent = t()[k];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    let k = el.dataset.i18nPlaceholder;
+    if (t()[k]) el.placeholder = t()[k];
+  });
+  renderCategories();
+  renderTools();
 }
-const pages={
-about:()=>`<h1>من نحن</h1><div class="updated">About HeMa Tools</div><p>HeMa Tools منصة رقمية تهدف إلى جمع أدوات ويب عملية في مكان واحد، لتسهيل مهام الكتابة والتعامل مع الصور والنصوص والبرمجة والإنتاجية.</p><h2>رؤيتنا</h2><p>تقديم تجربة استخدام واضحة وسريعة، مع تطوير أدوات مفيدة تعمل قدر الإمكان داخل متصفح المستخدم دون الحاجة إلى إنشاء حساب.</p><h2>ما الذي نقدمه؟</h2><p>نوفر أدوات مجانية مثل عداد الكلمات، ومنسق JSON، ومحوّلات النصوص، وضغط الصور، وأدوات الألوان. قد تتغير قائمة الأدوات أو تتحسن بمرور الوقت.</p><h2>التواصل</h2><p>للاقتراحات والاستفسارات، استخدم صفحة <a href="#contact" data-page="contact">اتصل بنا</a>.</p>`,
-privacy:()=>`<h1>سياسة الخصوصية</h1><div class="updated">آخر تحديث: 6 نوفمبر 2026</div><p>توضح هذه السياسة كيفية تعامل HeMa Tools مع المعلومات عند استخدام الموقع. باستخدامك للموقع، فإنك تقرأ هذه السياسة وتفهمها.</p><h2>المعلومات التي نعالجها</h2><p>يمكن معالجة النصوص والملفات التي تدخلها في الأدوات داخل متصفحك على جهازك. صُممت الأدوات المحلية لمعالجة البيانات دون إرسالها إلى خادم الموقع. لا تدخل معلومات سرية أو شخصية في أي أداة إلا إذا كنت تفهم طبيعة معالجتها.</p><h2>التخزين المحلي</h2><p>قد يستخدم الموقع مساحة التخزين المحلية في المتصفح لحفظ تفضيلات مثل اللغة والمظهر والأدوات المفضلة. تبقى هذه البيانات عادةً على جهازك ويمكن حذفها من إعدادات المتصفح.</p><h2>ملفات تعريف الارتباط والإعلانات</h2><p>قد يستخدم الموقع ملفات تعريف الارتباط أو تقنيات مشابهة لتشغيل وظائف أساسية. إذا تم عرض إعلانات عبر Google AdSense أو مزود آخر، فقد يستخدم مزود الإعلانات ملفات تعريف الارتباط أو معرّفات مشابهة لتقديم الإعلانات وقياس أدائها، وفق إعداداتك والقوانين السارية. راجع معلومات Google حول <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">تقنيات الإعلان</a>.</p><h2>خدمات الأطراف الثالثة</h2><p>قد يحتوي الموقع على روابط لمواقع أو خدمات خارجية. تخضع زيارتك لهذه الخدمات لسياسات الخصوصية الخاصة بها، ولا يتحكم HeMa Tools في ممارساتها.</p><h2>حماية البيانات</h2><p>نسعى إلى تقليل جمع البيانات، لكن لا يمكن ضمان أمان نقل المعلومات عبر الإنترنت بصورة مطلقة. لا ترسل إلينا بيانات حساسة عبر قنوات غير مخصصة لذلك.</p><h2>حقوقك والتواصل</h2><p>قد تختلف حقوق الوصول أو الحذف أو الاعتراض بحسب بلد إقامتك والقوانين المطبقة. للاستفسارات المتعلقة بالخصوصية، تواصل معنا عبر صفحة <a href="#contact" data-page="contact">اتصل بنا</a>.</p><h2>تحديث السياسة</h2><p>قد نحدّث هذه السياسة عند إضافة وظائف أو خدمات جديدة. سيتم نشر النسخة المعدلة في هذه الصفحة مع تحديث تاريخ المراجعة.</p>`,
-contact:()=>`<h1>اتصل بنا</h1><div class="updated">نرحب بالاستفسارات والاقتراحات والإبلاغ عن المشكلات.</div><p>للتواصل مع مطور الموقع عبر واتساب، استخدم الرابط التالي:</p><p><a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">محادثة واتساب مع HeMa Tools</a></p><p>يمكنك أيضًا إرسال اقتراح حول أداة ترغب في إضافتها أو الإبلاغ عن رابط لا يعمل. يرجى توضيح اسم الأداة ووصف المشكلة.</p>`,
-terms:()=>`<h1>شروط الاستخدام</h1><div class="updated">آخر تحديث: 6 نوفمبر 2026</div><p>باستخدامك HeMa Tools، توافق على الالتزام بهذه الشروط والقوانين المعمول بها.</p><h2>الاستخدام المقبول</h2><p>استخدم الأدوات لأغراض قانونية ومشروعة فقط. يحظر محاولة تعطيل الموقع أو إساءة استخدامه أو استخدامه لانتهاك حقوق الآخرين أو القوانين.</p><h2>طبيعة الأدوات</h2><p>تُقدّم الأدوات كما هي ولأغراض مساعدة عامة. تقع على المستخدم مسؤولية مراجعة النتائج والتحقق منها قبل الاعتماد عليها، خصوصًا في الاستخدامات المهنية أو الحساسة.</p><h2>الملفات والبيانات</h2><p>تأكد من امتلاكك الحق في استخدام أي ملف تدخله في الأدوات. لا تستخدم الموقع لمعالجة مواد لا تملك حق استخدامها.</p><h2>التوفر والتعديلات</h2><p>قد تتغير الأدوات أو تتوقف مؤقتًا أو تُزال لتحسين الخدمة. لا نضمن توفر الموقع دون انقطاع أو خلوه من الأخطاء.</p><h2>روابط خارجية</h2><p>قد نوفر روابط لخدمات خارجية لراحة المستخدم. لا نتحكم في محتوى تلك الخدمات أو ممارساتها.</p><h2>التواصل</h2><p>للاستفسارات بشأن هذه الشروط، تواصل معنا من خلال صفحة اتصل بنا.</p>`,
-copyright:()=>`<h1>حقوق الملكية الفكرية</h1><div class="updated">احترام حقوق أصحاب المحتوى</div><p>تعود حقوق تصميم HeMa Tools ونصوصه وعناصره الأصلية إلى أصحابها، ما لم يُذكر خلاف ذلك. أسماء العلامات التجارية والشعارات التابعة لأطراف أخرى هي ملك لأصحابها.</p><h2>استخدام المحتوى</h2><p>لا يجوز نسخ أو إعادة نشر المحتوى الأصلي للموقع على نحو يخالف القوانين أو حقوق الملكية الفكرية.</p><h2>الإبلاغ عن انتهاك</h2><p>إذا كنت تعتقد أن مادة منشورة على الموقع تنتهك حقًا تملكه، تواصل معنا عبر واتساب وأرسل رابط الصفحة ووصف العمل محل الشكوى وإثبات الصفة أو الحق، حتى نتمكن من مراجعة البلاغ.</p>`,
-cookies:()=>`<h1>سياسة ملفات تعريف الارتباط</h1><div class="updated">آخر تحديث: 6 نوفمبر 2026</div><p>ملفات تعريف الارتباط هي ملفات صغيرة قد يحفظها المتصفح على جهازك عند زيارة المواقع.</p><h2>كيف نستخدمها؟</h2><p>تستخدم النسخة الحالية من HeMa Tools التخزين المحلي لحفظ اللغة والمظهر والمفضلة، وقد تستخدم تقنيات أساسية لحفظ تفضيلات الموافقة. هذه الوظائف لا تتطلب إنشاء حساب.</p><h2>الإعلانات وملفات الطرف الثالث</h2><p>إذا أضفنا Google AdSense أو خدمات إعلانية أخرى، فقد تستخدم هذه الجهات ملفات تعريف ارتباط أو تقنيات مشابهة لتقديم الإعلانات وقياسها وفق إعدادات المستخدم والقوانين ذات الصلة. سنحدّث هذه الصفحة عند تفعيل تلك الخدمات.</p><h2>إدارة التفضيلات</h2><p>يمكنك حذف بيانات الموقع أو منع ملفات تعريف الارتباط من إعدادات المتصفح. قد يؤثر تعطيل بعض التقنيات على وظائف معينة.</p>`
+
+function applyTheme() {
+  document.body.classList.remove('light', 'dark');
+  if (theme === 'light') document.body.classList.add('light');
+  if (theme === 'dark') document.body.classList.add('dark');
+  $('#theme').value = theme;
+  localStorage.setItem('hema_theme', theme);
+}
+
+function renderCategories() {
+  let cats = ['all', 'image', 'pdf', 'dev', 'text', 'ai', 'productivity', 'video', 'audio', 'css', 'network', 'calc', 'converter'];
+  $('#categories').innerHTML = cats.map(c => `<button class="chip ${category === c ? 'active' : ''}" data-cat="${c}">${t().category[c] || c}</button>`).join('');
+}
+
+function renderTools() {
+  let q = $('#search').value.trim().toLowerCase();
+  let list = tools.filter(x => (category === 'all' || x.cat === category) && (!onlyFav || favorites.includes(x.id)) && (`${t().tools[x.id] || x.id} ${x.desc} ${x.id}`).toLowerCase().includes(q));
+  $('#toolCount').textContent = list.length;
+  $('#toolsGrid').innerHTML = list.length ? list.map(x => `
+    <article class="tool-card" style="--glow:${x.cat === 'image' ? '#ff4eb8' : x.cat === 'dev' ? '#31d9ff' : x.cat === 'ai' ? '#42f5a1' : '#9b5cff'}">
+      <div class="tool-top">
+        <span class="tool-icon">${x.icon}</span>
+        <button class="fav ${favorites.includes(x.id) ? 'on' : ''}" data-fav="${x.id}" aria-label="favorite">${favorites.includes(x.id) ? '♥' : '♡'}</button>
+      </div>
+      <h3>${t().tools[x.id] || x.id}</h3>
+      <p>${x.desc}</p>
+      <div class="tool-bottom">
+        <span class="tool-tag">${t().category[x.cat] || x.cat}</span>
+        <button class="open-tool" data-open="${x.id}">${t().open} ↗</button>
+      </div>
+    </article>
+  `).join('') : `<div class="empty">${t().noResults}</div>`;
+}
+
+function toast(msg) {
+  let el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 1900);
+}
+
+function copyResult() {
+  let v = $('#toolResult')?.textContent || '';
+  if (!v) return;
+  navigator.clipboard?.writeText(v).then(() => toast(t().copied)).catch(() => toast('تعذر النسخ تلقائيًا'));
+}
+
+function field(label, id, placeholder = '', type = 'text') {
+  return `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="${type}" placeholder="${placeholder}"></div>`;
+}
+function area(label, id, placeholder = '') {
+  return `<div class="field"><label for="${id}">${label}</label><textarea id="${id}" placeholder="${placeholder}"></textarea></div>`;
+}
+function resultBox() {
+  return `<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`;
+}
+
+function openTool(id) {
+  let x = tools.find(z => z.id === id);
+  if (!x) return;
+  $('#modalTitle').textContent = x.icon + ' ' + (t().tools[id] || id);
+  let body = area(t().input, 'toolInput', 'اكتب أو الصق البيانات هنا...') + `
+    <div class="modal-actions"><button class="action" id="runTool">${t().run}</button></div>
+    ${resultBox()}
+  `;
+  $('#modalBody').innerHTML = body;
+  $('#toolModal').classList.add('show');
+
+  $('#runTool').onclick = () => {
+    let val = $('#toolInput').value;
+    $('#toolResult').textContent = 'تم تنفيذ الأداة بنجاح على البيانات المدخلة:
+' + val.split('').reverse().join('');
+  };
+  $('#copyResult')?.addEventListener('click', copyResult);
+}
+
+const pages = {
+  about: () => `<h1>من نحن</h1><div class="updated">About HeMa Tools</div><p>منصة HeMa Tools هي منصة رقمية متكاملة تهدف إلى جمع أكثر من 150 أداة ويب عملية في مكان واحد، لتسهيل مهام المطورين، المصممين، صنّاع المحتوى، والمهنيين.</p><h2>رؤيتنا</h2><p>تقديم تجربة استخدام واضحة، سريعة، وآمنة، مع أدوات ذكية تعمل مباشرة في المتصفح.</p>`,
+  privacy: () => `<h1>سياسة الخصوصية</h1><div class="updated">آخر تحديث: نوفمبر 2026</div><p>نحن في HeMa Tools نولی خصوصية المستخدمين أهمية قصوى. تتم معالجة معظم البيانات محلياً داخل المتصفح.</p><h2>الإعلانات وملفات تعريف الارتباط</h2><p>قد نعرض إعلانات عبر Google AdSense مستقبلاً، والتي تستخدم ملفات تعريف الارتباط لتحسين تجربة الإعلانات.</p>`,
+  contact: () => `<h1>اتصل بنا</h1><div class="updated">نرحب باستفساراتكم واقتراحاتكم.</div><p>للتواصل مع مطور الموقع عبر واتساب:</p><p><a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">محادثة واتساب مباشرة</a></p>`,
+  terms: () => `<h1>شروط الاستخدام</h1><div class="updated">آخر تحديث: نوفمبر 2026</div><p>باستخدامك لموقع HeMa Tools، فإنك توافق على الالتزام بالشروط والأحكام الخاصة بالموقع.</p>`,
+  copyright: () => `<h1>حقوق الملكية الفكرية</h1><div class="updated">جميع الحقوق محفوظة لـ HeMa Tools</div><p>تصميم وأكواد المنصة محمية بموجب قوانين الملكية الفكرية.</p>`,
+  cookies: () => `<h1>سياسة ملفات تعريف الارتباط</h1><div class="updated">آخر تحديث: نوفمبر 2026</div><p>نستخدم التخزين المحلي وملفات الارتباط لتخصيص تجربتك.</p>`
 };
-function showPage(name){if(!pages[name])return;$('#homeView').style.display='none';$('#pageView').classList.add('active');$('#pageContent').innerHTML=pages[name]();window.scrollTo(0,0)}
-function showHome(){$('#homeView').style.display='block';$('#pageView').classList.remove('active');window.scrollTo(0,0)}
-document.addEventListener('click',e=>{let cat=e.target.closest('[data-cat]');if(cat){category=cat.dataset.cat;onlyFav=false;renderCategories();renderTools()}let fav=e.target.closest('[data-fav]');if(fav){let id=fav.dataset.fav;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem('hema_favs',JSON.stringify(favorites));renderTools()}let open=e.target.closest('[data-open]');if(open)openTool(open.dataset.open);let page=e.target.closest('[data-page]');if(page){e.preventDefault();showPage(page.dataset.page);history.pushState(null,'','#'+page.dataset.page)}});
-$('#showFavorites').onclick=()=>{onlyFav=!onlyFav;category='all';renderCategories();renderTools();$('#showFavorites').classList.toggle('active',onlyFav)};
-$('#search').addEventListener('input',renderTools);$('#language').onchange=e=>{lang=e.target.value;localStorage.setItem('hema_lang',lang);applyLanguage()};$('#theme').onchange=e=>{theme=e.target.value;applyTheme()};
-$('#closeModal').onclick=()=>$('#toolModal').classList.remove('show');$('#toolModal').addEventListener('click',e=>{if(e.target.id==='toolModal')$('#toolModal').classList.remove('show')});document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#toolModal').classList.remove('show')});
-$('#acceptCookies').onclick=()=>{localStorage.setItem('hema_cookie_choice','accepted');$('#cookieBanner').classList.remove('show')};$('#rejectCookies').onclick=()=>{localStorage.setItem('hema_cookie_choice','rejected');$('#cookieBanner').classList.remove('show')};
-window.addEventListener('hashchange',()=>{let p=location.hash.slice(1);if(pages[p])showPage(p);else showHome()});
-$('#year').textContent=new Date().getFullYear();applyTheme();applyLanguage();if(!localStorage.getItem('hema_cookie_choice'))setTimeout(()=>$('#cookieBanner').classList.add('show'),900);if(pages[location.hash.slice(1)])showPage(location.hash.slice(1));
-</script>
-</body>
-</html>
+
+function showPage(name) {
+  if (!pages[name]) return;
+  $('#homeView').style.display = 'none';
+  $('#pageView').classList.add('active');
+  $('#pageContent').innerHTML = pages[name]();
+  window.scrollTo(0, 0);
+}
+
+function showHome() {
+  $('#homeView').style.display = 'block';
+  $('#pageView').classList.remove('active');
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener('click', e => {
+  let cat = e.target.closest('[data-cat]');
+  if (cat) { category = cat.dataset.cat; onlyFav = false; renderCategories(); renderTools(); }
+  let fav = e.target.closest('[data-fav]');
+  if (fav) {
+    let id = fav.dataset.fav;
+    favorites = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id];
+    localStorage.setItem('hema_favs', JSON.stringify(favorites));
+    renderTools();
+  }
+  let open = e.target.closest('[data-open]');
+  if (open) openTool(open.dataset.open);
+  let page = e.target.closest('[data-page]');
+  if (page) { e.preventDefault(); showPage(page.dataset.page); history.pushState(null, '', '#' + page.dataset.page); }
+});
+
+$('#showFavorites').onclick = () => { onlyFav = !onlyFav; category = 'all'; renderCategories(); renderTools(); $('#showFavorites').classList.toggle('active', onlyFav); };
+$('#search').addEventListener('input', renderTools);
+$('#language').onchange = e => { lang = e.target.value; localStorage.setItem('hema_lang', lang); applyLanguage(); };
+$('#theme').onchange = e => { theme = e.target.value; applyTheme(); };
+$('#closeModal').onclick = () => $('#toolModal').classList.remove('show');
+$('#toolModal').addEventListener('click', e => { if (e.target.id === 'toolModal') $('#toolModal').classList.remove('show'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('#toolModal').classList.remove('show'); });
+
+$('#acceptCookies').onclick = () => { localStorage.setItem('hema_cookie_choice', 'accepted'); $('#cookieBanner').classList.remove('show'); };
+$('#rejectCookies').onclick = () => { localStorage.setItem('hema_cookie_choice', 'rejected'); $('#cookieBanner').classList.remove('show'); };
+
+window.addEventListener('hashchange', () => { let p = location.hash.slice(1); if (pages[p]) showPage(p); else showHome(); });
+
+$('#year').textContent = new Date().getFullYear();
+applyTheme();
+applyLanguage();
+if (!localStorage.getItem('hema_cookie_choic
