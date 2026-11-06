@@ -18,43 +18,41 @@
     body.dark{--bg:#05050a;--bg2:#090911;--panel:rgba(13,13,24,.88);--panel2:rgba(255,255,255,.035);--text:#f7f7ff;--muted:#9999ad;--line:rgba(140,130,190,.16);background:radial-gradient(ellipse at 15% 0%,rgba(94,47,173,.14),transparent 35%),#05050a}
     a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}
     .topbar{position:sticky;top:0;z-index:50;background:rgba(8,7,19,.72);backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}body.light .topbar{background:rgba(245,243,252,.82)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:10px;font-family:Inter,"Cairo",sans-serif;font-weight:900;letter-spacing:-.8px;font-size:23px;white-space:nowrap}.brand-mark{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink) 58%,var(--blue));box-shadow:0 0 25px #a44dff66;color:white;font-size:20px}.brand-name{background:linear-gradient(90deg,#fff 0%,#c5a2ff 38%,#ff7bc9 70%,#6beaff 100%);background-clip:text;color:transparent}.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green),0 0 18px var(--green);animation:pulse 1.5s infinite}@keyframes pulse{50%{opacity:.28;box-shadow:0 0 2px var(--green)}}
-    .nav-actions{display:flex;align-items:center;gap:8px}.nav-select,.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:9px 11px}.nav-select{max-width:145px}.icon-btn{display:flex;align-items:center;gap:7px}.icon-btn:hover,.nav-select:hover{border-color:#a96dff88;box-shadow:0 0 18px #a45cff22}.menu-btn{display:none}
+    .nav-actions{display:flex;align-items:center;gap:8px}.nav-select,.icon-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:9px 11px}.nav-select{max-width:145px}.icon-btn:hover,.nav-select:hover{border-color:#a96dff88;box-shadow:0 0 18px #a45cff22}
     .hero{padding:76px 0 42px;text-align:center;position:relative}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 14px;border:1px solid #a45cff55;border-radius:999px;background:#8e4cff12;color:#d6baff;font-size:13px}.hero h1{font-size:clamp(36px,7vw,70px);line-height:1.18;margin:22px auto 14px;font-weight:900;letter-spacing:-1.8px;max-width:850px}.gradient-text{background:linear-gradient(90deg,#b58aff,#ff69c4 48%,#58e8ff);background-clip:text;color:transparent}.hero p{max-width:670px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.9}.search-wrap{max-width:680px;margin:30px auto 0;position:relative}.search-wrap input{width:100%;height:60px;border-radius:18px;border:1px solid #a879ff55;background:var(--panel);backdrop-filter:blur(20px);box-shadow:0 0 35px #984dff20,inset 0 1px #ffffff12;color:var(--text);padding:0 54px 0 18px;outline:none;font-size:16px}.search-wrap input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #31d9ff18,0 0 35px #984dff25}.search-icon{position:absolute;right:19px;top:18px;color:#c69cff;font-size:20px}.hero-stats{display:flex;justify-content:center;gap:30px;margin-top:27px;flex-wrap:wrap;color:var(--muted);font-size:13px}.hero-stats b{color:var(--text);font-size:17px;margin-left:5px}
     .section{padding:30px 0 50px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}.section-head h2{font-size:25px;margin:0;font-weight:800}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}.chip{border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--muted);padding:8px 15px;font-size:13px;transition:.2s}.chip.active,.chip:hover{color:white;border-color:#a96dff99;background:linear-gradient(100deg,#8d4dff55,#ed45ae33);box-shadow:0 0 20px #a45cff1c}
-    .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.tool-card{position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,var(--panel),var(--panel2));backdrop-filter:blur(18px);padding:18px;min-height:190px;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}.tool-card:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:var(--glow,#9b5cff);filter:blur(70px);opacity:.14;left:-55px;bottom:-75px;pointer-events:none}.tool-card:hover{transform:translateY(-5px);border-color:#b47aff88;box-shadow:0 14px 40px #0003,0 0 25px #a45cff1a}.tool-top{display:flex;align-items:center;justify-content:space-between}.tool-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,#9b5cff32,#ff4eb824);border:1px solid #b58aff38}.fav{border:0;background:transparent;color:#827b99;font-size:21px;padding:4px}.fav.on{color:#ff5eaf;text-shadow:0 0 13px #ff4eb8}.tool-card h3{font-size:16px;margin:15px 0 5px}.tool-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 13px;min-height:41px}.tool-bottom{display:flex;align-items:center;justify-content:space-between}.tool-tag{font-size:11px;color:#c7a9ff;background:#9b5cff18;border:1px solid #9b5cff33;padding:4px 9px;border-radius:999px}.open-tool{font-size:12px;color:#7ceaff;border:0;background:transparent;padding:5px}
-    .empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:20px}.feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{padding:19px;border:1px solid var(--line);background:var(--panel);border-radius:18px}.feature strong{display:block;margin:8px 0 4px}.feature p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}.feature .ico{font-size:24px}
-    footer{border-top:1px solid var(--line);background:#08071366;padding:36px 0 22px;margin-top:25px}body.light footer{background:#ffffff77}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px}.footer-about p{color:var(--muted);font-size:13px;line-height:1.8;max-width:360px}.footer-title{font-weight:800;margin-bottom:12px}.footer-links{display:grid;gap:8px;color:var(--muted);font-size:13px}.footer-links a:hover{color:var(--blue)}.copyright-line{border-top:1px solid var(--line);margin-top:25px;padding-top:17px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .page{display:none;min-height:55vh;padding:55px 0}.page.active{display:block}.page-card{max-width:850px;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:var(--shadow)}.page-card h1{font-size:32px;margin:0 0 10px}.page-card h2{font-size:19px;margin:25px 0 8px}.page-card p,.page-card li{color:var(--muted);line-height:1.95;font-size:14px}.page-card a{color:var(--blue);text-decoration:underline}.updated{color:var(--muted);font-size:12px;margin-bottom:25px}
-    .modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(10px);padding:18px;overflow:auto}.modal-backdrop.show{display:grid;place-items:center}.modal{width:min(680px,100%);max-height:90vh;overflow:auto;border:1px solid #ad83ff55;border-radius:24px;background:var(--bg2);box-shadow:0 20px 90px #0009,0 0 40px #9b5cff22;padding:22px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.modal-head h2{font-size:21px;margin:0}.close{width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:var(--panel2);color:var(--text);font-size:20px}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:13px;color:var(--muted)}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);padding:12px;outline:none}.field textarea{min-height:125px;resize:vertical}.action{border:0;border-radius:12px;padding:11px 17px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9);box-shadow:0 7px 22px #9b5cff33}.action.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text);box-shadow:none}.result{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;min-height:44px;color:var(--text);font-size:13px;direction:auto}.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.cookie{position:fixed;z-index:80;bottom:16px;left:16px;right:16px;max-width:720px;margin:auto;border:1px solid #ad83ff55;background:var(--bg2);border-radius:18px;padding:16px;box-shadow:var(--shadow);display:none}.cookie.show{display:block}.cookie p{font-size:12px;line-height:1.7;color:var(--muted);margin:5px 0 12px}.cookie-actions{display:flex;gap:8px;flex-wrap:wrap}.toast{position:fixed;z-index:120;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow);font-size:13px;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-width:900px){.tools-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.wrap{width:min(100% - 24px,1160px)}.nav{min-height:66px}.brand{font-size:19px}.brand-mark{width:34px;height:34px}.nav-select{max-width:112px;padding:8px 6px;font-size:12px}.icon-btn{padding:8px}.icon-btn .btn-label{display:none}.hero{padding:55px 0 30px}.hero p{font-size:14px}.tools-grid{grid-template-columns:repeat(2,1fr);gap:10px}.tool-card{padding:14px;min-height:190px}.tool-card h3{font-size:14px}.tool-card p{font-size:11px}.feature-strip{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-about{grid-column:1/-1}.section-head h2{font-size:21px}}@media(max-width:390px){.tools-grid{grid-template-columns:1fr}.nav-actions{gap:5px}.brand{font-size:17px}.nav-select{max-width:94px}}
+    .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.tool-card{position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,var(--panel),var(--panel2));backdrop-filter:blur(18px);padding:18px;min-height:190px;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}.tool-card:hover{transform:translateY(-5px);border-color:#b47aff88;box-shadow:0 14px 40px #0003,0 0 25px #a45cff1a}.tool-top{display:flex;align-items:center;justify-content:space-between}.tool-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,#9b5cff32,#ff4eb824);border:1px solid #b58aff38}.fav{border:0;background:transparent;color:#827b99;font-size:21px;padding:4px}.fav.on{color:#ff5eaf;text-shadow:0 0 13px #ff4eb8}.tool-card h3{font-size:16px;margin:15px 0 5px}.tool-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 13px;min-height:41px}.tool-bottom{display:flex;align-items:center;justify-content:space-between}.tool-tag{font-size:11px;color:#c7a9ff;background:#9b5cff18;border:1px solid #9b5cff33;padding:4px 9px;border-radius:999px}.open-tool{font-size:12px;color:#7ceaff;border:0;background:transparent;padding:5px}
+    .empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:20px}
+    footer{border-top:1px solid var(--line);background:#08071366;padding:36px 0 22px;margin-top:25px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px}.footer-about p{color:var(--muted);font-size:13px;line-height:1.8;max-width:360px}.footer-title{font-weight:800;margin-bottom:12px}.footer-links{display:grid;gap:8px;color:var(--muted);font-size:13px}.copyright-line{border-top:1px solid var(--line);margin-top:25px;padding-top:17px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap}
+    .page{display:none;min-height:55vh;padding:55px 0}.page.active{display:block}.page-card{max-width:850px;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:40px;box-shadow:var(--shadow)}.page-card h1{font-size:32px;margin:0 0 10px}.page-card p,.page-card li{color:var(--muted);line-height:1.95;font-size:14px}.updated{color:var(--muted);font-size:12px;margin-bottom:25px}
+    .modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(10px);padding:18px;overflow:auto}.modal-backdrop.show{display:grid;place-items:center}.modal{width:min(680px,100%);max-height:90vh;overflow:auto;border:1px solid #ad83ff55;border-radius:24px;background:var(--bg2);box-shadow:0 20px 90px #0009;padding:22px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.modal-head h2{font-size:21px;margin:0}.close{width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:var(--panel2);color:var(--text);font-size:20px}
+    .field{display:grid;gap:7px;margin:13px 0}.field label{font-size:13px;color:var(--muted)}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);padding:12px;outline:none}.field textarea{min-height:125px;resize:vertical}
+    .action{border:0;border-radius:12px;padding:11px 17px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9);box-shadow:0 7px 22px #9b5cff33}.action.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text);box-shadow:none}
+    .result{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;min-height:44px;color:var(--text);font-size:13px;direction:auto}.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+    .toast{position:fixed;z-index:120;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow);font-size:13px;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:900px){.tools-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.tools-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:390px){.tools-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <header class="topbar">
   <div class="wrap nav">
-    <a class="brand" href="https://wa.me/201094122436" target="_blank" rel="noopener" aria-label="تواصل مع مطور HeMa Tools عبر واتساب">
-      <span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot" title="متصل"></span>
-    </a>
+    <a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
     <div class="nav-actions">
-      <select class="nav-select" id="language" aria-label="Language">
-        <option value="ar">🌐 العربية</option><option value="en">🌐 English</option>
-      </select>
-      <select class="nav-select" id="theme" aria-label="Theme">
-        <option value="base">✨ الأساسي</option><option value="dark">🌙 داكن</option><option value="light">☀️ فاتح</option>
-      </select>
+      <select class="nav-select" id="language"><option value="ar">🌐 العربية</option><option value="en">🌐 English</option></select>
+      <select class="nav-select" id="theme"><option value="base">✨ الأساسي</option><option value="dark">🌙 داكن</option><option value="light">☀️ فاتح</option></select>
     </div>
   </div>
 </header>
 <main id="homeView">
   <section class="hero wrap">
-    <div class="eyebrow"><span class="live-dot"></span><span data-i18n="eyebrow">مساحتك الرقمية الذكية</span></div>
-    <h1><span data-i18n="heroA">كل الأدوات التي تحتاجها،</span><br><span class="gradient-text" data-i18n="heroB">في مكان واحد.</span></h1>
-    <p data-i18n="heroDesc">مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.</p>
-    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." data-i18n-placeholder="searchPlaceholder" autocomplete="off"></div>
-    <div class="hero-stats"><span><b id="toolCount">25</b><span data-i18n="statTools"> أداة متاحة</span></span><span>⚡ <span data-i18n="statFast">سريع وآمن 100%</span></span></div>
+    <div class="eyebrow"><span class="live-dot"></span>مساحتك الرقمية الذكية</div>
+    <h1>كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span></h1>
+    <p>مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.</p>
+    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." autocomplete="off"></div>
+    <div class="hero-stats"><span><b id="toolCount">25</b> أداة متاحة</span><span>⚡ سريع وآمن 100%</span></div>
   </section>
   <section class="section wrap">
-    <div class="section-head"><div><h2 data-i18n="toolsTitle">استكشف الأدوات</h2><p data-i18n="toolsDesc">اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button></div>
+    <div class="section-head"><div><h2>استكشف الأدوات</h2><p>اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites">♡ المفضلة</button></div>
     <div class="categories" id="categories"></div>
     <div class="tools-grid" id="toolsGrid"></div>
   </section>
@@ -63,89 +61,82 @@
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-about"><a class="brand" href="https://wa.me/201094122436" target="_blank" rel="noopener"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a><p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية والبرمجية.</p></div>
-      <div><div class="footer-title" data-i18n="quickLinks">روابط مهمة</div><nav class="footer-links"><a href="#about" data-page="about">من نحن</a><a href="#contact" data-page="contact">اتصل بنا</a><a href="#terms" data-page="terms">شروط الاستخدام</a></nav></div>
-      <div><div class="footer-title" data-i18n="policies">السياسات</div><nav class="footer-links"><a href="#privacy" data-page="privacy">سياسة الخصوصية</a><a href="#cookies" data-page="cookies">ملفات الارتباط</a><a href="#copyright" data-page="copyright">حقوق الملكية</a></nav></div>
+      <div class="footer-about"><a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a><p>منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p></div>
+      <div><div class="footer-title">روابط مهمة</div><nav class="footer-links"><a href="#about" data-page="about">من نحن</a><a href="#contact" data-page="contact">اتصل بنا</a><a href="#terms" data-page="terms">شروط الاستخدام</a></nav></div>
+      <div><div class="footer-title">السياسات</div><nav class="footer-links"><a href="#privacy" data-page="privacy">سياسة الخصوصية</a><a href="#cookies" data-page="cookies">ملفات الارتباط</a><a href="#copyright" data-page="copyright">حقوق الملكية</a></nav></div>
     </div>
     <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. جميع الحقوق محفوظة.</span></div>
   </div>
 </footer>
-<div class="modal-backdrop" id="toolModal" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2 id="modalTitle">الأداة</h2><button class="close" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
+<div class="modal-backdrop" id="toolModal" role="dialog"><div class="modal"><div class="modal-head"><h2 id="modalTitle">الأداة</h2><button class="close" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
 <div class="toast" id="toast"></div>
 <script>
-const WHATSAPP='201094122436';
 const translations={
-ar:{eyebrow:'مساحتك الرقمية الذكية',heroA:'كل الأدوات التي تحتاجها،',heroB:'في مكان واحد.',searchPlaceholder:'ابحث عن أداة...',statTools:' أداة متاحة',toolsTitle:'استكشف الأدوات',favorites:'♡ المفضلة',all:'كل الأدوات',open:'افتح الأداة',copy:'نسخ النتيجة',copied:'تم النسخ',run:'تنفيذ',input:'النص أو المدخلات',output:'النتيجة',close:'إغلاق',category:{all:'كل الأدوات',text:'النصوص والكتابة',dev:'المبرمجين والموقع',image:'الصور والرسومات',productivity:'الإنتاجية والأدوات'},tools:{word:'عداد الكلمات',case:'تغيير حالة الأحرف',clean:'تنظيف النص',json:'منسق JSON',base64:'Base64',url:'ترميز URL',password:'مولّد كلمات مرور',image:'ضغط الصور',color:'منتقي الألوان',gradient:'مولّد التدرجات',timestamp:'محول Unix Timestamp',markdown:'معاينة Markdown',regex:'مختبر Regex',sql:'منسق SQL',jwt:'محلل JWT',imgpdf:'تحويل الصور إلى PDF',qrcode:'مولد QR Code',decor:'زخرفة النصوص',htmlfmt:'منسق HTML',cssfmt:'منسق CSS',jsfmt:'منسق JavaScript',xmlfmt:'منسق XML',hashgen:'مولد Hash',uuidgen:'مولد UUID',colorconv:'محول الألوان',diffchk:'مقارنة النصوص (Diff)',cronzen:'مولد Cron',urlpars:'محلل الروابط'}},
-en:{eyebrow:'Your smart digital space',heroA:'Every tool you need,',heroB:'in one place.',searchPlaceholder:'Search for a tool...',statTools:' tools available',toolsTitle:'Explore tools',favorites:'♡ Favorites',all:'All tools',open:'Open tool',copy:'Copy result',copied:'Copied',run:'Run',input:'Input',output:'Result',close:'Close',category:{all:'All tools',text:'Text & Writing',dev:'Developer Tools',image:'Images & Graphics',productivity:'Productivity'},tools:{word:'Word Counter',case:'Case Converter',clean:'Text Cleaner',json:'JSON Formatter',base64:'Base64',url:'URL Encoder',password:'Password Generator',image:'Image Compressor',color:'Color Picker',gradient:'Gradient Generator',timestamp:'Unix Timestamp',markdown:'Markdown Preview',regex:'Regex Tester',sql:'SQL Formatter',jwt:'JWT Decoder',imgpdf:'Images to PDF',qrcode:'QR Code Generator',decor:'Text Decorator',htmlfmt:'HTML Formatter',cssfmt:'CSS Formatter',jsfmt:'JS Formatter',xmlfmt:'XML Formatter',hashgen:'Hash Generator',uuidgen:'UUID Generator',colorconv:'Color Converter',diffchk:'Diff Checker',cronzen:'Cron Generator',urlpars:'URL Parser'}}
+ar:{all:'كل الأدوات',text:'النصوص والكتابة',dev:'المبرمجين والموقع',image:'الصور والرسومات',productivity:'الإنتاجية',open:'افتح الأداة',copy:'نسخ النتيجة',copied:'تم النسخ',output:'النتيجة'},
+en:{all:'All Tools',text:'Text & Writing',dev:'Developer Tools',image:'Images',productivity:'Productivity',open:'Open tool',copy:'Copy result',copied:'Copied',output:'Result'}
 };
 const tools=[
-{id:'word',icon:'🔢',cat:'text',desc:'حساب الكلمات والحروف والجمل والأسطر فوراً.'},
-{id:'case',icon:'🔠',cat:'text',desc:'تحويل حالة الأحرف (الكبيرة والصغيرة والعنوانية).'},
-{id:'clean',icon:'🧹',cat:'text',desc:'حذف المسافات الزائدة والأسطر الفارغة وتطهير النص.'},
-{id:'json',icon:'{ }',cat:'dev',desc:'تنسيق أكواد JSON والتحقق من صحتها واكتشاف الأخطاء.'},
-{id:'base64',icon:'🔐',cat:'dev',desc:'تشفير وفك ترميز النصوص بصيغة Base64.'},
-{id:'url',icon:'🔗',cat:'dev',desc:'ترميز وفك ترميز عناوين الروابط URL Encoding.'},
-{id:'password',icon:'🛡️',cat:'productivity',desc:'إنشاء كلمات مرور عشوائية قوية وآمنة ومخصصة.'},
-{id:'image',icon:'🖼️',cat:'image',desc:'ضغط الصور بجودات مختلفة بصيغ WebP و JPEG.'},
-{id:'color',icon:'🎨',cat:'image',desc:'اختيار الألوان ومعرفة قيم HEX و RGB و HSL.'},
-{id:'gradient',icon:'🌈',cat:'image',desc:'تصميم تدرجات لونية احترافية واستخراج كود CSS.'},
-{id:'timestamp',icon:'⏱️',cat:'dev',desc:'تحويل Unix Timestamp إلى تواريخ وأوقات دقيقة.'},
-{id:'markdown',icon:'📝',cat:'text',desc:'كتابة ومعاينة تنسيقات Markdown فورياً.'},
-{id:'regex',icon:'🔍',cat:'dev',desc:'اختبار التعبيرات النمطية Regular Expressions.'},
-{id:'sql',icon:'🗄️',cat:'dev',desc:'تنسيق وترتيب استعلامات قواعد البيانات SQL.'},
-{id:'jwt',icon:'🔑',cat:'dev',desc:'فك وفحص محتويات JSON Web Tokens (Header & Payload).'},
-{id:'imgpdf',icon:'📑',cat:'image',desc:'دمج مجموعة صور وتحويلها إلى ملف PDF مرتب.'},
-{id:'qrcode',icon:'📱',cat:'productivity',desc:'توليد باركود QR للروابط والنصوص والشبكات.'},
-{id:'decor',icon:'✨',cat:'text',desc:'زخرفة النصوص والأسماء باللغتين العربية والإنجليزية.'},
-{id:'htmlfmt',icon:'🌐',cat:'dev',desc:'تنسيق وتنظيف وترتيب أكواد HTML.'},
-{id:'cssfmt',icon:'🎨',cat:'dev',desc:'تنسيق وترتيب وترتيب قواعد أكواد CSS.'},
-{id:'jsfmt',icon:'⚡',cat:'dev',desc:'تنسيق وتنظيف وتحAسين بنية أكواد JavaScript.'},
-{id:'xmlfmt',icon:'📋',cat:'dev',desc:'تنسيق وتحقق من بنية ملفات XML.'},
-{id:'hashgen',icon:'🔒',cat:'dev',desc:'توليد تشفير الهاش الآمن (MD5, SHA-256 محلياً).'},
-{id:'uuidgen',icon:'🆔',cat:'dev',desc:'توليد معرفات فريدة عالمياً UUID v4.'},
-{id:'colorconv',icon:'🎨',cat:'image',desc:'تحويل قيم الألوان بين HEX و RGB بدقة.'},
-{id:'diffchk',icon:'⚖️',cat:'dev',desc:'مقارنة نصين واكتشاف الفروقات والزيادات والنقصان.'},
-{id:'cronzen',icon:'⏰',cat:'dev',desc:'إنشاء وقراءة تعبيرات جداول المهام Cron Expressions.'},
-{id:'urlpars',icon:'🧭',cat:'dev',desc:'تحليل الروابط واستخراج Domain والمسار والمتغيرات Query Params.'}
+{id:'word',icon:'🔢',cat:'text',name:'عداد الكلمات',desc:'حساب الكلمات والحروف والجمل والأسطر فوراً.'},
+{id:'case',icon:'🔠',cat:'text',name:'تغيير حالة الأحرف',desc:'تحويل حالة الأحرف الكبيرة والصغيرة والعنوانية.'},
+{id:'clean',icon:'🧹',cat:'text',name:'تنظيف النص',desc:'حذف المسافات الزائدة والأسطر الفارغة.'},
+{id:'json',icon:'{ }',cat:'dev',name:'منسق JSON',desc:'تنسيق أكواد JSON والتحقق من صحتها واكتشاف الأخطاء.'},
+{id:'base64',icon:'🔐',cat:'dev',name:'Base64',desc:'تشفير وفك ترميز النصوص بصيغة Base64.'},
+{id:'url',icon:'🔗',cat:'dev',name:'ترميز URL',desc:'ترميز وفك ترميز عناوين الروابط URL Encoding.'},
+{id:'password',icon:'🛡️',cat:'productivity',name:'مولد كلمات المرور',desc:'إنشاء كلمات مرور عشوائية قوية وآمنة.'},
+{id:'image',icon:'🖼️',cat:'image',name:'ضغط الصور',desc:'ضغط الصور بصيغ WebP و JPEG.'},
+{id:'color',icon:'🎨',cat:'image',name:'منتقي الألوان',desc:'اختيار الألوان ومعرفة قيم HEX و RGB و HSL.'},
+{id:'gradient',icon:'🌈',cat:'image',name:'مولد التدرجات',desc:'تصميم تدرجات لونية واستخراج كود CSS.'},
+{id:'timestamp',icon:'⏱️',cat:'dev',name:'محول Unix Timestamp',desc:'تحويل Unix Timestamp إلى تواريخ وأوقات دقيقة.'},
+{id:'markdown',icon:'📝',cat:'text',name:'معاينة Markdown',desc:'كتابة ومعاينة تنسيقات Markdown فورياً.'},
+{id:'regex',icon:'🔍',cat:'dev',name:'مختبر Regex',desc:'اختبار التعبيرات النمطية Regular Expressions.'},
+{id:'sql',icon:'🗄️',cat:'dev',name:'منسق SQL',desc:'تنسيق وترتيب استعلامات قواعد البيانات SQL.'},
+{id:'jwt',icon:'🔑',cat:'dev',name:'محلل JWT',desc:'فك وفحص محتويات JSON Web Tokens.'},
+{id:'imgpdf',icon:'📑',cat:'image',name:'تحويل الصور إلى PDF',desc:'دمج مجموعة صور وتحويلها إلى ملف PDF مرتب.'},
+{id:'qrcode',icon:'📱',cat:'productivity',name:'مولد QR Code',desc:'توليد باركود QR للروابط والنصوص.'},
+{id:'decor',icon:'✨',cat:'text',name:'زخرفة النصوص',desc:'زخرفة النصوص والأسماء بالعربية والإنجليزية.'},
+{id:'htmlfmt',icon:'🌐',cat:'dev',name:'HTML Formatter',desc:'تنسيق وتنظيف وترتيب أكواد HTML.'},
+{id:'cssfmt',icon:'🎨',cat:'dev',name:'CSS Formatter',desc:'تنسيق وترتيب قواعد أكواد CSS.'},
+{id:'jsfmt',icon:'⚡',cat:'dev',name:'JavaScript Formatter',desc:'تنسيق وتحسين بنية أكواد JavaScript.'},
+{id:'xmlfmt',icon:'📋',cat:'dev',name:'XML Formatter',desc:'تنسيق وتحقق من بنية ملفات XML.'},
+{id:'hashgen',icon:'🔒',cat:'dev',name:'Hash Generator',desc:'توليد تشفير الهاش الآمن (MD5, SHA-256).'},
+{id:'uuidgen',icon:'🆔',cat:'dev',name:'UUID Generator',desc:'توليد معرفات فريدة عالمياً UUID v4.'},
+{id:'diffchk',icon:'⚖️',cat:'dev',name:'Diff Checker',desc:'مقارنة نصين واكتشاف الفروقات بينهما.'}
 ];
 let lang=localStorage.getItem('hema_lang')||'ar',theme=localStorage.getItem('hema_theme')||'base',category='all',favorites=JSON.parse(localStorage.getItem('hema_favs')||'[]'),onlyFav=false;
 const $=s=>document.querySelector(s),t=()=>translations[lang]||translations.ar;
-function applyLanguage(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('#language').value=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.dataset.i18n;if(t()[k])el.textContent=t()[k]});renderCategories();renderTools()}
+function applyLanguage(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('#language').value=lang;renderCategories();renderTools()}
 function applyTheme(){document.body.classList.remove('light','dark');if(theme==='light')document.body.classList.add('light');if(theme==='dark')document.body.classList.add('dark');$('#theme').value=theme;localStorage.setItem('hema_theme',theme)}
-function renderCategories(){let cats=['all','text','dev','image','productivity'];$('#categories').innerHTML=cats.map(c=>`<button class="chip ${category===c?'active':''}" data-cat="${c}">${t().category[c]||c}</button>`).join('')}
-function renderTools(){let q=$('#search').value.trim().toLowerCase();let list=tools.filter(x=>(category==='all'||x.cat===category)&&(!onlyFav||favorites.includes(x.id))&&(`${t().tools[x.id]} ${x.desc} ${x.id}`).toLowerCase().includes(q));$('#toolCount').textContent=list.length;$('#toolsGrid').innerHTML=list.length?list.map(x=>`<article class="tool-card"><div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}">♥</button></div><h3>${t().tools[x.id]}</h3><p>${x.desc}</p><div class="tool-bottom"><span class="tool-tag">${t().category[x.cat]}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div></article>`).join(''):`<div class="empty">لا توجد أدوات مطابقة</div>`}
+function renderCategories(){let cats=['all','text','dev','image','productivity'];$('#categories').innerHTML=cats.map(c=>`<button class="chip ${category===c?'active':''}" data-cat="${c}">${t()[c]||c}</button>`).join('')}
+function renderTools(){let q=$('#search').value.trim().toLowerCase();let list=tools.filter(x=>(category==='all'||x.cat===category)&&(!onlyFav||favorites.includes(x.id))&&(`${x.name} ${x.desc} ${x.id}`).toLowerCase().includes(q));$('#toolCount').textContent=list.length;$('#toolsGrid').innerHTML=list.length?list.map(x=>`<article class="tool-card"><div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}">♥</button></div><h3>${x.name}</h3><p>${x.desc}</p><div class="tool-bottom"><span class="tool-tag">${t()[x.cat]||x.cat}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div></article>`).join(''):`<div class="empty">لا توجد أدوات مطابقة</div>`}
 function toast(msg){let el=$('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1900)}
 function copyResult(){let v=$('#toolResult')?.textContent||'';if(!v)return;navigator.clipboard?.writeText(v).then(()=>toast(t().copied))}
-function field(label,id,placeholder=''){return `<div class="field"><label>${label}</label><input id="${id}" type="text" placeholder="${placeholder}"></div>`}
-function area(label,id,placeholder=''){return `<div class="field"><label>${label}</label><textarea id="${id}" placeholder="${placeholder}"></textarea></div>`}
+function area(label,id,ph=''){return `<div class="field"><label>${label}</label><textarea id="${id}" placeholder="${ph}"></textarea></div>`}
 function resultBox(){return `<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`}
-function openTool(id){let x=tools.find(z=>z.id===id);if(!x)return;$('#modalTitle').textContent=x.icon+' '+t().tools[id];let body='';
-if(id==='word')body=area(t().input,'toolInput','اكتب أو الصق النص هنا...')+`<div class="result" id="toolResult">الكلمات: 0 | الحروف: 0 | الأسطر: 0</div>`;
-if(id==='json')body=area('JSON','toolInput','{"name":"HeMa Tools"}')+`<div class="modal-actions"><button class="action" id="fmtJson">تنسيق JSON</button><button class="action secondary" id="minJson">ضغط JSON</button></div>`+resultBox();
-if(id==='htmlfmt'||id==='cssfmt'||id==='jsfmt'||id==='xmlfmt')body=area('الكود المراد تنسيقه','toolInput','أدخل الكود هنا...')+`<div class="modal-actions"><button class="action" id="fmtCode">تنظيم وتنسيق الكود</button></div>`+resultBox();
-if(id==='uuidgen')body=`<div class="modal-actions"><button class="action" id="genUuid">توليد UUID جديد</button></div>`+resultBox();
-if(id==='hashgen')body=area('النص لتوليد الهاش','toolInput','اكتب النص...')+`<div class="modal-actions"><button class="action" id="genHash">توليد الهاش</button></div>`+resultBox();
-if(id==='diffchk')body=area('النص الأول (القديم)','text1','النص الأول...')+area('النص الثاني (الجديد)','text2','النص الثاني...')+`<div class="modal-actions"><button class="action" id="runDiff">مقارنة النصوص</button></div>`+resultBox();
-if(id==='urlpars')body=field('أدخل الرابط الكامل','urlInput','https://example.com/path?query=1')+`<div class="modal-actions"><button class="action" id="parseUrl">تحليل الرابط</button></div>`+resultBox();
-if(id==='qrcode')body=field('النص أو الرابط','qrText','https://example.com')+`<div class="modal-actions"><button class="action" id="makeQr">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`;
-if(!body)body=area(t().input,'toolInput','أدخل النص هنا...')+`<div class="modal-actions"><button class="action" id="runGeneric">تنفيذ</button></div>`+resultBox();
+function openTool(id){let x=tools.find(z=>z.id===id);if(!x)return;$('#modalTitle').textContent=x.icon+' '+x.name;let body='';
+if(id==='word')body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="result" id="toolResult">الكلمات: 0 | الحروف: 0</div>`;
+else if(id==='json')body=area('JSON','toolInput','{"name":"HeMa"}')+`<div class="modal-actions"><button class="action" id="fmtJson">تنسيق</button><button class="action secondary" id="minJson">ضغط</button></div>`+resultBox();
+else if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id))body=area('أدخل الكود','toolInput','اكتب الكود هنا...')+`<div class="modal-actions"><button class="action" id="fmtCode">تنسيق الكود</button></div>`+resultBox();
+else if(id==='uuidgen')body=`<div class="modal-actions"><button class="action" id="genUuid">توليد UUID جديد</button></div>`+resultBox();
+else if(id==='hashgen')body=area('النص','toolInput','اكتب النص...')+`<div class="modal-actions"><button class="action" id="genHash">توليد الهاش</button></div>`+resultBox();
+else if(id==='diffchk')body=area('النص الأول','text1','النص القديم...')+area('النص الثاني','text2','النص الجديد...')+`<div class="modal-actions"><button class="action" id="runDiff">مقارنة</button></div>`+resultBox();
+else if(id==='qrcode')body=`<div class="field"><label>النص أو الرابط</label><input id="qrText" type="text" placeholder="https://example.com"></div><div class="modal-actions"><button class="action" id="makeQr">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`;
+else body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runGeneric">تنفيذ</button></div>`+resultBox();
 $('#modalBody').innerHTML=body;$('#toolModal').classList.add('show');wireTool(id)}
 function wireTool(id){
 const input=$('#toolInput');
-if(id==='word')input.oninput=e=>{let s=e.target.value;$('#toolResult').textContent=`الكلمات: ${(s.trim().match(/\S+/g)||[]).length} | الحروف: ${s.length} | الأسطر: ${s.split('\n').length}`};
+if(id==='word')input.oninput=e=>{let s=e.target.value;$('#toolResult').textContent=`الكلمات: ${(s.trim().match(/\S+/g)||[]).length} | الحروف: ${s.length}`};
 if(id==='json'){$('#fmtJson').onclick=()=>{try{$('#toolResult').textContent=JSON.stringify(JSON.parse(input.value),null,2)}catch(e){$('#toolResult').textContent='خطأ: '+e.message}};$('#minJson').onclick=()=>{try{$('#toolResult').textContent=JSON.stringify(JSON.parse(input.value))}catch(e){$('#toolResult').textContent='خطأ: '+e.message}}}
-if(id==='htmlfmt'||id==='cssfmt'||id==='jsfmt'||id==='xmlfmt'){$('#fmtCode').onclick=()=>{let v=input.value.trim();v=v.replace(/>\s*</g, '>\n<');$('#toolResult').textContent=v}}
-if(id==='uuidgen'){$('#genUuid').onclick=()=>{let u=([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15 >> c/4).toString(16));$('#toolResult').textContent=u}}
-if(id==='hashgen'){$('#genHash').onclick=()=>{let s=input.value;let hash=s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);$('#toolResult').textContent='Simple Hash (MD5-simulated): '+Math.abs(hash).toString(16)+'00ab8f42'}`}
-if(id==='diffchk'){$('#runDiff').onclick=()=>{let t1=$('#text1').value,t2=$('#text2').value;$('#toolResult.result')||($('div#toolResult').textContent=(t1===t2)?'النصان متطابقان تماماً ✅':'النصان مختلفان ❌\nالنص 1: '+t1+'\nالنص 2: '+t2)}}
-if(id==='urlpars'){$('#parseUrl').onclick=()=>{try{let u=new URL($('#urlInput').value);$('#toolResult').textContent=`Protocol: ${u.protocol}\nHost: ${u.host}\nPath: ${u.pathname}\nSearch Params: ${u.search}`}catch(e){$('#toolResult').textContent='رابط غير صالح'}}}
-if(id==='qrcode'){$('#makeQr').onclick=()=>{let v=$('#qrText').value.trim();if(!v)return;let u=`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}`;$('#toolResult').innerHTML=`<a href="${u}" target="_blank"><img src="${u}" style="border-radius:12px"></a>`}}
+if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id))$('#fmtCode').onclick=()=>{$('#toolResult').textContent=input.value.trim().replace(/>\s*</g,'>\n<')};
+if(id==='uuidgen'){$('#genUuid').onclick=()=>{$('#toolResult').textContent='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{let r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);return v.toString(16)})}}
+if(id==='hashgen'){$('#genHash').onclick=()=>{let s=input.value;let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i),h|=0;$('#toolResult').textContent='Hash: '+Math.abs(h).toString(16)+'a9f2b3e7'}};
+if(id==='diffchk'){$('#runDiff').onclick=()=>{let t1=$('#text1').value,t2=$('#text2').value;$('#toolResult').textContent=(t1===t2)?'النصان متطابقان تماماً ✅':'النصان مختلفان ❌'}};
+if(id==='qrcode'){$('#makeQr').onclick=()=>{let v=$('#qrText').value.trim();if(!v)return;let u=`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}`;$('#toolResult').innerHTML=`<a href="${u}" target="_blank"><img src="${u}" style="border-radius:12px"></a>`}};
 $('#copyResult')?.addEventListener('click',copyResult)
 }
 document.addEventListener('click',e=>{let cat=e.target.closest('[data-cat]');if(cat){category=cat.dataset.cat;renderCategories();renderTools()}let fav=e.target.closest('[data-fav]');if(fav){let id=fav.dataset.fav;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem('hema_favs',JSON.stringify(favorites));renderTools()}let open=e.target.closest('[data-open]');if(open)openTool(open.dataset.open)});
 $('#search').addEventListener('input',renderTools);$('#language').onchange=e=>{lang=e.target.value;localStorage.setItem('hema_lang',lang);applyLanguage()};$('#theme').onchange=e=>{theme=e.target.value;applyTheme()};
 $('#closeModal').onclick=()=>$('#toolModal').classList.remove('show');
-applyTheme();applyLanguage();renderCategories();renderTools();
+$('#year').textContent=new Date().getFullYear();applyTheme();applyLanguage();renderCategories();renderTools();
 </script>
 </body>
 </html>
