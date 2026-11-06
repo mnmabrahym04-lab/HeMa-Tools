@@ -51,11 +51,12 @@
     .footer-grid{display:grid;grid-template-columns:1fr;gap:20px}
     .footer-about p{color:var(--muted);font-size:12px;line-height:1.7}
     .footer-title{font-weight:800;margin-bottom:8px;font-size:14px}
-    .footer-links{display:grid;gap:6px;color:var(--muted);font-size:12px}
+    .footer-links{display:grid;gap:6px;color:var(--muted);font-size:12px;cursor:pointer}
+    .footer-links a:hover{color:var(--blue);text-decoration:underline}
     .copyright-line{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     .page{display:none;min-height:55vh;padding:40px 0}.page.active{display:block}
     .page-card{width:100%;max-width:100%;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:20px}
-    .page-card h1{font-size:26px;margin:0 0 8px}.page-card p,.page-card li{color:var(--muted);line-height:1.8;font-size:13px}
+    .page-card h1{font-size:24px;margin:0 0 12px;font-weight:800}.page-card h2{font-size:18px;margin:20px 0 8px;color:var(--text)}.page-card p,.page-card li{color:var(--muted);line-height:1.8;font-size:13px;margin:8px 0}
     .updated{color:var(--muted);font-size:11px;margin-bottom:20px}
     .modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(8px);padding:12px;overflow:auto}
     .modal-backdrop.show{display:grid;place-items:center}
@@ -73,7 +74,6 @@
     .modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .toast{position:fixed;z-index:120;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:12px;transition:.25s}
     .toast.show{opacity:1;transform:translate(-50%,0)}
-    /* Floating WhatsApp Button */
     .whatsapp-float{position:fixed;bottom:24px;left:24px;z-index:99;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(37,211,102,.45);font-size:28px;transition:transform .3s;animation:pulseWa 2s infinite}
     .whatsapp-float:hover{transform:scale(1.1)}
     @keyframes pulseWa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
@@ -85,7 +85,7 @@
 <a id="waButton" href="#" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">💬</a>
 <header class="topbar">
   <div class="wrap nav">
-    <a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
+    <a class="brand" href="#" onclick="showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
     <div class="nav-actions">
       <select class="nav-select" id="language">
         <option value="ar">🌐 العربية</option>
@@ -121,9 +121,26 @@
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-about"><a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a><p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p></div>
-      <div><div class="footer-title" data-i18n="quickLinks">روابط مهمة</div><nav class="footer-links"><a href="#about" data-page="about" data-i18n="about">من نحن</a><a href="#contact" data-page="contact" data-i18n="contact">اتصل بنا</a><a href="#terms" data-page="terms" data-i18n="terms">شروط الاستخدام</a></nav></div>
-      <div><div class="footer-title" data-i18n="policies">السياسات</div><nav class="footer-links"><a href="#privacy" data-page="privacy" data-i18n="privacy">سياسة الخصوصية</a><a href="#cookies" data-page="cookies" data-i18n="cookies">ملفات الارتباط</a><a href="#copyright" data-page="copyright" data-i18n="copyright">حقوق الملكية</a></nav></div>
+      <div class="footer-about">
+        <a class="brand" href="#" onclick="showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
+        <p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="quickLinks">روابط مهمة</div>
+        <nav class="footer-links">
+          <a onclick="showPage('about')">من نحن</a>
+          <a onclick="showPage('contact')">اتصل بنا</a>
+          <a onclick="showPage('terms')">شروط الاستخدام</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="policies">السياسات</div>
+        <nav class="footer-links">
+          <a onclick="showPage('privacy')">سياسة الخصوصية</a>
+          <a onclick="showPage('cookies')">ملفات الارتباط</a>
+          <a onclick="showPage('copyright')">حقوق الملكية</a>
+        </nav>
+      </div>
     </div>
     <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span></div>
   </div>
@@ -355,39 +372,66 @@ const translations = {
   }
 };
 
+const pagesData = {
+  about: {
+    ar: `<h1>من نحن</h1><div class="updated">منصة HeMa Tools</div><p>نحن منصة رقمية متكاملة تهدف إلى توفير أدوات ويب خدمية وبرمجية وإنتاجية مجانية بالكامل للمستخدمين حول العالم، مع التركيز على السرعة والخصوصية المطلقة في معالجة البيانات داخل المتصفح.</p><h2>رؤيتنا</h2><p>تسهيل المهام الرقمية اليومية للمبرمجين، صناع المحتوى، والمهتمين بالتقنية عبر تقديم أدوات دقيقة، سريعة، وبواجهة استخدام عصرية ومريحة.</p>`,
+    en: `<h1>About Us</h1><div class="updated">HeMa Tools Platform</div><p>We are a digital platform dedicated to providing free web utilities, developer tools, and productivity solutions with absolute privacy and in-browser processing.</p>`
+  },
+  contact: {
+    ar: `<h1>اتصل بنا</h1><div class="updated">نحن هنا دائماً لمساعدتك</div><p>إذا كان لديك أي استفسار، اقتراح، أو واجهتك أي مشكلة تقنية، يمكنك التواصل معنا مباشرة عبر واتساب:</p><p><a href="https://wa.me/${WHATSAPP_NUM}?text=${waMsg}" target="_blank" style="color:var(--blue);font-weight:bold;">محادثة واتساب مباشرة مع المطور 💬</a></p>`,
+    en: `<h1>Contact Us</h1><div class="updated">We are here to help</div><p>If you have any questions or suggestions, reach out via WhatsApp:</p><p><a href="https://wa.me/${WHATSAPP_NUM}?text=${waMsg}" target="_blank" style="color:var(--blue);font-weight:bold;">Chat on WhatsApp 💬</a></p>`
+  },
+  terms: {
+    ar: `<h1>شروط الاستخدام</h1><div class="updated">آخر تحديث: نوفمبر 2026</div><p>باستخدامك لمنصة HeMa Tools، فإنك توافق على الالتزام بالشروط والأحكام التالية:</p><h2>استخدام الأدوات</h2><p>تُقدم جميع الأدوات الحالية مجاناً وللاستخدام الشخصي والمهني المشروع. يُحظر استخدام المنصة في أي أعمال تخالف القوانين السارية.</p>`,
+    en: `<h1>Terms of Use</h1><div class="updated">Last updated: November 2026</div><p>By using HeMa Tools, you agree to comply with our terms and conditions.</p>`
+  },
+  privacy: {
+    ar: `<h1>سياسة الخصوصية</h1><div class="updated">متوافقة مع معايير Google AdSense</div><p>نحن في HeMa Tools نولي اهتماماً بالغاً لخصوصية زوارنا. توضح هذه السياسة كيف يتم التعامل مع البيانات:</p><h2>معالجة البيانات محلياً</h2><p>معظم الأدوات البرمجية وإنتاج النصوص والصور تعالج بياناتك بالكامل داخل متصفحك المحلي دون رفعها لأي خادم خارجي، مما يضمن سرية تامة.</p><h2>ملفات تعريف الارتباط (Google AdSense)</h2><p>قد يستعين الموقع بشركات إعلانية طرف ثالث (مثل Google) لعرض الإعلانات عند تفعيلها مستقبلاً. تستخدم هذه الشركات ملفات تعريف الارتباط (Cookies) لتحسين تجربة الإعلانات بناءً على زيارات المستخدم السابقة للموقع أو مواقع أخرى.</p>`,
+    en: `<h1>Privacy Policy</h1><div class="updated">Google AdSense Compliant</div><p>At HeMa Tools, we respect your privacy. Most tools process your data locally in your browser to ensure absolute security.</p>`
+  },
+  cookies: {
+    ar: `<h1>سياسة ملفات الارتباط</h1><div class="updated">Cookies Policy</div><p>نستخدم التخزين المحلي وملفات الارتباط البسيطة فقط لحفظ تفضيلاتك مثل اللغة والمظهر المفضل (الداكن أو الفاتح) لضمان تجربة تصفح مريحة وسلسة.</p>`,
+    en: `<h1>Cookies Policy</h1><div class="updated">Cookies Policy</div><p>We use local storage and basic cookies only to save your preferences like language and theme.</p>`
+  },
+  copyright: {
+    ar: `<h1>حقوق الملكية الفكرية</h1><div class="updated">Copyright Notice</div><p>جميع حقوق التصميم والتطوير والأكواد البرمجية الخاصة بمنصة HeMa Tools محفوظة © 2026. لا يُحظر الاستفادة من الأدوات بشكل شخصي، ولكن يُمنع نسخ التصميم التجاري للمنصة.</p>`,
+    en: `<h1>Copyright Notice</h1><div class="updated">Copyright Notice</div><p>All rights reserved for HeMa Tools © 2026.</p>`
+  }
+};
+
 const tools = [
-  {id:'word', icon:'🔢', cat:'text', name:{ar:'عداد الكلمات', en:'Word Counter', es:'Contador de palabras', zh:'字数统计', pt:'Contador de palavras', fr:'Compteur de mots', ru:'Счетчик слов'}, desc:{ar:'حساب الكلمات والحروف والجمل والأسطر فوراً.', en:'Count words, characters, sentences instantly.', es:'Cuenta palabras y caracteres.', zh:'即时统计字数和字符。', pt:'Contar palavras e caracteres.', fr:'Compter les mots et caractères.', ru:'Подсчет слов и символов.'}},
-  {id:'case', icon:'🔠', cat:'text', name:{ar:'تغيير حالة الأحرف', en:'Case Converter', es:'Conversor de mayúsculas', zh:'大小写转换', pt:'Conversor de maiúsculas', fr:'Convertisseur de casse', ru:'Регистр букв'}, desc:{ar:'تحويل حالة الأحرف الكبيرة والصغيرة.', en:'Convert text case.', es:'Convierte mayúsculas y minúsculas.', zh:'转换文本大小写。', pt:'Converter maiúsculas e minúsculas.', fr:'Convertir la casse.', ru:'Изменение регистра.'}},
-  {id:'clean', icon:'🧹', cat:'text', name:{ar:'تنظيف النص', en:'Text Cleaner', es:'Limpiador de texto', zh:'文本清理', pt:'Limpador de texto', fr:'Nettoyeur de texte', ru:'Очистка текста'}, desc:{ar:'حذف المسافات الزائدة والأسطر الفارغة.', en:'Remove extra spaces and empty lines.', es:'Elimina espacios extra.', zh:'删除多余空格和空行。', pt:'Remover espaços extras.', fr:'Supprimer les espaces.', ru:'Удаление лишних пробелов.'}},
-  {id:'json', icon:'{ }', cat:'dev', name:{ar:'منسق JSON', en:'JSON Formatter', es:'Formateador JSON', zh:'JSON格式化', pt:'Formatador JSON', fr:'Formateur JSON', ru:'JSON Форматер'}, desc:{ar:'تنسيق أكواد JSON والتحقق من صحتها.', en:'Format and validate JSON.', es:'Formatea y valida JSON.', zh:'格式化并验证JSON。', pt:'Formatar e validar JSON.', fr:'Formater et valider JSON.', ru:'Форматирование и проверка JSON.'}},
-  {id:'base64', icon:'🔐', cat:'dev', name:{ar:'Base64', en:'Base64 Encoder/Decoder', es:'Base64', zh:'Base64 编解码', pt:'Base64', fr:'Base64', ru:'Base64 Кодек'}, desc:{ar:'تشفير وفك ترميز النصوص بصيغة Base64.', en:'Encode and decode Base64 text.', es:'Codifica y decodifica Base64.', zh:'Base64编码和解码。', pt:'Codificar e decodificar Base64.', fr:'Encoder et décoder Base64.', ru:'Кодирование и декодирование Base64.'}},
-  {id:'url', icon:'🔗', cat:'dev', name:{ar:'ترميز URL', en:'URL Encoder', es:'Codificador URL', zh:'URL编码', pt:'Codificador URL', fr:'Encodeur URL', ru:'URL Кодировщик'}, desc:{ar:'ترميز وفك ترميز عناوين الروابط.', en:'Encode and decode URLs.', es:'Codifica y decodifica URLs.', zh:'URL编码和解码。', pt:'Codificar e decodificar URLs.', fr:'Encoder et décoder les URL.', ru:'Кодирование и декодирование URL.'}},
-  {id:'password', icon:'🛡️', cat:'productivity', name:{ar:'مولد كلمات المرور', en:'Password Generator', es:'Generador de contraseñas', zh:'密码生成器', pt:'Gerador de senhas', fr:'Générateur de mot de passe', ru:'Генератор паролей'}, desc:{ar:'إنشاء كلمات مرور عشوائية قوية.', en:'Generate strong passwords.', es:'Genera contraseñas seguras.', zh:'生成强密码。', pt:'Gerar senhas fortes.', fr:'Générer des mots de passe.', ru:'Генерация надежных паролей.'}},
-  {id:'image', icon:'🖼️', cat:'image', name:{ar:'ضغط الصور', en:'Image Compressor', es:'Compresor de imágenes', zh:'图片压缩', pt:'Compressor de imagem', fr:'Compresseur d\'image', ru:'Сжатие изображений'}, desc:{ar:'ضغط الصور بصيغ WebP و JPEG.', en:'Compress images easily.', es:'Comprime imágenes.', zh:'轻松压缩图片。', pt:'Comprimir imagens.', fr:'Compresser des images.', ru:'Сжатие изображений.'}},
-  {id:'color', icon:'🎨', cat:'image', name:{ar:'منتقي الألوان', en:'Color Picker', es:'Selector de color', zh:'颜色选择器', pt:'Seletor de cores', fr:'Sélecteur de couleur', ru: 'Палитра цветов'}, desc:{ar:'معرفة قيم HEX و RGB و HSL.', en:'Pick colors and get HEX, RGB.', es:'Obtén valores HEX y RGB.', zh:'获取HEX和RGB值。', pt:'Obter HEX e RGB.', fr:'Obtenir HEX et RGB.', ru:'Получить HEX и RGB значения.'}},
-  {id:'gradient', icon:'🌈', cat:'image', name:{ar:'مولد التدرجات', en:'Gradient Generator', es:'Generador de degradados', zh:'渐变生成器', pt:'Gerador de gradiente', fr:'Générateur de dégradé', ru:'Генератор градиентов'}, desc:{ar:'تصميم تدرجات لونية واستخراج كود CSS.', en:'Create gradients and CSS.', es:'Crea degradados CSS.', zh:'创建渐变CSS。', pt:'Criar gradientes CSS.', fr: 'Créer des dégradés CSS.', ru:'Создание градиентов CSS.'}},
-  {id:'timestamp', icon:'⏱️', cat:'dev', name:{ar:'محول Unix Timestamp', en:'Unix Timestamp', es:'Marca de tiempo Unix', zh:'Unix 时间戳', pt:'Timestamp Unix', fr:'Horodatage Unix', ru:'Unix Время'}, desc:{ar:'تحويل Unix Timestamp إلى تواريخ.', en:'Convert Unix Timestamps.', es:'Convierte marcas de tiempo.', zh:'转换Unix时间戳。', pt:'Converter timestamps.', fr:'Convertir les horodatages.', ru:'Конвертация Unix времени.'}},
-  {id:'markdown', icon:'📝', cat:'text', name:{ar:'معاينة Markdown', en:'Markdown Preview', es:'Vista previa Markdown', zh:'Markdown 预览', pt:'Visualização Markdown', fr:'Aperçu Markdown', ru:'Markdown Превью'}, desc:{ar:'كتابة ومعاينة تنسيقات Markdown.', en:'Preview Markdown instantly.', es:'Vista previa de Markdown.', zh:'即时预览Markdown。', pt:'Visualizar Markdown.', fr:'Aperçu Markdown instantané.', ru:'Предпросмотр Markdown.'}},
-  {id:'regex', icon:'🔍', cat:'dev', name:{ar:'مختبر Regex', en:'Regex Tester', es:'Probador Regex', zh:'Regex 测试器', pt:'Testador Regex', fr:'Testeur Regex', ru:'Regex Тестер'}, desc:{ar:'اختبار التعبيرات النمطية.', en:'Test Regular Expressions.', es:'Prueba expresiones regulares.', zh:'测试正则表达式。', pt:'Testar expressões regulares.', fr: 'Tester les expressions régulières.', ru:'Тестирование регулярных выражений.'}},
-  {id:'sql', icon:'🗄️', cat:'dev', name:{ar:'منسق SQL', en:'SQL Formatter', es:'Formateador SQL', zh:'SQL 格式化', pt:'Formatador SQL', fr:'Formateur SQL', ru:'SQL Форматер'}, desc:{ar:'تنسيق وترتيب استعلامات SQL.', en:'Format SQL queries.', es:'Formatea consultas SQL.', zh:'格式化SQL查询。', pt:'Formatar consultas SQL.', fr:'Formater les requêtes SQL.', ru:'Форматирование SQL запросов.'}},
-  {id:'jwt', icon:'🔑', cat:'dev', name:{ar:'محلل JWT', en:'JWT Decoder', es:'Decodificador JWT', zh:'JWT 解码', pt:'Decodificador JWT', fr:'Décodeur JWT', ru:'JWT Декодер'}, desc:{ar:'فك وفحص محتويات JWT.', en:'Decode JSON Web Tokens.', es:'Decodifica JWT.', zh:'解码JWT令牌。', pt:'Decodificar JWT.', fr:'Décoder les JWT.', ru:'Декодирование JWT.'}},
-  {id:'imgpdf', icon:'📑', cat:'media', name:{ar:'تحويل الصور إلى PDF', en:'Images to PDF', es:'Imágenes a PDF', zh:'图片转PDF', pt:'Imagens para PDF', fr:'Images en PDF', ru:'Изображения в PDF'}, desc:{ar:'دمج الصور وتحويلها لملف PDF.', en:'Merge images into PDF.', es:'Combina imágenes en PDF.', zh:'将图片合并为PDF。', pt:'Mesclar imagens em PDF.', fr:'Fusionner des images en PDF.', ru:'Объединение изображений в PDF.'}},
-  {id:'qrcode', icon:'📱', cat:'productivity', name:{ar:'مولد QR Code', en:'QR Code Generator', es:'Generador de código QR', zh:'二维码生成器', pt:'Gerador de QR Code', fr:'Générateur de QR Code', ru:'Генератор QR кодов'}, desc:{ar:'توليد باركود للروابط والنصوص.', en:'Generate QR codes.', es:'Genera códigos QR.', zh:'生成二维码。', pt:'Gerar códigos QR.', fr:'Générer des codes QR.', ru:'Генерация QR кодов.'}},
-  {id:'decor', icon:'✨', cat:'text', name:{ar:'زخرفة النصوص', en:'Text Decorator', es:'Decorador de texto', zh:'文本装饰', pt:'Decorador de texto', fr:'Décorateur de texte', ru:'Декоратор текста'}, desc:{ar:'زخرفة النصوص والأسماء.', en:'Decorate text and names.', es:'Decora textos.', zh:'装饰文本和名称。', pt:'Decorar textos.', fr:'Décorer du texte.', ru:'Декорирование текста.'}},
-  {id:'htmlfmt', icon:'🌐', cat:'dev', name:{ar:'HTML Formatter', en:'HTML Formatter', es:'Formateador HTML', zh:'HTML格式化', pt:'Formatador HTML', fr:'Formateur HTML', ru:'HTML Форматер'}, desc:{ar:'تنسيق وتنظيف أكواد HTML.', en:'Format HTML code.', es:'Formatea HTML.', zh:'格式化HTML代码。', pt:'Formatar HTML.', fr:'Formater le code HTML.', ru:'Форматирование HTML кода.'}},
-  {id:'cssfmt', icon:'🎨', cat:'dev', name:{ar:'CSS Formatter', en:'CSS Formatter', es:'Formateador CSS', zh:'CSS格式化', pt:'Formatador CSS', fr:'Formateur CSS', ru:'CSS Форматер'}, desc:{ar:'تنسيق وترتيب قواعد CSS.', en:'Format CSS code.', es:'Formatea CSS.', zh:'格式化CSS代码。', pt:'Formatatar CSS.', fr:'Formater le code CSS.', ru:'Форматирование CSS кода.'}},
-  {id:'jsfmt', icon:'⚡', cat:'dev', name:{ar:'JavaScript Formatter', en:'JS Formatter', es:'Formateador JS', zh:'JS格式化', pt:'Formatador JS', fr:'Formateur JS', ru:'JS Форматер'}, desc:{ar:'تنسيق وتحسين أكواد JS.', en:'Format JavaScript code.', es:'Formatea JS.', zh:'格式化JS代码。', pt:'Formatatar JS.', fr:'Formater le code JS.', ru:'Форматирование JS кода.'}},
-  {id:'xmlfmt', icon:'📋', cat:'dev', name:{ar:'XML Formatter', en:'XML Formatter', es:'Formateador XML', zh:'XML格式化', pt:'Formatador XML', fr:'Formateur XML', ru:'XML Форматер'}, desc:{ar:'تنسيق والتحقق من بنية XML.', en:'Format XML code.', es:'Formatea XML.', zh:'格式化XML代码。', pt:'Formatatar XML.', fr:'Formater le code XML.', ru:'Форматирование XML кода.'}},
-  {id:'hashgen', icon:'🔒', cat:'dev', name:{ar:'Hash Generator', en:'Hash Generator', es:'Generador Hash', zh:'哈希生成器', pt:'Gerador Hash', fr:'Générateur Hash', ru:'Генератор Hash'}, desc:{ar:'توليد تشفير الهاش MD5 و SHA-256.', en:'Generate Hash (MD5, SHA).', es:'Genera Hash.', zh:'生成哈希值。', pt:'Gerar Hash.', fr:'Générer un Hash.', ru:'Генерация Hash.'}},
-  {id:'uuidgen', icon:'🆔', cat:'dev', name:{ar:'UUID Generator', en:'UUID Generator', es:'Generador UUID', zh:'UUID生成器', pt:'Gerador UUID', fr:'Générateur UUID', ru:'Генератор UUID'}, desc:{ar:'توليد معرفات فريدة UUID v4.', en:'Generate UUID v4.', es:'Genera UUID v4.', zh:'生成UUID v4。', pt:'Gerar UUID v4.', fr:'Générer UUID v4.', ru:'Генерация UUID v4.'}},
-  {id:'diffchk', icon:'⚖️', cat:'dev', name:{ar:'Diff Checker', en:'Diff Checker', es:'Comparador de texto', zh:'文本差异检查', pt:'Diff Checker', fr:'Comparateur de texte', ru:'Сравнение текста'}, desc:{ar:'مقارنة نصين واكتشاف الفروقات.', en:'Compare two texts.', es:'Compara dos textos.', zh:'比较两段文本。', pt:'Comparar dois textos.', fr:'Comparer deux textes.', ru:'Сравнение двух текстов.'}},
-  {id:'percentcalc', icon:'📊', cat:'productivity', name:{ar:'حاسبة النسبة المئوية', en:'Percentage Calculator', es:'Calculadora de porcentajes', zh:'百分比计算器', pt:'Calculadora de porcentagem', fr:'Calculateur de pourcentage', ru:'Калькулятор процентов'}, desc:{ar:'حساب النسب المئوية والزيادة.', en:'Calculate percentages.', es:'Calcula porcentajes.', zh:'计算百分比。', pt:'Calcular porcentagens.', fr:'Calculer des pourcentages.', ru:'Расчет процентов.'}},
-  {id:'caloriecalc', icon:'🥗', cat:'productivity', name:{ar:'حاسبة السعرات الحرارية', en:'Calorie Calculator', es:'Calculadora de calorías', zh:'卡路里计算器', pt:'Calculadora de calorias', fr:'Calculateur de calories', ru:'Калькулятор калорий'}, desc:{ar:'حساب احتياج الجسم اليومي (BMR).', en:'Calculate daily calories (BMR).', es:'Calcula calorías diarias.', zh:'计算每日卡路里。', pt:'Calcular calorias diárias.', fr:'Calculer les calories.', ru:'Расчет калорий.'}},
-  {id:'mediaconv', icon:'🔄', cat:'media', name:{ar:'محول الوسائط MP3/MP4', en:'Media Converter', es:'Conversor multimedia', zh:'媒体转换器', pt:'Conversor de mídia', fr:'Convertisseur multimédia', ru:'Медиа конвертер'}, desc:{ar:'تحويل بين صيغ الوسائط الصوتية.', en:'Convert audio/video formats.', es:'Convierte formatos.', zh:'转换媒体格式。', pt:'Converter formatos de mídia.', fr:'Convertir des formats.', ru:'Конвертация медиа.'}},
-  {id:'colorpicker', icon:'🎨', cat:'dev', name:{ar:'أكواد ألوان المبرمجين', en:'Dev Color Picker', es:'Selector de color Dev', zh:'开发颜色选择器', pt:'Seletor de cores Dev', fr:'Sélecteur de couleur Dev', ru:'Цвета для разработчиков'}, desc:{ar:'اختيار ومعرفة أكواد الألوان.', en:'Pick programmer colors.', es:'Selector de colores.', zh:'开发颜色选择器。', pt:'Seletor de cores.', fr:'Sélecteur de couleur.', ru:'Выбор цвета.'}},
-  {id:'imgcrop', icon:'✂️', cat:'image', name:{ar:'قص الصور', en:'Image Cropper', es:'Recortador de imágenes', zh:'图片裁剪', pt:'Cortador de imagens', fr:'Rogner des images', ru:'Обрезка изображений'}, desc:{ar:'تعديل أبعاد الصور بأبعاد مخصصة.', en:'Crop and resize images.', es:'Recorta imágenes.', zh:',裁剪和调整图片大小。', pt:'Cortar imagens.', fr:'Rogner des images.', ru:'Обрезка изображений.'}},
-  {id:'imgcolors', icon:'🔍', cat:'image', name:{ar:'استخراج ألوان الصورة', en:'Image Color Extractor', es:'Extractor de color', zh:'图片颜色提取', pt:'Extrator de cores', fr:'Extracteur de couleur', ru: 'Экстрактор цветов'}, desc:{ar:'استخراج أكواد HEX و RGB من الصور.', en:'Extract HEX/RGB from images.', es:'Extrae colores de imágenes.', zh:'从图片提取颜色。', pt:'Extrair cores de imagens.', fr:'Extraire les couleurs.', ru:'Извлечение цветов.'}},
-  {id:'splitpdf', icon:'📄', cat:'media', name:{ar:'تقسيم ملفات PDF', en:'Split PDF', es:'Dividir PDF', zh:'拆分PDF', pt:'Dividir PDF', fr:'Diviser PDF', ru: 'Разделить PDF'}, desc:{ar:'تقسيم ملفات PDF الكبيرة.', en:'Split large PDF files.', es:'Divide archivos PDF.', zh:'拆分大型PDF文件。', pt:'Dividir arquivos PDF.', fr:'Diviser des fichiers PDF.', ru:'Разделение PDF файлов.'}}
+  {id:'word', icon:'🔢', cat:'text', name:{ar:'عداد الكلمات', en:'Word Counter'}, desc:{ar:'حساب الكلمات والحروف والجمل والأسطر فوراً.', en:'Count words, characters, sentences instantly.'}},
+  {id:'case', icon:'🔠', cat:'text', name:{ar:'تغيير حالة الأحرف', en:'Case Converter'}, desc:{ar:'تحويل حالة الأحرف الكبيرة والصغيرة.', en:'Convert text case.'}},
+  {id:'clean', icon:'🧹', cat:'text', name:{ar:'تنظيف النص', en:'Text Cleaner'}, desc:{ar:'حذف المسافات الزائدة والأسطر الفارغة.', en:'Remove extra spaces and empty lines.'}},
+  {id:'json', icon:'{ }', cat:'dev', name:{ar:'منسق JSON', en:'JSON Formatter'}, desc:{ar:'تنسيق أكواد JSON والتحقق من صحتها.', en:'Format and validate JSON.'}},
+  {id:'base64', icon:'🔐', cat:'dev', name:{ar:'Base64', en:'Base64 Encoder/Decoder'}, desc:{ar:'تشفير وفك ترميز النصوص بصيغة Base64.', en:'Encode and decode Base64 text.'}},
+  {id:'url', icon:'🔗', cat:'dev', name:{ar:'ترميز URL', en:'URL Encoder'}, desc:{ar:'ترميز وفك ترميز عناوين الروابط.', en:'Encode and decode URLs.'}},
+  {id:'password', icon:'🛡️', cat:'productivity', name:{ar:'مولد كلمات المرور', en:'Password Generator'}, desc:{ar:'إنشاء كلمات مرور عشوائية قوية.', en:'Generate strong passwords.'}},
+  {id:'image', icon:'🖼️', cat:'image', name:{ar:'ضغط الصور', en:'Image Compressor'}, desc:{ar:'ضغط الصور بصيغ WebP و JPEG.', en:'Compress images easily.'}},
+  {id:'color', icon:'🎨', cat:'image', name:{ar:'منتقي الألوان', en:'Color Picker'}, desc:{ar:'معرفة قيم HEX و RGB و HSL.', en:'Pick colors and get HEX, RGB.'}},
+  {id:'gradient', icon:'🌈', cat:'image', name:{ar:'مولد التدرجات', en:'Gradient Generator'}, desc:{ar:'تصميم تدرجات لونية واستخراج كود CSS.', en:'Create gradients and CSS.'}},
+  {id:'timestamp', icon:'⏱️', cat:'dev', name:{ar:'محول Unix Timestamp', en:'Unix Timestamp'}, desc:{ar:'تحويل Unix Timestamp إلى تواريخ.', en:'Convert Unix Timestamps.'}},
+  {id:'markdown', icon:'📝', cat:'text', name:{ar:'معاينة Markdown', en:'Markdown Preview'}, desc:{ar:'كتابة ومعاينة تنسيقات Markdown.', en:'Preview Markdown instantly.'}},
+  {id:'regex', icon:'🔍', cat:'dev', name:{ar:'مختبر Regex', en:'Regex Tester'}, desc:{ar:'اختبار التعبيرات النمطية.', en:'Test Regular Expressions.'}},
+  {id:'sql', icon:'🗄️', cat:'dev', name:{ar:'منسق SQL', en:'SQL Formatter'}, desc:{ar:'تنسيق وترتيب استعلامات SQL.', en:'Format SQL queries.'}},
+  {id:'jwt', icon:'🔑', cat:'dev', name:{ar:'محلل JWT', en:'JWT Decoder'}, desc:{ar:'فك وفحص محتويات JWT.', en:'Decode JSON Web Tokens.'}},
+  {id:'imgpdf', icon:'📑', cat:'media', name:{ar:'تحويل الصور إلى PDF', en:'Images to PDF'}, desc:{ar:'دمج الصور وتحويلها لملف PDF.', en:'Merge images into PDF.'}},
+  {id:'qrcode', icon:'📱', cat:'productivity', name:{ar:'مولد QR Code', en:'QR Code Generator'}, desc:{ar:'توليد باركود للروابط والنصوص.', en:'Generate QR codes.'}},
+  {id:'decor', icon:'✨', cat:'text', name:{ar:'زخرفة النصوص', en:'Text Decorator'}, desc:{ar:'زخرفة النصوص والأسماء.', en:'Decorate text and names.'}},
+  {id:'htmlfmt', icon:'🌐', cat:'dev', name:{ar:'HTML Formatter', en:'HTML Formatter'}, desc:{ar:'تنسيق وتنظيف أكواد HTML.', en:'Format HTML code.'}},
+  {id:'cssfmt', icon:'🎨', cat:'dev', name:{ar:'CSS Formatter', en:'CSS Formatter'}, desc:{ar:'تنسيق وترتيب قواعد CSS.', en:'Format CSS code.'}},
+  {id:'jsfmt', icon:'⚡', cat:'dev', name:{ar:'JavaScript Formatter', en:'JS Formatter'}, desc:{ar:'تنسيق وتحسين أكواد JS.', en:'Format JavaScript code.'}},
+  {id:'xmlfmt', icon:'📋', cat:'dev', name:{ar:'XML Formatter', en:'XML Formatter'}, desc:{ar:'تنسيق والتحقق من بنية XML.', en:'Format XML code.'}},
+  {id:'hashgen', icon:'🔒', cat:'dev', name:{ar:'Hash Generator', en:'Hash Generator'}, desc:{ar:'توليد تشفير الهاش MD5 و SHA-256.', en:'Generate Hash (MD5, SHA).'}},
+  {id:'uuidgen', icon:'🆔', cat:'dev', name:{ar:'UUID Generator', en:'UUID Generator'}, desc:{ar:'توليد معرفات فريدة UUID v4.', en:'Generate UUID v4.'}},
+  {id:'diffchk', icon:'⚖️', cat:'dev', name:{ar:'Diff Checker', en:'Diff Checker'}, desc:{ar:'مقارنة نصين واكتشاف الفروقات.', en:'Compare two texts.'}},
+  {id:'percentcalc', icon:'📊', cat:'productivity', name:{ar:'حاسبة النسبة المئوية', en:'Percentage Calculator'}, desc:{ar:'حساب النسب المئوية والزيادة.', en:'Calculate percentages.'}},
+  {id:'caloriecalc', icon:'🥗', cat:'productivity', name:{ar:'حاسبة السعرات الحرارية', en:'Calorie Calculator'}, desc:{ar:'حساب احتياج الجسم اليومي (BMR).', en:'Calculate daily calories (BMR).'}},
+  {id:'mediaconv', icon:'🔄', cat:'media', name:{ar:'محول الوسائط MP3/MP4', en:'Media Converter'}, desc:{ar:'تحويل بين صيغ الوسائط الصوتية.', en:'Convert audio/video formats.'}},
+  {id:'colorpicker', icon:'🎨', cat:'dev', name:{ar:'أكواد ألوان المبرمجين', en:'Dev Color Picker'}, desc:{ar:'اختيار ومعرفة أكواد الألوان.', en:'Pick programmer colors.'}},
+  {id:'imgcrop', icon:'✂️', cat:'image', name:{ar:'قص الصور', en:'Image Cropper'}, desc:{ar:'تعديل أبعاد الصور بأبعاد مخصصة.', en:'Crop and resize images.'}},
+  {id:'imgcolors', icon:'🔍', cat:'image', name:{ar:'استخراج ألوان الصورة', en:'Image Color Extractor'}, desc:{ar:'استخراج أكواد HEX و RGB من الصور.', en:'Extract HEX/RGB from images.'}},
+  {id:'splitpdf', icon:'📄', cat:'media', name:{ar:'تقسيم ملفات PDF', en:'Split PDF'}, desc:{ar:'تقسيم ملفات PDF الكبيرة.', en:'Split large PDF files.'}}
 ];
 
 let lang = localStorage.getItem('hema_lang') || 'ar';
@@ -421,6 +465,22 @@ function applyTheme() {
   if (theme === 'light') document.body.classList.add('light');
   $('#theme').value = theme;
   localStorage.setItem('hema_theme', theme);
+}
+
+function showHome() {
+  $('#homeView').style.display = 'block';
+  $('#pageView').classList.remove('active');
+  window.scrollTo(0,0);
+}
+
+function showPage(pageKey) {
+  $('#homeView').style.display = 'none';
+  $('#pageView').classList.add('active');
+  let data = pagesData[pageKey];
+  if (!data) return;
+  let html = data[lang] || data['ar'] || data['en'];
+  $('#pageContent').innerHTML = html;
+  window.scrollTo(0,0);
 }
 
 function renderCategories() {
