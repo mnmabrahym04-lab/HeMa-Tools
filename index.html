@@ -564,6 +564,54 @@ const calc=(op)=>{let total=(parseInt(txt('h1'))||0)*60+(parseInt(txt('m1'))||0)
 $in('add').onclick=()=>calc('add');
 $in('sub').onclick=()=>calc('sub');
 }});
+/* ══════════ دفعة 6: أدوات نصية متقدمة ══════════ */
+
+R['character-counter']=()=>({html:`${textarea('النص','in','اكتب هنا...')}<div class="result" id="res" style="font-size:14px;line-height:1.8"></div>`,wire:()=>{
+$in('in').oninput=e=>{const s=e.target.value;const chars=s.length;const noSpace=s.replace(/\s/g,'').length;const words=(s.trim().match(/\S+/g)||[]).length;const sentences=(s.match(/[.!?]+/g)||[]).length;const paragraphs=(s.split(/\n\n+/).filter(x=>x.trim()).length);const readTime=Math.ceil(words/200);const speakTime=Math.ceil(words/130);setRes(`🔤 الحروف: ${chars}\n🚫 بدون مسافات: ${noSpace}\n📝 الكلمات: ${words}\n📖 الجمل: ${sentences}\n📄 الفقرات: ${paragraphs}\n⏱️ وقت القراءة: ~${readTime} دقيقة\n🗣️ وقت النطق: ~${speakTime} دقيقة`)}
+}});
+
+R['text-repeater']=()=>({html:`${textarea('النص','in','مرحبا')}${input('عدد التكرار','n','number','5','min="1" max="1000"')}${input('الفاصل بينهم','sep','text',' ')}<div class="actions-row"><button class="action" id="go">تكرار</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in');const n=Math.max(1,Math.min(1000,parseInt(txt('n'))||1));const sep=txt('sep');setRes(Array(n).fill(s).join(sep))}
+}});
+
+R['find-replace']=()=>({html:`${textarea('النص الأصلي','in')}${input('ابحث عن','find')}${input('استبدل بـ','rep')}<div class="field"><label><input type="checkbox" id="ci" checked> تجاهل حالة الأحرف (Case insensitive)</label></div><div class="actions-row"><button class="action" id="go">استبدال</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in'),f=txt('find'),r=txt('rep');if(!f){setRes('أدخل نص البحث');return}try{const regex=new RegExp(f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),$in('ci').checked?'gi':'g');setRes(s.replace(regex,r))}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['html-stripper']=()=>({html:`${textarea('كود HTML','in','<div><h1>Hello</h1><p>World</p></div>')}<div class="actions-row"><button class="action" id="go">استخراج النص</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const p=new DOMParser();const d=p.parseFromString(txt('in'),'text/html');setRes(d.body.textContent||'')}
+}});
+
+R['fancy-text']=()=>({html:`${textarea('النص','in','HeMa Tools')}<div class="actions-row"><button class="action" id="go">توليد الأشكال</button></div><div id="res" style="display:grid;gap:10px"></div>`,wire:()=>{
+const maps={
+'bold':{a:'𝐚',b:'𝐛',c:'𝐜',d:'𝐝',e:'𝐞',f:'𝐟',g:'𝐠',h:'𝐡',i:'𝐢',j:'𝐣',k:'𝐤',l:'𝐥',m:'𝐦',n:'𝐧',o:'𝐨',p:'𝐩',q:'𝐪',r:'𝐫',s:'𝐬',t:'𝐭',u:'𝐮',v:'𝐯',w:'𝐰',x:'𝐱',y:'𝐲',z:'𝐳',A:'𝐀',B:'𝐁',C:'𝐂',D:'𝐃',E:'𝐄',F:'𝐅',G:'𝐆',H:'𝐇',I:'𝐈',J:'𝐉',K:'𝐊',L:'𝐋',M:'𝐌',N:'𝐍',O:'𝐎',P:'𝐏',Q:'𝐐',R:'𝐑',S:'𝐒',T:'𝐓',U:'𝐔',V:'𝐕',W:'𝐖',X:'𝐗',Y:'𝐘',Z:'𝐙'},
+'italic':{a:'𝑎',b:'𝑏',c:'𝑐',d:'𝑑',e:'𝑒',f:'𝑓',g:'𝑔',h:'ℎ',i:'𝑖',j:'𝑗',k:'𝑘',l:'𝑙',m:'𝑚',n:'𝑛',o:'𝑜',p:'𝑝',q:'𝑞',r:'𝑟',s:'𝑠',t:'𝑡',u:'𝑢',v:'𝑣',w:'𝑤',x:'𝑥',y:'𝑦',z:'𝑧',A:'𝐴',B:'𝐵',C:'𝐶',D:'𝐷',E:'𝐸',F:'𝐹',G:'𝐺',H:'𝐻',I:'𝐼',J:'𝐽',K:'𝐾',L:'𝐿',M:'𝑀',N:'𝑁',O:'𝑂',P:'𝑃',Q:'𝑄',R:'𝑅',S:'𝑆',T:'𝑇',U:'𝑈',V:'𝑉',W:'𝑊',X:'𝑋',Y:'𝑌',Z:'𝑍'},
+'script':{a:'𝓪',b:'𝓫',c:'𝓬',d:'𝓭',e:'𝓮',f:'𝓯',g:'𝓰',h:'𝓱',i:'𝓲',j:'𝓳',k:'𝓴',l:'𝓵',m:'𝓶',n:'𝓷',o:'𝓸',p:'𝓹',q:'𝓺',r:'𝓻',s:'𝓼',t:'𝓽',u:'𝓾',v:'𝓿',w:'𝔀',x:'𝔁',y:'𝔂',z:'𝔃',A:'𝓐',B:'𝓑',C:'𝓒',D:'𝓓',E:'𝓔',F:'𝓕',G:'𝓖',H:'𝓗',I:'𝓘',J:'𝓙',K:'𝓚',L:'𝓛',M:'𝓜',N:'𝓝',O:'𝓞',P:'𝓟',Q:'𝓠',R:'𝓡',S:'𝓢',T:'𝓣',U:'𝓤',V:'𝓥',W:'𝓦',X:'𝓧',Y:'𝓨',Z:'𝓩'},
+'circled':{a:'ⓐ',b:'ⓑ',c:'ⓒ',d:'ⓓ',e:'ⓔ',f:'ⓕ',g:'ⓖ',h:'ⓗ',i:'ⓘ',j:'ⓙ',k:'ⓚ',l:'ⓛ',m:'ⓜ',n:'ⓝ',o:'ⓞ',p:'ⓟ',q:'ⓠ',r:'ⓡ',s:'ⓢ',t:'ⓣ',u:'ⓤ',v:'ⓥ',w:'ⓦ',x:'ⓧ',y:'ⓨ',z:'ⓩ',A:'Ⓐ',B:'Ⓑ',C:'Ⓒ',D:'Ⓓ',E:'Ⓔ',F:'Ⓕ',G:'Ⓖ',H:'Ⓗ',I:'Ⓘ',J:'Ⓙ',K:'Ⓚ',L:'Ⓛ',M:'Ⓜ',N:'Ⓝ',O:'Ⓞ',P:'Ⓟ',Q:'Ⓠ',R:'Ⓡ',S:'Ⓢ',T:'Ⓣ',U:'Ⓤ',V:'Ⓥ',W:'Ⓦ',X:'Ⓧ',Y:'Ⓨ',Z:'Ⓩ'}
+};
+$in('go').onclick=()=>{const s=txt('in');if(!s){setRes('أدخل نصاً');return}let html='';for(const[name,map]of Object.entries(maps)){const converted=[...s].map(c=>map[c]||c).join('');html+=`<div style="background:var(--panel2);padding:10px;border-radius:8px;font-size:16px;cursor:pointer" onclick="navigator.clipboard.writeText('${converted}');toast('تم النسخ')" title="اضغط للنسخ">${converted}</div>`}$in('res').innerHTML=html}
+}});
+
+R['zalgo-text']=()=>({html:`${textarea('النص','in','HeMa')}${input('شدة التشويه (1-10)','n','range','5','min="1" max="10"')}<div class="actions-row"><button class="action" id="go">توليد</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in');const intensity=parseInt(txt('n'))||5;const chars=['\u0300','\u0301','\u0302','\u0303','\u0304','\u0305','\u0306','\u0307','\u0308','\u0309','\u030A','\u030B','\u030C','\u030D','\u030E','\u030F','\u0310','\u0311','\u0312','\u0313'];let r='';for(let c of s){r+=c;for(let i=0;i<intensity;i++){r+=chars[Math.floor(Math.random()*chars.length)]}}setRes(r)}
+}});
+
+R['handwriting-text']=()=>({html:`${textarea('النص','in','Hello World')}<div class="field"><label>حجم الخط</label><input type="range" id="size" min="20" max="100" value="50"></div><div class="field"><label>لون النص</label><input type="color" id="color" value="#000000"></div><div class="actions-row"><button class="action" id="go">توليد صورة</button></div><div id="res"></div>`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in');if(!s){setRes('أدخل نصاً');return}const c=document.createElement('canvas');const ctx=c.getContext('2d');const size=parseInt(txt('size'));c.width=800;c.height=300;ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle=txt('color');ctx.font=`${size}px 'Caveat', 'Brush Script MT', cursive`;ctx.textAlign='center';ctx.textBaseline='middle';const lines=s.split('\n');lines.forEach((l,i)=>ctx.fillText(l,400,150+(i*size)));const url=c.toDataURL('image/png');$in('res').innerHTML=`<img src="${url}" style="max-width:100%;border-radius:10px;margin-top:10px"><br><a href="${url}" download="handwriting.png" style="color:var(--blue);font-weight:bold;display:inline-block;margin-top:10px">⬇ تحميل الصورة</a>`;const link=document.createElement('link');link.href='https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap';link.rel='stylesheet';document.head.appendChild(link);}
+}});
+
+R['bionic-reading']=()=>({html:`${textarea('النص','in')}<div class="field"><label>عدد الحروف المميزة</label><select id="n"><option value="auto">تلقائي</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div><div class="actions-row"><button class="action" id="go">تحويل</button></div><div class="result" id="res" style="font-size:16px;line-height:1.8"></div>`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in');const mode=txt('n');const render=s.replace(/\b([a-zA-Z\u0600-\u06FF]+)\b/g,(w)=>{let n=mode==='auto'?(w.length<=3?1:w.length<=6?2:3):parseInt(mode);n=Math.min(n,w.length);return `<b>${w.slice(0,n)}</b>${w.slice(n)}`});setRes(render,true)}
+}});
+
+R['text-splitter']=()=>({html:`${textarea('النص','in')}${input('عدد الكلمات في كل جزء','n','number','100','min="1"')}<div class="actions-row"><button class="action" id="go">تقسيم</button></div><div id="res" style="display:grid;gap:10px"></div>`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in').trim();const n=parseInt(txt('n'))||100;const words=s.split(/\s+/);const chunks=[];for(let i=0;i<words.length;i+=n)chunks.push(words.slice(i,i+n).join(' '));$in('res').innerHTML=chunks.map((c,i)=>`<div style="background:var(--panel2);padding:10px;border-radius:8px;border:1px solid var(--line)"><div style="font-size:11px;color:var(--muted);margin-bottom:5px">جزء ${i+1} (${c.split(' ').length} كلمة)</div><div>${c}</div></div>`).join('')}
+}});
+
+R['unicode-converter']=()=>({html:`${textarea('النص','in')}<div class="actions-row"><button class="action" id="toUni">نص → Unicode</button><button class="action secondary" id="toText">Unicode → نص</button></div>${resultBlock()}`,wire:()=>{
+$in('toUni').onclick=()=>{const s=txt('in');setRes([...s].map(c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0')).join(''))};
+$in('toText').onclick=()=>{try{const s=txt('in');setRes(s.replace(/\\u([0-9a-fA-F]{4})/g,(_,hex)=>String.fromCharCode(parseInt(hex,16))))}catch(e){setRes('❌ صيغة غير صالحة')}}
+}});
 /* ══════════ LAYOUTS ══════════ */
 function setMeta(title,desc,url){
 document.title=title;
