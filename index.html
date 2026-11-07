@@ -1,167 +1,147 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090817">
-  <title>HeMa Tools — أدواتك الرقمية في مكان واحد</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#080713;--bg2:#100d22;--panel:rgba(23,19,43,.72);--panel2:rgba(255,255,255,.055);--text:#f7f4ff;--muted:#aaa4c2;--line:rgba(196,169,255,.17);--purple:#9b5cff;--pink:#ff4eb8;--blue:#31d9ff;--green:#42f5a1;--shadow:0 18px 60px rgba(0,0,0,.32);--radius:22px}
-    *{box-sizing:border-box}
-    html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;padding:0}
-    body{background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.19),transparent 32%),radial-gradient(ellipse at 88% 18%,rgba(255,54,174,.12),transparent 28%),radial-gradient(ellipse at 50% 95%,rgba(0,194,255,.10),transparent 34%),var(--bg);color:var(--text);font-family:"Cairo",Inter,system-ui,sans-serif;min-height:100vh}
-    body.light{--bg:#f3f2fb;--bg2:#fff;--panel:rgba(255,255,255,.85);--panel2:rgba(30,20,70,.045);--text:#171329;--muted:#68617e;--line:rgba(91,62,150,.16);background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.1),transparent 32%),#f3f2fb}
-    a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}
-    .wrap{width:min(1160px,calc(100% - 28px));margin:auto;box-sizing:border-box}
-    .topbar{position:sticky;top:0;z-index:50;background:rgba(8,7,19,.85);backdrop-filter:blur(22px);border-bottom:1px solid var(--line);width:100%}
-    body.light .topbar{background:rgba(245,243,252,.85)}
-    .nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%}
-    .brand{display:flex;align-items:center;gap:8px;font-family:Inter,"Cairo",sans-serif;font-weight:900;font-size:20px;white-space:nowrap}
-    .brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink) 58%,var(--blue));color:white;font-size:18px}
-    .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulseWa 2s infinite}
-    .nav-actions{display:flex;align-items:center;gap:6px}.nav-select{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:6px 8px;font-size:12px;max-width:120px}
-    .hero{padding:50px 0 30px;text-align:center;position:relative;width:100%}
-    .eyebrow{display:inline-flex;gap:6px;align-items:center;padding:5px 12px;border:1px solid #a45cff55;border-radius:999px;background:#8e4cff12;color:#d6baff;font-size:12px}
-    .hero h1{font-size:clamp(30px,6vw,55px);line-height:1.2;margin:18px auto 12px;font-weight:900;max-width:100%}
-    .gradient-text{background:linear-gradient(90deg,#b58aff,#ff69c4 48%,#58e8ff);background-clip:text;color:transparent}
-    .hero p{max-width:100%;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.8}
-    .search-wrap{width:100%;max-width:100%;margin:25px auto 0;position:relative}
-    .search-wrap input{width:100%;height:54px;border-radius:16px;border:1px solid #a879ff55;background:var(--panel);color:var(--text);padding:0 48px 0 16px;outline:none;font-size:15px}
-    .search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#c69cff;font-size:18px;pointer-events:none}
-    .hero-stats{display:flex;justify-content:center;gap:20px;margin-top:22px;flex-wrap:wrap;color:var(--muted);font-size:12px}
-    .section{padding:20px 0 40px;width:100%}
-    .section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap}
-    .section-head h2{font-size:22px;margin:0;font-weight:800}.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
-    .categories{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-    .chip{border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--muted);padding:7px 13px;font-size:12px;transition:.2s}
-    .chip.active,.chip:hover{color:white;border-color:#a96dff99;background:linear-gradient(100deg,#8d4dff55,#ed45ae33)}
-    .tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
-    .tool-card{position:relative;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,var(--panel),var(--panel2));padding:14px;min-height:170px;overflow:hidden}
-    .tool-top{display:flex;align-items:center;justify-content:space-between}
-    .tool-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,#9b5cff32,#ff4eb824);border:1px solid #b58aff38}
-    .fav{border:0;background:transparent;color:#827b99;font-size:19px;padding:4px}.fav.on{color:#ff5eaf}
-    .tool-card h3{font-size:15px;margin:12px 0 4px}.tool-card p{font-size:11px;line-height:1.6;color:var(--muted);margin:0 0 10px}
-    .tool-bottom{display:flex;align-items:center;justify-content:space-between}
-    .tool-tag{font-size:10px;color:#c7a9ff;background:#9b5cff18;border:1px solid #9b5cff33;padding:3px 8px;border-radius:999px}
-    .open-tool{font-size:11px;color:#7ceaff;border:0;background:transparent;padding:4px}
-    .empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
-    footer{border-top:1px solid var(--line);background:#08071366;padding:30px 0 20px;margin-top:20px;width:100%}
-    .footer-grid{display:grid;grid-template-columns:1fr;gap:20px}
-    .footer-about p{color:var(--muted);font-size:12px;line-height:1.7}
-    .footer-title{font-weight:800;margin-bottom:8px;font-size:14px}
-    .footer-links{display:grid;gap:6px;color:var(--muted);font-size:12px}
-    .footer-links a:hover{color:var(--blue);text-decoration:underline}
-    .copyright-line{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-    .page{display:none;min-height:55vh;padding:40px 0}.page.active{display:block}
-    .page-card{width:100%;max-width:100%;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:20px}
-    .page-card h1{font-size:24px;margin:0 0 12px;font-weight:800}.page-card h2{font-size:18px;margin:20px 0 8px;color:var(--text)}.page-card p,.page-card li{color:var(--muted);line-height:1.8;font-size:13px;margin:8px 0}
-    .updated{color:var(--muted);font-size:11px;margin-bottom:20px}
-    .modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(8px);padding:12px;overflow:auto}
-    .modal-backdrop.show{display:grid;place-items:center}
-    .modal{width:100%;max-width:580px;max-height:88vh;overflow:auto;border:1px solid #ad83ff55;border-radius:20px;background:var(--bg2);padding:18px}
-    .modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
-    .modal-head h2{font-size:18px;margin:0}
-    .close{width:32px;height:32px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--text);font-size:18px}
-    .field{display:grid;gap:6px;margin:10px 0}
-    .field label{font-size:12px;color:var(--muted)}
-    .field input,.field textarea,.field select{width:100%;max-width:100%;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);padding:10px;outline:none}
-    .field textarea{min-height:110px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px}
-    .field input[type=color]{height:44px;padding:4px}
-    .field input[type=range]{padding:0}
-    .action{border:0;border-radius:10px;padding:10px 15px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9)}
-    .action.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
-    .result{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px;min-height:40px;color:var(--text);font-size:12px;font-family:ui-monospace,monospace}
-    .modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .toast{position:fixed;z-index:120;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:12px;transition:.25s}
-    .toast.show{opacity:1;transform:translate(-50%,0)}
-    .whatsapp-float{position:fixed;bottom:24px;left:24px;z-index:99;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(37,211,102,.45);font-size:28px;transition:transform .3s;animation:pulseWa 2s infinite}
-    .whatsapp-float:hover{transform:scale(1.1)}
-    .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--line);padding:16px;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 -10px 30px rgba(0,0,0,.5);flex-wrap:wrap}
-    .cookie-banner p{margin:0;font-size:12px;color:var(--muted);max-width:700px}
-    .colors-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-    .color-swatch{width:44px;height:44px;border-radius:8px;border:1px solid var(--line);cursor:pointer}
-    @keyframes pulseWa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-    @media(min-width:768px){.tools-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1.5fr 1fr 1fr}}
-    @media(min-width:1024px){.tools-grid{grid-template-columns:repeat(4,1fr)}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090817">
+<title>HeMa Tools — أدواتك الرقمية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080713;--bg2:#100d22;--panel:rgba(23,19,43,.72);--panel2:rgba(255,255,255,.055);--text:#f7f4ff;--muted:#aaa4c2;--line:rgba(196,169,255,.17);--purple:#9b5cff;--pink:#ff4eb8;--blue:#31d9ff;--green:#42f5a1}
+*{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;padding:0}
+body{background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.19),transparent 32%),radial-gradient(ellipse at 88% 18%,rgba(255,54,174,.12),transparent 28%),var(--bg);color:var(--text);font-family:"Cairo",Inter,system-ui,sans-serif;min-height:100vh}
+body.light{--bg:#f3f2fb;--bg2:#fff;--panel:rgba(255,255,255,.85);--panel2:rgba(30,20,70,.045);--text:#171329;--muted:#68617e;--line:rgba(91,62,150,.16);background:#f3f2fb}
+a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.wrap{width:min(1160px,calc(100% - 28px));margin:auto}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(8,7,19,.85);backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
+body.light .topbar{background:rgba(245,243,252,.9)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:8px;font-family:Inter,"Cairo",sans-serif;font-weight:900;font-size:20px;white-space:nowrap}
+.brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink) 58%,var(--blue));color:white;font-size:18px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulseWa 2s infinite}
+.nav-actions{display:flex;gap:6px}
+.nav-select{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:6px 8px;font-size:12px;max-width:120px}
+.hero{padding:50px 0 30px;text-align:center}
+.eyebrow{display:inline-flex;padding:5px 12px;border:1px solid #a45cff55;border-radius:999px;background:#8e4cff12;color:#d6baff;font-size:12px}
+.hero h1{font-size:clamp(30px,6vw,55px);line-height:1.2;margin:18px auto 12px;font-weight:900}
+.gradient-text{background:linear-gradient(90deg,#b58aff,#ff69c4 48%,#58e8ff);background-clip:text;color:transparent}
+.hero p{margin:0 auto;color:var(--muted);font-size:15px;line-height:1.8;max-width:600px}
+.search-wrap{max-width:600px;margin:25px auto 0;position:relative}
+.search-wrap input{width:100%;height:54px;border-radius:16px;border:1px solid #a879ff55;background:var(--panel);color:var(--text);padding:0 48px 0 16px;outline:none;font-size:15px}
+.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#c69cff;font-size:18px;pointer-events:none}
+.hero-stats{display:flex;justify-content:center;gap:20px;margin-top:22px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+.section{padding:20px 0 40px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.section-head h2{font-size:22px;margin:0;font-weight:800}.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.categories{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--muted);padding:7px 13px;font-size:12px;transition:.2s}
+.chip.active,.chip:hover{color:white;border-color:#a96dff99;background:linear-gradient(100deg,#8d4dff55,#ed45ae33)}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tool-card{position:relative;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,var(--panel),var(--panel2));padding:14px;min-height:170px;overflow:hidden}
+.tool-top{display:flex;align-items:center;justify-content:space-between}
+.tool-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,#9b5cff32,#ff4eb824);border:1px solid #b58aff38}
+.fav{border:0;background:transparent;color:#827b99;font-size:19px;padding:4px}.fav.on{color:#ff5eaf}
+.tool-card h3{font-size:15px;margin:12px 0 4px}.tool-card p{font-size:11px;line-height:1.6;color:var(--muted);margin:0 0 10px}
+.tool-bottom{display:flex;align-items:center;justify-content:space-between}
+.tool-tag{font-size:10px;color:#c7a9ff;background:#9b5cff18;border:1px solid #9b5cff33;padding:3px 8px;border-radius:999px}
+.open-tool{font-size:11px;color:#7ceaff;border:0;background:transparent;padding:4px}
+.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+footer{border-top:1px solid var(--line);background:#08071366;padding:30px 0 20px;margin-top:20px}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.footer-about p{color:var(--muted);font-size:12px;line-height:1.7}
+.footer-title{font-weight:800;margin-bottom:8px;font-size:14px}
+.footer-links{display:grid;gap:6px;color:var(--muted);font-size:12px}
+.footer-links a:hover{color:var(--blue);text-decoration:underline}
+.copyright-line{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.page{display:none;min-height:55vh;padding:40px 0}.page.active{display:block}
+.page-card{max-width:100%;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:20px}
+.page-card h1{font-size:24px;margin:0 0 12px;font-weight:800}.page-card h2{font-size:18px;margin:20px 0 8px;color:var(--text)}.page-card p,.page-card li{color:var(--muted);line-height:1.8;font-size:13px;margin:8px 0}
+.updated{color:var(--muted);font-size:11px;margin-bottom:20px}
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(8px);padding:12px;overflow:auto}
+.modal-backdrop.show{display:grid;place-items:center}
+.modal{width:100%;max-width:580px;max-height:88vh;overflow:auto;border:1px solid #ad83ff55;border-radius:20px;background:var(--bg2);padding:18px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.modal-head h2{font-size:18px;margin:0}
+.close{width:32px;height:32px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--text);font-size:18px}
+.field{display:grid;gap:6px;margin:10px 0}
+.field label{font-size:12px;color:var(--muted)}
+.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);padding:10px;outline:none}
+.field textarea{min-height:110px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px}
+.field input[type=color]{height:44px;padding:4px}
+.action{border:0;border-radius:10px;padding:10px 15px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9)}
+.action.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+.result{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px;min-height:40px;color:var(--text);font-size:12px;font-family:ui-monospace,monospace}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.toast{position:fixed;z-index:120;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:12px;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.whatsapp-float{position:fixed;bottom:24px;left:24px;z-index:99;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(37,211,102,.45);font-size:28px;animation:pulseWa 2s infinite}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--line);padding:16px;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.cookie-banner p{margin:0;font-size:12px;color:var(--muted);max-width:700px}
+.colors-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.color-swatch{width:44px;height:44px;border-radius:8px;border:1px solid var(--line);cursor:pointer}
+canvas.preview{max-width:100%;border-radius:10px;border:1px solid var(--line);margin-top:8px}
+@keyframes pulseWa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@media(min-width:768px){.tools-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1.5fr 1fr 1fr}}
+@media(min-width:1024px){.tools-grid{grid-template-columns:repeat(4,1fr)}}
+</style>
 </head>
 <body>
-<a id="waButton" href="#" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">💬</a>
-
+<a id="waButton" href="#" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">💬</a>
 <div id="cookieBanner" class="cookie-banner" style="display:none;">
-  <p data-i18n="cookieText">نحن نستخدم ملفات تعريف الارتباط وتخزين المتصفح لتحسين تجربة الاستخدام. باستمرارك في تصفح الموقع فإنك توافق على ذلك.</p>
-  <button class="action" id="acceptCookies" data-i18n="acceptCookies">موافق واستمرار</button>
+<p data-i18n="cookieText">نستخدم تخزين المتصفح لتحسين تجربتك.</p>
+<button class="action" id="acceptCookies" data-i18n="acceptCookies">موافق</button>
 </div>
-
 <header class="topbar">
-  <div class="wrap nav">
-    <a class="brand" href="#home" onclick="event.preventDefault(); showHome(true);"><span class="brand-mark">H</span><span>HeMa Tools</span><span class="live-dot"></span></a>
-    <div class="nav-actions">
-      <select class="nav-select" id="language" aria-label="Language">
-        <option value="ar">🌐 العربية</option>
-        <option value="en">🌐 English</option>
-        <option value="es">🌐 Español</option>
-        <option value="zh">🌐 中文</option>
-        <option value="pt">🌐 Português</option>
-        <option value="fr">🌐 Français</option>
-        <option value="ru">🌐 Русский</option>
-      </select>
-      <select class="nav-select" id="theme" aria-label="Theme">
-        <option value="base">✨ الأساسي</option>
-        <option value="light">☀️ الفاتح</option>
-      </select>
-    </div>
-  </div>
+<div class="wrap nav">
+<a class="brand" href="#home" onclick="event.preventDefault();showHome(true)"><span class="brand-mark">H</span><span>HeMa Tools</span><span class="live-dot"></span></a>
+<div class="nav-actions">
+<select class="nav-select" id="language" aria-label="Language">
+<option value="ar">العربية</option><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="tr">Türkçe</option>
+</select>
+<select class="nav-select" id="theme" aria-label="Theme"><option value="base">الافتراضي</option><option value="light">فاتح</option></select>
+</div>
+</div>
 </header>
 <main id="homeView">
-  <section class="hero wrap">
-    <div class="eyebrow" data-i18n="eyebrow">مساحتك الرقمية الذكية</div>
-    <h1 data-i18n="heroTitle">كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span></h1>
-    <p data-i18n="heroDesc">مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.</p>
-    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." data-i18n-ph="searchPh" autocomplete="off"></div>
-    <div class="hero-stats"><span><b id="toolCount">0</b> <span data-i18n="toolsAvailable">أداة متاحة</span></span><span>⚡ <span data-i18n="fastSecure">سريع وآمن 100%</span></span></div>
-  </section>
-  <section class="section wrap">
-    <div class="section-head"><div><h2 data-i18n="exploreTools">استكشف الأدوات</h2><p data-i18n="chooseTool">اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button></div>
-    <div class="categories" id="categories"></div>
-    <div class="tools-grid" id="toolsGrid"></div>
-  </section>
+<section class="hero wrap">
+<div class="eyebrow" data-i18n="eyebrow">مساحتك الرقمية</div>
+<h1 data-i18n="heroTitle">كل الأدوات في <span class="gradient-text">مكان واحد</span></h1>
+<p data-i18n="heroDesc">أدوات مجانية سريعة وآمنة تعمل داخل متصفحك.</p>
+<div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث..." data-i18n-ph="searchPh" autocomplete="off"></div>
+<div class="hero-stats"><span><b id="toolCount">0</b> <span data-i18n="toolsAvailable">أداة متاحة</span></span><span>⚡ <span data-i18n="fastSecure">سريع وآمن</span></span></div>
+</section>
+<section class="section wrap">
+<div class="section-head"><div><h2 data-i18n="exploreTools">استكشف الأدوات</h2><p data-i18n="chooseTool">اختر أداة وابدأ.</p></div><button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button></div>
+<div class="categories" id="categories"></div>
+<div class="tools-grid" id="toolsGrid"></div>
+</section>
 </main>
 <section class="page" id="pageView"><div class="wrap"><article class="page-card" id="pageContent"></article></div></section>
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <a class="brand" href="#home" onclick="event.preventDefault(); showHome(true);"><span class="brand-mark">H</span><span>HeMa Tools</span><span class="live-dot"></span></a>
-        <p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p>
-      </div>
-      <div>
-        <div class="footer-title" data-i18n="quickLinks">روابط مهمة</div>
-        <nav class="footer-links">
-          <a href="#about" onclick="event.preventDefault(); navigateTo('about')" data-i18n="about">من نحن</a>
-          <a href="#contact" onclick="event.preventDefault(); navigateTo('contact')" data-i18n="contact">اتصل بنا</a>
-          <a href="#terms" onclick="event.preventDefault(); navigateTo('terms')" data-i18n="terms">شروط الاستخدام</a>
-        </nav>
-      </div>
-      <div>
-        <div class="footer-title" data-i18n="policies">السياسات</div>
-        <nav class="footer-links">
-          <a href="#privacy" onclick="event.preventDefault(); navigateTo('privacy')" data-i18n="privacy">سياسة الخصوصية</a>
-          <a href="#cookies" onclick="event.preventDefault(); navigateTo('cookies')" data-i18n="cookies">ملفات الارتباط</a>
-          <a href="#copyright" onclick="event.preventDefault(); navigateTo('copyright')" data-i18n="copyright">حقوق الملكية</a>
-        </nav>
-      </div>
-    </div>
-    <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span></div>
-  </div>
-</footer>
+<footer><div class="wrap">
+<div class="footer-grid">
+<div class="footer-about">
+<a class="brand" href="#home" onclick="event.preventDefault();showHome(true)"><span class="brand-mark">H</span><span>HeMa Tools</span><span class="live-dot"></span></a>
+<p data-i18n="footerDesc">أدوات رقمية محلية وآمنة.</p>
+</div>
+<div><div class="footer-title" data-i18n="quickLinks">روابط</div><nav class="footer-links">
+<a href="#about" onclick="event.preventDefault();navigateTo('about')" data-i18n="about">من نحن</a>
+<a href="#contact" onclick="event.preventDefault();navigateTo('contact')" data-i18n="contact">اتصل بنا</a>
+<a href="#terms" onclick="event.preventDefault();navigateTo('terms')" data-i18n="terms">الشروط</a>
+</nav></div>
+<div><div class="footer-title" data-i18n="policies">السياسات</div><nav class="footer-links">
+<a href="#privacy" onclick="event.preventDefault();navigateTo('privacy')" data-i18n="privacy">الخصوصية</a>
+<a href="#cookies" onclick="event.preventDefault();navigateTo('cookies')" data-i18n="cookies">الكوكيز</a>
+<a href="#copyright" onclick="event.preventDefault();navigateTo('copyright')" data-i18n="copyright">الحقوق</a>
+</nav></div>
+</div>
+<div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span></div>
+</div></footer>
 <div class="modal-backdrop" id="toolModal" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2 id="modalTitle">—</h2><button class="close" id="closeModal" aria-label="إغلاق">×</button></div><div id="modalBody"></div></div></div>
 <div class="toast" id="toast"></div>
 
-<!-- CDN Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -171,124 +151,517 @@
 <script src="https://cdn.jsdelivr.net/npm/js-beautify@1.15.1/js/lib/beautify-html.min.js"></script>
 
 <script>
-/* ============ Config ============ */
-const WHATSAPP_NUM = '201094122436';
-const waMsg = encodeURIComponent('مرحبا هيما انا اتواصل معك بخصوص موقع hema tools');
-const WA_URL = `https://wa.me/${WHATSAPP_NUM}?text=${waMsg}`;
+const WHATSAPP_NUM='201094122436';
+const WA_URL=`https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent('مرحبا هيما بخصوص hema tools')}`;
+document.getElementById('waButton').href=WA_URL;
+if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
 
-if (window.pdfjsLib) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
-}
+const LS={get(k,d){try{return localStorage.getItem(k)??d}catch{return d}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
 
-document.getElementById('waButton').href = WA_URL;
+let lang=LS.get('hema_lang','ar'),theme=LS.get('hema_theme','base');
+let category='all',favorites=JSON.parse(LS.get('hema_favs','[]')),onlyFav=false;
 
-/* ============ Safe localStorage ============ */
-const LS = {
-  get(k, d) { try { return localStorage.getItem(k) ?? d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch {} }
+const T={
+ar:{eyebrow:'مساحتك الرقمية',heroTitle:'كل الأدوات في <span class="gradient-text">مكان واحد</span>',heroDesc:'أدوات مجانية سريعة وآمنة تعمل داخل متصفحك.',searchPh:'ابحث...',toolsAvailable:'أداة',fastSecure:'سريع وآمن',exploreTools:'استكشف الأدوات',chooseTool:'اختر أداة وابدأ.',favorites:'♡ المفضلة',all:'الكل',text:'نصوص',dev:'مبرمجين',image:'صور',productivity:'إنتاجية',media:'وسائط و PDF',open:'افتح',copy:'نسخ',copied:'تم النسخ',copyFailed:'فشل النسخ',output:'النتيجة',noResults:'لا نتائج',footerDesc:'أدوات محلية آمنة.',quickLinks:'روابط',about:'من نحن',contact:'اتصل',terms:'الشروط',policies:'السياسات',privacy:'الخصوصية',cookies:'الكوكيز',copyright:'الحقوق',rights:'جميع الحقوق محفوظة.',cookieText:'نستخدم تخزين المتصفح.',acceptCookies:'موافق',pageTitle:'HeMa Tools — أدوات رقمية',langUnavail:'الترجمة غير متوفرة — العرض بالعربية.'},
+en:{eyebrow:'Your digital space',heroTitle:'All tools in <span class="gradient-text">one place</span>',heroDesc:'Free, fast, private tools running in your browser.',searchPh:'Search...',toolsAvailable:'tools',fastSecure:'Fast & Secure',exploreTools:'Explore Tools',chooseTool:'Pick a tool.',favorites:'♡ Favorites',all:'All',text:'Text',dev:'Developer',image:'Images',productivity:'Productivity',media:'Media & PDF',open:'Open',copy:'Copy',copied:'Copied',copyFailed:'Copy failed',output:'Result',noResults:'No results',footerDesc:'Local secure tools.',quickLinks:'Links',about:'About',contact:'Contact',terms:'Terms',policies:'Policies',privacy:'Privacy',cookies:'Cookies',copyright:'Copyright',rights:'All rights reserved.',cookieText:'We use browser storage.',acceptCookies:'Accept',pageTitle:'HeMa Tools — Digital Tools',langUnavail:'Translation unavailable — showing English.'},
+es:{eyebrow:'Tu espacio digital',heroTitle:'Todas las herramientas <span class="gradient-text">en un lugar</span>',heroDesc:'Herramientas gratuitas y seguras.',searchPh:'Buscar...',toolsAvailable:'herramientas',fastSecure:'Rápido y seguro',exploreTools:'Explorar',chooseTool:'Elige una.',favorites:'♡ Favoritos',all:'Todas',text:'Texto',dev:'Dev',image:'Imágenes',productivity:'Productividad',media:'Medios/PDF',open:'Abrir',copy:'Copiar',copied:'Copiado',copyFailed:'Error',output:'Resultado',noResults:'Sin resultados',footerDesc:'Herramientas seguras.',quickLinks:'Enlaces',about:'Nosotros',contact:'Contacto',terms:'Términos',policies:'Políticas',privacy:'Privacidad',cookies:'Cookies',copyright:'Derechos',rights:'Reservados.',cookieText:'Usamos almacenamiento local.',acceptCookies:'Aceptar',pageTitle:'HeMa Tools',langUnavail:'Traducción no disponible.'},
+fr:{eyebrow:'Votre espace',heroTitle:'Tous les outils <span class="gradient-text">au même endroit</span>',heroDesc:'Outils gratuits et sécurisés.',searchPh:'Rechercher...',toolsAvailable:'outils',fastSecure:'Rapide et sûr',exploreTools:'Explorer',chooseTool:'Choisissez.',favorites:'♡ Favoris',all:'Tous',text:'Texte',dev:'Dev',image:'Images',productivity:'Productivité',media:'Médias/PDF',open:'Ouvrir',copy:'Copier',copied:'Copié',copyFailed:'Échec',output:'Résultat',noResults:'Aucun',footerDesc:'Outils sécurisés.',quickLinks:'Liens',about:'À propos',contact:'Contact',terms:'Conditions',policies:'Politiques',privacy:'Confidentialité',cookies:'Cookies',copyright:'Droits',rights:'Réservés.',cookieText:'Stockage local.',acceptCookies:'Accepter',pageTitle:'HeMa Tools',langUnavail:'Traduction indisponible.'},
+de:{eyebrow:'Dein digitaler Raum',heroTitle:'Alle Tools an <span class="gradient-text">einem Ort</span>',heroDesc:'Kostenlose, sichere Tools.',searchPh:'Suchen...',toolsAvailable:'Tools',fastSecure:'Schnell & sicher',exploreTools:'Entdecken',chooseTool:'Wählen.',favorites:'♡ Favoriten',all:'Alle',text:'Text',dev:'Dev',image:'Bilder',productivity:'Produktivität',media:'Medien/PDF',open:'Öffnen',copy:'Kopieren',copied:'Kopiert',copyFailed:'Fehler',output:'Ergebnis',noResults:'Keine',footerDesc:'Sichere Tools.',quickLinks:'Links',about:'Über',contact:'Kontakt',terms:'Bedingungen',policies:'Richtlinien',privacy:'Datenschutz',cookies:'Cookies',copyright:'Rechte',rights:'Vorbehalten.',cookieText:'Lokaler Speicher.',acceptCookies:'Akzeptieren',pageTitle:'HeMa Tools',langUnavail:'Übersetzung nicht verfügbar.'},
+ru:{eyebrow:'Ваше пространство',heroTitle:'Все инструменты <span class="gradient-text">в одном месте</span>',heroDesc:'Бесплатные безопасные инструменты.',searchPh:'Поиск...',toolsAvailable:'инструментов',fastSecure:'Быстро и безопасно',exploreTools:'Обзор',chooseTool:'Выберите.',favorites:'♡ Избранное',all:'Все',text:'Текст',dev:'Разработка',image:'Изображения',productivity:'Продуктивность',media:'Медиа/PDF',open:'Открыть',copy:'Копировать',copied:'Скопировано',copyFailed:'Ошибка',output:'Результат',noResults:'Нет',footerDesc:'Безопасные инструменты.',quickLinks:'Ссылки',about:'О нас',contact:'Контакты',terms:'Условия',policies:'Политики',privacy:'Приватность',cookies:'Cookies',copyright:'Права',rights:'Защищены.',cookieText:'Локальное хранилище.',acceptCookies:'Принять',pageTitle:'HeMa Tools',langUnavail:'Перевод недоступен.'},
+tr:{eyebrow:'Dijital alanınız',heroTitle:'Tüm araçlar <span class="gradient-text">tek yerde</span>',heroDesc:'Ücretsiz ve güvenli araçlar.',searchPh:'Ara...',toolsAvailable:'araç',fastSecure:'Hızlı ve güvenli',exploreTools:'Keşfet',chooseTool:'Seç.',favorites:'♡ Favoriler',all:'Tümü',text:'Metin',dev:'Geliştirici',image:'Resimler',productivity:'Üretkenlik',media:'Medya/PDF',open:'Aç',copy:'Kopyala',copied:'Kopyalandı',copyFailed:'Hata',output:'Sonuç',noResults:'Sonuç yok',footerDesc:'Güvenli araçlar.',quickLinks:'Bağlantılar',about:'Hakkında',contact:'İletişim',terms:'Şartlar',policies:'Politikalar',privacy:'Gizlilik',cookies:'Cookies',copyright:'Haklar',rights:'Saklıdır.',cookieText:'Yerel depolama.',acceptCookies:'Kabul',pageTitle:'HeMa Tools',langUnavail:'Çeviri mevcut değil.'}
+};
+const t=()=>T[lang]||T.ar;
+
+const PAGES={
+about:{ar:`<h1>من نحن</h1><div class="updated">HeMa Tools</div><p>منصة رقمية توفر أدوات ويب مجانية مع تركيز على السرعة والخصوصية الكاملة داخل المتصفح.</p>`,en:`<h1>About Us</h1><div class="updated">HeMa Tools</div><p>A digital platform offering free web utilities with focus on speed and full in-browser privacy.</p>`},
+contact:{ar:`<h1>اتصل بنا</h1><div class="updated">نحن هنا</div><p>للاستفسارات تواصل معنا عبر واتساب:</p><p><a href="${WA_URL}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:bold;">💬 واتساب مباشر</a></p>`,en:`<h1>Contact Us</h1><div class="updated">We are here</div><p>Reach us on WhatsApp:</p><p><a href="${WA_URL}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:bold;">💬 WhatsApp</a></p>`},
+terms:{ar:`<h1>شروط الاستخدام</h1><div class="updated">نوفمبر 2025</div><p>باستخدام المنصة توافق على الشروط.</p>`,en:`<h1>Terms</h1><div class="updated">November 2025</div><p>By using the platform you agree to our terms.</p>`},
+privacy:{ar:`<h1>سياسة الخصوصية</h1><div class="updated">AdSense Compliant</div><p>معظم الأدوات تعالج البيانات محلياً داخل متصفحك دون إرسالها لأي سيرفر.</p>`,en:`<h1>Privacy</h1><div class="updated">AdSense Compliant</div><p>Most tools process data locally in your browser.</p>`},
+cookies:{ar:`<h1>سياسة الكوكيز</h1><div class="updated">Cookies</div><p>نستخدم التخزين المحلي فقط لحفظ تفضيلاتك.</p>`,en:`<h1>Cookies</h1><div class="updated">Cookies</div><p>We only use local storage for preferences.</p>`},
+copyright:{ar:`<h1>حقوق الملكية</h1><div class="updated">© 2025</div><p>جميع الحقوق محفوظة لمنصة HeMa Tools.</p>`,en:`<h1>Copyright</h1><div class="updated">© 2025</div><p>All rights reserved.</p>`}
 };
 
-/* ============ Translations ============ */
-const translations = {
-  ar:{eyebrow:'مساحتك الرقمية الذكية',heroTitle:'كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span>',heroDesc:'مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.',searchPh:'ابحث عن أداة...',toolsAvailable:'أداة متاحة',fastSecure:'سريع وآمن 100%',exploreTools:'استكشف الأدوات',chooseTool:'اختر الأداة المناسبة وابدأ مباشرة.',favorites:'♡ المفضلة',all:'كل الأدوات',text:'النصوص والكتابة',dev:'المبرمجين',image:'الصور والرسومات',productivity:'الإنتاجية',media:'الوسائط و PDF',open:'افتح',copy:'نسخ النتيجة',copied:'تم النسخ',copyFailed:'تعذّر النسخ',output:'النتيجة',noResults:'لا توجد أدوات مطابقة',footerDesc:'منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.',quickLinks:'روابط مهمة',about:'من نحن',contact:'اتصل بنا',terms:'شروط الاستخدام',policies:'السياسات',privacy:'سياسة الخصوصية',cookies:'ملفات الارتباط',copyright:'حقوق الملكية',rights:'جميع الحقوق محفوظة.',cookieText:'نستخدم تخزين المتصفح لتحسين تجربتك. باستمرارك في التصفح فإنك توافق على ذلك.',acceptCookies:'موافق واستمرار',pageTitle:'HeMa Tools — أدواتك الرقمية في مكان واحد'},
-  en:{eyebrow:'Your smart digital space',heroTitle:'Every tool you need,<br><span class="gradient-text">in one place.</span>',heroDesc:'A curated collection of free digital tools to complete your tasks quickly and privately.',searchPh:'Search for a tool...',toolsAvailable:'tools available',fastSecure:'Fast & 100% Secure',exploreTools:'Explore Tools',chooseTool:'Choose the right tool and get started.',favorites:'♡ Favorites',all:'All Tools',text:'Text & Writing',dev:'Developer',image:'Images',productivity:'Productivity',media:'Media & PDF',open:'Open',copy:'Copy Result',copied:'Copied',copyFailed:'Copy failed',output:'Result',noResults:'No matching tools',footerDesc:'A local and secure digital tools platform.',quickLinks:'Quick Links',about:'About Us',contact:'Contact Us',terms:'Terms of Use',policies:'Policies',privacy:'Privacy Policy',cookies:'Cookies',copyright:'Copyright',rights:'All rights reserved.',cookieText:'We use browser storage to improve your experience.',acceptCookies:'Accept & Continue',pageTitle:'HeMa Tools — Your Digital Tools'},
-  es:{eyebrow:'Tu espacio digital inteligente',heroTitle:'Todas las herramientas que necesitas,<br><span class="gradient-text">en un solo lugar.</span>',heroDesc:'Herramientas digitales gratuitas.',searchPh:'Buscar...',toolsAvailable:'herramientas',fastSecure:'Rápido y seguro',exploreTools:'Explorar',chooseTool:'Elige una herramienta.',favorites:'♡ Favoritos',all:'Todas',text:'Texto',dev:'Desarrollador',image:'Imágenes',productivity:'Productividad',media:'Medios y PDF',open:'Abrir',copy:'Copiar',copied:'Copiado',copyFailed:'Error al copiar',output:'Resultado',noResults:'Sin resultados',footerDesc:'Plataforma de herramientas seguras.',quickLinks:'Enlaces',about:'Nosotros',contact:'Contacto',terms:'Términos',policies:'Políticas',privacy:'Privacidad',cookies:'Cookies',copyright:'Copyright',rights:'Reservados.',cookieText:'Usamos almacenamiento local.',acceptCookies:'Aceptar',pageTitle:'HeMa Tools'},
-  zh:{eyebrow:'您的智能数字空间',heroTitle:'您需要的所有工具，<br><span class="gradient-text">尽在一处。</span>',heroDesc:'免费数字工具集合。',searchPh:'搜索...',toolsAvailable:'个工具',fastSecure:'快速安全',exploreTools:'探索工具',chooseTool:'选择一个工具。',favorites:'♡ 收藏',all:'全部',text:'文本',dev:'开发',image:'图像',productivity:'生产力',media:'媒体',open:'打开',copy:'复制',copied:'已复制',copyFailed:'复制失败',output:'结果',noResults:'无结果',footerDesc:'安全数字工具平台。',quickLinks:'链接',about:'关于',contact:'联系',terms:'条款',policies:'政策',privacy:'隐私',cookies:'Cookies',copyright:'版权',rights:'保留所有权利。',cookieText:'我们使用本地存储。',acceptCookies:'接受',pageTitle:'HeMa Tools'},
-  pt:{eyebrow:'Seu espaço digital',heroTitle:'Todas as ferramentas que precisa,<br><span class="gradient-text">num só lugar.</span>',heroDesc:'Ferramentas digitais gratuitas.',searchPh:'Pesquisar...',toolsAvailable:'ferramentas',fastSecure:'Rápido e seguro',exploreTools:'Explorar',chooseTool:'Escolha uma ferramenta.',favorites:'♡ Favoritos',all:'Todas',text:'Texto',dev:'Desenvolvedor',image:'Imagens',productivity:'Produtividade',media:'Mídia e PDF',open:'Abrir',copy:'Copiar',copied:'Copiado',copyFailed:'Falha ao copiar',output:'Resultado',noResults:'Sem resultados',footerDesc:'Plataforma segura.',quickLinks:'Links',about:'Sobre',contact:'Contato',terms:'Termos',policies:'Políticas',privacy:'Privacidade',cookies:'Cookies',copyright:'Direitos',rights:'Reservados.',cookieText:'Usamos armazenamento local.',acceptCookies:'Aceitar',pageTitle:'HeMa Tools'},
-  fr:{eyebrow:'Votre espace numérique',heroTitle:'Tous les outils dont vous avez besoin,<br><span class="gradient-text">au même endroit.</span>',heroDesc:'Outils numériques gratuits.',searchPh:'Rechercher...',toolsAvailable:'outils',fastSecure:'Rapide et sécurisé',exploreTools:'Explorer',chooseTool:'Choisissez un outil.',favorites:'♡ Favoris',all:'Tous',text:'Texte',dev:'Développeur',image:'Images',productivity:'Productivité',media:'Médias et PDF',open:'Ouvrir',copy:'Copier',copied:'Copié',copyFailed:'Échec de copie',output:'Résultat',noResults:'Aucun résultat',footerDesc:'Plateforme sécurisée.',quickLinks:'Liens',about:'À propos',contact:'Contact',terms:'Conditions',policies:'Politiques',privacy:'Confidentialité',cookies:'Cookies',copyright:'Droits',rights:'Réservés.',cookieText:'Nous utilisons le stockage local.',acceptCookies:'Accepter',pageTitle:'HeMa Tools'},
-  ru:{eyebrow:'Ваше цифровое пространство',heroTitle:'Все нужные инструменты<br><span class="gradient-text">в одном месте.</span>',heroDesc:'Бесплатные цифровые инструменты.',searchPh:'Поиск...',toolsAvailable:'инструментов',fastSecure:'Быстро и безопасно',exploreTools:'Обзор',chooseTool:'Выберите инструмент.',favorites:'♡ Избранное',all:'Все',text:'Текст',dev:'Разработчик',image:'Изображения',productivity:'Продуктивность',media:'Медиа и PDF',open:'Открыть',copy:'Копировать',copied:'Скопировано',copyFailed:'Ошибка копирования',output:'Результат',noResults:'Нет результатов',footerDesc:'Безопасная платформа.',quickLinks:'Ссылки',about:'О нас',contact:'Контакты',terms:'Условия',policies:'Политики',privacy:'Конфиденциальность',cookies:'Cookies',copyright:'Права',rights:'Защищены.',cookieText:'Мы используем локальное хранилище.',acceptCookies:'Принять',pageTitle:'HeMa Tools'}
-};
-
-/* ============ Pages ============ */
-const pagesData = {
-  about:{ar:`<h1>من نحن</h1><div class="updated">منصة HeMa Tools</div><p>نحن منصة رقمية متكاملة تهدف إلى توفير أدوات ويب خدمية وبرمجية وإنتاجية مجانية بالكامل، مع التركيز على السرعة والخصوصية المطلقة في معالجة البيانات داخل المتصفح.</p>`,en:`<h1>About Us</h1><div class="updated">HeMa Tools Platform</div><p>We are a digital platform dedicated to providing free web utilities, developer tools, and productivity solutions.</p>`},
-  contact:{ar:`<h1>اتصل بنا</h1><div class="updated">نحن هنا دائماً لمساعدتك</div><p>إذا كان لديك أي استفسار أو واجهتك مشكلة تقنية، تواصل معنا مباشرة عبر واتساب:</p><p><a href="${WA_URL}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:bold;">محادثة واتساب مباشرة 💬</a></p>`,en:`<h1>Contact Us</h1><div class="updated">We are here to help</div><p>Reach out via WhatsApp:</p><p><a href="${WA_URL}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:bold;">Chat on WhatsApp 💬</a></p>`},
-  terms:{ar:`<h1>شروط الاستخدام</h1><div class="updated">آخر تحديث: نوفمبر 2025</div><p>باستخدامك لمنصة HeMa Tools، فإنك توافق على الالتزام بالشروط والأحكام.</p>`,en:`<h1>Terms of Use</h1><div class="updated">Last updated: November 2025</div><p>By using HeMa Tools, you agree to comply with our terms.</p>`},
-  privacy:{ar:`<h1>سياسة الخصوصية</h1><div class="updated">متوافقة مع معايير Google AdSense</div><p>نحن في HeMa Tools نولي اهتماماً بالغاً لخصوصية زوارنا. معظم الأدوات تعالج البيانات محلياً داخل متصفحك دون إرسالها لأي سيرفر.</p>`,en:`<h1>Privacy Policy</h1><div class="updated">Google AdSense Compliant</div><p>We respect your privacy. Most tools process data locally in your browser.</p>`},
-  cookies:{ar:`<h1>سياسة ملفات الارتباط</h1><div class="updated">Cookies Policy</div><p>نستخدم التخزين المحلي وملفات الارتباط البسيطة فقط لحفظ تفضيلاتك مثل اللغة والمظهر المفضل.</p>`,en:`<h1>Cookies Policy</h1><div class="updated">Cookies Policy</div><p>We use local storage and basic cookies only to save your preferences.</p>`},
-  copyright:{ar:`<h1>حقوق الملكية الفكرية</h1><div class="updated">Copyright Notice</div><p>جميع حقوق التصميم والتطوير والأكواد البرمجية الخاصة بمنصة HeMa Tools محفوظة © 2025.</p>`,en:`<h1>Copyright Notice</h1><div class="updated">Copyright Notice</div><p>All rights reserved for HeMa Tools © 2025.</p>`}
-};
-
-/* ============ Tools ============ */
-const tools = [
-  {id:'word',icon:'🔢',cat:'text',name:{ar:'عداد الكلمات',en:'Word Counter'},desc:{ar:'حساب الكلمات والحروف والأسطر.',en:'Count words and characters.'}},
-  {id:'case',icon:'🔠',cat:'text',name:{ar:'تغيير حالة الأحرف',en:'Case Converter'},desc:{ar:'تحويل حالة الأحرف.',en:'Convert text case.'}},
-  {id:'clean',icon:'🧹',cat:'text',name:{ar:'تنظيف النص',en:'Text Cleaner'},desc:{ar:'حذف المسافات الزائدة والأسطر الفارغة.',en:'Remove extra spaces.'}},
-  {id:'json',icon:'{ }',cat:'dev',name:{ar:'منسق JSON',en:'JSON Formatter'},desc:{ar:'تنسيق والتحقق من JSON.',en:'Format and validate JSON.'}},
-  {id:'base64',icon:'🔐',cat:'dev',name:{ar:'Base64',en:'Base64'},desc:{ar:'تشفير وفك ترميز Base64.',en:'Encode/Decode Base64.'}},
-  {id:'url',icon:'🔗',cat:'dev',name:{ar:'ترميز URL',en:'URL Encoder'},desc:{ar:'ترميز وفك عناوين الروابط.',en:'Encode/Decode URLs.'}},
-  {id:'password',icon:'🛡️',cat:'productivity',name:{ar:'مولد كلمات المرور',en:'Password Generator'},desc:{ar:'كلمات مرور قوية عشوائية آمنة.',en:'Secure random passwords.'}},
-  {id:'image',icon:'🖼️',cat:'image',name:{ar:'ضغط الصور',en:'Image Compressor'},desc:{ar:'ضغط الصور محلياً بجودة قابلة للتحكم.',en:'Compress images locally.'}},
-  {id:'color',icon:'🎨',cat:'image',name:{ar:'منتقي الألوان',en:'Color Picker'},desc:{ar:'HEX / RGB / HSL.',en:'Pick colors, get HEX/RGB/HSL.'}},
-  {id:'gradient',icon:'🌈',cat:'image',name:{ar:'مولد التدرجات',en:'Gradient Generator'},desc:{ar:'تصميم تدرجات واستخراج CSS.',en:'Create gradients + CSS.'}},
-  {id:'timestamp',icon:'⏱️',cat:'dev',name:{ar:'Unix Timestamp',en:'Unix Timestamp'},desc:{ar:'تحويل التواريخ إلى Unix والعكس.',en:'Convert Unix timestamps.'}},
-  {id:'markdown',icon:'📝',cat:'text',name:{ar:'معاينة Markdown',en:'Markdown Preview'},desc:{ar:'كتابة ومعاينة Markdown.',en:'Preview Markdown.'}},
-  {id:'regex',icon:'🔍',cat:'dev',name:{ar:'مختبر Regex',en:'Regex Tester'},desc:{ar:'اختبار التعبيرات النمطية.',en:'Test Regular Expressions.'}},
-  {id:'sql',icon:'🗄️',cat:'dev',name:{ar:'منسق SQL',en:'SQL Formatter'},desc:{ar:'تنسيق استعلامات SQL.',en:'Format SQL queries.'}},
-  {id:'jwt',icon:'🔑',cat:'dev',name:{ar:'محلل JWT',en:'JWT Decoder'},desc:{ar:'فك وفحص JWT محلياً.',en:'Decode JSON Web Tokens.'}},
-  {id:'imgpdf',icon:'📑',cat:'media',name:{ar:'صور إلى PDF',en:'Images to PDF'},desc:{ar:'دمج الصور في ملف PDF.',en:'Merge images into PDF.'}},
-  {id:'qrcode',icon:'📱',cat:'productivity',name:{ar:'مولد QR',en:'QR Generator'},desc:{ar:'توليد QR محلياً.',en:'Generate QR codes locally.'}},
-  {id:'decor',icon:'✨',cat:'text',name:{ar:'زخرفة النصوص',en:'Text Decorator'},desc:{ar:'زخرفة النصوص بأشكال مميزة.',en:'Decorate text.'}},
-  {id:'htmlfmt',icon:'🌐',cat:'dev',name:{ar:'HTML Formatter',en:'HTML Formatter'},desc:{ar:'تنسيق أكواد HTML.',en:'Format HTML.'}},
-  {id:'cssfmt',icon:'🎨',cat:'dev',name:{ar:'CSS Formatter',en:'CSS Formatter'},desc:{ar:'تنسيق أكواد CSS.',en:'Format CSS.'}},
-  {id:'jsfmt',icon:'⚡',cat:'dev',name:{ar:'JS Formatter',en:'JS Formatter'},desc:{ar:'تنسيق أكواد JavaScript.',en:'Format JavaScript.'}},
-  {id:'xmlfmt',icon:'📋',cat:'dev',name:{ar:'XML Formatter',en:'XML Formatter'},desc:{ar:'تنسيق XML.',en:'Format XML.'}},
-  {id:'hashgen',icon:'🔒',cat:'dev',name:{ar:'Hash Generator',en:'Hash Generator'},desc:{ar:'تشفير SHA-1/256/384/512 حقيقي.',en:'Real SHA hashes.'}},
-  {id:'uuidgen',icon:'🆔',cat:'dev',name:{ar:'UUID Generator',en:'UUID Generator'},desc:{ar:'توليد UUID v4 آمن.',en:'Generate secure UUID v4.'}},
-  {id:'diffchk',icon:'⚖️',cat:'dev',name:{ar:'Diff Checker',en:'Diff Checker'},desc:{ar:'مقارنة نصين.',en:'Compare two texts.'}},
-  {id:'percentcalc',icon:'📊',cat:'productivity',name:{ar:'حاسبة النسبة',en:'Percentage Calc'},desc:{ar:'حساب النسب المئوية.',en:'Calculate percentages.'}},
-  {id:'caloriecalc',icon:'🥗',cat:'productivity',name:{ar:'حاسبة السعرات',en:'Calorie Calc'},desc:{ar:'حساب BMR اليومي.',en:'Calculate BMR.'}},
-  {id:'imgcrop',icon:'✂️',cat:'image',name:{ar:'قص الصور',en:'Image Cropper'},desc:{ar:'قص الصور بأبعاد مخصصة.',en:'Crop images.'}},
-  {id:'imgcolors',icon:'🔍',cat:'image',name:{ar:'استخراج ألوان الصورة',en:'Color Extractor'},desc:{ar:'استخراج HEX من الصور.',en:'Extract colors.'}},
-  {id:'splitpdf',icon:'📄',cat:'media',name:{ar:'تقسيم PDF',en:'Split PDF'},desc:{ar:'استخراج صفحات محددة.',en:'Extract PDF pages.'}},
-  {id:'translator',icon:'🌍',cat:'text',name:{ar:'الترجمة الفورية',en:'Translator'},desc:{ar:'ترجمة النصوص عبر MyMemory.',en:'Translate via MyMemory.'}},
-  {id:'aiprompts',icon:'🤖',cat:'productivity',name:{ar:'برومتات AI للصور',en:'AI Image Prompts'},desc:{ar:'برومتات جاهزة للحفاظ على الملامح.',en:'Ready prompts for AI.'}},
-  {id:'htmlreader',icon:'📖',cat:'dev',name:{ar:'معاينة HTML',en:'HTML Preview'},desc:{ar:'معاينة أكواد HTML في iframe آمن.',en:'Preview HTML safely.'}},
-  {id:'texttospeech',icon:'🗣️',cat:'productivity',name:{ar:'النص إلى صوت',en:'Text to Speech'},desc:{ar:'تحويل النصوص لصوت.',en:'Text to speech.'}},
-  {id:'whatsappsticker',icon:'🎯',cat:'media',name:{ar:'صانع استيكر واتساب',en:'WA Sticker'},desc:{ar:'تحويل الصور لـ 512x512 PNG.',en:'Convert to 512x512 PNG.'}},
-  {id:'pdfreader',icon:'📚',cat:'media',name:{ar:'قراءة PDF',en:'PDF Reader'},desc:{ar:'استعراض الصفحة الأولى من PDF.',en:'Render first PDF page.'}}
+const TOOLS=[
+{id:'word',icon:'🔢',cat:'text',name:{ar:'عداد الكلمات',en:'Word Counter'},desc:{ar:'كلمات وحروف وأسطر.',en:'Words and chars.'}},
+{id:'case',icon:'🔠',cat:'text',name:{ar:'حالة الأحرف',en:'Case Converter'},desc:{ar:'تحويل حالة النص.',en:'Convert text case.'}},
+{id:'clean',icon:'🧹',cat:'text',name:{ar:'تنظيف النص',en:'Text Cleaner'},desc:{ar:'حذف المسافات الزائدة.',en:'Remove extra spaces.'}},
+{id:'json',icon:'{ }',cat:'dev',name:{ar:'منسق JSON',en:'JSON Formatter'},desc:{ar:'تنسيق والتحقق.',en:'Format and validate.'}},
+{id:'base64',icon:'🔐',cat:'dev',name:{ar:'Base64',en:'Base64'},desc:{ar:'تشفير/فك.',en:'Encode/decode.'}},
+{id:'url',icon:'🔗',cat:'dev',name:{ar:'ترميز URL',en:'URL Encoder'},desc:{ar:'ترميز الروابط.',en:'Encode URLs.'}},
+{id:'password',icon:'🛡️',cat:'productivity',name:{ar:'مولد كلمات المرور',en:'Password Generator'},desc:{ar:'كلمات آمنة crypto.',en:'Secure crypto passwords.'}},
+{id:'image',icon:'🖼️',cat:'image',name:{ar:'ضغط الصور',en:'Image Compressor'},desc:{ar:'ضغط بجودة قابلة للتحكم.',en:'Compress with quality.'}},
+{id:'color',icon:'🎨',cat:'image',name:{ar:'منتقي الألوان',en:'Color Picker'},desc:{ar:'HEX/RGB/HSL.',en:'HEX/RGB/HSL.'}},
+{id:'gradient',icon:'🌈',cat:'image',name:{ar:'مولد التدرجات',en:'Gradient Generator'},desc:{ar:'CSS gradients.',en:'CSS gradients.'}},
+{id:'timestamp',icon:'⏱️',cat:'dev',name:{ar:'Unix Timestamp',en:'Unix Timestamp'},desc:{ar:'تحويل التواريخ.',en:'Convert timestamps.'}},
+{id:'markdown',icon:'📝',cat:'text',name:{ar:'معاينة Markdown',en:'Markdown Preview'},desc:{ar:'معاينة فورية.',en:'Live preview.'}},
+{id:'regex',icon:'🔍',cat:'dev',name:{ar:'مختبر Regex',en:'Regex Tester'},desc:{ar:'اختبار التعبيرات.',en:'Test regex.'}},
+{id:'sql',icon:'🗄️',cat:'dev',name:{ar:'منسق SQL',en:'SQL Formatter'},desc:{ar:'تنسيق SQL.',en:'Format SQL.'}},
+{id:'jwt',icon:'🔑',cat:'dev',name:{ar:'محلل JWT',en:'JWT Decoder'},desc:{ar:'فك JWT محلياً.',en:'Decode JWT.'}},
+{id:'imgpdf',icon:'📑',cat:'media',name:{ar:'صور إلى PDF',en:'Images to PDF'},desc:{ar:'دمج صور في PDF.',en:'Merge images.'}},
+{id:'qrcode',icon:'📱',cat:'productivity',name:{ar:'مولد QR',en:'QR Generator'},desc:{ar:'QR محلي.',en:'Local QR.'}},
+{id:'decor',icon:'✨',cat:'text',name:{ar:'زخرفة النصوص',en:'Text Decorator'},desc:{ar:'زخرفة الأسماء.',en:'Decorate text.'}},
+{id:'htmlfmt',icon:'🌐',cat:'dev',name:{ar:'HTML Formatter',en:'HTML Formatter'},desc:{ar:'تنسيق HTML.',en:'Format HTML.'}},
+{id:'cssfmt',icon:'🎨',cat:'dev',name:{ar:'CSS Formatter',en:'CSS Formatter'},desc:{ar:'تنسيق CSS.',en:'Format CSS.'}},
+{id:'jsfmt',icon:'⚡',cat:'dev',name:{ar:'JS Formatter',en:'JS Formatter'},desc:{ar:'تنسيق JS.',en:'Format JS.'}},
+{id:'xmlfmt',icon:'📋',cat:'dev',name:{ar:'XML Formatter',en:'XML Formatter'},desc:{ar:'تنسيق XML.',en:'Format XML.'}},
+{id:'hashgen',icon:'🔒',cat:'dev',name:{ar:'Hash Generator',en:'Hash Generator'},desc:{ar:'SHA حقيقي.',en:'Real SHA.'}},
+{id:'uuidgen',icon:'🆔',cat:'dev',name:{ar:'UUID',en:'UUID Generator'},desc:{ar:'UUID v4 آمن.',en:'Secure UUID v4.'}},
+{id:'diffchk',icon:'⚖️',cat:'dev',name:{ar:'Diff Checker',en:'Diff Checker'},desc:{ar:'مقارنة نصين.',en:'Compare texts.'}},
+{id:'percentcalc',icon:'📊',cat:'productivity',name:{ar:'حاسبة النسبة',en:'Percentage'},desc:{ar:'حساب النسب.',en:'Percentages.'}},
+{id:'caloriecalc',icon:'🥗',cat:'productivity',name:{ar:'حاسبة السعرات',en:'Calories'},desc:{ar:'BMR يومي.',en:'BMR.'}},
+{id:'imgcrop',icon:'✂️',cat:'image',name:{ar:'قص الصور',en:'Image Cropper'},desc:{ar:'قص بأبعاد.',en:'Crop image.'}},
+{id:'imgcolors',icon:'🔍',cat:'image',name:{ar:'ألوان الصورة',en:'Color Extractor'},desc:{ar:'استخراج HEX.',en:'Extract HEX.'}},
+{id:'splitpdf',icon:'📄',cat:'media',name:{ar:'تقسيم PDF',en:'Split PDF'},desc:{ar:'استخراج صفحات.',en:'Extract pages.'}},
+{id:'translator',icon:'🌍',cat:'text',name:{ar:'الترجمة',en:'Translator'},desc:{ar:'ترجمة فورية.',en:'Translate.'}},
+{id:'aiprompts',icon:'🤖',cat:'productivity',name:{ar:'برومتات AI',en:'AI Prompts'},desc:{ar:'برومتات حفظ الملامح.',en:'Face-preserving prompts.'}},
+{id:'htmlreader',icon:'📖',cat:'dev',name:{ar:'معاينة HTML',en:'HTML Preview'},desc:{ar:'معاينة في iframe آمن.',en:'Safe iframe preview.'}},
+{id:'texttospeech',icon:'🗣️',cat:'productivity',name:{ar:'نص إلى صوت',en:'Text to Speech'},desc:{ar:'TTS محلي.',en:'Local TTS.'}},
+{id:'whatsappsticker',icon:'🎯',cat:'media',name:{ar:'استيكر واتساب',en:'WA Sticker'},desc:{ar:'512x512 PNG.',en:'512x512 PNG.'}},
+{id:'pdfreader',icon:'📚',cat:'media',name:{ar:'قراءة PDF',en:'PDF Reader'},desc:{ar:'عرض الصفحة الأولى.',en:'First page render.'}}
 ];
 
-/* ============ State ============ */
-let lang = LS.get('hema_lang', 'ar');
-let theme = LS.get('hema_theme', 'base');
-let category = 'all';
-let favorites = JSON.parse(LS.get('hema_favs', '[]'));
-let onlyFav = false;
+function toast(msg){const e=$('#toast');e.textContent=msg;e.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>e.classList.remove('show'),1900)}
+async function copyText(txt){if(!txt){toast(t().copyFailed);return}try{await navigator.clipboard.writeText(txt);toast(t().copied)}catch{try{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast(t().copied)}catch{toast(t().copyFailed)}}}
+const $in=id=>document.getElementById(id);
+const txt=id=>$in(id)?.value||'';
+const setRes=(html,isHTML=false)=>{const r=$in('toolResult');if(!r)return;if(isHTML)r.innerHTML=html;else r.textContent=html;};
+const resultBlock=()=>`<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`;
+const textarea=(label,id,ph='')=>`<div class="field"><label>${label}</label><textarea id="${id}" placeholder="${ph}"></textarea></div>`;
+const input=(label,id,type='text',val='',attrs='')=>`<div class="field"><label>${label}</label><input id="${id}" type="${type}" value="${val}" ${attrs}></div>`;
+const select=(label,id,opts)=>`<div class="field"><label>${label}</label><select id="${id}">${opts.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('')}</select></div>`;
 
-/* ============ Helpers ============ */
-const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
-const t = () => translations[lang] || translations.ar;
-
-function toast(msg) {
-  const el = $('#toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toast._t);
-  toast._t = setTimeout(() => el.classList.remove('show'), 1900);
+function applyLanguage(){
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+$('#language').value=lang;
+document.title=t().pageTitle;
+$$('[data-i18n]').forEach(e=>{const k=e.dataset.i18n;if(t()[k])e.innerHTML=t()[k]});
+$$('[data-i18n-ph]').forEach(e=>{const k=e.dataset.i18nPh;if(t()[k])e.placeholder=t()[k]});
+renderCategories();renderTools();
+const cur=location.hash.slice(1);
+if($('#pageView').classList.contains('active')&&cur&&PAGES[cur]){
+const p=PAGES[cur];$('#pageContent').innerHTML=(p[lang]||p.en||p.ar)+(p[lang]?'':`<p style="color:var(--muted);font-size:11px;margin-top:16px;">⚠ ${t().langUnavail||''}</p>`);
+}
 }
 
-async function copyText(text) {
-  if (!text) { toast(t().copyFailed); return; }
-  try {
-    await navigator.clipboard.writeText(text);
-    toast(t().copied);
-  } catch {
-    try {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      toast(t().copied);
-    } catch { toast(t().copyFailed); }
-  }
+function applyTheme(){document.body.classList.toggle('light',theme==='light');$('#theme').value=theme;LS.set('hema_theme',theme)}
+
+function showHome(push=false){
+if(push){history.pushState({page:'home'},'','#home')}
+$('#homeView').style.display='block';$('#pageView').classList.remove('active');
+$('#toolModal').classList.remove('show');document.body.style.overflow='';
+window.scrollTo(0,0);
+}
+function showPage(key,push=true){
+const p=PAGES[key];
+if(!p){showHome(true);return}
+if(push)history.pushState({page:key},'','#'+key);
+$('#homeView').style.display='none';$('#pageView').classList.add('active');
+$('#toolModal').classList.remove('show');document.body.style.overflow='';
+const html=p[lang]||p.en||p.ar;
+const note=p[lang]?'':`<p style="color:var(--muted);font-size:11px;margin-top:16px;">⚠ ${t().langUnavail||''}</p>`;
+$('#pageContent').innerHTML=html+note;
+window.scrollTo(0,0);
+}
+function navigateTo(k){showPage(k,true)}
+window.addEventListener('popstate',e=>{
+if(e.state&&e.state.page&&e.state.page!=='home')showPage(e.state.page,false);
+else showHome(false);
+});
+
+function renderCategories(){
+const cats=['all','text','dev','image','productivity','media'];
+$('#categories').innerHTML=cats.map(c=>`<button class="chip ${category===c&&!onlyFav?'active':''}" data-cat="${c}">${t()[c]||c}</button>`).join('');
+}
+function renderTools(){
+const q=$('#search').value.trim().toLowerCase();
+const list=TOOLS.filter(x=>{
+const catOK=category==='all'||x.cat===category;
+const favOK=!onlyFav||favorites.includes(x.id);
+const hay=Object.values(x.name).join(' ')+' '+Object.values(x.desc).join(' ')+' '+x.id;
+return catOK&&favOK&&hay.toLowerCase().includes(q);
+});
+$('#toolCount').textContent=list.length;
+$('#toolsGrid').innerHTML=list.length?list.map(x=>`
+<article class="tool-card">
+<div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}" aria-label="fav">♥</button></div>
+<h3>${x.name[lang]||x.name.en}</h3>
+<p>${x.desc[lang]||x.desc.en}</p>
+<div class="tool-bottom"><span class="tool-tag">${t()[x.cat]||x.cat}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div>
+</article>`).join(''):`<div class="empty">${t().noResults}</div>`;
 }
 
-/* ============ i18n ============ */
-function applyLanguage() {
-  document.documentElement.lang = lang;
-  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-  $('#language').value = lang;
-  $$('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (t()[k]) el.innerHTML =
+const R={};
+
+R.word=()=>({html:`${textarea('النص','in','اكتب هنا...')}<div class="result" id="toolResult">0</div>`,wire:()=>{$in('in').oninput=e=>{const s=e.target.value;setRes(`كلمات: ${(s.trim().match(/\S+/g)||[]).length} | حروف: ${s.length} | أسطر: ${s.split('\n').length}`)}}});
+
+R.case=()=>({html:`${textarea('النص','in','اكتب...')}${select('التحويل','mode',[['upper','UPPER'],['lower','lower'],['title','Title Case'],['sentence','Sentence case']])}<div class="modal-actions"><button class="action" id="go">تحويل</button></div>${resultBlock()}`,wire:()=>{$in('go').onclick=()=>{const s=txt('in'),m=txt('mode');let r;if(m==='upper')r=s.toUpperCase();else if(m==='lower')r=s.toLowerCase();else if(m==='title')r=s.replace(/\w\S*/g,w=>w[0].toUpperCase()+w.slice(1).toLowerCase());else r=s.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,c=>c.toUpperCase());setRes(r)}}});
+
+R.clean=()=>({html:`${textarea('النص','in')}<div class="modal-actions"><button class="action" id="go">تنظيف</button></div>${resultBlock()}`,wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim())}});
+
+R.json=()=>({html:`${textarea('JSON','in','{"a":1}')}<div class="modal-actions"><button class="action" id="fmt">تنسيق</button><button class="action secondary" id="min">ضغط</button><button class="action secondary" id="val">تحقق</button></div>${resultBlock()}`,wire:()=>{
+$in('fmt').onclick=()=>{try{setRes(JSON.stringify(JSON.parse(txt('in')),null,2))}catch(e){setRes('❌ '+e.message)}};
+$in('min').onclick=()=>{try{setRes(JSON.stringify(JSON.parse(txt('in'))))}catch(e){setRes('❌ '+e.message)}};
+$in('val').onclick=()=>{try{JSON.parse(txt('in'));setRes('✅ JSON صحيح')}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R.base64=()=>({html:`${textarea('النص','in')}<div class="modal-actions"><button class="action" id="enc">تشفير</button><button class="action secondary" id="dec">فك</button></div>${resultBlock()}`,wire:()=>{
+$in('enc').onclick=()=>{try{setRes(btoa(unescape(encodeURIComponent(txt('in')))))}catch(e){setRes('❌ '+e.message)}};
+$in('dec').onclick=()=>{try{setRes(decodeURIComponent(escape(atob(txt('in').trim()))))}catch(e){setRes('❌ Base64 غير صالح')}}
+}});
+
+R.url=()=>({html:`${textarea('الرابط','in')}<div class="modal-actions"><button class="action" id="enc">ترميز</button><button class="action secondary" id="dec">فك</button></div>${resultBlock()}`,wire:()=>{
+$in('enc').onclick=()=>setRes(encodeURIComponent(txt('in')));
+$in('dec').onclick=()=>{try{setRes(decodeURIComponent(txt('in')))}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R.password=()=>({html:`${input('الطول','len','number','20','min="8" max="128"')}
+<div class="field"><label><input type="checkbox" id="up" checked> A-Z</label><label><input type="checkbox" id="lo" checked> a-z</label><label><input type="checkbox" id="num" checked> 0-9</label><label><input type="checkbox" id="sym" checked> رموز</label></div>
+<div class="modal-actions"><button class="action" id="go">توليد</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{
+let chars='';if($in('up').checked)chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';if($in('lo').checked)chars+='abcdefghijklmnopqrstuvwxyz';if($in('num').checked)chars+='0123456789';if($in('sym').checked)chars+='!@#$%^&*()_+-=[]{}|;:,.<>?';
+if(!chars){setRes('اختر نوعاً واحداً على الأقل');return}
+const len=Math.max(8,Math.min(128,parseInt(txt('len'))||20));
+const arr=new Uint32Array(len);crypto.getRandomValues(arr);
+setRes(Array.from(arr,a=>chars[a%chars.length]).join(''));
+}
+}});
+
+R.image=()=>({html:`<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div>
+${input('الجودة (0.1-1)','q','number','0.7','min="0.1" max="1" step="0.1"')}
+<div class="modal-actions"><button class="action" id="go">ضغط</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=()=>{
+const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}
+const img=new Image();img.onload=()=>{
+const c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);
+const q=Math.max(0.1,Math.min(1,parseFloat(txt('q'))||0.7));
+const url=c.toDataURL('image/jpeg',q);
+const origKB=(f.size/1024).toFixed(1);
+const newKB=Math.round(url.length*0.75/1024);
+setRes(`الأصلي: ${origKB} KB → المضغوط: ~${newKB} KB`,true);
+const r=$in('toolResult');
+const a=document.createElement('a');a.href=url;a.download='compressed.jpg';a.textContent='⬇ تحميل';a.style.cssText='display:inline-block;margin-top:10px;color:var(--blue);font-weight:bold;text-decoration:underline';r.appendChild(document.createElement('br'));r.appendChild(a);
+};img.src=URL.createObjectURL(f);
+}
+}});
+
+R.color=()=>({html:`<div class="field"><label>اختر لوناً</label><input type="color" id="c" value="#9b5cff"></div><div class="result" id="toolResult"></div>`,wire:()=>{
+const upd=()=>{const hex=$in('c').value;const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+const mx=Math.max(r,g,b)/255,mn=Math.min(r,g,b)/255,l=(mx+mn)/2;
+let h=0,s=0;if(mx!==mn){const d=mx-mn;s=l>0.5?d/(2-mx-mn):d/(mx+mn);switch(mx){case r/255:h=((g-b)/255/d+(g<b?6:0));break;case g/255:h=((b-r)/255/d+2);break;default:h=((r-g)/255/d+4)}h*=60}
+setRes(`HEX: ${hex}\nRGB: rgb(${r}, ${g}, ${b})\nHSL: hsl(${h.toFixed(0)}, ${(s*100).toFixed(0)}%, ${(l*100).toFixed(0)}%)`)};
+$in('c').oninput=upd;upd();
+}});
+
+R.gradient=()=>({html:`${input('اللون الأول','c1','color','#9b5cff')}${input('اللون الثاني','c2','color','#ff4eb8')}
+${input('الزاوية','ang','number','135','min="0" max="360"')}
+<div id="preview" style="height:80px;border-radius:10px;margin:10px 0;border:1px solid var(--line)"></div>
+<div class="modal-actions"><button class="action" id="copy">نسخ CSS</button></div>${resultBlock()}`,wire:()=>{
+const upd=()=>{const css=`linear-gradient(${txt('ang')}deg, ${$in('c1').value}, ${$in('c2').value})`;$in('preview').style.background=css;setRes(`background: ${css};`)};
+$in('c1').oninput=upd;$in('c2').oninput=upd;$in('ang').oninput=upd;upd();
+}});
+
+R.timestamp=()=>({html:`${input('Unix Timestamp','ts','number',Math.floor(Date.now()/1000))}<div class="modal-actions"><button class="action" id="fromUnix">Timestamp → تاريخ</button><button class="action secondary" id="now">الآن</button></div>
+${input('تاريخ','dt','datetime-local')}<div class="modal-actions"><button class="action" id="toUnix">تاريخ → Timestamp</button></div>${resultBlock()}`,wire:()=>{
+$in('now').onclick=()=>{$in('ts').value=Math.floor(Date.now()/1000)};
+$in('fromUnix').onclick=()=>{const ts=parseInt(txt('ts'));if(!ts){setRes('أدخل timestamp');return}setRes(new Date(ts*1000).toString())};
+$in('toUnix').onclick=()=>{const d=new Date(txt('dt'));if(isNaN(d)){setRes('تاريخ غير صالح');return}setRes(String(Math.floor(d.getTime()/1000)))};
+}});
+
+R.markdown=()=>({html:`${textarea('Markdown','in','# عنوان\n**عريض** *مائل*')}<div class="result" id="toolResult" style="min-height:100px"></div>`,wire:()=>{
+const render=s=>{
+let h=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+.replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
+.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>')
+.replace(/`(.+?)`/g,'<code style="background:var(--panel2);padding:2px 4px;border-radius:3px">$1</code>')
+.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank" style="color:var(--blue)">$1</a>')
+.replace(/^- (.+)$/gm,'<li>$1</li>').replace(/(<li>.*<\/li>)/s,'<ul>$1</ul>')
+.replace(/\n\n/g,'</p><p>');
+return '<p>'+h+'</p>';
+};
+const upd=()=>setRes(render(txt('in')),true);
+$in('in').oninput=upd;upd();
+}});
+
+R.regex=()=>({html:`${input('Regex','pat','text','\\w+')}${input('Flags','flags','text','g')}${textarea('النص','in','أدخل النص للاختبار')}<div class="modal-actions"><button class="action" id="go">اختبار</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const r=new RegExp(txt('pat'),txt('flags'));const m=txt('in').match(r);setRes(m?`✅ ${m.length} نتيجة:\n${m.join('\n')}`:'❌ لا نتائج')}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R.sql=()=>({html:`${textarea('SQL','in','SELECT * FROM users WHERE id=1')}<div class="modal-actions"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{
+let s=txt('in');
+const kw=['SELECT','FROM','WHERE','JOIN','LEFT JOIN','RIGHT JOIN','INNER JOIN','GROUP BY','ORDER BY','HAVING','LIMIT','UNION','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','AND','OR','ON'];
+kw.forEach(k=>{s=s.replace(new RegExp('\\b'+k+'\\b','gi'),'\n'+k)});
+setRes(s.replace(/\n+/g,'\n').trim());
+}
+}});
+
+R.jwt=()=>({html:`${textarea('JWT','in','eyJ...')}<div class="modal-actions"><button class="action" id="go">فك</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const p=txt('in').trim().split('.');if(p.length!==3){setRes('❌ JWT غير صالح');return}
+const h=JSON.parse(atob(p[0].replace(/-/g,'+').replace(/_/g,'/')));const b=JSON.parse(atob(p[1].replace(/-/g,'+').replace(/_/g,'/')));
+setRes(`Header:\n${JSON.stringify(h,null,2)}\n\nPayload:\n${JSON.stringify(b,null,2)}\n\n⚠ التوقيع لم يتم التحقق منه`)}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R.imgpdf=()=>({html:`<div class="field"><label>صور (يمكن اختيار متعددة)</label><input type="file" id="file" accept="image/*" multiple></div><div class="modal-actions"><button class="action" id="go">إنشاء PDF</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=async()=>{
+if(!window.jspdf){setRes('المكتبة لم تُحمَّل');return}
+const files=$in('file').files;if(!files.length){setRes('اختر صوراً');return}
+const {jsPDF}=window.jspdf;const pdf=new jsPDF();
+for(let i=0;i<files.length;i++){
+const data=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(files[i])});
+const img=await new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=data});
+const pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+const ratio=Math.min(pw/img.width,(ph-20)/img.height);
+if(i>0)pdf.addPage();
+pdf.addImage(data,'JPEG',(pw-img.width*ratio)/2,10,img.width*ratio,img.height*ratio);
+}
+const url=pdf.output('bloburl');
+const r=$in('toolResult');
+r.innerHTML=`✅ تم إنشاء PDF من ${files.length} صورة<br><a href="${url}" download="images.pdf" target="_blank" style="color:var(--blue);font-weight:bold">⬇ تحميل PDF</a>`;
+}
+}});
+
+R.qrcode=()=>({html:`${input('النص أو الرابط','in','text','https://example.com')}${input('الحجم','size','number','256','min="64" max="1024"')}<div class="modal-actions"><button class="action" id="go">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`,wire:()=>{
+$in('go').onclick=async()=>{
+const v=txt('in').trim();if(!v){setRes('أدخل نصاً');return}
+if(!window.QRCode){setRes('المكتبة لم تُحمَّل');return}
+const c=document.createElement('canvas');
+const size=Math.max(64,Math.min(1024,parseInt(txt('size'))||256));
+try{await QRCode.toCanvas(c,v,{width:size});$in('toolResult').innerHTML='';c.className='preview';$in('toolResult').appendChild(c)}
+catch(e){setRes('❌ '+e.message)}
+}
+}});
+
+R.decor=()=>({html:`${textarea('النص','in','اكتب اسمك أو جملة')}<div class="modal-actions"><button class="action" id="go">زخرفة</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in').trim();if(!s){toast('أدخل نصاً');return}
+const out=[`┌─ ${s} ─┐`,`★彡 ${s} 彡★`,`꧁༺ ${s} ༻꧂`,`▂▃▄▅▆▇ ${s} ▇▆▅▄▃▂`,`✨ ${s} ✨`,`♔ ${s} ♔`,`【${s}】`,`༺ ${s} ༻`,`•´¯\`•. ${s} .•´¯\`•`].join('\n');
+setRes(out)}
+}});
+
+const fmtCode=(fn)=>()=>({html:`${textarea('الكود','in')}<div class="modal-actions"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const lib=window[fn];if(!lib){setRes('المكتبة غير محملة');return}
+const opts={indent_size:2};let out;
+if(fn==='html_beautify')out=lib(txt('in'),opts);
+else if(fn==='css_beautify')out=lib(txt('in'),opts);
+else out=lib(txt('in'),opts);
+setRes(out)}catch(e){setRes('❌ '+e.message)}}
+}});
+R.htmlfmt=fmtCode('html_beautify');
+R.cssfmt=fmtCode('css_beautify');
+R.jsfmt=fmtCode('js_beautify');
+R.xmlfmt=()=>({html:`${textarea('XML','in')}<div class="modal-actions"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const p=new DOMParser();const d=p.parseFromString(txt('in'),'application/xml');
+if(d.querySelector('parsererror')){setRes('❌ XML غير صالح');return}
+const ser=new XMLSerializer();let s=ser.serializeToString(d);s=s.replace(/(>)(<)(\/*)/g,'$1\n$2$3');
+let pad=0;const lines=s.split('\n').map(l=>{
+if(/^<\/\w/.test(l))pad=Math.max(0,pad-1);
+const r='  '.repeat(pad)+l;
+if(/^<\w[^>]*[^\/]>$/.test(l))pad++;
+return r});
+setRes(lines.join('\n'))}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R.hashgen=()=>({html:`${textarea('النص','in','اكتب النص')}${select('الخوارزمية','algo',[['SHA-256','SHA-256'],['SHA-1','SHA-1'],['SHA-384','SHA-384'],['SHA-512','SHA-512']])}<div class="modal-actions"><button class="action" id="go">توليد</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=async()=>{try{const enc=new TextEncoder().encode(txt('in'));const buf=await crypto.subtle.digest(txt('algo'),enc);
+setRes([...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join(''))}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R.uuidgen=()=>({html:`${input('العدد','n','number','5','min="1" max="50"')}<div class="modal-actions"><button class="action" id="go">توليد</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const n=Math.max(1,Math.min(50,parseInt(txt('n'))||1));
+setRes(Array.from({length:n},()=>crypto.randomUUID()).join('\n'))}
+}});
+
+R.diffchk=()=>({html:`${textarea('النص الأول','a')}${textarea('النص الثاني','b')}<div class="modal-actions"><button class="action" id="go">مقارنة</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const a=txt('a'),b=txt('b');
+if(a===b){setRes('✅ متطابقان');return}
+const la=a.split('\n'),lb=b.split('\n');const out=[];const max=Math.max(la.length,lb.length);
+for(let i=0;i<max;i++){if(la[i]!==lb[i])out.push(`سطر ${i+1}:\n  - ${la[i]||'(فارغ)'}\n  + ${lb[i]||'(فارغ)'}`)}
+setRes(`❌ ${out.length} اختلاف:\n\n${out.join('\n\n')}`)}
+}});
+
+R.percentcalc=()=>({html:`${input('ما هي نسبة %','a','number','20')}${input('من الرقم','b','number','200')}<div class="modal-actions"><button class="action" id="p1">= نسبة</button><button class="action secondary" id="p2">= زيادة</button></div>
+${input('الرقم الأصلي','x','number','100')}${input('النسبة %','y','number','15')}<div class="modal-actions"><button class="action secondary" id="p3">+ زيادة / - نقص</button></div>${resultBlock()}`,wire:()=>{
+$in('p1').onclick=()=>setRes(`${txt('a')}% من ${txt('b')} = ${(parseFloat(txt('a'))||0)*(parseFloat(txt('b'))||0)/100}`);
+$in('p2').onclick=()=>setRes(`${txt('a')} هو ${((parseFloat(txt('a'))||0)/(parseFloat(txt('b'))||1)*100).toFixed(2)}% من ${txt('b')}`);
+$in('p3').onclick=()=>{const x=parseFloat(txt('x'))||0,y=parseFloat(txt('y'))||0;setRes(`+${y}% → ${(x*(1+y/100)).toFixed(2)}\n-${y}% → ${(x*(1-y/100)).toFixed(2)}`)}
+}});
+
+R.caloriecalc=()=>({html:`${input('الوزن (كجم)','w','number','70')}${input('الطول (سم)','h','number','175')}${input('العمر','a','number','25')}${select('النوع','g',[['male','ذكر'],['female','أنثى']])}${select('النشاط','act',[['1.2','قليل'],['1.375','خفيف'],['1.55','متوسط'],['1.725','عالي'],['1.9','شديد']])}<div class="modal-actions"><button class="action" id="go">احسب</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const w=parseFloat(txt('w'))||70,h=parseFloat(txt('h'))||175,a=parseFloat(txt('a'))||25,g=txt('g'),act=parseFloat(txt('act'))||1.55;
+const bmr=g==='male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;
+setRes(`BMR (السعرات الأساسية): ${bmr.toFixed(0)} kcal\nTDEE (مع النشاط): ${(bmr*act).toFixed(0)} kcal\n\nفقدان وزن: ${(bmr*act-500).toFixed(0)} kcal\nزيادة وزن: ${(bmr*act+500).toFixed(0)} kcal`)}
+}});
+
+R.imgcrop=()=>({html:`<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div>${input('العرض','w','number','512')}${input('الارتفاع','h','number','512')}<div class="modal-actions"><button class="action" id="go">قص</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}
+const img=new Image();img.onload=()=>{const w=parseInt(txt('w'))||512,h=parseInt(txt('h'))||512;
+const c=document.createElement('canvas');c.width=w;c.height=h;
+const ctx=c.getContext('2d');
+const scale=Math.max(w/img.width,h/img.height);
+const sw=w/scale,sh=h/scale,sx=(img.width-sw)/2,sy=(img.height-sh)/2;
+ctx.drawImage(img,sx,sy,sw,sh,0,0,w,h);
+const url=c.toDataURL('image/png');
+$in('toolResult').innerHTML=`<img src="${url}" class="preview"><br><a href="${url}" download="cropped.png" style="color:var(--blue);font-weight:bold;display:inline-block;margin-top:8px">⬇ تحميل</a>`;
+};img.src=URL.createObjectURL(f)}
+}});
+
+R.imgcolors=()=>({html:`<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div><div class="modal-actions"><button class="action" id="go">استخراج</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}
+const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=100;c.height=100;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,100,100);
+const d=ctx.getImageData(0,0,100,100).data;const map={};
+for(let i=0;i<d.length;i+=4){const k=`${d[i]},${d[i+1]},${d[i+2]}`;map[k]=(map[k]||0)+1}
+const top=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,12);
+const toHex=rgb=>'#'+rgb.split(',').map(n=>parseInt(n).toString(16).padStart(2,'0')).join('');
+$in('toolResult').innerHTML='<div class="colors-grid">'+top.map(([k,c])=>`<div class="color-swatch" style="background:rgb(${k})" title="${toHex(k)}" onclick="navigator.clipboard.writeText('${toHex(k)}');toast('نسخ ${toHex(k)}')"></div>`).join('')+'</div><div style="margin-top:10px;font-size:11px">'+top.map(([k])=>toHex(k)).join(' · ')+'</div>';
+};img.src=URL.createObjectURL(f)}
+}});
+
+R.splitpdf=()=>({html:`<div class="field"><label>ملف PDF</label><input type="file" id="file" accept="application/pdf"></div>${input('الصفحات (مثال: 1,3,5-7)','pages','text','1')}<div class="modal-actions"><button class="action" id="go">استخراج</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=async()=>{
+const f=$in('file').files[0];if(!f){setRes('اختر ملف');return}
+if(!window.PDFLib){setRes('المكتبة غير محملة');return}
+try{
+const buf=await f.arrayBuffer();const src=await PDFLib.PDFDocument.load(buf);
+const dst=await PDFLib.PDFDocument.create();
+const spec=txt('pages').split(',').flatMap(p=>{p=p.trim();if(p.includes('-')){const[a,b]=p.split('-').map(Number);return Array.from({length:b-a+1},(_,i)=>a+i-1)}return [parseInt(p)-1]}).filter(n=>n>=0&&n<src.getPageCount());
+if(!spec.length){setRes('❌ صفحات غير صالحة');return}
+const pages=await dst.copyPages(src,spec);pages.forEach(p=>dst.addPage(p));
+const bytes=await dst.save();const url=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));
+$in('toolResult').innerHTML=`✅ استخرجت ${spec.length} صفحة<br><a href="${url}" download="split.pdf" style="color:var(--blue);font-weight:bold">⬇ تحميل</a>`;
+}catch(e){setRes('❌ '+e.message)}
+}
+}});
+
+R.translator=()=>({html:`${textarea('النص','in')}${select('اللغة','to',[['en','English'],['ar','العربية'],['fr','Français'],['es','Español'],['de','Deutsch'],['ru','Русский'],['tr','Türkçe'],['it','Italiano'],['ja','日本語'],['zh','中文']])}<div class="modal-actions"><button class="action" id="go">ترجم</button></div>${resultBlock()}
+<p style="font-size:10px;color:var(--muted);margin-top:8px">⚠ يُستخدم MyMemory API المجاني</p>`,wire:()=>{
+$in('go').onclick=async()=>{
+const s=txt('in').trim();if(!s){toast('أدخل نصاً');return}
+setRes('⏳ جاري الترجمة...');
+try{
+const from=lang;const to=txt('to');
+const r=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(s.slice(0,500))}&langpair=${from}|${to}`);
+const j=await r.json();
+setRes(j.responseData?.translatedText||'❌ لا ترجمة');
+}catch(e){setRes('❌ فشل الاتصال')}
+}
+}});
+
+R.aiprompts=()=>{
+const prompts=[
+'Hyper-realistic portrait, 8k resolution, raw photo, natural face structure, preserving exact facial features, zero AI distortion',
+'Photorealistic cinematic lighting, ultra-detailed skin texture, preserving identity, no artificial face morphing',
+'True-to-life photography, exact facial geometry preserved, pristine details, no smoothing',
+'Unedited documentary style photo, flawless identity retention, natural expression',
+'Professional studio photography, exact character likeness, sharp focus, zero AI face alteration'
+];
+return {html:`<div class="field"><label>برومتات جاهزة:</label>
+${prompts.map((p,i)=>`<div style="margin:10px 0;padding:10px;background:var(--panel2);border-radius:8px;font-size:11px">${i+1}. ${p}<br><button class="action secondary" data-p="${i}" style="margin-top:8px;font-size:11px">نسخ</button></div>`).join('')}</div>`,
+wire:()=>{
+$in('modalBody').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>copyText(prompts[b.dataset.p]));
+}};
+};
+
+R.htmlreader=()=>({html:`${textarea('HTML','in','<h1>Hello</h1><p>World</p>')}<div class="modal-actions"><button class="action" id="go">معاينة</button></div><div id="toolResult" style="min-height:80px"></div>`,wire:()=>{
+$in('go').onclick=()=>{
+const ifr=document.createElement('iframe');
+ifr.sandbox='allow-same-origin';
+ifr.style.cssText='width:100%;min-height:200px;border:1px solid var(--line);border-radius:8px;background:white';
+$in('toolResult').innerHTML='';$in('toolResult').appendChild(ifr);
+ifr.contentDocument.open();ifr.contentDocument.write(txt('in'));ifr.contentDocument.close();
+}
+}});
+
+R.texttospeech=()=>({html:`${textarea('النص','in','مرحباً بكم')}${select('اللغة','lang',[['ar-SA','عربي'],['en-US','English'],['fr-FR','Français'],['es-ES','Español'],['de-DE','Deutsch']])}${input('السرعة','rate','range','1','min="0.5" max="2" step="0.1"')}<div class="modal-actions"><button class="action" id="go">نطق</button><button class="action secondary" id="stop">إيقاف</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{
+if(!('speechSynthesis' in window)){setRes('المتصفح لا يدعم TTS');return}
+speechSynthesis.cancel();
+const u=new SpeechSynthesisUtterance(txt('in'));
+u.lang=txt('lang');u.rate=parseFloat(txt('rate'))||1;
+u.onstart=()=>setRes('🔊 جاري النطق...');
+u.onend=()=>setRes('✅ انتهى');
+speechSynthesis.speak(u);
+};
+$in('stop').onclick=()=>{speechSynthesis.cancel();setRes('⏹ تم الإيقاف')};
+}});
+
+R.whatsappsticker=()=>({html:`<div class="field"><label>صورة (512x512 PNG)</label><input type="file" id="file" accept="image/*"></div><div class="modal-actions"><button class="action" id="go">تحويل</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}
+const img=new Image();img.onload=()=>{
+const c=document.createElement('canvas');c.width=512;c.height=512;const ctx=c.getContext('2d');
+ctx.fillStyle='#fff';ctx.fillRect(0,0,512,512);
+const scale=Math.min(512/img.width,512/img.height);
+const w=img.width*scale,h=img.height*scale;
+ctx.drawImage(img,(512-w)/2,(512-h)/2,w,h);
+const url=c.toDataURL('image/png');
+$in('toolResult').innerHTML=`<img src="${url}" class="preview"><br><a href="${url}" download="sticker.png" style="color:var(--blue);font-weight:bold;display:inline-block;margin-top:8px">⬇ تحميل PNG</a>`;
+};img.src=URL.createObjectURL(f)}
+}});
+
+R.pdfreader=()=>({html:`<div class="field"><label>ملف PDF</label><input type="file" id="file" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="go">عرض الصفحة الأولى</button></div><div id="toolResult"></div>`,wire:()=>{
+$in('go').onclick=async()=>{
+const f=$in('file').files[0];if(!f){setRes('اختر ملف');return}
+if(!window.pdfjsLib){setRes('المكتبة غير محملة');return}
+try{
+const buf=await f.arrayBuffer();
+const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+const page=await pdf.getPage(1);
+const vp=page.getViewport({scale:1.5});
+const c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;c.className='preview';
+await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+$in('toolResult').innerHTML=`<div style="margin-bottom:8px">📄 ${pdf.numPages} صفحة</div>`;
+$in('toolResult').appendChild(c);
+}catch(e){setRes('❌ '+e.message)}
+}
+}});
+
+function openTool(id){
+const tool=TOOLS.find(x=>x.id===id);
+if(!tool)return;
+$('#modalTitle').textContent=tool.icon+' '+(tool.name[lang]||tool.name.en);
+const renderer=R[id];
+if(!renderer){$('#modalBody').innerHTML='<p>قريباً</p>';$('#toolModal').classList.add('show');return}
+const {html,wire}=renderer();
+$('#modalBody').innerHTML=html;
+$('#toolModal').classList.add('show');
+document.body.style.overflow='hidden';
+try{wire()}catch(e){console.error('wire error',id,e)}
+const cb=$('#copyResult');if(cb)cb.onclick=()=>copyText($('#toolResult')?.textContent||'');
+}
+
+function closeModal(){
+$('#toolModal').classList.remove('show');
+document.body.style.overflow='';
+if('speechSynthesis' in window)speechSynthesis.cancel();
+}
+
+document.addEventListener('click',e=>{
+const cat=e.target.closest('[data-cat]');
+if(cat){category=cat.dataset.cat;onlyFav=false;renderCategories();renderTools();$('#showFavorites').classList.toggle('active',false);return}
+const fav=e.target.closest('[data-fav]');
+if(fav){const id=fav.dataset.fav;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];LS.set('hema_favs',JSON.stringify(favorites));renderTools();return}
+const open=e.target.closest('[data-open]');
+if(open){openTool(open.dataset.open);return}
+});
+
+$('#showFavorites').onclick=()=>{onlyFav=!onlyFav;$('#showFavorites').classList.toggle('active',onlyFav);renderCategories();renderTools()};
+$('#search').addEventListener('input',renderTools);
+$('#language').onchange=e=>{lang=e.target.value;LS.set('hema_lang',lang);applyLanguage()};
+$('#theme').onchange=e=>{theme=e.target.value;applyTheme()};
+$('#closeModal').onclick=closeModal;
+$('#toolModal').addEventListener('click',e=>{if(e.target.id==='toolModal')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+if(!LS.get('hema_cookie',''))$('#cookieBanner').style.display='flex';
+$('#acceptCookies').onclick=()=>{LS.set('hema_cookie','true');$('#cookieBanner').style.display='none'};
+
+$('#year').textContent=new Date().getFullYear();
+applyTheme();
+applyLanguage();
+const initHash=location.hash.slice(1);
+if(initHash&&PAGES[initHash]){showPage(initHash,false)}
+else{showHome(false)}
+</script>
+</body>
+</html>
