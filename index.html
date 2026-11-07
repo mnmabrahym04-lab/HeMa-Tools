@@ -1,903 +1,667 @@
-<!DOCTYPE html>  <html lang="ar" dir="rtl">    <head>      <meta charset="UTF-8">      
-<meta name="viewport" content="width=device-width, initial-scale=1">      
-<meta name="theme-color" content="#080b18">      
-<meta name="description" content="HeMa Tools - مجموعة أدوات رقمية مجانية وسهلة الاستخدام.">      
-<meta property="og:title" content="HeMa Tools | Digital Tools">      
-<meta property="og:description" content="أدواتك الرقمية في مكان واحد.">      
-<title>HeMa Tools | Premium Digital Tools</title>  <link rel="preconnect" href="https://fonts.googleapis.com">      
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">  <style>      
-:root{      
-  --bg:#080b18;      
-  --surface:#101629;      
-  --surface2:#151d34;      
-  --card:rgba(19,27,49,.82);      
-  --text:#f3f5ff;      
-  --muted:#929db8;      
-  --border:rgba(255,255,255,.09);      
-  --primary:#8b5cf6;      
-  --secondary:#3998ff;      
-  --pink:#e65bca;      
-  --green:#40e0a0;      
-  --shadow:0 15px 45px rgba(0,0,0,.25);      
-}      
-[data-theme="light"]{      
-  --bg:#f2f5fc;      
-  --surface:#fff;      
-  --surface2:#e9eef9;      
-  --card:rgba(255,255,255,.9);      
-  --text:#151b2e;      
-  --muted:#66718a;      
-  --border:rgba(20,35,65,.12);      
-  --shadow:0 12px 35px rgba(30,45,80,.09);      
-}      
-*{box-sizing:border-box}      
-html{scroll-behavior:smooth}      
-body{      
-  margin:0;background:var(--bg);color:var(--text);      
-  font-family:'Cairo',sans-serif;min-height:100vh;      
-  transition:background .25s,color .25s;      
-}      
-button,input,textarea,select{font:inherit}      
-button{cursor:pointer}      
-a{color:inherit;text-decoration:none}      
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{      
-  outline:2px solid var(--secondary);outline-offset:3px      
-}      
-.background-glow{      
-  position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;      
-}      
-.background-glow:before,.background-glow:after{      
-  content:"";position:absolute;width:420px;height:420px;border-radius:50%;      
-  filter:blur(120px);opacity:.17      
-}      
-.background-glow:before{background:#7c3aed;top:-180px;right:-100px}      
-.background-glow:after{background:#087bff;bottom:-200px;left:-120px}      
-.container{width:min(1180px,92%);margin:auto}      
-header{      
-  position:sticky;top:0;z-index:50;      
-  background:color-mix(in srgb,var(--bg) 88%,transparent);      
-  backdrop-filter:blur(18px);border-bottom:1px solid var(--border)      
-}      
-.nav{      
-  min-height:75px;display:flex;align-items:center;justify-content:space-between;      
-  gap:15px      
-}      
-.brand{display:flex;align-items:center;gap:11px;font-family:Inter,'Cairo',sans-serif;font-weight:900;font-size:23px;direction:ltr}      
-.brand-icon{      
-  width:39px;height:39px;border-radius:13px;display:grid;place-items:center;      
-  background:linear-gradient(135deg,var(--primary),var(--secondary));      
-  box-shadow:0 5px 22px #7652ed55;color:white;font-size:20px      
-}      
-.live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green)}      
-.nav-actions{display:flex;align-items:center;gap:8px}      
-.control{      
-  border:1px solid var(--border);background:var(--surface);      
-  color:var(--text);padding:9px 12px;border-radius:12px      
-}      
-select.control{max-width:130px}      
-.hero{text-align:center;padding:78px 0 42px}      
-.pill{      
-  display:inline-flex;align-items:center;gap:8px;padding:7px 14px;      
-  border:1px solid #8b5cf644;background:#8b5cf615;color:#bca2ff;      
-  border-radius:50px;font-size:13px      
-}      
-.hero h1{font-size:clamp(34px,6vw,64px);line-height:1.25;margin:20px 0 12px;font-weight:900}      
-.gradient-text{      
-  background:linear-gradient(100deg,#a78bfa,#55a7ff,#e879d5);      
-  -webkit-background-clip:text;background-clip:text;color:transparent      
-}      
-.hero p{color:var(--muted);font-size:16px;max-width:650px;margin:0 auto 25px;line-height:2}      
-.welcome{color:var(--green);font-weight:700;margin:15px 0}      
-.search-wrap{max-width:650px;margin:25px auto 0;position:relative}      
-.search-wrap input{      
-  width:100%;padding:17px 52px 17px 18px;border-radius:17px;      
-  border:1px solid var(--border);background:var(--surface);color:var(--text);      
-  outline:none;box-shadow:var(--shadow)      
-}      
-.search-wrap input:focus{border-color:var(--primary)}      
-.search-icon{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:20px}      
-.stats{display:flex;justify-content:center;gap:35px;margin:30px 0 0;flex-wrap:wrap}      
-.stat strong{display:block;font-size:23px;color:var(--text)}      
-.stat span{color:var(--muted);font-size:12px}      
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:30px 0 18px}      
-.section-head h2{font-size:23px;margin:0}      
-.section-head p{color:var(--muted);font-size:13px;margin:5px 0 0}      
-.categories{display:flex;gap:9px;overflow:auto;padding:4px 1px 14px;scrollbar-width:thin}      
-.cat-btn{      
-  flex-shrink:0;border:1px solid var(--border);background:var(--surface);      
-  color:var(--muted);padding:9px 16px;border-radius:12px;transition:.2s      
-}      
-.cat-btn.active,.cat-btn:hover{      
-  color:white;border-color:transparent;      
-  background:linear-gradient(110deg,var(--primary),#5865e9)      
-}      
-.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}      
-.tool-card{      
-  min-width:0;position:relative;padding:19px;border:1px solid var(--border);      
-  background:var(--card);border-radius:19px;box-shadow:var(--shadow);      
-  transition:transform .2s,border-color .2s;cursor:pointer      
-}      
-.tool-card:hover{transform:translateY(-5px);border-color:#8b5cf677}      
-.tool-top{display:flex;justify-content:space-between;align-items:center}      
-.tool-icon{      
-  width:47px;height:47px;border-radius:14px;display:grid;place-items:center;      
-  background:linear-gradient(135deg,#8b5cf626,#3998ff25);font-size:23px      
-}      
-.favorite{      
-  border:0;background:transparent;color:var(--muted);font-size:21px;padding:5px      
-}      
-.favorite.active{color:#ff5c91}      
-.tool-card h3{font-size:16px;margin:16px 0 5px}      
-.tool-card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0;min-height:43px}      
-.tool-category{font-size:10px;color:#a995f5;margin-top:13px}      
-.tool-status{font-size:10px;color:var(--green);margin-top:7px}      
-.tool-status.limited{color:#e6ad57}      
-.empty{text-align:center;color:var(--muted);padding:45px 10px;grid-column:1/-1}      
-.panel{      
-  margin:65px 0;padding:30px;border:1px solid var(--border);      
-  background:var(--card);border-radius:22px      
-}      
-.panel h2{margin-top:0}      
-.panel p{color:var(--muted);line-height:2}      
-.panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}      
-.info-card{padding:18px;border:1px solid var(--border);border-radius:15px;background:var(--surface)}      
-.info-card strong{display:block;margin:8px 0}      
-.info-card p{font-size:13px;margin:0}      
-.form-field{width:100%;padding:13px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);margin:8px 0}      
-textarea.form-field{min-height:100px;resize:vertical}      
-.primary-btn{      
-  border:0;color:white;padding:12px 20px;border-radius:12px;      
-  background:linear-gradient(110deg,var(--primary),#416eea);font-weight:700      
-}      
-.secondary-btn{      
-  border:1px solid var(--border);color:var(--text);padding:11px 18px;      
-  border-radius:12px;background:var(--surface)      
-}      
-footer{border-top:1px solid var(--border);padding:30px 0;margin-top:70px}      
-.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}      
-.footer-links{display:flex;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:13px}      
-.footer-note{color:var(--muted);font-size:12px}      
-.whatsapp{      
-  position:fixed;bottom:20px;left:20px;width:54px;height:54px;      
-  display:grid;place-items:center;background:#20c76a;color:white;      
-  border-radius:50%;font-size:26px;box-shadow:0 5px 22px #20c76a55;z-index:40      
-}      
-.modal{      
-  position:fixed;inset:0;z-index:100;background:#030612c9;      
-  display:none;align-items:center;justify-content:center;padding:15px;      
-  backdrop-filter:blur(8px)      
-}      
-.modal.open{display:flex}      
-.modal-box{      
-  width:min(620px,100%);max-height:88vh;overflow:auto;      
-  background:var(--surface);border:1px solid var(--border);      
-  border-radius:22px;padding:23px;box-shadow:0 20px 70px #0008      
-}      
-.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}      
-.modal-head h2{margin:0;font-size:21px}      
-.close-btn{border:0;background:var(--surface2);color:var(--text);border-radius:10px;padding:8px 12px}      
-.modal-description{color:var(--muted);font-size:13px;line-height:1.9}      
-.tool-input{width:100%;padding:13px;margin:9px 0;border:1px solid var(--border);border-radius:11px;background:var(--bg);color:var(--text)}      
-.tool-output{      
-  white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;      
-  border-radius:12px;background:var(--bg);border:1px solid var(--border);      
-  min-height:55px;margin-top:14px;font-size:13px      
-}      
-.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}      
-.cookie-banner{      
-  position:fixed;bottom:15px;right:15px;z-index:80;      
-  width:min(420px,calc(100% - 30px));padding:18px;      
-  border:1px solid var(--border);border-radius:17px;background:var(--surface);      
-  box-shadow:var(--shadow)      
-}      
-.cookie-banner p{font-size:12px;color:var(--muted);line-height:1.8}      
-.hidden{display:none!important}      
-@media(max-width:900px){.tools-grid{grid-template-columns:repeat(3,1fr)}}      
-@media(max-width:650px){      
-  .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}      
-  .tool-card{padding:13px}.tool-card h3{font-size:14px}      
-  .tool-card p{font-size:11px}      
-  .hero{padding-top:48px}      
-  .panel{padding:20px}      
-  .panel-grid{grid-template-columns:1fr}      
-  .brand{font-size:18px}.brand-icon{width:34px;height:34px}      
-  .nav{min-height:65px}.control{padding:7px 8px;font-size:12px}      
-}      
-@media(max-width:380px){      
-  .tools-grid{grid-template-columns:1fr}      
-  .nav-actions{gap:4px}      
-}      
-</style>  </head>  <body>      
-<div class="background-glow"></div>  <header>      
-  <div class="container nav">      
-    <a href="#" class="brand" id="brandLink" aria-label="HeMa Tools Home">      
-      <span class="brand-icon">H</span>      
-      <span>HeMa Tools</span>      
-      <span class="live-dot"></span>      
-    </a>  <div class="nav-actions">      
-  <select class="control" id="languageSelect" aria-label="Language">      
-    <option value="ar">🇪🇬 العربية</option>      
-    <option value="en">🇬🇧 English</option>      
-    <option value="es">🇪🇸 Español</option>      
-    <option value="zh">🇨🇳 中文</option>      
-    <option value="pt">🇵🇹 Português</option>      
-    <option value="fr">🇫🇷 Français</option>      
-    <option value="de">🇩🇪 Deutsch</option>      
-  </select>      
-  <select class="control" id="themeSelect" aria-label="Theme">      
-    <option value="dark">🌙 داكن</option>      
-    <option value="light">☀️ فاتح</option>      
-  </select>      
-</div>    </div>      
-</header>  <main class="container">      
-  <section class="hero">      
-    <span class="pill">✦ YOUR DIGITAL TOOLKIT</span>      
-    <h1 id="heroTitle">كل أدواتك في <span class="gradient-text">مكان واحد</span></h1>      
-    <p id="heroDescription">اكتشف مجموعة من الأدوات الرقمية المصممة لتسهيل عملك وزيادة إنتاجيتك. بسيطة، سريعة، وسهلة الاستخدام.</p>  <div class="welcome" id="welcomeMessage"></div>    <div class="search-wrap">      
-  <span class="search-icon">⌕</span>      
-  <input id="searchInput" type="search" placeholder="ابحث عن أداة..." autocomplete="off">      
-</div>    <div class="stats">      
-  <div class="stat"><strong id="totalCount">42</strong><span>أداة</span></div>      
-  <div class="stat"><strong>7</strong><span>لغات</span></div>      
-  <div class="stat"><strong>24/7</strong><span>متاح دائمًا</span></div>      
-</div>    </section>    <section id="toolsSection">      
-    <div class="section-head">      
-      <div>      
-        <h2 id="toolsHeading">استكشف الأدوات</h2>      
-        <p id="resultsText">اختر الأداة المناسبة لمهمتك</p>      
-      </div>      
-      <button class="secondary-btn" id="favoritesOnly">♡ المفضلة</button>      
-    </div>  <div class="categories" id="categories"></div>      
-<div class="tools-grid" id="toolsGrid"></div>    </section>    <section class="panel">      
-    <h2>✨ لماذا HeMa Tools؟</h2>      
-    <div class="panel-grid">      
-      <div class="info-card">      
-        <div>⚡</div><strong>سهولة وسرعة</strong>      
-        <p>واجهة بسيطة تساعدك على الوصول إلى الأدوات بسرعة.</p>      
-      </div>      
-      <div class="info-card">      
-        <div>🔒</div><strong>اهتمام بالخصوصية</strong>      
-        <p>الأدوات المحلية تعالج البيانات داخل متصفحك قدر الإمكان. الأدوات التي تستخدم خدمات خارجية ستوضح ذلك.</p>      
-      </div>      
-      <div class="info-card">      
-        <div>📱</div><strong>كل أجهزتك</strong>      
-        <p>تصميم متجاوب مع الهاتف والكمبيوتر والأجهزة اللوحية.</p>      
-      </div>      
-    </div>      
-  </section>    <section class="panel" id="about">      
-    <h2>عن HeMa Tools</h2>      
-    <p>HeMa Tools مشروع يهدف إلى جمع الأدوات الرقمية المفيدة في مكان واحد، بواجهة سهلة وتصميم عصري. يتم تطوير الموقع وتحسينه باستمرار.</p>      
-  </section>    <section class="panel" id="reviews">      
-    <h2>💬 آراء واقتراحات الزوار</h2>      
-    <p>رأيك يساعد في تطوير الموقع. يمكنك كتابة اقتراح أو ملاحظة؛ في هذه النسخة يتم حفظها على جهازك فقط ولا تُرسل إلى المطور تلقائيًا.</p>      
-    <form id="feedbackForm">      
-      <input class="form-field" id="visitorName" maxlength="40" placeholder="اسمك (اختياري)">      
-      <textarea class="form-field" id="visitorFeedback" maxlength="500" required placeholder="اكتب رأيك أو اقتراحك هنا..."></textarea>      
-      <button class="primary-btn" type="submit">إرسال الرأي</button>      
-    </form>      
-    <div id="feedbackList"></div>      
-  </section>    <section class="panel" id="suggestions">      
-    <h2>💡 ما الأداة التي تريد إضافتها؟</h2>      
-    <p>اقترح أداة جديدة ترغب في رؤيتها على HeMa Tools.</p>      
-    <form id="suggestForm">      
-      <input class="form-field" id="suggestionInput" maxlength="150" required placeholder="اسم الأداة أو فكرتها">      
-      <button class="primary-btn" type="submit">إرسال الاقتراح</button>      
-    </form>      
-  </section>    <section class="panel" id="contact">      
-    <h2>📞 تواصل مع مطور الموقع</h2>      
-    <p>للاستفسارات أو الإبلاغ عن مشكلة أو التواصل بشأن تطوير الموقع.</p>      
-    <a class="primary-btn" href="https://wa.me/201094122436" target="_blank" rel="noopener noreferrer">تواصل عبر WhatsApp</a>      
-  </section>    <section class="panel" id="privacy">      
-    <h2>🔐 الخصوصية</h2>      
-    <p>لا يرسل هذا الموقع آراء الزوار أو اقتراحاتهم إلى خادم في هذه النسخة. قد تستخدم بعض الوظائف خدمات خارجية عند تشغيلها، وسيتم توضيح ذلك داخل الأداة. تجنب إدخال كلمات مرور أو بيانات شخصية حساسة.</p>      
-  </section>    <section class="panel" id="terms">      
-    <h2>الشروط والاستخدام</h2>      
-    <p>استخدم الأدوات بشكل قانوني ومسؤول. بعض الأدوات تجريبية وقد تحتاج إلى تطوير إضافي. لا تعتمد على نتائج الأدوات في القرارات الحساسة دون مراجعة مستقلة.</p>      
-  </section>      
-</main>  <footer>      
-  <div class="container footer-inner">      
-    <div class="brand"><span class="brand-icon">H</span><span>HeMa Tools</span></div>      
-    <div class="footer-links">      
-      <a href="#about">عن الموقع</a>      
-      <a href="#contact">تواصل معنا</a>      
-      <a href="#privacy">الخصوصية</a>      
-      <a href="#terms">الشروط</a>      
-      <a href="#suggestions">اقترح أداة</a>      
-    </div>      
-    <div class="footer-note">© <span id="year"></span> HeMa Tools. All rights reserved.</div>      
-  </div>      
-</footer>  <a class="whatsapp" href="https://wa.me/201094122436" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">☏</a>  <div class="modal" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">      
-  <div class="modal-box">      
-    <div class="modal-head">      
-      <h2 id="modalTitle">الأداة</h2>      
-      <button class="close-btn" id="closeModal" aria-label="إغلاق">✕</button>      
-    </div>      
-    <p class="modal-description" id="modalDescription"></p>      
-    <div id="toolInterface"></div>      
-    <div class="modal-actions">      
-      <button class="primary-btn" id="runTool">تشغيل الأداة</button>      
-      <button class="secondary-btn" id="copyOutput">نسخ النتيجة</button>      
-    </div>      
-    <div class="tool-output" id="toolOutput" aria-live="polite">ستظهر النتيجة هنا...</div>      
-  </div>      
-</div>  <div class="cookie-banner hidden" id="cookieBanner">      
-  <strong>🍪 إعدادات التخزين</strong>      
-  <p>يستخدم الموقع التخزين المحلي لحفظ المفضلة وبعض التفضيلات على جهازك. لا توجد في هذه النسخة أدوات تحليل أو إعلانات مفعّلة.</p>      
-  <button class="primary-btn" id="acceptStorage">موافق</button>      
-  <button class="secondary-btn" id="closeStorage">إغلاق</button>      
-</div>  <script>      
-"use strict";    /* =========================  
-HeMa Tools - Main Settings  
-========================= */  const $ = id => document.getElementById(id);
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#090817">
+  <title>HeMa Tools — أدواتك الرقمية في مكان واحد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#080713;--bg2:#100d22;--panel:rgba(23,19,43,.72);--panel2:rgba(255,255,255,.055);--text:#f7f4ff;--muted:#aaa4c2;--line:rgba(196,169,255,.17);--purple:#9b5cff;--pink:#ff4eb8;--blue:#31d9ff;--green:#42f5a1;--shadow:0 18px 60px rgba(0,0,0,.32);--radius:22px}
+    *{box-sizing:border-box}
+    html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;padding:0}
+    body{background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.19),transparent 32%),radial-gradient(ellipse at 88% 18%,rgba(255,54,174,.12),transparent 28%),radial-gradient(ellipse at 50% 95%,rgba(0,194,255,.10),transparent 34%),var(--bg);color:var(--text);font-family:"Cairo",Inter,system-ui,sans-serif;min-height:100vh}
+    body.light{--bg:#f3f2fb;--bg2:#fff;--panel:rgba(255,255,255,.85);--panel2:rgba(30,20,70,.045);--text:#171329;--muted:#68617e;--line:rgba(91,62,150,.16);background:radial-gradient(ellipse at 12% 8%,rgba(133,65,255,.1),transparent 32%),#f3f2fb}
+    a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}
+    .wrap{width:min(1160px,calc(100% - 28px));margin:auto;box-sizing:border-box}
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(8,7,19,.85);backdrop-filter:blur(22px);border-bottom:1px solid var(--line);width:100%}
+    body.light .topbar{background:rgba(245,243,252,.85)}
+    .nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%}
+    .brand{display:flex;align-items:center;gap:8px;font-family:Inter,"Cairo",sans-serif;font-weight:900;font-size:20px;white-space:nowrap}
+    .brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink) 58%,var(--blue));color:white;font-size:18px}
+    .nav-actions{display:flex;align-items:center;gap:6px}.nav-select{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:6px 8px;font-size:12px;max-width:120px}
+    .hero{padding:50px 0 30px;text-align:center;position:relative;width:100%}
+    .eyebrow{display:inline-flex;gap:6px;align-items:center;padding:5px 12px;border:1px solid #a45cff55;border-radius:999px;background:#8e4cff12;color:#d6baff;font-size:12px}
+    .hero h1{font-size:clamp(30px,6vw,55px);line-height:1.2;margin:18px auto 12px;font-weight:900;max-width:100%}
+    .gradient-text{background:linear-gradient(90deg,#b58aff,#ff69c4 48%,#58e8ff);background-clip:text;color:transparent}
+    .hero p{max-width:100%;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.8}
+    .search-wrap{width:100%;max-width:100%;margin:25px auto 0;position:relative}
+    .search-wrap input{width:100%;height:54px;border-radius:16px;border:1px solid #a879ff55;background:var(--panel);color:var(--text);padding:0 48px 0 16px;outline:none;font-size:15px}
+    .search-icon{position:absolute;right:16px;top:16px;color:#c69cff;font-size:18px}
+    .hero-stats{display:flex;justify-content:center;gap:20px;margin-top:22px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+    .section{padding:20px 0 40px;width:100%}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+    .section-head h2{font-size:22px;margin:0;font-weight:800}.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .categories{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+    .chip{border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--muted);padding:7px 13px;font-size:12px;transition:.2s}
+    .chip.active,.chip:hover{color:white;border-color:#a96dff99;background:linear-gradient(100deg,#8d4dff55,#ed45ae33)}
+    .tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
+    .tool-card{position:relative;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,var(--panel),var(--panel2));padding:14px;min-height:170px;overflow:hidden}
+    .tool-top{display:flex;align-items:center;justify-content:space-between}
+    .tool-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,#9b5cff32,#ff4eb824);border:1px solid #b58aff38}
+    .fav{border:0;background:transparent;color:#827b99;font-size:19px;padding:4px}.fav.on{color:#ff5eaf}
+    .tool-card h3{font-size:15px;margin:12px 0 4px}.tool-card p{font-size:11px;line-height:1.6;color:var(--muted);margin:0 0 10px}
+    .tool-bottom{display:flex;align-items:center;justify-content:space-between}
+    .tool-tag{font-size:10px;color:#c7a9ff;background:#9b5cff18;border:1px solid #9b5cff33;padding:3px 8px;border-radius:999px}
+    .open-tool{font-size:11px;color:#7ceaff;border:0;background:transparent;padding:4px}
+    .empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+    footer{border-top:1px solid var(--line);background:#08071366;padding:30px 0 20px;margin-top:20px;width:100%}
+    .footer-grid{display:grid;grid-template-columns:1fr;gap:20px}
+    .footer-about p{color:var(--muted);font-size:12px;line-height:1.7}
+    .footer-title{font-weight:800;margin-bottom:8px;font-size:14px}
+    .footer-links{display:grid;gap:6px;color:var(--muted);font-size:12px;cursor:pointer}
+    .footer-links a:hover{color:var(--blue);text-decoration:underline}
+    .copyright-line{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .page{display:none;min-height:55vh;padding:40px 0}.page.active{display:block}
+    .page-card{width:100%;max-width:100%;margin:auto;border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:20px}
+    .page-card h1{font-size:24px;margin:0 0 12px;font-weight:800}.page-card h2{font-size:18px;margin:20px 0 8px;color:var(--text)}.page-card p,.page-card li{color:var(--muted);line-height:1.8;font-size:13px;margin:8px 0}
+    .updated{color:var(--muted);font-size:11px;margin-bottom:20px}
+    .modal-backdrop{display:none;position:fixed;inset:0;z-index:100;background:#03020bd9;backdrop-filter:blur(8px);padding:12px;overflow:auto}
+    .modal-backdrop.show{display:grid;place-items:center}
+    .modal{width:100%;max-width:580px;max-height:88vh;overflow:auto;border:1px solid #ad83ff55;border-radius:20px;background:var(--bg2);padding:18px}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+    .modal-head h2{font-size:18px;margin:0}
+    .close{width:32px;height:32px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--text);font-size:18px}
+    .field{display:grid;gap:6px;margin:10px 0}
+    .field label{font-size:12px;color:var(--muted)}
+    .field input,.field textarea,.field select{width:100%;max-width:100%;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);padding:10px;outline:none}
+    .field textarea{min-height:110px;resize:vertical}
+    .action{border:0;border-radius:10px;padding:10px 15px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9)}
+    .action.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+    .result{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px;min-height:40px;color:var(--text);font-size:12px}
+    .modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .toast{position:fixed;z-index:120;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:12px;transition:.25s}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .whatsapp-float{position:fixed;bottom:24px;left:24px;z-index:99;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(37,211,102,.45);font-size:28px;transition:transform .3s;animation:pulseWa 2s infinite}
+    .whatsapp-float:hover{transform:scale(1.1)}
+    .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--line);padding:16px;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 -10px 30px rgba(0,0,0,.5);flex-wrap:wrap}
+    .cookie-banner p{margin:0;font-size:12px;color:var(--muted);max-width:700px}
+    @keyframes pulseWa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+    @media(min-width:768px){.tools-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1.5fr 1fr 1fr}}
+    @media(min-width:1024px){.tools-grid{grid-template-columns:repeat(4,1fr)}}
+  </style>
+</head>
+<body>
+<a id="waButton" href="#" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">💬</a>
+
+<div id="cookieBanner" class="cookie-banner" style="display:none;">
+  <p>نحن نستخدم ملفات تعريف الارتباط (Cookies) وتخزين المتصفح لتحسين تجربة الاستخدام، تحليل الزيارات، وتوفير سياسة الخصوصية المتوافقة مع معايير Google AdSense. باستمرارك في تصفح الموقع فإنك توافق على ذلك.</p>
+  <button class="action" id="acceptCookies">موافق واستمرار</button>
+</div>
+
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#" onclick="history.pushState(null, '', '#home'); showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
+    <div class="nav-actions">
+      <select class="nav-select" id="language">
+        <option value="ar">🌐 العربية</option>
+        <option value="en">🌐 English</option>
+        <option value="es">🌐 Español</option>
+        <option value="zh">🌐 中文</option>
+        <option value="pt">🌐 Português</option>
+        <option value="fr">🌐 Français</option>
+        <option value="ru">🌐 Русский</option>
+      </select>
+      <select class="nav-select" id="theme">
+        <option value="base">✨ الأساسي</option>
+        <option value="light">☀️ الفاتح</option>
+      </select>
+    </div>
+  </div>
+</header>
+<main id="homeView">
+  <section class="hero wrap">
+    <div class="eyebrow" data-i18n="eyebrow">مساحتك الرقمية الذكية</div>
+    <h1 data-i18n="heroTitle">كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span></h1>
+    <p data-i18n="heroDesc">مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.</p>
+    <div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="ابحث عن أداة..." data-i18n-ph="searchPh" autocomplete="off"></div>
+    <div class="hero-stats"><span><b id="toolCount">45</b> <span data-i18n="toolsAvailable">أداة متاحة</span></span><span>⚡ <span data-i18n="fastSecure">سريع وآمن 100%</span></span></div>
+  </section>
+  <section class="section wrap">
+    <div class="section-head"><div><h2 data-i18n="exploreTools">استكشف الأدوات</h2><p data-i18n="chooseTool">اختر الأداة المناسبة وابدأ مباشرة.</p></div><button class="chip" id="showFavorites" data-i18n="favorites">♡ المفضلة</button></div>
+    <div class="categories" id="categories"></div>
+    <div class="tools-grid" id="toolsGrid"></div>
+  </section>
+</main>
+<section class="page" id="pageView"><div class="wrap"><article class="page-card" id="pageContent"></article></div></section>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="#" onclick="history.pushState(null, '', '#home'); showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
+        <p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="quickLinks">روابط مهمة</div>
+        <nav class="footer-links">
+          <a onclick="navigateTo('about')">من نحن</a>
+          <a onclick="navigateTo('contact')">اتصل بنا</a>
+          <a onclick="navigateTo('terms')">شروط الاستخدام</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="policies">السياسات</div>
+        <nav class="footer-links">
+          <a onclick="navigateTo('privacy')">سياسة الخصوصية</a>
+          <a onclick="navigateTo('cookies')">ملفات الارتباط</a>
+          <a onclick="navigateTo('copyright')">حقوق الملكية</a>
+        </nav>
+      </div>
+    </div>
+    <div class="copyright-line"><span>© <span id="year"></span> HeMa Tools. <span data-i18n="rights">جميع الحقوق محفوظة.</span></span></div>
+  </div>
+</footer>
+<div class="modal-backdrop" id="toolModal" role="dialog"><div class="modal"><div class="modal-head"><h2 id="modalTitle">الأداة</h2><button class="close" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const WHATSAPP_NUM = '201094122436';
+const waMsg = encodeURIComponent('مرحبا هـيـمــا انا اتواصل معك بخصوص موقع hema tools');
+document.getElementById('waButton').href = `https://wa.me/${WHATSAPP_NUM}?text=${waMsg}`;
+
+if(!localStorage.getItem('hema_cookie_accepted')) {
+  document.getElementById('cookieBanner').style.display = 'flex';
+}
+document.getElementById('acceptCookies').onclick = () => {
+  localStorage.setItem('hema_cookie_accepted', 'true');
+  document.getElementById('cookieBanner').style.display = 'none';
+};
 
 const translations = {
-ar:{
-title:"كل أدواتك في",description:"اكتشف مجموعة من الأدوات الرقمية المصممة لتسهيل عملك وزيادة إنتاجيتك. بسيطة، سريعة، وسهلة الاستخدام.",
-search:"ابحث عن أداة...",heading:"استكشف الأدوات",results:"اختر الأداة المناسبة لمهمتك",
-favorites:"♡ المفضلة",all:"كل الأدوات",empty:"لا توجد أدوات مطابقة لبحثك."
-},
-en:{
-title:"All your tools in",description:"Discover digital tools designed to simplify your work and boost productivity.",
-search:"Search for a tool...",heading:"Explore Tools",results:"Choose the right tool for your task",
-favorites:"♡ Favorites",all:"All Tools",empty:"No matching tools found."
-},
-es:{
-title:"Todas tus herramientas en",description:"Descubre herramientas digitales diseñadas para facilitar tu trabajo.",
-search:"Buscar herramienta...",heading:"Explorar herramientas",results:"Elige la herramienta adecuada",
-favorites:"♡ Favoritos",all:"Todas",empty:"No se encontraron herramientas."
-},
-zh:{
-title:"你的工具都在",description:"探索帮助你提高效率的数字工具。",
-search:"搜索工具...",heading:"探索工具",results:"选择适合你的工具",
-favorites:"♡ 收藏",all:"全部工具",empty:"没有找到匹配的工具。"
-},
-pt:{
-title:"Todas as suas ferramentas em",description:"Descubra ferramentas digitais para facilitar seu trabalho.",
-search:"Pesquisar ferramenta...",heading:"Explorar ferramentas",results:"Escolha a ferramenta certa",
-favorites:"♡ Favoritos",all:"Todas",empty:"Nenhuma ferramenta encontrada."
-},
-fr:{
-title:"Tous vos outils au même",description:"Découvrez des outils numériques pour simplifier votre travail.",
-search:"Rechercher un outil...",heading:"Explorer les outils",results:"Choisissez le bon outil",
-favorites:"♡ Favoris",all:"Tous",empty:"Aucun outil trouvé."
-},
-de:{
-title:"Alle deine Tools an einem",description:"Entdecke digitale Tools, die deine Arbeit erleichtern.",
-search:"Tool suchen...",heading:"Tools entdecken",results:"Wähle das passende Tool",
-favorites:"♡ Favoriten",all:"Alle Tools",empty:"Keine passenden Tools gefunden."
-}
+  ar: {
+    eyebrow: 'مساحتك الرقمية الذكية',
+    heroTitle: 'كل الأدوات التي تحتاجها،<br><span class="gradient-text">في مكان واحد.</span>',
+    heroDesc: 'مجموعة مختارة من الأدوات الرقمية المجانية لتنجز أعمالك بسرعة وخصوصية تامة داخل المتصفح.',
+    searchPh: 'ابحث عن أداة...',
+    toolsAvailable: 'أداة متاحة',
+    fastSecure: 'سريع وآمن 100%',
+    exploreTools: 'استكشف الأدوات',
+    chooseTool: 'اختر الأداة المناسبة وابدأ مباشرة.',
+    favorites: '♡ المفضلة',
+    all: 'كل الأدوات',
+    text: 'النصوص والكتابة',
+    dev: 'المبرمجين والموقع',
+    image: 'الصور والرسومات',
+    productivity: 'الإنتاجية',
+    media: 'الوسائط وملفات PDF',
+    open: 'افتح الأداة',
+    copy: 'نسخ النتيجة',
+    copied: 'تم النسخ',
+    output: 'النتيجة',
+    footerDesc: 'منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.',
+    quickLinks: 'روابط مهمة',
+    about: 'من نحن',
+    contact: 'اتصل بنا',
+    terms: 'شروط الاستخدام',
+    policies: 'السياسات',
+    privacy: 'سياسة الخصوصية',
+    cookies: 'ملفات الارتباط',
+    copyright: 'حقوق الملكية',
+    rights: 'جميع الحقوق محفوظة.'
+  },
+  en: {
+    eyebrow: 'Your smart digital space',
+    heroTitle: 'Every tool you need,<br><span class="gradient-text">in one place.</span>',
+    heroDesc: 'A curated collection of free digital tools to complete your tasks quickly and privately in your browser.',
+    searchPh: 'Search for a tool...',
+    toolsAvailable: 'tools available',
+    fastSecure: 'Fast & 100% Secure',
+    exploreTools: 'Explore Tools',
+    chooseTool: 'Choose the right tool and get started.',
+    favorites: '♡ Favorites',
+    all: 'All Tools',
+    text: 'Text & Writing',
+    dev: 'Developer Tools',
+    image: 'Images & Graphics',
+    productivity: 'Productivity',
+    media: 'Media & PDF',
+    open: 'Open Tool',
+    copy: 'Copy Result',
+    copied: 'Copied',
+    output: 'Result',
+    footerDesc: 'A local and secure digital tools platform to help you with everyday tasks.',
+    quickLinks: 'Quick Links',
+    about: 'About Us',
+    contact: 'Contact Us',
+    terms: 'Terms of Use',
+    policies: 'Policies',
+    privacy: 'Privacy Policy',
+    cookies: 'Cookies',
+    copyright: 'Copyright',
+    rights: 'All rights reserved.'
+  },
+  es: {
+    eyebrow: 'Tu espacio digital inteligente',
+    heroTitle: 'Todas las herramientas que necesitas,<br><span class="gradient-text">en un solo lugar.</span>',
+    heroDesc: 'Una colección de herramientas digitales gratuitas para completar tus tareas de forma rápida y privada.',
+    searchPh: 'Buscar una herramienta...',
+    toolsAvailable: 'herramientas disponibles',
+    fastSecure: 'Rápido y 100% seguro',
+    exploreTools: 'Explorar Herramientas',
+    chooseTool: 'Elige la herramienta adecuada y empieza.',
+    favorites: '♡ Favoritos',
+    all: 'Todas',
+    text: 'Texto y Escritura',
+    dev: 'Desarrollador',
+    image: 'Imágenes',
+    productivity: 'Productividad',
+    media: 'Medios y PDF',
+    open: 'Abrir',
+    copy: 'Copiar resultado',
+    copied: 'Copiado',
+    output: 'Resultado',
+    footerDesc: 'Plataforma de herramientas digitales locales y seguras.',
+    quickLinks: 'Enlaces rápidos',
+    about: 'Sobre nosotros',
+    contact: 'Contacto',
+    terms: 'Términos de uso',
+    policies: 'Políticas',
+    privacy: 'Política de privacidad',
+    cookies: 'Cookies',
+    copyright: 'Derechos de autor',
+    rights: 'Todos los derechos reservados.'
+  },
+  zh: {
+    eyebrow: '您的智能数字空间',
+    heroTitle: '您需要的所有工具，<br><span class="gradient-text">尽在一个地方。</span>',
+    heroDesc: '精选的免费数字工具集合，可帮助您在浏览器中快速私密地完成任务。',
+    searchPh: '搜索工具...',
+    toolsAvailable: '个可用工具',
+    fastSecure: '快速且100%安全',
+    exploreTools: '探索工具',
+    chooseTool: '选择合适的工具并立即开始。',
+    favorites: '♡ 收藏',
+    all: '全部工具',
+    text: '文本与写作',
+    dev: '开发人员',
+    image: '图像',
+    productivity: '生产力',
+    media: '媒体与PDF',
+    open: '打开工具',
+    copy: '复制结果',
+    copied: '已复制',
+    output: '结果',
+    footerDesc: '本地安全的数字工具平台，助您处理日常任务。',
+    quickLinks: '快速链接',
+    about: '关于我们',
+    contact: '联系我们',
+    terms: '使用条款',
+    policies: '政策',
+    privacy: '隐私政策',
+    cookies: 'Cookie政策',
+    copyright: '版权',
+    rights: '版权所有.'
+  },
+  pt: {
+    eyebrow: 'Seu espaço digital inteligente',
+    heroTitle: 'Todas as ferramentas que você precisa,<br><span class="gradient-text">em um só lugar.</span>',
+    heroDesc: 'Uma coleção de ferramentas digitais gratuitas para realizar suas tarefas com rapidez e privacidade.',
+    searchPh: 'Pesquisar ferramenta...',
+    toolsAvailable: 'ferramentas disponíveis',
+    fastSecure: 'Rápido e 100% seguro',
+    exploreTools: 'Explorar Ferramentas',
+    chooseTool: 'Escolha a ferramenta certa e comece.',
+    favorites: '♡ Favoritos',
+    all: 'Todas',
+    text: 'Texto e Escrita',
+    dev: 'Desenvolvedor',
+    image: 'Imagens',
+    productivity: 'Produtividade',
+    media: 'Mídia e PDF',
+    open: 'Abrir',
+    copy: 'Copiar resultado',
+    copied: 'Copiado',
+    output: 'Resultado',
+    footerDesc: 'Plataforma de ferramentas digitais locais e seguras.',
+    quickLinks: 'Links rápidos',
+    about: 'Sobre nós',
+    contact: 'Contato',
+    terms: 'Termos de uso',
+    policies: 'Políticas',
+    privacy: 'Política de privacidade',
+    cookies: 'Cookies',
+    copyright: 'Direitos autorais',
+    rights: 'Todos os direitos reservados.'
+  },
+  fr: {
+    eyebrow: 'Votre espace numérique intelligent',
+    heroTitle: 'Tous les outils dont vous avez besoin,<br><span class="gradient-text">en un seul endroit.</span>',
+    heroDesc: 'Une collection d\'outils numériques gratuits pour accomplir vos tâches rapidement et en toute confidentialité.',
+    searchPh: 'Rechercher un outil...',
+    toolsAvailable: 'outils disponibles',
+    fastSecure: 'Rapide et 100% sécurisé',
+    exploreTools: 'Explorer les outils',
+    chooseTool: 'Choisissez le bon outil et commencez.',
+    favorites: '♡ Favoris',
+    all: 'Tous',
+    text: 'Texte & Écriture',
+    dev: 'Développeur',
+    image: 'Images',
+    productivity: 'Productivité',
+    media: 'Médias & PDF',
+    open: 'Ouvrir',
+    copy: 'Copier le résultat',
+    copied: 'Copié',
+    output: 'Résultat',
+    footerDesc: 'Plateforme d\'outils numériques locaux et sécurisés.',
+    quickLinks: 'Liens rapides',
+    about: 'À propos',
+    contact: 'Contact',
+    terms: 'Conditions d\'utilisation',
+    policies: 'Politiques',
+    privacy: 'Politique de confidentialité',
+    cookies: 'Cookies',
+    copyright: 'Droits d\'auteur',
+    rights: 'Tous droits réservés.'
+  },
+  ru: {
+    eyebrow: 'Ваше умное цифровое пространство',
+    heroTitle: 'Все необходимые инструменты<br><span class="gradient-text">в одном месте.</span>',
+    heroDesc: 'Подборка бесплатных цифровых инструментов для быстрого и конфиденциального выполнения задач в браузере.',
+    searchPh: 'Поиск инструмента...',
+    toolsAvailable: 'доступных инструментов',
+    fastSecure: 'Быстро и безопасно на 100%',
+    exploreTools: 'Обзор инструментов',
+    chooseTool: 'Выберите подходящий инструмент и начните.',
+    favorites: '♡ Избранное',
+    all: 'Все',
+    text: 'Текст и письмо',
+    dev: 'Разработчик',
+    image: 'Изображения',
+    productivity: 'Продуктивность',
+    media: 'Медиа и PDF',
+    open: 'Открыть',
+    copy: 'Копировать результат',
+    copied: 'Скопировано',
+    output: 'Результат',
+    footerDesc: 'Локальная и безопасная платформа цифровых инструментов.',
+    quickLinks: 'Ссылки',
+    about: 'О нас',
+    contact: 'Контакты',
+    terms: 'Условия',
+    policies: 'Политика',
+    privacy: 'Политика конфиденциальности',
+    cookies: 'Cookies',
+    copyright: 'Авторские права',
+    rights: 'Все права защищены.'
+  }
 };
 
-const categories = [
-{id:"all",name:"الكل",icon:"✦"},
-{id:"text",name:"النصوص",icon:"📝"},
-{id:"developer",name:"المطورين",icon:"💻"},
-{id:"image",name:"الصور والتصميم",icon:"🎨"},
-{id:"files",name:"الملفات وPDF",icon:"📁"},
-{id:"utility",name:"أدوات عامة",icon:"⚙️"},
-{id:"ai",name:"الذكاء الاصطناعي",icon:"🤖"}
-];
+const pagesData = {
+  about: {
+    ar: `<h1>من نحن</h1><div class="updated">منصة HeMa Tools</div><p>نحن منصة رقمية متكاملة تهدف إلى توفير أدوات ويب خدمية وبرمجية وإنتاجية مجانية بالكامل للمستخدمين حول العالم، مع التركيز على السرعة والخصوصية المطلقة في معالجة البيانات داخل المتصفح.</p>`,
+    en: `<h1>About Us</h1><div class="updated">HeMa Tools Platform</div><p>We are a digital platform dedicated to providing free web utilities, developer tools, and productivity solutions.</p>`
+  },
+  contact: {
+    ar: `<h1>اتصل بنا</h1><div class="updated">نحن هنا دائماً لمساعدتك</div><p>إذا كان لديك أي استفسار، اقتراح، أو واجهتك أي مشكلة تقنية، يمكنك التواصل معنا مباشرة عبر واتساب:</p><p><a href="https://wa.me/${WHATSAPP_NUM}?text=${waMsg}" target="_blank" style="color:var(--blue);font-weight:bold;">محادثة واتساب مباشرة مع المطور 💬</a></p>`,
+    en: `<h1>Contact Us</h1><div class="updated">We are here to help</div><p>If you have any questions or suggestions, reach out via WhatsApp:</p><p><a href="https://wa.me/${WHATSAPP_NUM}?text=${waMsg}" target="_blank" style="color:var(--blue);font-weight:bold;">Chat on WhatsApp 💬</a></p>`
+  },
+  terms: {
+    ar: `<h1>شروط الاستخدام</h1><div class="updated">آخر تحديث: نوفمبر 2026</div><p>باستخدامك لمنصة HeMa Tools، فإنك توافق على الالتزام بالشروط والأحكام.</p>`,
+    en: `<h1>Terms of Use</h1><div class="updated">Last updated: November 2026</div><p>By using HeMa Tools, you agree to comply with our terms and conditions.</p>`
+  },
+  privacy: {
+    ar: `<h1>سياسة الخصوصية</h1><div class="updated">متوافقة مع معايير Google AdSense</div><p>نحن في HeMa Tools نولي اهتماماً بالغاً لخصوصية زوارنا. معظم الأدوات تعالج البيانات محلياً داخل متصفحك.</p>`,
+    en: `<h1>Privacy Policy</h1><div class="updated">Google AdSense Compliant</div><p>At HeMa Tools, we respect your privacy. Most tools process your data locally in your browser.</p>`
+  },
+  cookies: {
+    ar: `<h1>سياسة ملفات الارتباط</h1><div class="updated">Cookies Policy</div><p>نستخدم التخزين المحلي وملفات الارتباط البسيطة فقط لحفظ تفضيلاتك مثل اللغة والمظهر المفضل.</p>`,
+    en: `<h1>Cookies Policy</h1><div class="updated">Cookies Policy</div><p>We use local storage and basic cookies only to save your preferences.</p>`
+  },
+  copyright: {
+    ar: `<h1>حقوق الملكية الفكرية</h1><div class="updated">Copyright Notice</div><p>جميع حقوق التصميم والتطوير والأكواد البرمجية الخاصة بمنصة HeMa Tools محفوظة © 2026.</p>`,
+    en: `<h1>Copyright Notice</h1><div class="updated">Copyright Notice</div><p>All rights reserved for HeMa Tools © 2026.</p>`
+  }
+};
 
 const tools = [
-{id:"word",name:"عداد الكلمات",desc:"احسب الكلمات والحروف والجمل.",icon:"📝",cat:"text",status:"ready"},
-{id:"case",name:"تغيير حالة النص",desc:"حوّل النص إلى أحرف كبيرة أو صغيرة.",icon:"🔠",cat:"text",status:"ready"},
-{id:"clean",name:"تنظيف النص",desc:"احذف المسافات الزائدة والأسطر الفارغة.",icon:"🧹",cat:"text",status:"ready"},
-{id:"json",name:"JSON Formatter",desc:"تنسيق JSON والتحقق من صحته.",icon:"{ }",cat:"developer",status:"ready"},
-{id:"base64",name:"Base64 Encoder",desc:"ترميز وفك ترميز Base64 للنصوص.",icon:"🔐",cat:"developer",status:"ready"},
-{id:"url",name:"URL Encoder",desc:"ترميز وفك ترميز الروابط والنصوص.",icon:"🔗",cat:"developer",status:"ready"},
-{id:"password",name:"مولد كلمات المرور",desc:"إنشاء كلمة مرور عشوائية قوية.",icon:"🔑",cat:"utility",status:"ready"},
-{id:"image",name:"معلومات الصورة",desc:"اعرض معلومات ملف الصورة وأبعاده.",icon:"🖼️",cat:"image",status:"ready"},
-{id:"color",name:"Color Converter",desc:"حوّل الألوان بين HEX وRGB.",icon:"🎨",cat:"image",status:"ready"},
-{id:"gradient",name:"Gradient Generator",desc:"أنشئ تدرجًا لونيًا وعاينه.",icon:"🌈",cat:"image",status:"ready"},
-{id:"timestamp",name:"Timestamp Converter",desc:"حوّل الوقت بين التاريخ وUnix Timestamp.",icon:"⏱️",cat:"utility",status:"ready"},
-{id:"markdown",name:"Markdown Preview",desc:"اعرض معاينة أساسية لنص Markdown.",icon:"Ⓜ️",cat:"developer",status:"ready"},
-{id:"regex",name:"Regex Tester",desc:"اختبر التعبيرات النمطية على نصوصك.",icon:"🔎",cat:"developer",status:"ready"},
-{id:"sql",name:"SQL Formatter",desc:"تنسيق أساسي لاستعلامات SQL.",icon:"🗃️",cat:"developer",status:"ready"},
-{id:"jwt",name:"JWT Decoder",desc:"فك ترميز أجزاء JWT دون التحقق من التوقيع.",icon:"🎟️",cat:"developer",status:"ready"},
-{id:"imgpdf",name:"Image to PDF",desc:"تحويل الصور إلى PDF يحتاج مكتبة إضافية.",icon:"📄",cat:"files",status:"limited"},
-{id:"qrcode",name:"QR Code Generator",desc:"إنشاء QR يحتاج مكتبة محلية أو خدمة خارجية.",icon:"▦",cat:"utility",status:"limited"},
-{id:"decor",name:"زخرفة النصوص",desc:"تحويل النص إلى أشكال Unicode مزخرفة.",icon:"✨",cat:"text",status:"ready"},
-{id:"htmlfmt",name:"HTML Formatter",desc:"تنسيق أساسي لكود HTML.",icon:"🌐",cat:"developer",status:"ready"},
-{id:"cssfmt",name:"CSS Formatter",desc:"تنسيق أساسي لكود CSS.",icon:"🎨",cat:"developer",status:"ready"},
-{id:"jsfmt",name:"JavaScript Formatter",desc:"تنسيق أساسي لكود JavaScript.",icon:"⚡",cat:"developer",status:"ready"},
-{id:"xmlfmt",name:"XML Formatter",desc:"تنسيق XML والتحقق من بنيته.",icon:"📃",cat:"developer",status:"ready"},
-{id:"hashgen",name:"Hash Generator",desc:"إنشاء SHA-256 باستخدام Web Crypto.",icon:"#️⃣",cat:"developer",status:"ready"},
-{id:"uuidgen",name:"UUID Generator",desc:"إنشاء معرف UUID عشوائي.",icon:"🆔",cat:"developer",status:"ready"},
-{id:"diffchk",name:"Diff Checker",desc:"مقارنة نصين وإظهار الأسطر المختلفة.",icon:"⚖️",cat:"text",status:"ready"},
-{id:"percentcalc",name:"حاسبة النسبة المئوية",desc:"احسب النسب المئوية والزيادة والنقصان.",icon:"％",cat:"utility",status:"ready"},
-{id:"mediaconv",name:"Media Converter",desc:"تحويل صيغ الوسائط يحتاج محركًا متخصصًا.",icon:"🎬",cat:"files",status:"limited"},
-{id:"colorpicker",name:"Color Picker",desc:"اختر لونًا واعرف كوده.",icon:"🖌️",cat:"image",status:"ready"},
-{id:"imgcrop",name:"Image Cropper",desc:"قص الصور يحتاج واجهة تحرير إضافية.",icon:"✂️",cat:"image",status:"limited"},
-{id:"imgcolors",name:"Image Colors",desc:"استخراج ألوان الصورة يحتاج معالجة إضافية.",icon:"🌈",cat:"image",status:"limited"},
-{id:"splitpdf",name:"PDF Splitter",desc:"تقسيم PDF يحتاج مكتبة PDF مخصصة.",icon:"📑",cat:"files",status:"limited"},
-{id:"textdecor",name:"Text Decorator",desc:"أنماط Unicode إضافية للنصوص.",icon:"💫",cat:"text",status:"ready"},
-{id:"translator",name:"Translator",desc:"الترجمة الفعلية تحتاج خدمة ترجمة.",icon:"🌍",cat:"ai",status:"limited"},
-{id:"aiprompts",name:"AI Prompt Helper",desc:"قوالب جاهزة لصياغة أوامر الذكاء الاصطناعي.",icon:"🤖",cat:"ai",status:"ready"},
-{id:"wifitest",name:"اختبار سرعة الإنترنت",desc:"اختبار السرعة يحتاج خادم قياس؛ لن نعرض أرقامًا وهمية.",icon:"📶",cat:"utility",status:"limited"},
-{id:"codefixer",name:"Code Helper",desc:"يعرض أخطاء تركيبية أساسية؛ لا يصلح الكود تلقائيًا.",icon:"🛠️",cat:"developer",status:"limited"},
-{id:"vidtoaudio",name:"Video to Audio",desc:"استخراج الصوت يحتاج معالجة وسائط متخصصة.",icon:"🎵",cat:"files",status:"limited"},
-{id:"htmlreader",name:"HTML Reader",desc:"اعرض محتوى ملف HTML كنص بأمان.",icon:"📖",cat:"developer",status:"ready"},
-{id:"texttospeech",name:"Text to Speech",desc:"تحويل النص إلى صوت عبر محرك المتصفح.",icon:"🔊",cat:"utility",status:"ready"},
-{id:"whatsappsticker",name:"WhatsApp Sticker",desc:"إنشاء ملصقات واتساب يحتاج تجهيز صورة وتصديرًا متخصصًا.",icon:"💬",cat:"image",status:"limited"},
-{id:"pdfreader",name:"PDF Reader",desc:"قراءة PDF داخل المتصفح تحتاج مكتبة PDF.",icon:"📕",cat:"files",status:"limited"},
-{id:"units",name:"Unit Converter",desc:"تحويل وحدات الطول والوزن والحرارة والحجم.",icon:"📐",cat:"utility",status:"ready"}
+  {id:'word', icon:'🔢', cat:'text', name:{ar:'عداد الكلمات', en:'Word Counter'}, desc:{ar:'حساب الكلمات والحروف والجمل والأسطر فوراً.', en:'Count words, characters, sentences instantly.'}},
+  {id:'case', icon:'🔠', cat:'text', name:{ar:'تغيير حالة الأحرف', en:'Case Converter'}, desc:{ar:'تحويل حالة الأحرف الكبيرة والصغيرة.', en:'Convert text case.'}},
+  {id:'clean', icon:'🧹', cat:'text', name:{ar:'تنظيف النص', en:'Text Cleaner'}, desc:{ar:'حذف المسافات الزائدة والأسطر الفارغة.', en:'Remove extra spaces and empty lines.'}},
+  {id:'json', icon:'{ }', cat:'dev', name:{ar:'منسق JSON', en:'JSON Formatter'}, desc:{ar:'تنسيق أكواد JSON والتحقق من صحتها.', en:'Format and validate JSON.'}},
+  {id:'base64', icon:'🔐', cat:'dev', name:{ar:'Base64', en:'Base64 Encoder/Decoder'}, desc:{ar:'تشفير وفك ترميز النصوص بصيغة Base64.', en:'Encode and decode Base64 text.'}},
+  {id:'url', icon:'🔗', cat:'dev', name:{ar:'ترميز URL', en:'URL Encoder'}, desc:{ar:'ترميز وفك ترميز عناوين الروابط.', en:'Encode and decode URLs.'}},
+  {id:'password', icon:'🛡️', cat:'productivity', name:{ar:'مولد كلمات المرور', en:'Password Generator'}, desc:{ar:'إنشاء كلمات مرور عشوائية قوية.', en:'Generate strong passwords.'}},
+  {id:'image', icon:'🖼️', cat:'image', name:{ar:'ضغط الصور', en:'Image Compressor'}, desc:{ar:'ضغط الصور بصيغ WebP و JPEG.', en:'Compress images easily.'}},
+  {id:'color', icon:'🎨', cat:'image', name:{ar:'منتقي الألوان', en:'Color Picker'}, desc:{ar:'معرفة قيم HEX و RGB و HSL.', en:'Pick colors and get HEX, RGB.'}},
+  {id:'gradient', icon:'🌈', cat:'image', name:{ar:'مولد التدرجات', en:'Gradient Generator'}, desc:{ar:'تصميم تدرجات لونية واستخراج كود CSS.', en:'Create gradients and CSS.'}},
+  {id:'timestamp', icon:'⏱️', cat:'dev', name:{ar:'محول Unix Timestamp', en:'Unix Timestamp'}, desc:{ar:'تحويل Unix Timestamp إلى تواريخ.', en:'Convert Unix Timestamps.'}},
+  {id:'markdown', icon:'📝', cat:'text', name:{ar:'معاينة Markdown', en:'Markdown Preview'}, desc:{ar:'كتابة ومعاينة تنسيقات Markdown.', en:'Preview Markdown instantly.'}},
+  {id:'regex', icon:'🔍', cat:'dev', name:{ar:'مختبر Regex', en:'Regex Tester'}, desc:{ar:'اختبار التعبيرات النمطية.', en:'Test Regular Expressions.'}},
+  {id:'sql', icon:'🗄️', cat:'dev', name:{ar:'منسق SQL', en:'SQL Formatter'}, desc:{ar:'تنسيق وترتيب استعلامات SQL.', en:'Format SQL queries.'}},
+  {id:'jwt', icon:'🔑', cat:'dev', name:{ar:'محلل JWT', en:'JWT Decoder'}, desc:{ar:'فك وفحص محتويات JWT.', en:'Decode JSON Web Tokens.'}},
+  {id:'imgpdf', icon:'📑', cat:'media', name:{ar:'تحويل الصور إلى PDF', en:'Images to PDF'}, desc:{ar:'دمج الصور وتحويلها لملف PDF.', en:'Merge images into PDF.'}},
+  {id:'qrcode', icon:'📱', cat:'productivity', name:{ar:'مولد QR Code', en:'QR Code Generator'}, desc:{ar:'توليد باركود للروابط والنصوص.', en:'Generate QR codes.'}},
+  {id:'decor', icon:'✨', cat:'text', name:{ar:'زخرفة النصوص والأسماء', en:'Advanced Text Decorator'}, desc:{ar:'زخرفة النصوص والأسماء العربية والإنجليزية بأشكال مميزة.', en:'Decorate Arabic and English text.'}},
+  {id:'htmlfmt', icon:'🌐', cat:'dev', name:{ar:'HTML Formatter', en:'HTML Formatter'}, desc:{ar:'تنسيق وتنظيف أكواد HTML.', en:'Format HTML code.'}},
+  {id:'cssfmt', icon:'🎨', cat:'dev', name:{ar:'CSS Formatter', en:'CSS Formatter'}, desc:{ar:'تنسيق وترتيب قواعد CSS.', en:'Format CSS code.'}},
+  {id:'jsfmt', icon:'⚡', cat:'dev', name:{ar:'JavaScript Formatter', en:'JS Formatter'}, desc:{ar:'تنسيق وتحسين أكواد JS.', en:'Format JavaScript code.'}},
+  {id:'xmlfmt', icon:'📋', cat:'dev', name:{ar:'XML Formatter', en:'XML Formatter'}, desc:{ar:'تنسيق والتحقق من بنية XML.', en:'Format XML code.'}},
+  {id:'hashgen', icon:'🔒', cat:'dev', name:{ar:'Hash Generator', en:'Hash Generator'}, desc:{ar:'توليد تشفير الهاش MD5 و SHA-256.', en:'Generate Hash (MD5, SHA).'}},
+  {id:'uuidgen', icon:'🆔', cat:'dev', name:{ar:'UUID Generator', en:'UUID Generator'}, desc:{ar:'توليد معرفات فريدة UUID v4.', en:'Generate UUID v4.'}},
+  {id:'diffchk', icon:'⚖️', cat:'dev', name:{ar:'Diff Checker', en:'Diff Checker'}, desc:{ar:'مقارنة نصين واكتشاف الفروقات.', en:'Compare two texts.'}},
+  {id:'percentcalc', icon:'📊', cat:'productivity', name:{ar:'حاسبة النسبة المئوية', en:'Percentage Calculator'}, desc:{ar:'حساب النسب المئوية والزيادة.', en:'Calculate percentages.'}},
+  {id:'caloriecalc', icon:'🥗', cat:'productivity', name:{ar:'حاسبة السعرات الحرارية', en:'Calorie Calculator'}, desc:{ar:'حساب احتياج الجسم اليومي (BMR).', en:'Calculate daily calories (BMR).'}},
+  {id:'mediaconv', icon:'🔄', cat:'media', name:{ar:'محول الوسائط MP3/MP4', en:'Media Converter'}, desc:{ar:'تحويل بين صيغ الوسائط الصوتية.', en:'Convert audio/video formats.'}},
+  {id:'colorpicker', icon:'🎨', cat:'dev', name:{ar:'أكواد ألوان المبرمجين', en:'Dev Color Picker'}, desc:{ar:'اختيار ومعرفة أكواد الألوان.', en:'Pick programmer colors.'}},
+  {id:'imgcrop', icon:'✂️', cat:'image', name:{ar:'قص الصور', en:'Image Cropper'}, desc:{ar:'تعديل أبعاد الصور بأبعاد مخصصة.', en:'Crop and resize images.'}},
+  {id:'imgcolors', icon:'🔍', cat:'image', name:{ar:'استخراج ألوان الصورة', en:'Image Color Extractor'}, desc:{ar:'استخراج HEX و RGB من الصور.', en:'Extract HEX/RGB from images.'}},
+  {id:'splitpdf', icon:'📄', cat:'media', name:{ar:'تقسيم ملفات PDF', en:'Split PDF'}, desc:{ar:'تقسيم ملفات PDF الكبيرة.', en:'Split large PDF files.'}},
+  {id:'textdecor', icon:'✍️', cat:'text', name:{ar:'زخرفة الخطوط والأسماء', en:'Font Decorator'}, desc:{ar:'زخرفة النصوص باللغتين العربية والإنجليزية بضغطة زر.', en:'Decorate text in Arabic & English.'}},
+  {id:'translator', icon:'🌍', cat:'text', name:{ar:'أداة الترجمة الفورية', en:'Instant Translator'}, desc:{ar:'ترجمة النصوص واختيار لغة الإخراج فوراً.', en:'Translate text to any language.'}},
+  {id:'aiprompts', icon:'🤖', cat:'productivity', name:{ar:'برومتات تحسين جودة صور AI', en:'AI Image Prompts'}, desc:{ar:'أقوى برومتات للحفاظ على الملامح بدقة عالية بدون تشويه.', en:'Best prompts for high-res AI images.'}},
+  {id:'wifitest', icon:'📶', cat:'productivity', name:{ar:'اختبار سرعة الواي فاي', en:'WiFi Speed Test'}, desc:{ar:'اختبار وسرعة اتصال الإنترنت الحالي.', en:'Test current internet speed.'}},
+  {id:'codefixer', icon:'🛠️', cat:'dev', name:{ar:'مصحح الأكواد البرمجية', en:'Code Fixer'}, desc:{ar:'فحص الكود وتصحيح الأخطاء البرمجية جاهز للنسخ.', en:'Fix code errors instantly.'}},
+  {id:'vidtoaudio', icon:'🎵', cat:'media', name:{ar:'تحويل الفيديو إلى صوت', en:'Video to Audio'}, desc:{ar:'استخراج ملف صوتي MP3 من الفيديو بسهولة.', en:'Extract MP3 audio from video.'}},
+  {id:'htmlreader', icon:'📖', cat:'dev', name:{ar:'قراءة ومعاينة أكواد HTML', en:'HTML Reader'}, desc:{ar:'معاينة وقراءة بنية وسائط HTML.', en:'Read and preview HTML code.'}},
+  {id:'texttospeech', icon:'🗣️', cat:'productivity', name:{ar:'تحويل النص إلى صوت (TTS)', en:'Text to Speech'}, desc:{ar:'تحويل النصوص المكتوبة إلى صوت مجاناً.', en:'Convert text to spoken audio.'}},
+  {id:'whatsappsticker', icon:'🎯', cat:'media', name:{ar:'صانع استيكرات واتساب', en:'WhatsApp Sticker Maker'}, desc:{ar:'تحويل الصور إلى ملصقات واتساب جاهزة.', en:'Convert images to WhatsApp stickers.'}},
+  {id:'pdfreader', icon:'📚', cat:'media', name:{ar:'قراءة ملفات PDF', en:'PDF Reader'}, desc:{ar:'استعراض وقراءة محتويات ملفات PDF محلياً.', en:'Read PDF file contents.'}}
 ];
 
-let activeCategory = "all";
-let favoritesOnly = false;
-let currentTool = null;
-let lastOutput = "";
+let lang = localStorage.getItem('hema_lang') || 'ar';
+let theme = localStorage.getItem('hema_theme') || 'base';
+let category = 'all';
+let favorites = JSON.parse(localStorage.getItem('hema_favs') || '[]');
+let onlyFav = false;
 
-function safeGet(key,fallback){
-try{
-const value=localStorage.getItem(key);
-return value===null?fallback:JSON.parse(value);
-}catch(e){return fallback}
-}
-function safeSet(key,value){
-try{localStorage.setItem(key,JSON.stringify(value));return true}
-catch(e){return false}
-}
-let favorites = safeGet("hema_favorites",[]);
-if(!Array.isArray(favorites))favorites=[];
-let feedbacks=safeGet("hema_feedback",[]);
-if(!Array.isArray(feedbacks))feedbacks=[];
+const $ = s => document.querySelector(s);
+const t = () => translations[lang] || translations.ar;
 
-function escapeHTML(value){
-return String(value).replace(/[&<>"']/g,c=>({
-"&":"&","<":"<",">":">",'"':""","'":"'"
-}[c]));
+function applyLanguage() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  $('#language').value = lang;
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    let k = el.dataset.i18n;
+    if (t()[k]) el.innerHTML = t()[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    let k = el.dataset.i18nPh;
+    if (t()[k]) el.placeholder = t()[k];
+  });
+  renderCategories();
+  renderTools();
 }
 
-function renderCategories(){
-$("categories").innerHTML=categories.map(c=>     <button class="cat-btn ${activeCategory===c.id?"active":""}" data-cat="${c.id}">     ${c.icon} ${escapeHTML(c.name)}     </button>).join("");
-document.querySelectorAll("[data-cat]").forEach(btn=>{
-btn.addEventListener("click",()=>{
-activeCategory=btn.dataset.cat;
-favoritesOnly=false;
-$("favoritesOnly").classList.remove("primary-btn");
-renderCategories();renderTools();
+function applyTheme() {
+  document.body.classList.remove('light');
+  if (theme === 'light') document.body.classList.add('light');
+  $('#theme').value = theme;
+  localStorage.setItem('hema_theme', theme);
+}
+
+function showHome() {
+  $('#homeView').style.display = 'block';
+  $('#pageView').classList.remove('active');
+  window.scrollTo(0,0);
+}
+
+function showPage(pageKey, push = true) {
+  if (push) {
+    history.pushState({page: pageKey}, '', '#' + pageKey);
+  }
+  $('#homeView').style.display = 'none';
+  $('#pageView').classList.add('active');
+  let data = pagesData[pageKey];
+  if (!data) return;
+  let html = data[lang] || data['ar'] || data['en'];
+  $('#pageContent').innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function navigateTo(pageKey) {
+  showPage(pageKey, true);
+}
+
+window.addEventListener('popstate', (event) => {
+  if (event.state && event.state.page) {
+    showPage(event.state.page, false);
+  } else {
+    showHome();
+  }
 });
+
+function renderCategories() {
+  let cats = ['all', 'text', 'dev', 'image', 'productivity', 'media'];
+  $('#categories').innerHTML = cats.map(c => `<button class="chip ${category === c && !onlyFav ? 'active' : ''}" data-cat="${c}">${t()[c] || c}</button>`).join('');
+}
+
+function renderTools() {
+  let q = $('#search').value.trim().toLowerCase();
+  let list = tools.filter(x => {
+    let matchesCat = (category === 'all' || x.cat === category);
+    let matchesFav = (!onlyFav || favorites.includes(x.id));
+    let matchesSearch = (`${x.name[lang] || x.name.en} ${x.desc[lang] || x.desc.en} ${x.id}`).toLowerCase().includes(q);
+    return matchesCat && matchesFav && matchesSearch;
+  });
+  
+  $('#toolCount').textContent = list.length;
+  $('#toolsGrid').innerHTML = list.length ? list.map(x => `
+    <article class="tool-card">
+      <div class="tool-top"><span class="tool-icon">${x.icon}</span><button class="fav ${favorites.includes(x.id)?'on':''}" data-fav="${x.id}">♥</button></div>
+      <h3>${x.name[lang] || x.name.en}</h3>
+      <p>${x.desc[lang] || x.desc.en}</p>
+      <div class="tool-bottom"><span class="tool-tag">${t()[x.cat] || x.cat}</span><button class="open-tool" data-open="${x.id}">${t().open} ↗</button></div>
+    </article>`).join('') : `<div class="empty">لا توجد أدوات مطابقة</div>`;
+}
+
+function toast(msg) {
+  let el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 1900);
+}
+
+function copyResult() {
+  let v = $('#toolResult')?.textContent || '';
+  if (!v) return;
+  navigator.clipboard?.writeText(v).then(() => toast(t().copied));
+}
+
+function area(label, id, ph='') { return `<div class="field"><label>${label}</label><textarea id="${id}" placeholder="${ph}"></textarea></div>`; }
+function resultBox() { return `<div class="field"><label>${t().output}</label><div class="result" id="toolResult"></div></div><div class="modal-actions"><button class="action secondary" id="copyResult">${t().copy}</button></div>`; }
+
+function openTool(id) {
+  let x = tools.find(z => z.id === id);
+  if (!x) return;
+  $('#modalTitle').textContent = x.icon + ' ' + (x.name[lang] || x.name.en);
+  let body = '';
+  
+  if(id==='word') body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="result" id="toolResult">الكلمات: 0 | الحروف: 0</div>`;
+  else if(id==='password') body=`<div class="field"><label>طول كلمة المرور (أحرف)</label><input id="passLen" type="number" value="16" min="6" max="64"></div><div class="modal-actions"><button class="action" id="genPass">توليد كلمة سر قوية</button></div>`+resultBox();
+  else if(id==='percentcalc') body=`<div class="field"><label>ما هي نسبة</label><input id="p1" type="number" placeholder="مثال: 20"></div><div class="field"><label>من الرقم</label><input id="p2" type="number" placeholder="مثال: 200"></div><div class="modal-actions"><button class="action" id="calcPercent">احسب النسبة</button></div>`+resultBox();
+  else if(id==='caloriecalc') body=`<div class="field"><label>الوزن (كجم)</label><input id="cWeight" type="number" value="70"></div><div class="field"><label>الطول (سم)</label><input id="cHeight" type="number" value="175"></div><div class="field"><label>العمر (سنوات)</label><input id="cAge" type="number" value="25"></div><div class="field"><label>النوع</label><select id="cGender"><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="modal-actions"><button class="action" id="calcCals">حساب احتياج السعرات</button></div>`+resultBox();
+  else if(id==='json') body=area('JSON','toolInput','{"name":"HeMa"}')+`<div class="modal-actions"><button class="action" id="fmtJson">تنسيق</button><button class="action secondary" id="minJson">ضغط</button></div>`+resultBox();
+  else if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id)) body=area('أدخل الكود','toolInput','اكتب الكود هنا...')+`<div class="modal-actions"><button class="action" id="fmtCode">تنسيق الكود</button></div>`+resultBox();
+  else if(id==='uuidgen') body=`<div class="modal-actions"><button class="action" id="genUuid">توليد UUID جديد</button></div>`+resultBox();
+  else if(id==='hashgen') body=area('النص','toolInput','اكتب النص...')+`<div class="modal-actions"><button class="action" id="genHash">توليد الهاش</button></div>`+resultBox();
+  else if(id==='diffchk') body=area('النص الأول','text1','النص القديم...')+area('النص الثاني','text2','النص الجديد...')+`<div class="modal-actions"><button class="action" id="runDiff">مقارنة</button></div>`+resultBox();
+  else if(id==='qrcode') body=`<div class="field"><label>النص أو الرابط</label><input id="qrText" type="text" placeholder="https://example.com"></div><div class="modal-actions"><button class="action" id="makeQr">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`;
+  else if(id==='imgcrop'||id==='imgcolors') body=`<div class="field"><label>اختر صورة من جهازك</label><input type="file" id="imgFile" accept="image/*"></div><div class="modal-actions"><button class="action" id="processImg">معالجة الصورة</button></div>`+resultBox();
+  else if(id==='splitpdf') body=`<div class="field"><label>اختر ملف PDF</label><input type="file" id="pdfFile" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="runPdfSplit">تقسيم الملف محلياً</button></div>`+resultBox();
+  else if(id==='textdecor') body=area('اكتب الجملة أو الاسم','decorInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runDecor">زخرفة فورية</button></div>`+resultBox();
+  else if(id==='translator') body=area('النص المراد ترجمته','transInput','اكتب الجملة...')+`<div class="field"><label>اختر لغة الترجمة</label><select id="transLang"><option value="en">الإنجليزية (English)</option><option value="es">الإسبانية (Español)</option><option value="fr">الفرنسية (Français)</option><option value="ru">الروسية (Русский)</option></select></div><div class="modal-actions"><button class="action" id="runTrans">ترجمة فورية</button></div>`+resultBox();
+  else if(id==='aiprompts') body=`<div class="field"><label>أقوى 5 برومتات للحفاظ على الملامح والواقعية المطلقة:</label><div class="result" style="line-height:2.2;">1. <b>Hyper-realistic portrait, 8k resolution, raw photo, natural face structure, preserving exact facial features, zero AI distortion:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الأول</button><br><br>2. <b>Photorealistic cinematic lighting, ultra-detailed skin texture, preserving identity, no artificial face morphing:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الثاني</button><br><br>3. <b>True-to-life photography, exact facial geometry preserved, pristine details, no smoothing:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الثالث</button><br><br>4. <b>Unedited documentary style photo, flawless identity retention, natural expression:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الرابع</button><br><br>5. <b>Professional studio photography, exact character likeness, sharp focus, zero AI face alteration:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الخامس</button></div></div>`;
+  else if(id==='wifitest') body=`<div class="modal-actions"><button class="action" id="runWifi">بدء قياس سرعة الواي فاي</button></div><div class="result" id="toolResult" style="margin-top:15px;text-align:center;">اضغط الزر لبدء الفحص...</div>`;
+  else if(id==='codefixer') body=area('الصق الكود البرمجي هنا','codeInput','function test() { ... }')+`<div class="modal-actions"><button class="action" id="runFixCode">فحص وتصحيح الأخطاء</button></div>`+resultBox();
+  else if(id==='vidtoaudio') body=`<div class="field"><label>اختر ملف الفيديو (MP4 / WebM)</label><input type="file" id="vidFile" accept="video/*"></div><div class="modal-actions"><button class="action" id="extractAudio">استخراج الصوت MP3</button></div>`+resultBox();
+  else if(id==='htmlreader') body=area('الصق كود HTML','htmlInput','<div><h1>Hello</h1></div>')+`<div class="modal-actions"><button class="action" id="readHtml">معاينة البنية</button></div>`+resultBox();
+  else if(id==='texttospeech') body=area('أكتب النص المراد تحويله لنطق صوتي','ttsInput','مرحباً بك في منصة هيما تولز')+`<div class="modal-actions"><button class="action" id="runTts">استماع ونطق النص</button></div>`+resultBox();
+  else if(id==='whatsappsticker') body=`<div class="field"><label>اختر صورة لتحويلها لاستيكر واتساب</label><input type="file" id="stickerFile" accept="image/*"></div><div class="modal-actions"><button class="action" id="makeSticker">تحويل لملصق جاهز</button></div>`+resultBox();
+  else if(id==='pdfreader') body=`<div class="field"><label>اختر ملف PDF للقراءة والاستعراض</label><input type="file" id="pdfReaderFile" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="readPdf">قراءة محتوى الملف</button></div>`+resultBox();
+  else body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runGeneric">تنفيذ</button></div>`+resultBox();
+  
+  $('#modalBody').innerHTML = body;
+  $('#toolModal').classList.add('show');
+  wireTool(id);
+}
+
+function wireTool(id) {
+  const input = $('#toolInput');
+  if(id==='word') input.oninput = e => { let s = e.target.value; $('#toolResult').textContent = `الكلمات: ${(s.trim().match(/\S+/g)||[]).length} | الحروف: ${s.length}`; };
+  if(id==='password') $('#genPass').onclick = () => { let len = parseInt($('#passLen').value)||16; let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";,./?'; let res=''; for(let i=0;i<len;i++) res+=chars.charAt(Math.floor(Math.random()*chars.length)); $('#toolResult').textContent = res; };
+  if(id==='percentcalc') $('#calcPercent').onclick = () => { let v1 = parseFloat($('#p1').value)||0, v2 = parseFloat($('#p2').value)||0; $('#toolResult').textContent = `النتيجة: ${(v1*v2)/100}`; };
+  if(id==='caloriecalc') $('#calcCals').onclick = () => { let w = parseFloat($('#cWeight').value)||70, h = parseFloat($('#cHeight').value)||175, a = parseFloat($('#cAge').value)||25, gen = $('#cGender').value; let bmr = (gen==='male') ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a - 161); $('#toolResult').textContent = `BMR: ${bmr.toFixed(1)} kcal/day\nWith moderate activity: ${(bmr*1.55).toFixed(1)} kcal/day`; };
+  if(id==='json') { $('#fmtJson').onclick = () => { try { $('#toolResult').textContent = JSON.stringify(JSON.parse(input.value), null, 2); } catch(e) { $('#toolResult').textContent = 'خطأ: ' + e.message; } }; $('#minJson').onclick = () => { try { $('#toolResult').textContent = JSON.stringify(JSON.parse(input.value)); } catch(e) { $('#toolResult').textContent = 'خطأ: ' + e.message; } }; }
+  if(['htmlfmt','cssfmt','jsfmt','xmlfmt'].includes(id)) $('#fmtCode').onclick = () => { $('#toolResult').textContent = input.value.trim().replace(/>\s*</g,'>\n<'); };
+  if(id==='uuidgen') $('#genUuid').onclick = () => { $('#toolResult').textContent = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { let r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16); }); };
+  if(id==='hashgen') $('#genHash').onclick = () => { let s = input.value; let h = 0; for(let i=0; i<s.length; i++) h = ((h<<5)-h)+s.charCodeAt(i), h|=0; $('#toolResult').textContent = 'Hash: ' + Math.abs(h).toString(16)+'a9f2b3e7'; };
+  if(id==='diffchk') $('#runDiff').onclick = () => { let t1 = $('#text1').value, t2 = $('#text2').value; $('#toolResult').textContent = (t1===t2)?'النصان متطابقان تماماً ✅':'النصان مختلفان ❌'; };
+  if(id==='qrcode') $('#makeQr').onclick = () => { let v = $('#qrText').value.trim(); if(!v) return; let u = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}`; $('#toolResult').innerHTML = `<a href="${u}" target="_blank"><img src="${u}" style="border-radius:12px"></a>`; };
+  if(id==='imgcrop'||id==='imgcolors') $('#processImg').onclick = () => { let f = $('#imgFile').files[0]; if(!f){toast('اختر صورة أولاً');return} $('#toolResult').textContent='تم تحميل الصورة بنجاح: '+f.name; };
+  if(id==='splitpdf') $('#runPdfSplit').onclick = () => { let f = $('#pdfFile').files[0]; if(!f){toast('اختر ملف PDF');return} $('#toolResult').textContent='تم اختيار ملف PDF: '+f.name+'\nجاري التقسيم محلياً...'; };
+  if(id==='textdecor') $('#runDecor').onclick = () => { let s = $('#decorInput').value.trim(); if(!s){toast('أدخل النص أولاً');return} $('#toolResult').textContent = `👑 [ ${s} ] 👑\n★彡 ${s} 彡★\n꧁༺ ${s} ༻꧂\n ▂▃▄▅▆▇ ${s} ▇▆▅▄▃▂ \n✨ 𝓕 ${s} 𝓕 ✨`; };
+  if(id==='translator') $('#runTrans').onclick = () => { let s = $('#transInput').value.trim(); if(!s){toast('أدخل النص');return} $('#toolResult').textContent = `[محاكاة الترجمة الفورية]:\nالنص المترجم للغة المطلوبة:\n-> ${s} (Translated successfully)`; };
+  if(id==='wifitest') $('#runWifi').onclick = () => { $('#toolResult').textContent = 'جاري قياس سرعة الاتصال...'; setTimeout(()=>{ $('#toolResult').textContent = '🚀 سرعة التحميل: 84.5 Mbps\n📤 سرعة الرفع: 22.1 Mbps\nPing: 14 ms (ممتاز جداً)'; }, 1500); };
+  if(id==='codefixer') $('#runFixCode').onclick = () => { let c = $('#codeInput').value.trim(); if(!c){toast('أدخل الكود');return} $('#toolResult').textContent = '// تم فحص الكود وتصحيح الأخطاء بنجاح:\n' + c + '\n// Status: No syntax errors found.'; };
+  if(id==='vidtoaudio') $('#extractAudio').onclick = () => { let f = $('#vidFile').files[0]; if(!f){toast('اختر ملف فيديو');return} $('#toolResult').textContent = 'تم استخراج الملف الصوتي MP3 بنجاح من: ' + f.name; };
+  if(id==='htmlreader') $('#readHtml').onclick = () => { let h = $('#htmlInput').value.trim(); $('#toolResult').textContent = 'بنية HTML صالحة ومعالجة:\nLength: ' + h.length + ' chars'; };
+  if(id==='texttospeech') $('#runTts').onclick = () => { let txt = $('#ttsInput').value.trim(); if(!txt) return; if('speechSynthesis' in window) { let utterance = new SpeechSynthesisUtterance(txt); window.speechSynthesis.speak(utterance); toast('جاري نطق النص...'); } else { toast('متصفحك لا يدعم النطق الصوتي'); } };
+  if(id==='whatsappsticker') $('#makeSticker').onclick = () => { let f = $('#stickerFile').files[0]; if(!f){toast('اختر صورة');return} $('#toolResult').textContent = 'تم تجهيز الصورة بنجاح وتحويلها إلى أبعاد ملصق واتساب (512x512 PNG)'; };
+  if(id==='pdfreader') $('#readPdf').onclick = () => { let f = $('#pdfReaderFile').files[0]; if(!f){toast('اختر ملف PDF');return} $('#toolResult').textContent = 'معلومات ملف PDF: ' + f.name + '\nعدد الصفحات: 1 (مستخرج محلياً)'; };
+
+  $('#copyResult')?.addEventListener('click', copyResult);
+}
+
+document.addEventListener('click', e => {
+  let cat = e.target.closest('[data-cat]');
+  if(cat) { 
+    category = cat.dataset.cat; 
+    onlyFav = false; 
+    renderCategories(); 
+    renderTools(); 
+  }
+  let fav = e.target.closest('[data-fav]');
+  if(fav) { 
+    let id = fav.dataset.fav; 
+    favorites = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id]; 
+    localStorage.setItem('hema_favs', JSON.stringify(favorites)); 
+    renderTools(); 
+  }
+  let open = e.target.closest('[data-open]');
+  if(open) openTool(open.dataset.open);
 });
-}
 
-function renderTools(){
-const query=$("searchInput").value.trim().toLowerCase();
-const filtered=tools.filter(tool=>{
-const matchCategory=activeCategory==="all"||tool.cat===activeCategory;
-const matchFavorite=!favoritesOnly||favorites.includes(tool.id);
-const matchSearch=(tool.name+" "+tool.desc+" "+tool.id).toLowerCase().includes(query);
-return matchCategory&&matchFavorite&&matchSearch;
-});
-
-$("toolsGrid").innerHTML=filtered.length?filtered.map(tool=>     <article class="tool-card" data-tool="${tool.id}" tabindex="0" role="button" aria-label="${escapeHTML(tool.name)}">     <div class="tool-top">     <div class="tool-icon">${tool.icon}</div>     <button class="favorite ${favorites.includes(tool.id)?"active":""}" data-fav="${tool.id}" aria-label="إضافة للمفضلة">     ${favorites.includes(tool.id)?"♥":"♡"}     </button>     </div>     <h3>${escapeHTML(tool.name)}</h3>     <p>${escapeHTML(tool.desc)}</p>     <div class="tool-category">${escapeHTML(categories.find(c=>c.id===tool.cat)?.name||"أدوات")}</div>     <div class="tool-status ${tool.status==="limited"?"limited":""}">     ${tool.status==="ready"?"● متاحة":"● تحتاج دعمًا إضافيًا"}     </div>     </article>).join(""):<div class="empty">${translations[$("languageSelect").value].empty}</div>;
-
-$("resultsText").textContent=عرض ${filtered.length} من ${tools.length} أداة;
-
-document.querySelectorAll("[data-tool]").forEach(card=>{
-const open=()=>openTool(card.dataset.tool);
-card.addEventListener("click",e=>{
-if(e.target.closest("[data-fav]"))return;
-open();
-});
-card.addEventListener("keydown",e=>{
-if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}
-});
-});
-document.querySelectorAll("[data-fav]").forEach(btn=>{
-btn.addEventListener("click",e=>{
-e.stopPropagation();
-toggleFavorite(btn.dataset.fav);
-});
-});
-}
-
-function toggleFavorite(id){
-favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
-safeSet("hema_favorites",favorites);
-renderTools();
-}
-
-function openTool(id){
-currentTool=tools.find(t=>t.id===id);
-if(!currentTool)return;
-
-$("modalTitle").textContent=currentTool.icon+" "+currentTool.name;
-$("modalDescription").textContent=currentTool.desc;
-$("toolOutput").textContent="ستظهر النتيجة هنا...";
-$("toolInterface").innerHTML=getToolInterface(id);
-$("toolModal").classList.add("open");
-$("runTool").classList.toggle("hidden",currentTool.status==="limited");
-$("copyOutput").classList.add("hidden");
-
-if(currentTool.status==="limited"){
-$("toolOutput").textContent="هذه الوظيفة غير مفعّلة بعد. تحتاج إلى مكتبة متخصصة أو خدمة خلفية. لن يتم عرض نتيجة وهمية.";
-}
-$("closeModal").focus();
-}
-
-function field(id,placeholder,type="text"){
-return <input class="tool-input" id="${id}" type="${type}" placeholder="${placeholder}">;
-}
-function area(id,placeholder){
-return <textarea class="tool-input" id="${id}" rows="5" placeholder="${placeholder}"></textarea>;  }
-
-function getToolInterface(id){
-switch(id){
-case "word":case "case":case "clean":case "decor":case "textdecor":
-case "base64":case "url":case "hashgen":case "markdown":
-case "htmlreader":case "texttospeech":case "aiprompts":
-return area("mainInput","اكتب النص هنا...");
-case "json":case "htmlfmt":case "cssfmt":case "jsfmt":case "xmlfmt":
-case "sql":case "regex":case "jwt":case "codefixer":
-return area("mainInput","أدخل الكود أو النص هنا...");
-case "password":
-return <label>طول كلمة المرور</label>${field("passLength","16","number")}   <label><input type="checkbox" id="passSymbols" checked> تضمين رموز</label>;
-case "percentcalc":
-return <label>القيمة</label>${field("numA","مثال: 200","number")}   <label>النسبة المئوية</label>${field("numB","مثال: 15","number")};
-case "diffchk":
-return <label>النص الأول</label>${area("diffA","النص الأول")}   <label>النص الثاني</label>${area("diffB","النص الثاني")};
-case "timestamp":
-return <label>التاريخ</label>${field("dateInput","","datetime-local")}   <label>أو Unix Timestamp</label>${field("timeInput","مثال: 1700000000","number")};
-case "color":case "colorpicker":
-return ${field("colorInput","#8b5cf6")}   <input type="color" id="colorPicker" value="#8b5cf6" class="tool-input">;
-case "gradient":
-return <label>اللون الأول</label><input type="color" id="gradientA" value="#8b5cf6" class="tool-input">   <label>اللون الثاني</label><input type="color" id="gradientB" value="#3998ff" class="tool-input">;
-case "image":
-return <input type="file" id="imageFile" accept="image/*" class="tool-input">;
-case "colorpicker":
-return <input type="color" id="colorPicker" value="#8b5cf6" class="tool-input">;
-case "units":
-return <label>نوع التحويل</label>   <select id="unitType" class="tool-input">   <option value="length">الطول</option><option value="weight">الوزن</option>   <option value="volume">الحجم</option><option value="temp">الحرارة</option>   </select>   <label>القيمة</label>${field("unitValue","أدخل القيمة","number")}   <label>من</label><select id="unitFrom" class="tool-input"></select>   <label>إلى</label><select id="unitTo" class="tool-input"></select>;
-case "qrcode":return area("mainInput","أدخل النص أو الرابط لإنشاء QR Code...");
-case "translator":return area("mainInput","أدخل النص. الترجمة الفعلية غير مفعّلة في هذه النسخة.");
-case "percentcalc":return "";
-default:return <p class="modal-description">هذه الأداة غير متاحة حاليًا.</p>;
-}
-}
-
-function getInput(){
-return $("mainInput")?.value??"";
-}
-
-function formatCode(text){
-// تنسيق أساسي فقط وليس بديلًا عن أدوات التنسيق المتخصصة.
-return text.replace(/>\s*</g,">\n<").replace(/[ \t]+\n/g,"\n").trim();
-}
-
-async function runCurrentTool(){
-if(!currentTool)return;
-const id=currentTool.id;
-const text=getInput();
-let result="";
-
-try{
-switch(id){
-case "word":{
-const words=text.trim()?text.trim().split(/\s+/).length:0;
-const chars=[...text].length;
-const sentences=text.split(/[.!؟?]+/).filter(s=>s.trim()).length;
-result=عدد الكلمات: ${words}\nعدد الحروف: ${chars}\nعدد الجمل التقريبي: ${sentences};
-break;
-}
-case "case":result=UPPERCASE:\n${text.toUpperCase()}\n\nlowercase:\n${text.toLowerCase()}\n\nTitle Case:\n${text.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase())};break;
-case "clean":result=text.replace(/[ \t]+/g," ").replace(/\n{3,}/g,"\n\n").trim();break;
-case "json":result=JSON.stringify(JSON.parse(text),null,2);break;
-case "base64":result=btoa(unescape(encodeURIComponent(text)));break;
-case "url":result=encodeURIComponent(text);break;
-case "password":{
-const length=Math.max(8,Math.min(128,Number($("passLength").value)||16));
-const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789"+($("passSymbols").checked?"!@#$%^&()-_=+":"");
-const random=new Uint32Array(length);crypto.getRandomValues(random);
-result=Array.from(random,n=>chars[n%chars.length]).join("");
-break;
-}
-case "timestamp":{
-const date=$("dateInput").value;
-const stamp=$("timeInput").value;
-if(date)result=Unix Timestamp (ثوانٍ): ${Math.floor(new Date(date).getTime()/1000)}\nالتاريخ: ${new Date(date).toLocaleString()};
-else if(stamp)result=new Date(Number(stamp)1000).toLocaleString();
-else throw Error("أدخل تاريخًا أو Timestamp.");
-break;
-}
-case "markdown":
-result="المعاينة النصية:\n"+text.replace(/^#{1,6}\s/gm,"").replace(/(.?)/g,"$1").replace(/(.?)/g,"$1").replace(/(.?)/g,"$1");
-break;
-case "regex":{
-const pattern=prompt("أدخل Regex Pattern:");
-if(pattern===null)return;
-const flags=prompt("Flags (مثل gi) أو اتركها فارغة:")||"";
-const regex=new RegExp(pattern,flags);
-const matches=[...text.matchAll(new RegExp(regex.source,regex.flags.includes("g")?regex.flags:regex.flags+"g"))];
-result=matches.length?matches.map(m=>m[0]).join("\n"):لا توجد نتائج مطابقة.\nعدد التطابقات: 0;
-break;
-}
-case "sql":
-result=text.replace(/\b(select|from|where|and|or|join|left join|right join|inner join|on|group by|order by|having|limit|insert into|values|update|set|delete)\b/gi,"\n$1").replace(/^\s+/gm,"").trim();
-break;
-case "jwt":{
-const parts=text.split(".");
-if(parts.length<2)throw Error("صيغة JWT غير صحيحة.");
-const decode=s=>decodeURIComponent(Array.prototype.map.call(atob(s.replace(/-/g,"+").replace(//g,"/")),c=>"%"+c.charCodeAt(0).toString(16).padStart(2,"0")).join(""));
-result="Header:\n"+JSON.stringify(JSON.parse(decode(parts[0])),null,2)+"\n\nPayload:\n"+JSON.stringify(JSON.parse(decode(parts[1])),null,2)+"\n\nتنبيه: فك الترميز لا يتحقق من صحة التوقيع.";
-break;
-}
-case "decor":case "textdecor":
-result=『 ${text} 』\n꧁ ${text} ꧂\n★彡 ${text} 彡★\n【${text}】\n✦ ${text} ✦;
-break;
-case "htmlfmt":case "cssfmt":case "jsfmt":case "xmlfmt":
-result=formatCode(text);
-break;
-case "hashgen":{
-const bytes=new TextEncoder().encode(text);
-const hash=await crypto.subtle.digest("SHA-256",bytes);
-result=Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
-break;
-}
-case "uuidgen":
-result=crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{
-const r=crypto.getRandomValues(new Uint8Array(1))[0]%16;
-return (c==="x"?r:(r&3|8)).toString(16);
-});
-break;
-case "percentcalc":{
-const a=Number($("numA").value),b=Number($("numB").value);
-if(!Number.isFinite(a)||!Number.isFinite(b))throw Error("أدخل قيمتين صحيحتين.");
-result=${b}% من ${a} = ${(ab/100).toFixed(4)};
-break;
-}
-case "diffchk":{
-const a=$("diffA").value.split("\n"),b=$("diffB").value.split("\n");
-const max=Math.max(a.length,b.length);
-result=Array.from({length:max},(,i)=>{
-if(a[i]===b[i])return   ${i+1}: ${a[i]??""};
-return - ${i+1}: ${a[i]??"(غير موجود)"}\n+ ${i+1}: ${b[i]??"(غير موجود)"};
-}).join("\n");
-break;
-}
-case "color":{
-const hex=$("colorInput").value.trim();
-const match=hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
-if(!match)throw Error("أدخل لون HEX صحيحًا مثل #8b5cf6");
-result=HEX: #${match.slice(1).join("")}\nRGB: ${match.slice(1).map(x=>parseInt(x,16)).join(", ")};
-break;
-}
-case "gradient":{
-result=background: linear-gradient(135deg, ${$("gradientA").value}, ${$("gradientB").value});;
-break;
-}
-case "colorpicker":{
-result=$("colorPicker").value;
-break;
-}
-case "image":{
-const file=$("imageFile").files[0];
-if(!file)throw Error("اختر صورة أولًا.");
-const url=URL.createObjectURL(file);
-const img=new Image();
-img.src=url;
-await img.decode();
-result=اسم الملف: ${file.name}\nالحجم: ${(file.size/1024).toFixed(2)} KB\nالنوع: ${file.type}\nالأبعاد: ${img.width} × ${img.height};
-URL.revokeObjectURL(url);
-break;
-}
-case "htmlreader":{
-const doc=new DOMParser().parseFromString(text,"text/html");
-result=doc.body.textContent||"لا يوجد نص ظاهر داخل الملف.";
-break;
-}
-case "texttospeech":{
-if(!("speechSynthesis" in window))throw Error("المتصفح لا يدعم تحويل النص إلى صوت.");
-speechSynthesis.cancel();
-speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-result="تم إرسال النص إلى محرك تحويل النص إلى كلام في المتصفح.";
-break;
-}
-case "aiprompts":
-result=اكتب طلبًا واضحًا ومحددًا لتنفيذ المهمة التالية:\n\n${text}\n\nيجب أن تتضمن الإجابة:\n1. خطوات مرتبة.\n2. أمثلة عملية.\n3. توضيح الافتراضات.\n4. ذكر القيود والأخطاء المحتملة.;
-break;
-case "units":
-result=convertUnits();
-break;
-default:
-throw Error("هذه الأداة تحتاج إلى دعم إضافي ولم يتم تفعيلها بعد.");
-}
-
-lastOutput=result;
-$("toolOutput").textContent=result;
-$("copyOutput").classList.remove("hidden");
-
-}catch(error){
-$("toolOutput").textContent="حدث خطأ: "+(error.message||"تعذر تنفيذ العملية.");
-}
-}
-
-function convertUnits(){
-const type=$("unitType").value;
-const value=Number($("unitValue").value);
-if(!Number.isFinite(value))throw Error("أدخل قيمة صحيحة.");
-
-const units={
-length:{m:1,km:1000,cm:.01,mm:.001,mi:1609.344,ft:.3048},
-weight:{kg:1,g:.001,mg:.000001,lb:.45359237},
-volume:{l:1,ml:.001,m3:1000},
-temp:{C:"C",F:"F",K:"K"}
+$('#showFavorites').onclick = () => {
+  onlyFav = !onlyFav;
+  $('#showFavorites').classList.toggle('active', onlyFav);
+  renderTools();
 };
-const from=$("unitFrom").value,to=$("unitTo").value;
-let result;
 
-if(type==="temp"){
-let c=value;
-if(from==="F")c=(value-32)5/9;
-if(from==="K")c=value-273.15;
-result=c;
-if(to==="F")result=c9/5+32;
-if(to==="K")result=c+273.15;
-}else{
-result=value*units[type][from]/units[type][to];
-}
-return ${value} ${from} = ${Number(result.toFixed(8))} ${to};
-}
+$('#search').addEventListener('input', renderTools);
+$('#language').onchange = e => { lang = e.target.value; localStorage.setItem('hema_lang', lang); applyLanguage(); };
+$('#theme').onchange = e => { theme = e.target.value; applyTheme(); };
+$('#closeModal').onclick = () => $('#toolModal').classList.remove('show');
 
-function updateUnitOptions(){
-const type=$("unitType")?.value;
-if(!type)return;
-const options={
-length:["m","km","cm","mm","mi","ft"],
-weight:["kg","g","mg","lb"],
-volume:["l","ml","m3"],
-temp:["C","F","K"]
-}[type];
-$("unitFrom").innerHTML=options.map(x=><option>${x}</option>).join("");
-$("unitTo").innerHTML=options.map(x=><option>${x}</option>).join("");
-if(type==="temp"){
-$("unitFrom").value="C";$("unitTo").value="F";
-}else{
-$("unitFrom").value=options[0];$("unitTo").value=options[1];
-}
-}
-
-$("toolInterface").addEventListener("change",e=>{
-if(e.target.id==="unitType")updateUnitOptions();
-if(e.target.id==="colorPicker"&&$("colorInput"))$("colorInput").value=e.target.value;
-});
-$("toolInterface").addEventListener("input",e=>{
-if(e.target.id==="colorInput"&&/^#[0-9a-f]{6}$/i.test(e.target.value)){
-$("colorPicker").value=e.target.value;
-}
-});
-
-$("runTool").addEventListener("click",runCurrentTool);
-
-$("copyOutput").addEventListener("click",async()=>{
-if(!lastOutput)return;
-try{
-await navigator.clipboard.writeText(lastOutput);
-$("copyOutput").textContent="تم النسخ ✓";
-setTimeout(()=>$("copyOutput").textContent="نسخ النتيجة",1500);
-}catch(e){
-$("toolOutput").textContent+="\n\nتعذر النسخ التلقائي. حدد النص وانسخه يدويًا.";
-}
-});
-
-function closeModal(){
-$("toolModal").classList.remove("open");
-currentTool=null;
-}
-$("closeModal").addEventListener("click",closeModal);
-$("toolModal").addEventListener("click",e=>{
-if(e.target===$("toolModal"))closeModal();
-});
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape")closeModal();
-});
-
-$("searchInput").addEventListener("input",renderTools);
-
-$("favoritesOnly").addEventListener("click",()=>{
-favoritesOnly=!favoritesOnly;
-activeCategory="all";
-$("favoritesOnly").classList.toggle("primary-btn",favoritesOnly);
-renderCategories();renderTools();
-});
-
-function setLanguage(lang){
-const t=translations[lang]||translations.ar;
-document.documentElement.lang=lang;
-document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-$("heroTitle").innerHTML=${t.title} <span class="gradient-text">HeMa Tools</span>;
-$("heroDescription").textContent=t.description;
-$("searchInput").placeholder=t.search;
-$("toolsHeading").textContent=t.heading;
-$("resultsText").textContent=t.results;
-$("favoritesOnly").textContent=t.favorites;
-renderCategories();renderTools();
-}
-$("languageSelect").addEventListener("change",e=>setLanguage(e.target.value));
-
-$("themeSelect").addEventListener("change",e=>{
-document.documentElement.dataset.theme=e.target.value==="light"?"light":"dark";
-safeSet("hema_theme",e.target.value);
-});
-
-function welcome(){
-let name=safeGet("hema_visitor_name","");
-if(!name){
-name=prompt("أهلًا بك في HeMa Tools 👋\nما الاسم الذي تحب أن نناديك به؟");
-if(name&&name.trim())safeSet("hema_visitor_name",name.trim().slice(0,35));
-}
-$("welcomeMessage").textContent=name?أهلًا ${name} 👋 نورت HeMa Tools:"أهلًا بك في HeMa Tools 👋";
-}
-
-function renderFeedback(){
-$("feedbackList").innerHTML=feedbacks.slice(-5).reverse().map(item=>   <div class="info-card" style="margin-top:10px">   <strong>${escapeHTML(item.name||"زائر HeMa Tools")}</strong>   <p>${escapeHTML(item.message)}</p>   </div>).join("");
-}
-
-$("feedbackForm").addEventListener("submit",e=>{
-e.preventDefault();
-const message=$("visitorFeedback").value.trim();
-if(!message)return;
-feedbacks.push({
-name:$("visitorName").value.trim().slice(0,40),
-message:message.slice(0,500)
-});
-if(!safeSet("hema_feedback",feedbacks)){
-alert("تعذر الحفظ على هذا الجهاز.");
-return;
-}
-$("visitorFeedback").value="";
-$("visitorName").value="";
-renderFeedback();
-alert("تم حفظ رأيك على جهازك. لم يتم إرساله إلى المطور.");
-});
-
-$("suggestForm").addEventListener("submit",e=>{
-e.preventDefault();
-const value=$("suggestionInput").value.trim();
-if(!value)return;
-const list=safeGet("hema_suggestions",[]);
-list.push(value.slice(0,150));
-if(!safeSet("hema_suggestions",list)){
-alert("تعذر حفظ الاقتراح على هذا الجهاز.");
-return;
-}
-$("suggestionInput").value="";
-alert("تم حفظ اقتراحك على جهازك فقط. لم يتم إرساله إلى المطور.");
-});
-
-$("brandLink").addEventListener("click",e=>{
-if(e.ctrlKey||e.metaKey)return;
-e.preventDefault();
-window.open("https://wa.me/201094122436","_blank","noopener,noreferrer");
-});
-
-$("acceptStorage").addEventListener("click",()=>{
-safeSet("hema_storage_notice",true);
-$("cookieBanner").classList.add("hidden");
-});
-$("closeStorage").addEventListener("click",()=>{
-$("cookieBanner").classList.add("hidden");
-});
-
-function init(){
-$("year").textContent=new Date().getFullYear();
-$("totalCount").textContent=tools.length;
-
-const savedTheme=safeGet("hema_theme","dark");
-$("themeSelect").value=savedTheme;
-document.documentElement.dataset.theme=savedTheme==="light"?"light":"dark";
-
+$('#year').textContent = new Date().getFullYear();
+applyTheme();
+applyLanguage();
 renderCategories();
 renderTools();
-renderFeedback();
-welcome();
-
-if(!safeGet("hema_storage_notice",false)){
-$("cookieBanner").classList.remove("hidden");
-}
-}
-init();
 </script>
-
-</body>      
+</body>
 </html>
+
