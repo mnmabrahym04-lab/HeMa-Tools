@@ -398,6 +398,35 @@ $in('now').onclick=()=>{$in('ts').value=Math.floor(Date.now()/1000)};
 $in('fromUnix').onclick=()=>{const ts=parseInt(txt('ts'));if(!ts){setRes('أدخل timestamp');return}setRes(new Date(ts*1000).toString())};
 $in('toUnix').onclick=()=>{const d=new Date(txt('dt'));if(isNaN(d)){setRes('تاريخ غير صالح');return}setRes(String(Math.floor(d.getTime()/1000)))};
 }});
+/* ══════════ دفعة 2: أدوات المبرمجين ══════════ */
+
+R['html-formatter']=()=>({html:`${textarea('كود HTML','in','<div><h1>Hello</h1></div>')}<div class="actions-row"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{let s=txt('in');s=s.replace(/(>)(<)(\/*)/g,'$1\n$2$3');let pad=0;const lines=s.split('\n').map(l=>{if(/^<\/\w/.test(l))pad=Math.max(0,pad-1);const r='  '.repeat(pad)+l;if(/^<\w[^>]*[^\/]>$/.test(l))pad++;return r});setRes(lines.join('\n'))}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['css-formatter']=()=>({html:`${textarea('كود CSS','in','.class{color:red;margin:0}')}<div class="actions-row"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{let s=txt('in').replace(/\s*{\s*/g,' {\n  ').replace(/;\s*/g,';\n  ').replace(/\s*}\s*/g,'\n}\n');setRes(s.trim())}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['js-formatter']=()=>({html:`${textarea('كود JavaScript','in','function test(){console.log("hi");}')}<div class="actions-row"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{let s=txt('in').replace(/\s*{\s*/g,' {\n  ').replace(/;\s*/g,';\n  ').replace(/\s*}\s*/g,'\n}\n');setRes(s.trim())}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['xml-formatter']=()=>({html:`${textarea('كود XML','in','<root><item>1</item></root>')}<div class="actions-row"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const p=new DOMParser();const d=p.parseFromString(txt('in'),'application/xml');if(d.querySelector('parsererror')){setRes('❌ XML غير صالح');return}const ser=new XMLSerializer();let s=ser.serializeToString(d);s=s.replace(/(>)(<)(\/*)/g,'$1\n$2$3');let pad=0;const lines=s.split('\n').map(l=>{if(/^<\/\w/.test(l))pad=Math.max(0,pad-1);const r='  '.repeat(pad)+l;if(/^<\w[^>]*[^\/]>$/.test(l))pad++;return r});setRes(lines.join('\n'))}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['sql-formatter']=()=>({html:`${textarea('استعلام SQL','in','SELECT * FROM users WHERE id=1')}<div class="actions-row"><button class="action" id="go">تنسيق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{let s=txt('in');const kw=['SELECT','FROM','WHERE','JOIN','LEFT JOIN','RIGHT JOIN','INNER JOIN','GROUP BY','ORDER BY','HAVING','LIMIT','UNION','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','AND','OR','ON'];kw.forEach(k=>{s=s.replace(new RegExp('\\b'+k+'\\b','gi'),'\n'+k)});setRes(s.replace(/\n+/g,'\n').trim())}
+}});
+
+R['jwt-decoder']=()=>({html:`${textarea('JWT Token','in','eyJhbGci...')}<div class="actions-row"><button class="action" id="go">فك التشفير</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const p=txt('in').trim().split('.');if(p.length!==3){setRes('❌ JWT غير صالح');return}const h=JSON.parse(atob(p[0].replace(/-/g,'+').replace(/_/g,'/')));const b=JSON.parse(atob(p[1].replace(/-/g,'+').replace(/_/g,'/')));setRes(`Header:\n${JSON.stringify(h,null,2)}\n\nPayload:\n${JSON.stringify(b,null,2)}\n\n⚠ التوقيع لم يتم التحقق منه`)}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['html-preview']=()=>({html:`${textarea('كود HTML','in','<h1>Hello</h1><p>World</p>')}<div class="actions-row"><button class="action" id="go">معاينة</button></div><div id="res" style="min-height:80px"></div>`,wire:()=>{
+$in('go').onclick=()=>{const ifr=document.createElement('iframe');ifr.sandbox='allow-same-origin';ifr.style.cssText='width:100%;min-height:200px;border:1px solid var(--line);border-radius:8px;background:white';$in('res').innerHTML='';$in('res').appendChild(ifr);ifr.contentDocument.open();ifr.contentDocument.write(txt('in'));ifr.contentDocument.close();}
+}});
 /* ══════════ LAYOUTS ══════════ */
 function setMeta(title,desc,url){
 document.title=title;
