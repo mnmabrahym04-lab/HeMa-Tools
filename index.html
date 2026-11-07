@@ -484,6 +484,41 @@ html+='</div><div style="margin-top:15px;font-size:12px;color:var(--muted)">'+to
 $in('res').innerHTML=html;
 };img.src=URL.createObjectURL(f)}
 }});
+/* ══════════ دفعة 4: إنتاجية ووسائط ══════════ */
+
+R['translator']=()=>({html:`${textarea('النص','in')}<div class="field"><label>اللغة</label><select id="to"><option value="en">English</option><option value="ar">العربية</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="tr">Türkçe</option></select></div><div class="actions-row"><button class="action" id="go">ترجم</button></div>${resultBlock()}<p style="font-size:10px;color:var(--muted);margin-top:8px">⚠ يستخدم MyMemory API المجاني</p>`,wire:()=>{
+$in('go').onclick=async()=>{const s=txt('in').trim();if(!s){toast('أدخل نصاً');return}setRes('⏳ جاري الترجمة...');
+try{const r=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(s.slice(0,500))}&langpair=${lang}|${txt('to')}`);const j=await r.json();setRes(j.responseData?.translatedText||'❌ لا ترجمة')}catch(e){setRes('❌ فشل الاتصال')}}
+}});
+
+R['ai-prompts']=()=>{
+const prompts=[
+'Hyper-realistic portrait, 8k resolution, raw photo, natural face structure, preserving exact facial features, zero AI distortion',
+'Photorealistic cinematic lighting, ultra-detailed skin texture, preserving identity, no artificial face morphing',
+'True-to-life photography, exact facial geometry preserved, pristine details, no smoothing',
+'Unedited documentary style photo, flawless identity retention, natural expression',
+'Professional studio photography, exact character likeness, sharp focus, zero AI face alteration'
+];
+return {html:`<div class="field"><label>برومتات جاهزة للحفاظ على الملامح:</label>
+${prompts.map((p,i)=>`<div style="margin:10px 0;padding:10px;background:var(--panel2);border-radius:8px;font-size:11px">${i+1}. ${p}<br><button class="action secondary" data-p="${i}" style="margin-top:8px;font-size:11px">نسخ</button></div>`).join('')}</div>`,
+wire:()=>{document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>copyText(prompts[b.dataset.p]))}};
+};
+
+R['text-to-speech']=()=>({html:`${textarea('النص','in','مرحباً بكم')}<div class="field"><label>اللغة</label><select id="lang"><option value="ar-SA">عربي</option><option value="en-US">English</option><option value="fr-FR">Français</option><option value="es-ES">Español</option><option value="de-DE">Deutsch</option></select></div>${input('السرعة (0.5 إلى 2)','rate','range','1','min="0.5" max="2" step="0.1"')}<div class="actions-row"><button class="action" id="go">نطق</button><button class="action secondary" id="stop">إيقاف</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{if(!('speechSynthesis' in window)){setRes('المتصفح لا يدعم TTS');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt('in'));u.lang=txt('lang');u.rate=parseFloat(txt('rate'))||1;u.onstart=()=>setRes('🔊 جاري النطق...');u.onend=()=>setRes('✅ انتهى');speechSynthesis.speak(u)};
+$in('stop').onclick=()=>{speechSynthesis.cancel();setRes('⏹ تم الإيقاف')};
+}});
+
+R['whatsapp-sticker']=()=>({html:`<div class="field"><label>صورة (512x512 PNG)</label><input type="file" id="file" accept="image/*"></div><div class="actions-row"><button class="action" id="go">تحويل</button></div><div id="res"></div>`,wire:()=>{
+$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}
+const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=512;c.height=512;const ctx=c.getContext('2d');
+ctx.fillStyle='#fff';ctx.fillRect(0,0,512,512);
+const scale=Math.min(512/img.width,512/img.height);const w=img.width*scale,h=img.height*scale;
+ctx.drawImage(img,(512-w)/2,(512-h)/2,w,h);
+const url=c.toDataURL('image/png');
+$in('res').innerHTML=`<img src="${url}" style="max-width:100%;border-radius:10px;margin-top:10px"><br><a href="${url}" download="sticker.png" style="color:var(--blue);font-weight:bold;display:inline-block;margin-top:10px">⬇ تحميل الاستيكر</a>`;
+};img.src=URL.createObjectURL(f)}
+}});
 /* ══════════ LAYOUTS ══════════ */
 function setMeta(title,desc,url){
 document.title=title;
