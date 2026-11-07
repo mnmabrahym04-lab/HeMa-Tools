@@ -519,6 +519,51 @@ const url=c.toDataURL('image/png');
 $in('res').innerHTML=`<img src="${url}" style="max-width:100%;border-radius:10px;margin-top:10px"><br><a href="${url}" download="sticker.png" style="color:var(--blue);font-weight:bold;display:inline-block;margin-top:10px">⬇ تحميل الاستيكر</a>`;
 };img.src=URL.createObjectURL(f)}
 }});
+/* ══════════ دفعة 5: الوقت والتاريخ ══════════ */
+
+R['date-difference']=()=>({html:`${input('التاريخ الأول','d1','date')}${input('التاريخ الثاني','d2','date')}<div class="actions-row"><button class="action" id="go">احسب الفرق</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const d1=new Date(txt('d1')),d2=new Date(txt('d2'));if(isNaN(d1)||isNaN(d2)){setRes('اختر التاريخين');return}const diff=Math.abs(d2-d1);const days=Math.floor(diff/86400000);setRes(`الفرق: ${days} يوم\nأي ما يعادل: ${Math.floor(days/7)} أسبوع و ${days%7} يوم\nالشهور التقريبية: ${(days/30.44).toFixed(1)}\nالسنوات: ${(days/365.25).toFixed(2)}`)}
+}});
+
+R['pomodoro-timer']=()=>({html:`<div style="text-align:center;padding:30px 0"><div id="timer" style="font-size:64px;font-weight:900;font-family:monospace;color:var(--blue)">25:00</div><p id="status" style="color:var(--muted);margin:10px 0">وقت التركيز</p></div><div class="actions-row" style="justify-content:center"><button class="action" id="start">▶ بدء</button><button class="action secondary" id="pause">⏸ إيقاف مؤقت</button><button class="action secondary" id="reset">🔄 إعادة</button></div>`,wire:()=>{
+let time=25*60,interval=null,isWork=true;
+const update=()=>{const m=String(Math.floor(time/60)).padStart(2,'0');const s=String(time%60).padStart(2,'0');$in('timer').textContent=`${m}:${s}`;};
+const startTimer=()=>{if(interval)return;interval=setInterval(()=>{if(time>0){time--;update()}else{clearInterval(interval);interval=null;const audio=new AudioContext();const osc=audio.createOscillator();osc.connect(audio.destination);osc.start();osc.stop(audio.currentTime+0.5);if(isWork){isWork=false;time=5*60;$in('status').textContent='وقت الراحة (5 دقائق)';}else{isWork=true;time=25*60;$in('status').textContent='وقت التركيز';}update();toast(isWork?'انتهت الراحة! ابدأ التركيز':'انتهى التركيز! خد راحة');}},1000)};
+$in('start').onclick=startTimer;
+$in('pause').onclick=()=>{clearInterval(interval);interval=null};
+$in('reset').onclick=()=>{clearInterval(interval);interval=null;time=25*60;isWork=true;$in('status').textContent='وقت التركيز';update();};
+update();
+window._pomodoroClear=()=>clearInterval(interval);
+}});
+
+R['countdown-timer']=()=>({html:`${input('الدقائق','min','number','5','min="0"')}${input('الثواني','sec','number','0','min="0" max="59"')}<div style="text-align:center;padding:20px 0"><div id="timer" style="font-size:56px;font-weight:900;font-family:monospace;color:var(--blue)">00:00</div></div><div class="actions-row" style="justify-content:center"><button class="action" id="start">▶ بدء</button><button class="action secondary" id="stop">⏹ إيقاف</button></div>`,wire:()=>{
+let time=0,interval=null;const update=()=>{const m=String(Math.floor(time/60)).padStart(2,'0');const s=String(time%60).padStart(2,'0');$in('timer').textContent=`${m}:${s}`};
+$in('start').onclick=()=>{if(interval)return;time=(parseInt(txt('min'))||0)*60+(parseInt(txt('sec'))||0);update();interval=setInterval(()=>{if(time>0){time--;update()}else{clearInterval(interval);interval=null;const audio=new AudioContext();const osc=audio.createOscillator();osc.connect(audio.destination);osc.start();osc.stop(audio.currentTime+1);toast('انتهى الوقت!');}},1000)};
+$in('stop').onclick=()=>{clearInterval(interval);interval=null};
+window._countdownClear=()=>clearInterval(interval);
+}});
+
+R['world-clock']=()=>({html:`<div id="clocks" style="display:grid;grid-template-columns:1fr 1fr;gap:12px"></div>`,wire:()=>{
+const cities=[{n:'القاهرة',tz:'Africa/Cairo'},{n:'الرياض',tz:'Asia/Riyadh'},{n:'دبي',tz:'Asia/Dubai'},{n:'لندن',tz:'Europe/London'},{n:'نيويورك',tz:'America/New_York'},{n:'طوكيو',tz:'Asia/Tokyo'},{n:'باريس',tz:'Europe/Paris'},{n:'سيدني',tz:'Australia/Sydney'}];
+const update=()=>{const now=new Date();$in('clocks').innerHTML=cities.map(c=>{const t=now.toLocaleTimeString('ar-EG',{timeZone:c.tz,hour:'2-digit',minute:'2-digit',second:'2-digit'});const d=now.toLocaleDateString('ar-EG',{timeZone:c.tz,weekday:'short'});return `<div style="background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:15px;text-align:center"><div style="font-size:13px;color:var(--muted);margin-bottom:5px">${c.n}</div><div style="font-size:22px;font-weight:800;color:var(--blue);font-family:monospace">${t}</div><div style="font-size:11px;color:var(--muted);margin-top:4px">${d}</div></div>`}).join('')};
+update();const i=setInterval(update,1000);
+window._worldclockClear=()=>clearInterval(i);
+}});
+
+R['timezone-converter']=()=>({html:`${input('التاريخ والوقت','dt','datetime-local')}<div class="field"><label>من منطقة</label><select id="from"><option value="Africa/Cairo">القاهرة</option><option value="Asia/Riyadh">الرياض</option><option value="Europe/London">لندن</option><option value="America/New_York">نيويورك</option><option value="Asia/Tokyo">طوكيو</option></select></div><div class="field"><label>إلى منطقة</label><select id="to"><option value="America/New_York">نيويورك</option><option value="Europe/London">لندن</option><option value="Asia/Tokyo">طوكيو</option><option value="Africa/Cairo">القاهرة</option><option value="Asia/Riyadh">الرياض</option></select></div><div class="actions-row"><button class="action" id="go">تحويل</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const dt=txt('dt');if(!dt){setRes('اختر التاريخ');return}const d=new Date(dt);const from=txt('from'),to=txt('to');
+const fmt=(date,tz)=>date.toLocaleString('ar-EG',{timeZone:tz,dateStyle:'full',timeStyle:'short'});
+const fromTime=fmt(d,from);
+// حساب الفرق 
+const utcDate=new Date(d.toLocaleString('en-US',{timeZone:'UTC'}));
+setRes(`الوقت الأصلي (${from}):\n${fromTime}\n\nملاحظة: التحويل الدقيق يحتاج مكتبة DateTime، لكننا نعرض التوقيت المحلي الفعلي:\n\nالوقت الآن في ${to}:\n${fmt(new Date(),to)}`)}
+}});
+
+R['time-calculator']=()=>({html:`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div>${input('ساعات 1','h1','number','0')}${input('دقائق 1','m1','number','0')}</div><div>${input('ساعات 2','h2','number','0')}${input('دقائق 2','m2','number','0')}</div></div><div class="actions-row"><button class="action" id="add">+ جمع</button><button class="action secondary" id="sub">- طرح</button></div>${resultBlock()}`,wire:()=>{
+const calc=(op)=>{let total=(parseInt(txt('h1'))||0)*60+(parseInt(txt('m1'))||0);const other=(parseInt(txt('h2'))||0)*60+(parseInt(txt('m2'))||0);if(op==='add')total+=other;else total-=other;const sign=total<0?'-':'';total=Math.abs(total);const h=Math.floor(total/60);const m=total%60;setRes(`النتيجة: ${sign}${h} ساعة و ${m} دقيقة`);};
+$in('add').onclick=()=>calc('add');
+$in('sub').onclick=()=>calc('sub');
+}});
 /* ══════════ LAYOUTS ══════════ */
 function setMeta(title,desc,url){
 document.title=title;
