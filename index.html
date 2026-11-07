@@ -76,7 +76,6 @@
     .toast.show{opacity:1;transform:translate(-50%,0)}
     .whatsapp-float{position:fixed;bottom:24px;left:24px;z-index:99;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(37,211,102,.45);font-size:28px;transition:transform .3s;animation:pulseWa 2s infinite}
     .whatsapp-float:hover{transform:scale(1.1)}
-    /* Cookie Banner */
     .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--line);padding:16px;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 -10px 30px rgba(0,0,0,.5);flex-wrap:wrap}
     .cookie-banner p{margin:0;font-size:12px;color:var(--muted);max-width:700px}
     @keyframes pulseWa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
@@ -87,7 +86,6 @@
 <body>
 <a id="waButton" href="#" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">💬</a>
 
-<!-- Cookie Consent Banner -->
 <div id="cookieBanner" class="cookie-banner" style="display:none;">
   <p>نحن نستخدم ملفات تعريف الارتباط (Cookies) وتخزين المتصفح لتحسين تجربة الاستخدام، تحليل الزيارات، وتوفير سياسة الخصوصية المتوافقة مع معايير Google AdSense. باستمرارك في تصفح الموقع فإنك توافق على ذلك.</p>
   <button class="action" id="acceptCookies">موافق واستمرار</button>
@@ -95,7 +93,7 @@
 
 <header class="topbar">
   <div class="wrap nav">
-    <a class="brand" href="#" onclick="showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
+    <a class="brand" href="#" onclick="history.pushState(null, '', '#home'); showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
     <div class="nav-actions">
       <select class="nav-select" id="language">
         <option value="ar">🌐 العربية</option>
@@ -132,23 +130,23 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-about">
-        <a class="brand" href="#" onclick="showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
+        <a class="brand" href="#" onclick="history.pushState(null, '', '#home'); showHome(); return false;"><span class="brand-mark">H</span><span class="brand-name">HeMa Tools</span><span class="live-dot"></span></a>
         <p data-i18n="footerDesc">منصة أدوات رقمية محلية وآمنة تساعدك على إنجاز المهام اليومية.</p>
       </div>
       <div>
         <div class="footer-title" data-i18n="quickLinks">روابط مهمة</div>
         <nav class="footer-links">
-          <a onclick="showPage('about')">من نحن</a>
-          <a onclick="showPage('contact')">اتصل بنا</a>
-          <a onclick="showPage('terms')">شروط الاستخدام</a>
+          <a onclick="navigateTo('about')">من نحن</a>
+          <a onclick="navigateTo('contact')">اتصل بنا</a>
+          <a onclick="navigateTo('terms')">شروط الاستخدام</a>
         </nav>
       </div>
       <div>
         <div class="footer-title" data-i18n="policies">السياسات</div>
         <nav class="footer-links">
-          <a onclick="showPage('privacy')">سياسة الخصوصية</a>
-          <a onclick="showPage('cookies')">ملفات الارتباط</a>
-          <a onclick="showPage('copyright')">حقوق الملكية</a>
+          <a onclick="navigateTo('privacy')">سياسة الخصوصية</a>
+          <a onclick="navigateTo('cookies')">ملفات الارتباط</a>
+          <a onclick="navigateTo('copyright')">حقوق الملكية</a>
         </nav>
       </div>
     </div>
@@ -162,7 +160,6 @@ const WHATSAPP_NUM = '201094122436';
 const waMsg = encodeURIComponent('مرحبا هـيـمــا انا اتواصل معك بخصوص موقع hema tools');
 document.getElementById('waButton').href = `https://wa.me/${WHATSAPP_NUM}?text=${waMsg}`;
 
-// Cookie Consent Logic
 if(!localStorage.getItem('hema_cookie_accepted')) {
   document.getElementById('cookieBanner').style.display = 'flex';
 }
@@ -451,7 +448,6 @@ const tools = [
   {id:'imgcrop', icon:'✂️', cat:'image', name:{ar:'قص الصور', en:'Image Cropper'}, desc:{ar:'تعديل أبعاد الصور بأبعاد مخصصة.', en:'Crop and resize images.'}},
   {id:'imgcolors', icon:'🔍', cat:'image', name:{ar:'استخراج ألوان الصورة', en:'Image Color Extractor'}, desc:{ar:'استخراج HEX و RGB من الصور.', en:'Extract HEX/RGB from images.'}},
   {id:'splitpdf', icon:'📄', cat:'media', name:{ar:'تقسيم ملفات PDF', en:'Split PDF'}, desc:{ar:'تقسيم ملفات PDF الكبيرة.', en:'Split large PDF files.'}},
-  // الأدوات الجديدة المطلوبة
   {id:'textdecor', icon:'✍️', cat:'text', name:{ar:'زخرفة الخطوط والأسماء', en:'Font Decorator'}, desc:{ar:'زخرفة النصوص باللغتين العربية والإنجليزية بضغطة زر.', en:'Decorate text in Arabic & English.'}},
   {id:'translator', icon:'🌍', cat:'text', name:{ar:'أداة الترجمة الفورية', en:'Instant Translator'}, desc:{ar:'ترجمة النصوص واختيار لغة الإخراج فوراً.', en:'Translate text to any language.'}},
   {id:'aiprompts', icon:'🤖', cat:'productivity', name:{ar:'برومتات تحسين جودة صور AI', en:'AI Image Prompts'}, desc:{ar:'أقوى برومتات للحفاظ على الملامح بدقة عالية بدون تشويه.', en:'Best prompts for high-res AI images.'}},
@@ -503,7 +499,10 @@ function showHome() {
   window.scrollTo(0,0);
 }
 
-function showPage(pageKey) {
+function showPage(pageKey, push = true) {
+  if (push) {
+    history.pushState({page: pageKey}, '', '#' + pageKey);
+  }
   $('#homeView').style.display = 'none';
   $('#pageView').classList.add('active');
   let data = pagesData[pageKey];
@@ -513,14 +512,32 @@ function showPage(pageKey) {
   window.scrollTo(0,0);
 }
 
+function navigateTo(pageKey) {
+  showPage(pageKey, true);
+}
+
+window.addEventListener('popstate', (event) => {
+  if (event.state && event.state.page) {
+    showPage(event.state.page, false);
+  } else {
+    showHome();
+  }
+});
+
 function renderCategories() {
   let cats = ['all', 'text', 'dev', 'image', 'productivity', 'media'];
-  $('#categories').innerHTML = cats.map(c => `<button class="chip ${category === c ? 'active' : ''}" data-cat="${c}">${t()[c] || c}</button>`).join('');
+  $('#categories').innerHTML = cats.map(c => `<button class="chip ${category === c && !onlyFav ? 'active' : ''}" data-cat="${c}">${t()[c] || c}</button>`).join('');
 }
 
 function renderTools() {
   let q = $('#search').value.trim().toLowerCase();
-  let list = tools.filter(x => (category === 'all' || x.cat === category) && (!onlyFav || favorites.includes(x.id)) && (`${x.name[lang] || x.name.en} ${x.desc[lang] || x.desc.en} ${x.id}`).toLowerCase().includes(q));
+  let list = tools.filter(x => {
+    let matchesCat = (category === 'all' || x.cat === category);
+    let matchesFav = (!onlyFav || favorites.includes(x.id));
+    let matchesSearch = (`${x.name[lang] || x.name.en} ${x.desc[lang] || x.desc.en} ${x.id}`).toLowerCase().includes(q);
+    return matchesCat && matchesFav && matchesSearch;
+  });
+  
   $('#toolCount').textContent = list.length;
   $('#toolsGrid').innerHTML = list.length ? list.map(x => `
     <article class="tool-card">
@@ -565,8 +582,6 @@ function openTool(id) {
   else if(id==='qrcode') body=`<div class="field"><label>النص أو الرابط</label><input id="qrText" type="text" placeholder="https://example.com"></div><div class="modal-actions"><button class="action" id="makeQr">إنشاء QR</button></div><div id="toolResult" style="text-align:center;margin-top:15px"></div>`;
   else if(id==='imgcrop'||id==='imgcolors') body=`<div class="field"><label>اختر صورة من جهازك</label><input type="file" id="imgFile" accept="image/*"></div><div class="modal-actions"><button class="action" id="processImg">معالجة الصورة</button></div>`+resultBox();
   else if(id==='splitpdf') body=`<div class="field"><label>اختر ملف PDF</label><input type="file" id="pdfFile" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="runPdfSplit">تقسيم الملف محلياً</button></div>`+resultBox();
-  
-  // الأدوات الجديدة وتشكيلاتها
   else if(id==='textdecor') body=area('اكتب الجملة أو الاسم','decorInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runDecor">زخرفة فورية</button></div>`+resultBox();
   else if(id==='translator') body=area('النص المراد ترجمته','transInput','اكتب الجملة...')+`<div class="field"><label>اختر لغة الترجمة</label><select id="transLang"><option value="en">الإنجليزية (English)</option><option value="es">الإسبانية (Español)</option><option value="fr">الفرنسية (Français)</option><option value="ru">الروسية (Русский)</option></select></div><div class="modal-actions"><button class="action" id="runTrans">ترجمة فورية</button></div>`+resultBox();
   else if(id==='aiprompts') body=`<div class="field"><label>أقوى 5 برومتات للحفاظ على الملامح والواقعية المطلقة:</label><div class="result" style="line-height:2.2;">1. <b>Hyper-realistic portrait, 8k resolution, raw photo, natural face structure, preserving exact facial features, zero AI distortion:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الأول</button><br><br>2. <b>Photorealistic cinematic lighting, ultra-detailed skin texture, preserving identity, no artificial face morphing:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الثاني</button><br><br>3. <b>True-to-life photography, exact facial geometry preserved, pristine details, no smoothing:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الثالث</button><br><br>4. <b>Unedited documentary style photo, flawless identity retention, natural expression:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الرابع</button><br><br>5. <b>Professional studio photography, exact character likeness, sharp focus, zero AI face alteration:</b><br><button class="action secondary" onclick="navigator.clipboard.writeText(this.previousElementSibling.previousSibling.textContent);toast('تم النسخ')">نسخ البرومت الخامس</button></div></div>`;
@@ -577,7 +592,6 @@ function openTool(id) {
   else if(id==='texttospeech') body=area('أكتب النص المراد تحويله لنطق صوتي','ttsInput','مرحباً بك في منصة هيما تولز')+`<div class="modal-actions"><button class="action" id="runTts">استماع ونطق النص</button></div>`+resultBox();
   else if(id==='whatsappsticker') body=`<div class="field"><label>اختر صورة لتحويلها لاستيكر واتساب</label><input type="file" id="stickerFile" accept="image/*"></div><div class="modal-actions"><button class="action" id="makeSticker">تحويل لملصق جاهز</button></div>`+resultBox();
   else if(id==='pdfreader') body=`<div class="field"><label>اختر ملف PDF للقراءة والاستعراض</label><input type="file" id="pdfReaderFile" accept="application/pdf"></div><div class="modal-actions"><button class="action" id="readPdf">قراءة محتوى الملف</button></div>`+resultBox();
-
   else body=area('أدخل النص','toolInput','اكتب هنا...')+`<div class="modal-actions"><button class="action" id="runGeneric">تنفيذ</button></div>`+resultBox();
   
   $('#modalBody').innerHTML = body;
@@ -599,12 +613,10 @@ function wireTool(id) {
   if(id==='qrcode') $('#makeQr').onclick = () => { let v = $('#qrText').value.trim(); if(!v) return; let u = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}`; $('#toolResult').innerHTML = `<a href="${u}" target="_blank"><img src="${u}" style="border-radius:12px"></a>`; };
   if(id==='imgcrop'||id==='imgcolors') $('#processImg').onclick = () => { let f = $('#imgFile').files[0]; if(!f){toast('اختر صورة أولاً');return} $('#toolResult').textContent='تم تحميل الصورة بنجاح: '+f.name; };
   if(id==='splitpdf') $('#runPdfSplit').onclick = () => { let f = $('#pdfFile').files[0]; if(!f){toast('اختر ملف PDF');return} $('#toolResult').textContent='تم اختيار ملف PDF: '+f.name+'\nجاري التقسيم محلياً...'; };
-
-  // تفاعلات الأدوات الجديدة
   if(id==='textdecor') $('#runDecor').onclick = () => { let s = $('#decorInput').value.trim(); if(!s){toast('أدخل النص أولاً');return} $('#toolResult').textContent = `👑 [ ${s} ] 👑\n★彡 ${s} 彡★\n꧁༺ ${s} ༻꧂\n ▂▃▄▅▆▇ ${s} ▇▆▅▄▃▂ \n✨ 𝓕 ${s} 𝓕 ✨`; };
   if(id==='translator') $('#runTrans').onclick = () => { let s = $('#transInput').value.trim(); if(!s){toast('أدخل النص');return} $('#toolResult').textContent = `[محاكاة الترجمة الفورية]:\nالنص المترجم للغة المطلوبة:\n-> ${s} (Translated successfully)`; };
   if(id==='wifitest') $('#runWifi').onclick = () => { $('#toolResult').textContent = 'جاري قياس سرعة الاتصال...'; setTimeout(()=>{ $('#toolResult').textContent = '🚀 سرعة التحميل: 84.5 Mbps\n📤 سرعة الرفع: 22.1 Mbps\nPing: 14 ms (ممتاز جداً)'; }, 1500); };
-  if(id==='codefixer') $('#runFixCode').onclick = () => { let c = $('#codeInput').value.trim(); if(!c){toast('أدخل الكود');return} $('#toolResult.result')||($('div#toolResult').textContent = '// تم فحص الكود وتصحيح الأخطاء بنجاح:\n' + c + '\n// Status: No syntax errors found.'); };
+  if(id==='codefixer') $('#runFixCode').onclick = () => { let c = $('#codeInput').value.trim(); if(!c){toast('أدخل الكود');return} $('#toolResult').textContent = '// تم فحص الكود وتصحيح الأخطاء بنجاح:\n' + c + '\n// Status: No syntax errors found.'; };
   if(id==='vidtoaudio') $('#extractAudio').onclick = () => { let f = $('#vidFile').files[0]; if(!f){toast('اختر ملف فيديو');return} $('#toolResult').textContent = 'تم استخراج الملف الصوتي MP3 بنجاح من: ' + f.name; };
   if(id==='htmlreader') $('#readHtml').onclick = () => { let h = $('#htmlInput').value.trim(); $('#toolResult').textContent = 'بنية HTML صالحة ومعالجة:\nLength: ' + h.length + ' chars'; };
   if(id==='texttospeech') $('#runTts').onclick = () => { let txt = $('#ttsInput').value.trim(); if(!txt) return; if('speechSynthesis' in window) { let utterance = new SpeechSynthesisUtterance(txt); window.speechSynthesis.speak(utterance); toast('جاري نطق النص...'); } else { toast('متصفحك لا يدعم النطق الصوتي'); } };
@@ -616,12 +628,28 @@ function wireTool(id) {
 
 document.addEventListener('click', e => {
   let cat = e.target.closest('[data-cat]');
-  if(cat) { category = cat.dataset.cat; renderCategories(); renderTools(); }
+  if(cat) { 
+    category = cat.dataset.cat; 
+    onlyFav = false; 
+    renderCategories(); 
+    renderTools(); 
+  }
   let fav = e.target.closest('[data-fav]');
-  if(fav) { let id = fav.dataset.fav; favorites = favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id]; localStorage.setItem('hema_favs', JSON.stringify(favorites)); renderTools(); }
+  if(fav) { 
+    let id = fav.dataset.fav; 
+    favorites = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id]; 
+    localStorage.setItem('hema_favs', JSON.stringify(favorites)); 
+    renderTools(); 
+  }
   let open = e.target.closest('[data-open]');
   if(open) openTool(open.dataset.open);
 });
+
+$('#showFavorites').onclick = () => {
+  onlyFav = !onlyFav;
+  $('#showFavorites').classList.toggle('active', onlyFav);
+  renderTools();
+};
 
 $('#search').addEventListener('input', renderTools);
 $('#language').onchange = e => { lang = e.target.value; localStorage.setItem('hema_lang', lang); applyLanguage(); };
