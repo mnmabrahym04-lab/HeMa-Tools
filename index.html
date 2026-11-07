@@ -352,6 +352,52 @@ R['slug-generator']=()=>({html:`${textarea('النص','in','My Blog Post Title')
 $in('go').onclick=()=>setRes(txt('in').toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-'))
 }});
 
+/* ══════════ دفعة 1: أدوات نصية وتحويلات ══════════ */
+
+R['markdown-preview']=()=>({html:`${textarea('Markdown','in','# عنوان\n**عريض** *مائل*')}<div class="result" id="res" style="min-height:100px"></div>`,wire:()=>{
+const render=s=>{
+let h=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+.replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
+.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>')
+.replace(/`(.+?)`/g,'<code style="background:var(--panel2);padding:2px 4px;border-radius:3px">$1</code>')
+.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank" style="color:var(--blue)">$1</a>')
+.replace(/^- (.+)$/gm,'<li>$1</li>').replace(/(<li>.*<\/li>)/s,'<ul>$1</ul>')
+.replace(/\n\n/g,'</p><p>');
+return '<p>'+h+'</p>';
+};
+const upd=()=>setRes(render(txt('in')),true);
+$in('in').oninput=upd;upd();
+}});
+
+R['text-decorator']=()=>({html:`${textarea('النص','in','اكتب اسمك أو جملة')}<div class="actions-row"><button class="action" id="go">زخرفة</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const s=txt('in').trim();if(!s){toast('أدخل نصاً');return}
+const out=[`┌─ ${s} ─┐`,`★彡 ${s} 彡★`,`꧁༺ ${s} ༻꧂`,`▂▃▄▅▆▇ ${s} ▇▆▅▄▃▂`,`✨ ${s} ✨`,`♔ ${s} ♔`,`【${s}】`,`༺ ${s} ༻`,`•´¯\`•. ${s} .•´¯\`•`].join('\n');
+setRes(out)}
+}});
+
+R['regex-tester']=()=>({html:`${input('Regex','pat','text','\\w+')}${input('Flags','flags','text','g')}${textarea('النص','in','أدخل النص للاختبار')}<div class="actions-row"><button class="action" id="go">اختبار</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{try{const r=new RegExp(txt('pat'),txt('flags'));const m=txt('in').match(r);setRes(m?`✅ ${m.length} نتيجة:\n${m.join('\n')}`:'❌ لا نتائج')}catch(e){setRes('❌ '+e.message)}}
+}});
+
+R['diff-checker']=()=>({html:`${textarea('النص الأول','a')}${textarea('النص الثاني','b')}<div class="actions-row"><button class="action" id="go">مقارنة</button></div>${resultBlock()}`,wire:()=>{
+$in('go').onclick=()=>{const a=txt('a'),b=txt('b');
+if(a===b){setRes('✅ متطابقان');return}
+const la=a.split('\n'),lb=b.split('\n');const out=[];const max=Math.max(la.length,lb.length);
+for(let i=0;i<max;i++){if(la[i]!==lb[i])out.push(`سطر ${i+1}:\n  - ${la[i]||'(فارغ)'}\n  + ${lb[i]||'(فارغ)'}`)}
+setRes(`❌ ${out.length} اختلاف:\n\n${out.join('\n\n')}`)}
+}});
+
+R['percentage-calculator']=()=>({html:`${input('ما هي نسبة %','a','number','20')}${input('من الرقم','b','number','200')}<div class="actions-row"><button class="action" id="p1">= نسبة</button><button class="action secondary" id="p2">= زيادة</button></div>${input('الرقم الأصلي','x','number','100')}${input('النسبة %','y','number','15')}<div class="actions-row"><button class="action secondary" id="p3">+ زيادة / - نقص</button></div>${resultBlock()}`,wire:()=>{
+$in('p1').onclick=()=>setRes(`${txt('a')}% من ${txt('b')} = ${(parseFloat(txt('a'))||0)*(parseFloat(txt('b'))||0)/100}`);
+$in('p2').onclick=()=>setRes(`${txt('a')} هو ${((parseFloat(txt('a'))||0)/(parseFloat(txt('b'))||1)*100).toFixed(2)}% من ${txt('b')}`);
+$in('p3').onclick=()=>{const x=parseFloat(txt('x'))||0,y=parseFloat(txt('y'))||0;setRes(`+${y}% → ${(x*(1+y/100)).toFixed(2)}\n-${y}% → ${(x*(1-y/100)).toFixed(2)}`)}
+}});
+
+R['unix-timestamp']=()=>({html:`${input('Unix Timestamp','ts','number',Math.floor(Date.now()/1000))}<div class="actions-row"><button class="action" id="fromUnix">Timestamp → تاريخ</button><button class="action secondary" id="now">الآن</button></div>${input('تاريخ','dt','datetime-local')}<div class="actions-row"><button class="action" id="toUnix">تاريخ → Timestamp</button></div>${resultBlock()}`,wire:()=>{
+$in('now').onclick=()=>{$in('ts').value=Math.floor(Date.now()/1000)};
+$in('fromUnix').onclick=()=>{const ts=parseInt(txt('ts'));if(!ts){setRes('أدخل timestamp');return}setRes(new Date(ts*1000).toString())};
+$in('toUnix').onclick=()=>{const d=new Date(txt('dt'));if(isNaN(d)){setRes('تاريخ غير صالح');return}setRes(String(Math.floor(d.getTime()/1000)))};
+}});
 /* ══════════ LAYOUTS ══════════ */
 function setMeta(title,desc,url){
 document.title=title;

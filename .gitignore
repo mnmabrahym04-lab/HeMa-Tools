@@ -1,0 +1,7 @@
+*.backup-*
+*.save
+*.save.*
+node_modules/
+.DS_Store
+batch*.js
+check.js
