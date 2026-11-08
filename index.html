@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090817">
+<title>HeMa Tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#080713;color:#f7f4ff;min-height:100vh;direction:rtl}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 14px}
+header{border-bottom:1px solid #2a2542;padding:16px 0;position:sticky;top:0;background:#080713ee;backdrop-filter:blur(10px);z-index:10}
+.brand{font-size:22px;font-weight:900;display:flex;align-items:center;gap:10px}
+.brand-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#9b5cff,#ff4eb8);display:grid;place-items:center;color:#fff}
+.hero{text-align:center;padding:60px 0 40px}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:900;margin-bottom:14px;line-height:1.2}
+.grad{background:linear-gradient(90deg,#b58aff,#ff69c4,#58e8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#aaa4c2;font-size:16px;max-width:600px;margin:0 auto 24px}
+.search{width:100%;max-width:500px;margin:0 auto;position:relative}
+.search input{width:100%;height:52px;border-radius:14px;border:1px solid #3a2f5a;background:#131028;color:#f7f4ff;padding:0 18px;font-size:15px;outline:none}
+.search input:focus{border-color:#9b5cff}
+.stats{text-align:center;color:#aaa4c2;font-size:13px;margin-top:18px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:20px 0}
+.chip{padding:7px 14px;border-radius:999px;border:1px solid #2a2542;background:#131028;color:#aaa4c2;font-size:13px;cursor:pointer;transition:.2s}
+.chip:hover,.chip.active{background:linear-gradient(100deg,#8d4dff55,#ed45ae33);color:#fff;border-color:#9b5cff88}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;padding:20px 0 60px}
+.card{border:1px solid #2a2542;border-radius:16px;background:#131028;padding:18px;transition:.2s;cursor:pointer;display:flex;flex-direction:column;gap:10px;min-height:150px}
+.card:hover{border-color:#9b5cff;transform:translateY(-2px)}
+.card.coming{opacity:.6}
+.card.coming::after{content:'قريبًا';background:#9b5cff;color:#fff;font-size:10px;padding:2px 8px;border-radius:99px;align-self:flex-start}
+.card-icon{font-size:32px;line-height:1}
+.card-title{font-weight:700;font-size:15px}
+.card-desc{color:#aaa4c2;font-size:12px;line-height:1.5;flex:1}
+.card-tag{display:inline-block;font-size:10px;color:#c7a9ff;background:#9b5cff22;border:1px solid #9b5cff44;padding:2px 8px;border-radius:99px;align-self:flex-start}
+.back{padding:16px 0;font-size:13px;color:#aaa4c2}
+.back a{color:#7ceaff}
+.tool-head{text-align:center;padding:30px 0 20px}
+.tool-head .icon{font-size:52px;margin-bottom:10px}
+.tool-head h1{font-size:clamp(22px,4vw,32px);font-weight:900;margin-bottom:8px}
+.tool-head p{color:#aaa4c2;font-size:14px;max-width:600px;margin:0 auto}
+.panel{max-width:640px;margin:0 auto 40px;border:1px solid #2a2542;border-radius:16px;background:#131028;padding:24px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;color:#aaa4c2;margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;border:1px solid #2a2542;border-radius:10px;background:#080713;color:#f7f4ff;padding:10px 12px;font-size:14px;outline:none;font-family:inherit}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#9b5cff}
+.field textarea{min-height:110px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px}
+.btn{border:0;border-radius:10px;padding:11px 18px;color:#fff;font-weight:700;background:linear-gradient(100deg,#884cff,#e747b1 60%,#20bde9);cursor:pointer;font-size:14px}
+.btn.sec{background:#131028;border:1px solid #2a2542;color:#f7f4ff}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.result{white-space:pre-wrap;overflow-wrap:anywhere;background:#080713;border:1px solid #2a2542;border-radius:10px;padding:12px;min-height:44px;font-size:12px;font-family:ui-monospace,monospace;margin-top:10px}
+.notfound{text-align:center;padding:80px 20px}
+.notfound h1{font-size:90px;background:linear-gradient(90deg,#b58aff,#ff69c4,#58e8ff);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:16px}
+footer{border-top:1px solid #2a2542;padding:30px 0;text-align:center;color:#aaa4c2;font-size:12px;margin-top:40px}
+footer a{color:#7ceaff}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#131028;border:1px solid #2a2542;padding:10px 20px;border-radius:10px;font-size:13px;opacity:0;transition:.3s;pointer-events:none;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card{padding:14px;min-height:130px}.card-icon{font-size:26px}.card-title{font-size:13px}.card-desc{font-size:11px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="brand"><span class="brand-icon">H</span><span>HeMa Tools</span></a></div></header>
+<main id="app"></main>
+<footer><div class="wrap">© <span id="year"></span> HeMa Tools — جميع الحقوق محفوظة · <a href="/about/">من نحن</a> · <a href="/privacy/">الخصوصية</a></div></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════ البيانات ═══════════════
+const TOOLS=[
+{slug:'word-counter',icon:'🔢',cat:'text',name:'عداد الكلمات',desc:'احسب الكلمات والحروف والأسطر.'},
+{slug:'case-converter',icon:'🔠',cat:'text',name:'حالة الأحرف',desc:'تحويل حالة النص.'},
+{slug:'text-cleaner',icon:'🧹',cat:'text',name:'تنظيف النص',desc:'حذف المسافات الزائدة.'},
+{slug:'json-formatter',icon:'{ }',cat:'dev',name:'منسق JSON',desc:'تنسيق والتحقق من JSON.'},
+{slug:'base64-encoder',icon:'🔐',cat:'dev',name:'Base64',desc:'تشفير وفك Base64.'},
+{slug:'url-encoder',icon:'🔗',cat:'dev',name:'ترميز URL',desc:'ترميز وفك الروابط.'},
+{slug:'password-generator',icon:'🛡️',cat:'productivity',name:'مولد كلمات المرور',desc:'كلمات مرور آمنة.'},
+{slug:'hash-generator',icon:'🔒',cat:'dev',name:'Hash Generator',desc:'تشفير SHA حقيقي.'},
+{slug:'uuid-generator',icon:'🆔',cat:'dev',name:'UUID',desc:'UUID v4 آمن.'},
+{slug:'qr-code-generator',icon:'📱',cat:'productivity',name:'مولد QR',desc:'QR محلي.'},
+{slug:'bmi-calculator',icon:'⚖️',cat:'health',name:'حاسبة BMI',desc:'مؤشر كتلة الجسم.'},
+{slug:'age-calculator',icon:'🎂',cat:'productivity',name:'حاسبة العمر',desc:'عمرك بالسنوات والأيام.'},
+{slug:'loan-calculator',icon:'💰',cat:'productivity',name:'حاسبة القروض',desc:'حساب الأقساط والفوائد.'},
+{slug:'lorem-ipsum',icon:'📄',cat:'text',name:'Lorem Ipsum',desc:'مولّد نص وهمي.'},
+{slug:'dedupe-lines',icon:'🧽',cat:'text',name:'حذف الأسطر المكررة',desc:'إزالة التكرار.'},
+{slug:'roman-numerals',icon:'🏛️',cat:'numbers',name:'الأرقام الرومانية',desc:'تحويل روماني ↔ عربي.'},
+{slug:'random-number',icon:'🎲',cat:'random',name:'أرقام عشوائية',desc:'توليد رقم عشوائي.'},
+{slug:'coin-dice',icon:'🪙',cat:'random',name:'عملة ونرد',desc:'رمي عملة أو نرد.'},
+{slug:'reverse-text',icon:'🔃',cat:'text',name:'عكس النص',desc:'عكس النص أو الكلمات.'},
+{slug:'slug-generator',icon:'🔗',cat:'text',name:'مولّد Slug',desc:'نص صديق لـ SEO.'},
+{slug:'image-converter',icon:'🔄',cat:'image',name:'محول الصور',desc:'PNG/JPG/WebP.'},
+{slug:'image-resizer',icon:'📐',cat:'image',name:'تغيير حجم الصور',desc:'أبعاد مخصصة.'},
+{slug:'favicon-generator',icon:'⭐',cat:'image',name:'مولد فافيكون',desc:'من صورة.'},
+{slug:'mergepdf',icon:'🔗',cat:'pdf',name:'دمج PDF',desc:'دمج ملفات.'},
+{slug:'compresspdf',icon:'📉',cat:'pdf',name:'ضغط PDF',desc:'تصغير الحجم.'},
+{slug:'barcode-generator',icon:'📊',cat:'dev',name:'مولد باركود',desc:'Code128/EAN.'},
+{slug:'prompt-generator',icon:'🧠',cat:'productivity',name:'مولد البرومتات',desc:'برومت AI احترافي.'},
+{slug:'character-counter',icon:'🔤',cat:'text',name:'عداد الحروف',desc:'إحصائيات مفصلة.'},
+{slug:'text-repeater',icon:'🔁',cat:'text',name:'مكرر النص',desc:'تكرار N مرة.'},
+{slug:'find-replace',icon:'🔎',cat:'text',name:'بحث واستبدال',desc:'بحث متقدم.'},
+{slug:'html-stripper',icon:'🏷️',cat:'text',name:'حذف HTML',desc:'نص من HTML.'},
+{slug:'fancy-text',icon:'𝓕',cat:'text',name:'نص مزخرف',desc:'تحويل الحروف.'},
+{slug:'zalgo-text',icon:'😵',cat:'text',name:'نص Zalgo',desc:'نص مشوّه.'},
+{slug:'handwriting-text',icon:'✍️',cat:'text',name:'خط يد',desc:'نص كصورة.'},
+{slug:'bionic-reading',icon:'👁️',cat:'text',name:'قراءة سريعة',desc:'تسريع القراءة.'},
+{slug:'text-splitter',icon:'✂️',cat:'text',name:'تقسيم النص',desc:'لأجزاء.'},
+{slug:'unicode-converter',icon:'🔣',cat:'text',name:'Unicode',desc:'رموز الحروف.'},
+{slug:'number-base-converter',icon:'#️⃣',cat:'numbers',name:'الأنظمة العددية',desc:'ثنائي/عشري.'},
+{slug:'data-size-converter',icon:'💾',cat:'numbers',name:'أحجام البيانات',desc:'KB/MB/GB.'},
+{slug:'unit-converter',icon:'📏',cat:'numbers',name:'محول الوحدات',desc:'طول/وزن/حرارة.'},
+{slug:'date-difference',icon:'📅',cat:'time',name:'الفرق بين تاريخين',desc:'الأيام بين تاريخين.'},
+{slug:'pomodoro-timer',icon:'🍅',cat:'time',name:'مؤقت بومودورو',desc:'25 دقيقة تركيز.'},
+{slug:'countdown-timer',icon:'⏲️',cat:'time',name:'عداد تنازلي',desc:'تنظيم الوقت.'},
+{slug:'world-clock',icon:'🌍',cat:'time',name:'ساعة عالمية',desc:'مناطق زمنية.'},
+{slug:'timezone-converter',icon:'🕐',cat:'time',name:'محول المناطق',desc:'تحويل التوقيت.'},
+{slug:'time-calculator',icon:'⏱️',cat:'time',name:'حاسبة الوقت',desc:'جمع/طرح أوقات.'},
+{slug:'unix-timestamp',icon:'🕰️',cat:'time',name:'Unix Timestamp',desc:'تحويل التواريخ.'},
+{slug:'percentage-calculator',icon:'📊',cat:'numbers',name:'حاسبة النسبة',desc:'نسب مئوية.'},
+{slug:'random-picker',icon:'🎯',cat:'random',name:'اختيار عشوائي',desc:'من قائمة.'},
+{slug:'fake-data',icon:'🎭',cat:'random',name:'بيانات وهمية',desc:'للاختبار.'},
+{slug:'image-to-base64',icon:'🖼️',cat:'dev',name:'صورة إلى Base64',desc:'تحويل صورة.'},
+{slug:'base64-to-image',icon:'🖼️',cat:'dev',name:'Base64 إلى صورة',desc:'عكس العملية.'},
+{slug:'cron-generator',icon:'⏰',cat:'dev',name:'Cron Expression',desc:'جدولة المهام.'},
+{slug:'csv-to-json',icon:'📊',cat:'dev',name:'CSV ↔ JSON',desc:'تحويل بين الصيغ.'},
+{slug:'yaml-validator',icon:'📋',cat:'dev',name:'مدقق YAML',desc:'تحقق من YAML.'},
+{slug:'luhn-validator',icon:'💳',cat:'dev',name:'مدقق Luhn',desc:'بطاقات ائتمان.'},
+{slug:'iban-validator',icon:'🏦',cat:'dev',name:'مدقق IBAN',desc:'حسابات بنكية.'},
+{slug:'html-formatter',icon:'🌐',cat:'dev',name:'HTML Formatter',desc:'تنسيق HTML.'},
+{slug:'css-formatter',icon:'🎨',cat:'dev',name:'CSS Formatter',desc:'تنسيق CSS.'},
+{slug:'js-formatter',icon:'⚡',cat:'dev',name:'JS Formatter',desc:'تنسيق JS.'},
+{slug:'xml-formatter',icon:'📋',cat:'dev',name:'XML Formatter',desc:'تنسيق XML.'},
+{slug:'diff-checker',icon:'⚖️',cat:'dev',name:'مقارنة النصوص',desc:'مقارنة نصين.'},
+{slug:'regex-tester',icon:'🔍',cat:'dev',name:'مختبر Regex',desc:'اختبار تعبيرات.'},
+{slug:'sql-formatter',icon:'🗄️',cat:'dev',name:'منسق SQL',desc:'تنسيق SQL.'},
+{slug:'jwt-decoder',icon:'🔑',cat:'dev',name:'محلل JWT',desc:'فك JWT.'},
+{slug:'markdown-preview',icon:'📝',cat:'text',name:'معاينة Markdown',desc:'معاينة فورية.'},
+{slug:'gradient-generator',icon:'🌈',cat:'image',name:'مولد التدرجات',desc:'تدرجات CSS.'},
+{slug:'color-picker',icon:'🎨',cat:'image',name:'منتقي الألوان',desc:'HEX/RGB/HSL.'},
+{slug:'image-compressor',icon:'🗜️',cat:'image',name:'ضاغط الصور',desc:'ضغط JPEG.'},
+{slug:'image-cropper',icon:'✂️',cat:'image',name:'قص الصور',desc:'قص بأبعاد.'},
+{slug:'color-extractor',icon:'🔍',cat:'image',name:'ألوان الصورة',desc:'استخراج HEX.'},
+{slug:'text-decorator',icon:'✨',cat:'text',name:'زخرفة النصوص',desc:'زخرفة الأسماء.'},
+{slug:'text-to-speech',icon:'🗣️',cat:'productivity',name:'نص إلى صوت',desc:'TTS محلي.'},
+{slug:'whatsapp-sticker',icon:'🎯',cat:'media',name:'استيكر واتساب',desc:'512x512 PNG.'},
+{slug:'translator',icon:'🌍',cat:'text',name:'الترجمة',desc:'ترجمة فورية.'},
+{slug:'ai-prompts',icon:'🤖',cat:'productivity',name:'برومتات AI',desc:'برومتات جاهزة.'},
+{slug:'html-preview',icon:'📖',cat:'dev',name:'معاينة HTML',desc:'iframe آمن.'},
+{slug:'json-to-typescript',icon:'🟦',cat:'dev',name:'JSON → TypeScript',desc:'موديل TypeScript.'},
+{slug:'json-yaml',icon:'🔀',cat:'dev',name:'JSON ↔ YAML',desc:'تحويل بين الصيغ.'},
+{slug:'js-minifier',icon:'📦',cat:'dev',name:'ضغط JS',desc:'Minify JS.'},
+{slug:'css-minifier',icon:'📦',cat:'dev',name:'ضغط CSS',desc:'Minify CSS.'},
+{slug:'html-minifier',icon:'📦',cat:'dev',name:'ضغط HTML',desc:'Minify HTML.'},
+{slug:'gitignore-generator',icon:'📝',cat:'dev',name:'مولد .gitignore',desc:'حسب اللغة.'},
+{slug:'markdown-table',icon:'📋',cat:'dev',name:'جدول Markdown',desc:'بناء جداول.'},
+{slug:'http-status-codes',icon:'🌐',cat:'dev',name:'كودات HTTP',desc:'مرجع الكودات.'}
+];
+
+const CATS={all:'الكل',text:'نصوص',dev:'مبرمجين',image:'صور',pdf:'PDF',media:'وسائط',productivity:'إنتاجية',numbers:'أرقام',time:'وقت',random:'عشوائي',health:'صحة'};
+
+// ═══════════════ أدوات مساعدة ═══════════════
+const $=s=>document.querySelector(s);
+const $in=id=>document.getElementById(id);
+const txt=id=>$in(id)?.value||'';
+const loadCDN=(url)=>new Promise((res,rej)=>{if(document.querySelector('script[src="'+url+'"]'))return res();const s=document.createElement('script');s.src=url;s.onload=res;s.onerror=rej;document.head.appendChild(s)});
+const setRes=(html,isHTML)=>{const r=$in('res');if(!r)return;if(isHTML)r.innerHTML=html;else r.textContent=html;};
+const toast=(msg)=>{const e=$('#toast');e.textContent=msg;e.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>e.classList.remove('show'),2000);};
+const resultBox=()=>'<div class="field"><label>النتيجة</label><div class="result" id="res"></div></div>';
+const ta=(label,id,ph)=>'<div class="field"><label>'+label+'</label><textarea id="'+id+'" placeholder="'+(ph||'')+'"></textarea></div>';
+const inp=(label,id,type,val,attrs)=>'<div class="field"><label>'+label+'</label><input id="'+id+'" type="'+(type||'text')+'" value="'+(val||'')+'" '+(attrs||'')+'></div>';
+const sel=(label,id,opts)=>'<div class="field"><label>'+label+'</label><select id="'+id+'">'+opts.map(o=>'<option value="'+o[0]+'">'+o[1]+'</option>').join('')+'</select></div>';
+
+// ═══════════════ الأدوات ═══════════════
+const R={};
+
+R['word-counter']=()=>({html:ta('النص','in')+'<div class="result" id="res">0</div>',wire:()=>{$in('in').oninput=e=>{const s=e.target.value;setRes('كلمات: '+(s.trim().match(/\S+/g)||[]).length+' | حروف: '+s.length+' | أسطر: '+s.split('\n').length)}}});
+
+R['case-converter']=()=>({html:ta('النص','in')+sel('التحويل','mode',[['upper','UPPER'],['lower','lower'],['title','Title'],['sentence','Sentence']])+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const s=txt('in'),m=txt('mode');let r;if(m==='upper')r=s.toUpperCase();else if(m==='lower')r=s.toLowerCase();else if(m==='title')r=s.replace(/\w\S*/g,w=>w[0].toUpperCase()+w.slice(1).toLowerCase());else r=s.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,c=>c.toUpperCase());setRes(r)}}});
+
+R['text-cleaner']=()=>({html:ta('النص','in')+'<div class="row"><button class="btn" id="go">تنظيف</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim())}});
+
+R['json-formatter']=()=>({html:ta('JSON','in')+'<div class="row"><button class="btn" id="fmt">تنسيق</button><button class="btn sec" id="min">ضغط</button></div>'+resultBox(),wire:()=>{$in('fmt').onclick=()=>{try{setRes(JSON.stringify(JSON.parse(txt('in')),null,2))}catch(e){setRes('❌ '+e.message)}};$in('min').onclick=()=>{try{setRes(JSON.stringify(JSON.parse(txt('in'))))}catch(e){setRes('❌ '+e.message)}}}});
+
+R['base64-encoder']=()=>({html:ta('النص','in')+'<div class="row"><button class="btn" id="enc">تشفير</button><button class="btn sec" id="dec">فك</button></div>'+resultBox(),wire:()=>{$in('enc').onclick=()=>{try{setRes(btoa(unescape(encodeURIComponent(txt('in')))))}catch(e){setRes('❌')}};$in('dec').onclick=()=>{try{setRes(decodeURIComponent(escape(atob(txt('in').trim()))))}catch(e){setRes('❌')}}}});
+
+R['url-encoder']=()=>({html:ta('الرابط','in')+'<div class="row"><button class="btn" id="enc">ترميز</button><button class="btn sec" id="dec">فك</button></div>'+resultBox(),wire:()=>{$in('enc').onclick=()=>setRes(encodeURIComponent(txt('in')));$in('dec').onclick=()=>{try{setRes(decodeURIComponent(txt('in')))}catch(e){setRes('❌')}}}});
+
+R['password-generator']=()=>({html:inp('الطول','len','number','20')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';const len=parseInt(txt('len'))||20;const arr=new Uint32Array(len);crypto.getRandomValues(arr);setRes(Array.from(arr,a=>chars[a%chars.length]).join(''))}}});
+
+R['hash-generator']=()=>({html:ta('النص','in')+'<div class="row"><button class="btn" id="go">توليد SHA-256</button></div>'+resultBox(),wire:()=>{$in('go').onclick=async()=>{const enc=new TextEncoder().encode(txt('in'));const buf=await crypto.subtle.digest('SHA-256',enc);setRes([...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join(''))}}});
+
+R['uuid-generator']=()=>({html:inp('العدد','n','number','5')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const n=parseInt(txt('n'))||1;setRes(Array.from({length:n},()=>crypto.randomUUID()).join('\n'))}}});
+
+R['qr-code-generator']=()=>({html:inp('الرابط','in','text','https://example.com')+'<div class="row"><button class="btn" id="go">إنشاء QR</button></div><div id="res" style="text-align:center;margin-top:15px"></div>',wire:()=>{$in('go').onclick=async()=>{await loadCDN('https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js');const c=document.createElement('canvas');await QRCode.toCanvas(c,txt('in'),{width:256});$in('res').innerHTML='';c.style.cssText='border-radius:10px;max-width:100%';$in('res').appendChild(c)}}});
+
+R['bmi-calculator']=()=>({html:inp('الوزن (كجم)','w','number','70')+inp('الطول (سم)','h','number','175')+'<div class="row"><button class="btn" id="go">احسب</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const w=parseFloat(txt('w'))||0,h=(parseFloat(txt('h'))||0)/100;if(!w||!h){setRes('أدخل القيم');return}const b=w/(h*h);let c;if(b<18.5)c='نقص وزن';else if(b<25)c='وزن طبيعي';else if(b<30)c='زيادة وزن';else c='سمنة';setRes('BMI: '+b.toFixed(1)+'\nالتصنيف: '+c)}}});
+
+R['age-calculator']=()=>({html:inp('تاريخ الميلاد','d','date')+'<div class="row"><button class="btn" id="go">احسب</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const d=new Date(txt('d'));if(isNaN(d)){setRes('اختر تاريخ');return}const n=new Date();let y=n.getFullYear()-d.getFullYear(),m=n.getMonth()-d.getMonth(),days=n.getDate()-d.getDate();if(days<0){m--;days+=new Date(n.getFullYear(),n.getMonth(),0).getDate()}if(m<0){y--;m+=12}setRes('العمر: '+y+' سنة، '+m+' شهر، '+days+' يوم')}}});
+
+R['loan-calculator']=()=>({html:inp('المبلغ','p','number','100000')+inp('الفائدة %','r','number','5')+inp('السنوات','y','number','5')+'<div class="row"><button class="btn" id="go">احسب</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const P=parseFloat(txt('p'))||0,R_=((parseFloat(txt('r'))||0)/100)/12,Y=(parseFloat(txt('y'))||1)*12;if(!P||!Y){setRes('أدخل القيم');return}const m=R_===0?P/Y:P*R_*Math.pow(1+R_,Y)/(Math.pow(1+R_,Y)-1);setRes('القسط الشهري: '+m.toFixed(2)+'\nالإجمالي: '+(m*Y).toFixed(2))}}});
+
+R['lorem-ipsum']=()=>({html:inp('عدد الفقرات','n','number','3')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const w='lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor'.split(' ');const n=parseInt(txt('n'))||1;const p=[];for(let i=0;i<n;i++){const s=[];for(let j=0;j<40;j++)s.push(w[Math.floor(Math.random()*w.length)]);p.push(s.join(' ')[0].toUpperCase()+s.join(' ').slice(1)+'.')}setRes(p.join('\n\n'))}}});
+
+R['dedupe-lines']=()=>({html:ta('النص','in')+'<div class="row"><button class="btn" id="go">حذف التكرار</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes([...new Set(txt('in').split('\n'))].join('\n'))}});
+
+
+R['random-number']=()=>({html:inp('من','min','number','1')+inp('إلى','max','number','100')+inp('العدد','n','number','1')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const min=parseInt(txt('min'))||0,max=parseInt(txt('max'))||100,n=parseInt(txt('n'))||1;setRes(Array.from({length:n},()=>Math.floor(Math.random()*(max-min+1))+min).join('\n'))}}});
+
+R['coin-dice']=()=>({html:'<div class="row"><button class="btn" id="coin">عملة</button><button class="btn sec" id="dice">نرد</button></div>'+resultBox(),wire:()=>{$in('coin').onclick=()=>setRes(Math.random()<0.5?'صورة':'كتابة');$in('dice').onclick=()=>setRes(String(Math.floor(Math.random()*6)+1))}});
+
+R['reverse-text']=()=>({html:ta('النص','in')+sel('النوع','m',[['chars','حروف'],['words','كلمات'],['lines','أسطر']])+'<div class="row"><button class="btn" id="go">عكس</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const s=txt('in'),m=txt('m');if(m==='chars')setRes([...s].reverse().join(''));else if(m==='words')setRes(s.split(/\s+/).reverse().join(' '));else setRes(s.split('\n').reverse().join('\n'))}}});
+
+R['slug-generator']=()=>({html:ta('النص','in','My Blog Title')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-'))}});
+
+R['image-converter']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div>'+sel('الصيغة','fmt',[['image/png','PNG'],['image/jpeg','JPG'],['image/webp','WebP']])+'<div class="row"><button class="btn" id="go">تحويل</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);const url=c.toDataURL(txt('fmt'),0.9);$in('res').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:10px"><br><a href="'+url+'" download="converted" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>';};img.src=URL.createObjectURL(f)}}});
+
+R['image-resizer']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div>'+inp('العرض','w','number','800')+inp('الارتفاع','h','number','600')+'<div class="row"><button class="btn" id="go">تغيير</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=parseInt(txt('w'))||800;c.height=parseInt(txt('h'))||600;c.getContext('2d').drawImage(img,0,0,c.width,c.height);const url=c.toDataURL();$in('res').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:10px"><br><a href="'+url+'" download="resized.png" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>';};img.src=URL.createObjectURL(f)}}});
+
+R['favicon-generator']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div><div class="row"><button class="btn" id="go">توليد فافيكون 32x32</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=32;c.height=32;c.getContext('2d').drawImage(img,0,0,32,32);const url=c.toDataURL();$in('res').innerHTML='<img src="'+url+'" style="border-radius:10px"><br><a href="'+url+'" download="favicon.png" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>';};img.src=URL.createObjectURL(f)}}});
+
+R['image-compressor']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div>'+inp('الجودة 0.1-1','q','number','0.7')+'<div class="row"><button class="btn" id="go">ضغط</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);const url=c.toDataURL('image/jpeg',parseFloat(txt('q'))||0.7);const o=(f.size/1024).toFixed(1);const n=(url.length*0.75/1024).toFixed(1);$in('res').innerHTML='الأصلي: '+o+'KB → المضغوط: ~'+n+'KB<br><img src="'+url+'" style="max-width:100%;border-radius:10px;margin-top:8px"><br><a href="'+url+'" download="compressed.jpg" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>';};img.src=URL.createObjectURL(f)}}});
+
+R['image-cropper']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div>'+inp('العرض','w','number','512')+inp('الارتفاع','h','number','512')+'<div class="row"><button class="btn" id="go">قص</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const w=parseInt(txt('w'))||512,h=parseInt(txt('h'))||512;const c=document.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d');const scale=Math.max(w/img.width,h/img.height);const sw=w/scale,sh=h/scale,sx=(img.width-sw)/2,sy=(img.height-sh)/2;ctx.drawImage(img,sx,sy,sw,sh,0,0,w,h);const url=c.toDataURL();$in('res').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:10px"><br><a href="'+url+'" download="crop.png" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>';};img.src=URL.createObjectURL(f)}}});
+
+R['color-picker']=()=>({html:'<div class="field"><label>اختر لوناً</label><input type="color" id="c" value="#9b5cff" style="height:60px;width:100%"></div><div class="result" id="res"></div>',wire:()=>{const upd=()=>{const hex=$in('c').value;const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);setRes('HEX: '+hex+'\nRGB: rgb('+r+', '+g+', '+b+')')};$in('c').oninput=upd;upd();}});
+
+R['gradient-generator']=()=>({html:inp('اللون 1','c1','color','#9b5cff')+inp('اللون 2','c2','color','#ff4eb8')+inp('الزاوية','a','number','135')+'<div id="p" style="height:100px;border-radius:10px;margin:10px 0"></div><div class="result" id="res"></div>',wire:()=>{const upd=()=>{const css='linear-gradient('+txt('a')+'deg, '+$in('c1').value+', '+$in('c2').value+')';$in('p').style.background=css;setRes('background: '+css+';')};$in('c1').oninput=upd;$in('c2').oninput=upd;$in('a').oninput=upd;upd();}});
+
+R['color-extractor']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div><div class="row"><button class="btn" id="go">استخراج</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=100;c.height=100;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,100,100);const d=ctx.getImageData(0,0,100,100).data;const map={};for(let i=0;i<d.length;i+=4){const k=d[i]+','+d[i+1]+','+d[i+2];map[k]=(map[k]||0)+1}const top=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,12);const hex=rgb=>'#'+rgb.split(',').map(n=>parseInt(n).toString(16).padStart(2,'0')).join('');let html='<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:15px">';top.forEach(([k])=>{const h=hex(k);html+='<div style="width:50px;height:50px;background:rgb('+k+');border-radius:8px;border:1px solid #2a2542" title="'+h+'" onclick="navigator.clipboard.writeText(\''+h+'\');toast(\'نسخ '+h+'\')"></div>'});html+='</div><div style="margin-top:12px;font-size:12px;color:#aaa4c2">'+top.map(([k])=>hex(k)).join(' · ')+'</div>';$in('res').innerHTML=html};img.src=URL.createObjectURL(f)}}});
+
+R['whatsapp-sticker']=()=>({html:'<div class="field"><label>اختر صورة (سيتم تحويلها لـ 512x512)</label><input type="file" id="file" accept="image/*"></div><div class="row"><button class="btn" id="go">تحويل</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=512;c.height=512;const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,512,512);const scale=Math.min(512/img.width,512/img.height);const w=img.width*scale,h=img.height*scale;ctx.drawImage(img,(512-w)/2,(512-h)/2,w,h);const url=c.toDataURL();$in('res').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:10px"><br><a href="'+url+'" download="sticker.png" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>';};img.src=URL.createObjectURL(f)}}});
+
+R['character-counter']=()=>({html:ta('النص','in')+'<div class="result" id="res"></div>',wire:()=>{$in('in').oninput=e=>{const s=e.target.value;const c=s.length;const ns=s.replace(/\s/g,'').length;const w=(s.trim().match(/\S+/g)||[]).length;const sen=(s.match(/[.!?]+/g)||[]).length;const p=(s.split(/\n\n+/).filter(x=>x.trim()).length);setRes('حروف: '+c+'\nبدون مسافات: '+ns+'\nكلمات: '+w+'\nجمل: '+sen+'\nفقرات: '+p)}}});
+
+R['text-repeater']=()=>({html:ta('النص','in','مرحبا')+inp('العدد','n','number','5')+inp('الفاصل','sep','text',' ')+'<div class="row"><button class="btn" id="go">تكرار</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(Array(parseInt(txt('n'))||1).fill(txt('in')).join(txt('sep')))}});
+
+R['find-replace']=()=>({html:ta('النص','in')+inp('بحث','f')+inp('استبدال','r')+'<div class="row"><button class="btn" id="go">استبدال</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{if(!txt('f')){setRes('أدخل نص البحث');return}setRes(txt('in').split(txt('f')).join(txt('r')))}}});
+
+R['html-stripper']=()=>({html:ta('HTML','in','<div><h1>Hello</h1></div>')+'<div class="row"><button class="btn" id="go">استخراج</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(new DOMParser().parseFromString(txt('in'),'text/html').body.textContent)}});
+
+R['fancy-text']=()=>({html:ta('النص','in','HeMa Tools')+'<div class="row"><button class="btn" id="go">توليد</button></div><div id="res"></div>',wire:()=>{const maps={'bold':{a:'𝐚',b:'𝐛',c:'𝐜',d:'𝐝',e:'𝐞',f:'𝐟',g:'𝐠',h:'𝐡',i:'𝐢',j:'𝐣',k:'𝐤',l:'𝐥',m:'𝐦',n:'𝐧',o:'𝐨',p:'𝐩',q:'𝐪',r:'𝐫',s:'𝐬',t:'𝐭',u:'𝐮',v:'𝐯',w:'𝐰',x:'𝐱',y:'𝐲',z:'𝐳',A:'𝐀',B:'𝐁',C:'𝐂',D:'𝐃',E:'𝐄',F:'𝐅',G:'𝐆',H:'𝐇',I:'𝐈',J:'𝐉',K:'𝐊',L:'𝐋',M:'𝐌',N:'𝐍',O:'𝐎',P:'𝐏',Q:'𝐐',R:'𝐑',S:'𝐒',T:'𝐓',U:'𝐔',V:'𝐕',W:'𝐖',X:'𝐗',Y:'𝐘',Z:'𝐙'},'script':{a:'𝓪',b:'𝓫',c:'𝓬',d:'𝓭',e:'𝓮',f:'𝓯',g:'𝓰',h:'𝓱',i:'𝓲',j:'𝓳',k:'𝓴',l:'𝓵',m:'𝓶',n:'𝓷',o:'𝓸',p:'𝓹',q:'𝓺',r:'𝓻',s:'𝓼',t:'𝓽',u:'𝓾',v:'𝓿',w:'𝔀',x:'𝔁',y:'𝔂',z:'𝔃',A:'𝓐',B:'𝓑',C:'𝓒',D:'𝓓',E:'𝓔',F:'𝓕',G:'𝓖',H:'𝓗',I:'𝓘',J:'𝓙',K:'𝓚',L:'𝓛',M:'𝓜',N:'𝓝',O:'𝓞',P:'𝓟',Q:'𝓠',R:'𝓡',S:'𝓢',T:'𝓣',U:'𝓤',V:'𝓥',W:'𝓦',X:'𝓧',Y:'𝓨',Z:'𝓩'},'circle':{a:'ⓐ',b:'ⓑ',c:'ⓒ',d:'ⓓ',e:'ⓔ',f:'ⓕ',g:'ⓖ',h:'ⓗ',i:'ⓘ',j:'ⓙ',k:'ⓚ',l:'ⓛ',m:'ⓜ',n:'ⓝ',o:'ⓞ',p:'ⓟ',q:'ⓠ',r:'ⓡ',s:'ⓢ',t:'ⓣ',u:'ⓤ',v:'ⓥ',w:'ⓦ',x:'ⓧ',y:'ⓨ',z:'ⓩ',A:'Ⓐ',B:'Ⓑ',C:'Ⓒ',D:'Ⓓ',E:'Ⓔ',F:'Ⓕ',G:'Ⓖ',H:'Ⓗ',I:'Ⓘ',J:'Ⓙ',K:'Ⓚ',L:'Ⓛ',M:'Ⓜ',N:'Ⓝ',O:'Ⓞ',P:'Ⓟ',Q:'Ⓠ',R:'Ⓡ',S:'Ⓢ',T:'Ⓣ',U:'Ⓤ',V:'Ⓥ',W:'Ⓦ',X:'Ⓧ',Y:'Ⓨ',Z:'Ⓩ'}};$in('go').onclick=()=>{const s=txt('in');if(!s){setRes('أدخل نص');return}let html='';for(const[n,map]of Object.entries(maps)){const c=[...s].map(x=>map[x]||x).join('');html+='<div style="background:#080713;padding:12px;border-radius:8px;margin-bottom:8px;font-size:16px;cursor:pointer" onclick="navigator.clipboard.writeText(\''+c+'\');toast(\'تم النسخ\')">'+c+'</div>'}$in('res').innerHTML=html}}});
+
+R['zalgo-text']=()=>({html:ta('النص','in','HeMa')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const s=txt('in');const chars=['\u0300','\u0301','\u0302','\u0303','\u0308','\u030A','\u0311'];let r='';for(let c of s){r+=c;for(let i=0;i<4;i++)r+=chars[Math.floor(Math.random()*chars.length)]}setRes(r)}}});
+
+R['handwriting-text']=()=>({html:ta('النص','in','Hello World')+'<div class="row"><button class="btn" id="go">توليد صورة</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const c=document.createElement('canvas');c.width=800;c.height=300;const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,800,300);ctx.fillStyle='#000';ctx.font='50px Caveat, cursive';ctx.textAlign='center';ctx.fillText(txt('in'),400,150);const url=c.toDataURL();$in('res').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:10px"><br><a href="'+url+'" download="handwriting.png" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>'}}});
+
+R['bionic-reading']=()=>({html:ta('النص','in')+'<div class="row"><button class="btn" id="go">تحويل</button></div><div class="result" id="res"></div>',wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/\b([a-zA-Z]+)\b/g,w=>'<b>'+w.slice(0,2)+'</b>'+w.slice(2)),true)}});
+
+R['text-splitter']=()=>({html:ta('النص','in')+inp('عدد الكلمات لكل جزء','n','number','100')+'<div class="row"><button class="btn" id="go">تقسيم</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const words=txt('in').trim().split(/\s+/);const n=parseInt(txt('n'))||100;const chunks=[];for(let i=0;i<words.length;i+=n)chunks.push(words.slice(i,i+n).join(' '));$in('res').innerHTML=chunks.map((c,i)=>'<div style="background:#080713;padding:12px;border-radius:8px;margin-bottom:8px;border:1px solid #2a2542"><div style="font-size:11px;color:#aaa4c2;margin-bottom:4px">جزء '+(i+1)+'</div>'+c+'</div>').join('')}}});
+
+R['unicode-converter']=()=>({html:ta('النص','in')+'<div class="row"><button class="btn" id="to">نص → Unicode</button><button class="btn sec" id="from">Unicode → نص</button></div>'+resultBox(),wire:()=>{$in('to').onclick=()=>setRes([...txt('in')].map(c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0')).join(''));$in('from').onclick=()=>{try{setRes(txt('in').replace(/\\u([0-9a-fA-F]{4})/g,(_,h)=>String.fromCharCode(parseInt(h,16))))}catch(e){setRes('❌')}}}});
+
+R['number-base-converter']=()=>({html:inp('الرقم','in','text','255')+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const n=parseInt(txt('in'));if(isNaN(n)){setRes('❌ ليس رقماً');return}setRes('ثنائي: '+n.toString(2)+'\nثماني: '+n.toString(8)+'\nعشري: '+n+'\nست عشري: '+n.toString(16).toUpperCase())}}});
+
+R['data-size-converter']=()=>({html:inp('القيمة','in','number','1')+sel('من','f',[['B','B'],['KB','KB'],['MB','MB'],['GB','GB']])+sel('إلى','t',[['B','B'],['KB','KB'],['MB','MB'],['GB','GB']])+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const u={B:1,KB:1024,MB:1048576,GB:1073741824};const v=parseFloat(txt('in'))||0;setRes(v+' '+txt('f')+' = '+(v*u[txt('f')]/u[txt('t')]).toFixed(4)+' '+txt('t'))}}});
+
+R['unit-converter']=()=>({html:inp('القيمة','in','number','1')+sel('النوع','t',[['km','كم'],['kg','كجم'],['c','مئوي']])+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const v=parseFloat(txt('in'))||0,t=txt('t');if(t==='km')setRes(v+' كم = '+(v*1000)+' متر\n'+v+' كم = '+(v*0.621371).toFixed(2)+' ميل');else if(t==='kg')setRes(v+' كجم = '+(v*1000)+' جرام\n'+v+' كجم = '+(v*2.20462).toFixed(2)+' باوند');else setRes(v+'°C = '+(v*9/5+32).toFixed(1)+'°F')}}});
+
+R['date-difference']=()=>({html:inp('تاريخ 1','d1','date')+inp('تاريخ 2','d2','date')+'<div class="row"><button class="btn" id="go">احسب</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const d1=new Date(txt('d1')),d2=new Date(txt('d2'));if(isNaN(d1)||isNaN(d2)){setRes('اختر التاريخين');return}const days=Math.floor(Math.abs(d2-d1)/86400000);setRes('الفرق: '+days+' يوم\n= '+Math.floor(days/7)+' أسبوع و '+(days%7)+' يوم\n≈ '+(days/30.44).toFixed(1)+' شهر')}}});
+
+R['pomodoro-timer']=()=>({html:'<div id="timer" style="font-size:60px;text-align:center;font-weight:900;color:#31d9ff;font-family:monospace;padding:20px 0">25:00</div><div class="row" style="justify-content:center"><button class="btn" id="start">بدء</button><button class="btn sec" id="stop">إيقاف</button><button class="btn sec" id="reset">إعادة</button></div>',wire:()=>{let t=25*60,i=null;const u=()=>$in('timer').textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');$in('start').onclick=()=>{if(i)return;i=setInterval(()=>{if(t>0){t--;u()}else{clearInterval(i);i=null;alert('انتهى الوقت!')}},1000)};$in('stop').onclick=()=>{clearInterval(i);i=null};$in('reset').onclick=()=>{clearInterval(i);i=null;t=25*60;u()};u();}});
+
+R['countdown-timer']=()=>({html:inp('دقائق','m','number','5')+inp('ثواني','s','number','0')+'<div id="timer" style="font-size:60px;text-align:center;font-weight:900;color:#31d9ff;font-family:monospace;padding:20px 0">00:00</div><div class="row" style="justify-content:center"><button class="btn" id="start">بدء</button><button class="btn sec" id="stop">إيقاف</button></div>',wire:()=>{let t=0,i=null;const u=()=>$in('timer').textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');$in('start').onclick=()=>{if(i)return;t=(parseInt(txt('m'))||0)*60+(parseInt(txt('s'))||0);u();i=setInterval(()=>{if(t>0){t--;u()}else{clearInterval(i);i=null;alert('انتهى!')}},1000)};$in('stop').onclick=()=>{clearInterval(i);i=null};}});
+
+R['world-clock']=()=>({html:'<div id="clocks" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px"></div>',wire:()=>{const cities=[['القاهرة','Africa/Cairo'],['الرياض','Asia/Riyadh'],['دبي','Asia/Dubai'],['لندن','Europe/London'],['نيويورك','America/New_York'],['طوكيو','Asia/Tokyo']];const u=()=>{const now=new Date();$in('clocks').innerHTML=cities.map(c=>{const t=now.toLocaleTimeString('ar-EG',{timeZone:c[1],hour:'2-digit',minute:'2-digit',second:'2-digit'});return '<div style="background:#080713;border:1px solid #2a2542;border-radius:10px;padding:14px;text-align:center"><div style="font-size:12px;color:#aaa4c2;margin-bottom:4px">'+c[0]+'</div><div style="font-size:20px;font-weight:800;color:#31d9ff;font-family:monospace">'+t+'</div></div>'}).join('')};u();setInterval(u,1000);}});
+
+R['timezone-converter']=()=>({html:inp('التاريخ والوقت','d','datetime-local')+sel('من','f',[['Africa/Cairo','القاهرة'],['Europe/London','لندن'],['America/New_York','نيويورك'],['Asia/Tokyo','طوكيو']])+sel('إلى','t',[['America/New_York','نيويورك'],['Europe/London','لندن'],['Asia/Tokyo','طوكيو'],['Africa/Cairo','القاهرة']])+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const d=new Date(txt('d'));if(isNaN(d)){setRes('اختر تاريخ');return}setRes('الوقت الأصلي ('+txt('f')+'):\n'+d.toLocaleString('ar-EG',{timeZone:txt('f')})+'\n\nالوقت الآن في '+txt('t')+':\n'+new Date().toLocaleString('ar-EG',{timeZone:txt('t')}))}}});
+
+R['time-calculator']=()=>({html:inp('ساعات 1','h1','number','0')+inp('دقائق 1','m1','number','0')+inp('ساعات 2','h2','number','0')+inp('دقائق 2','m2','number','0')+'<div class="row"><button class="btn" id="add">+ جمع</button><button class="btn sec" id="sub">- طرح</button></div>'+resultBox(),wire:()=>{const calc=(op)=>{let t=(parseInt(txt('h1'))||0)*60+(parseInt(txt('m1'))||0);const o=(parseInt(txt('h2'))||0)*60+(parseInt(txt('m2'))||0);if(op==='add')t+=o;else t-=o;const sign=t<0?'-':'';t=Math.abs(t);setRes('النتيجة: '+sign+Math.floor(t/60)+' ساعة و '+(t%60)+' دقيقة')};$in('add').onclick=()=>calc('add');$in('sub').onclick=()=>calc('sub');}});
+
+R['unix-timestamp']=()=>({html:inp('Unix Timestamp','in','number',Math.floor(Date.now()/1000))+'<div class="row"><button class="btn" id="toDate">→ تاريخ</button><button class="btn sec" id="now">الآن</button></div>'+inp('تاريخ','d','datetime-local')+'<div class="row"><button class="btn" id="toTs">→ Timestamp</button></div>'+resultBox(),wire:()=>{$in('now').onclick=()=>$in('in').value=Math.floor(Date.now()/1000);$in('toDate').onclick=()=>{const t=parseInt(txt('in'));if(!t){setRes('أدخل timestamp');return}setRes(new Date(t*1000).toString())};$in('toTs').onclick=()=>{const d=new Date(txt('d'));if(isNaN(d)){setRes('تاريخ غير صالح');return}setRes(String(Math.floor(d.getTime()/1000)))}}});
+
+R['percentage-calculator']=()=>({html:inp('النسبة %','a','number','20')+inp('من الرقم','b','number','200')+'<div class="row"><button class="btn" id="p1">= نسبة</button><button class="btn sec" id="p2">= زيادة</button></div>'+inp('الرقم','x','number','100')+inp('النسبة %','y','number','15')+'<div class="row"><button class="btn sec" id="p3">± زيادة/نقص</button></div>'+resultBox(),wire:()=>{$in('p1').onclick=()=>setRes(txt('a')+'% من '+txt('b')+' = '+(parseFloat(txt('a'))||0)*(parseFloat(txt('b'))||0)/100);$in('p2').onclick=()=>setRes(txt('a')+' هو '+((parseFloat(txt('a'))||0)/(parseFloat(txt('b'))||1)*100).toFixed(2)+'% من '+txt('b'));$in('p3').onclick=()=>{const x=parseFloat(txt('x'))||0,y=parseFloat(txt('y'))||0;setRes('+'+y+'% → '+(x*(1+y/100)).toFixed(2)+'\n-'+y+'% → '+(x*(1-y/100)).toFixed(2))}}});
+
+R['random-picker']=()=>({html:ta('الخيارات (كل خيار في سطر)','in','Ali\nSara\nMohamed')+'<div class="row"><button class="btn" id="go">اختيار</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const arr=txt('in').split('\n').filter(x=>x.trim());if(!arr.length){setRes('أدخل خيارات');return}setRes('🎯 '+arr[Math.floor(Math.random()*arr.length)])}}});
+
+R['fake-data']=()=>({html:'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const first=['أحمد','محمد','سارة','فاطمة','علي','نور'];const last=['حسن','إبراهيم','محمد','سعيد','خالد'];const name=first[Math.floor(Math.random()*first.length)]+' '+last[Math.floor(Math.random()*last.length)];setRes('الاسم: '+name+'\nالإيميل: '+Math.random().toString(36).slice(2,10)+'@example.com\nالهاتف: +20'+Math.floor(Math.random()*1000000000))}}});
+
+R['image-to-base64']=()=>({html:'<div class="field"><label>اختر صورة</label><input type="file" id="file" accept="image/*"></div><div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const f=$in('file').files[0];if(!f){setRes('اختر صورة');return}const r=new FileReader();r.onload=()=>setRes(r.result);r.readAsDataURL(f)}}});
+
+R['base64-to-image']=()=>({html:ta('Base64','in','data:image/png;base64,...')+'<div class="row"><button class="btn" id="go">عرض</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{$in('res').innerHTML='<img src="'+txt('in')+'" style="max-width:100%;border-radius:10px">'}}});
+
+R['cron-generator']=()=>({html:inp('دقيقة','m','text','*')+inp('ساعة','h','text','*')+inp('يوم','d','text','*')+inp('شهر','mo','text','*')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('m')+' '+txt('h')+' '+txt('d')+' '+txt('mo')+' *')}});
+
+R['csv-to-json']=()=>({html:ta('CSV','in','name,age\nMohamed,25\nAli,30')+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{try{const lines=txt('in').trim().split('\n');if(lines.length<2){setRes('❌ يحتاج سطرين');return}const h=lines[0].split(',').map(x=>x.trim());const res=lines.slice(1).map(l=>{const v=l.split(','),o={};h.forEach((k,i)=>o[k]=v[i]?.trim()||'');return o});setRes(JSON.stringify(res,null,2))}catch(e){setRes('❌ '+e.message)}}}});
+
+R['yaml-validator']=()=>({html:ta('YAML','in','name: HeMa\nage: 25')+'<div class="row"><button class="btn" id="go">فحص</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const lines=txt('in').split('\n');let errors=[];lines.forEach((l,i)=>{const t=l.trim();if(t&&!t.startsWith('#')&&!t.includes(':')&&!t.startsWith('-'))errors.push('السطر '+(i+1)+': يفتقد (:)')});setRes(errors.length?'❌ أخطاء:\n'+errors.join('\n'):'✅ YAML سليم (فحص أساسي)')}}});
+
+R['luhn-validator']=()=>({html:inp('رقم البطاقة','in','text','4111111111111111')+'<div class="row"><button class="btn" id="go">تحقق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const s=txt('in').replace(/\D/g,'');let sum=0,alt=false;for(let i=s.length-1;i>=0;i--){let n=parseInt(s[i]);if(alt){n*=2;if(n>9)n-=9}sum+=n;alt=!alt}setRes(sum%10===0?'✅ رقم صالح':'❌ رقم غير صالح')}}});
+
+R['iban-validator']=()=>({html:inp('IBAN','in','text','EG380019000500000000263180002')+'<div class="row"><button class="btn" id="go">تحقق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const s=txt('in').replace(/\s/g,'').toUpperCase();if(!/^[A-Z]{2}[0-9]{2}[A-Z0-9]+$/.test(s)){setRes('❌ صيغة غير صالحة');return}setRes(s.length>=15?'✅ صيغة صحيحة (فحص أساسي)':'❌ قصير جداً')}}});
+
+R['html-formatter']=()=>({html:ta('HTML','in','<div><h1>Hello</h1></div>')+'<div class="row"><button class="btn" id="go">تنسيق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{let s=txt('in').replace(/(>)(<)(\/*)/g,'$1\n$2$3');let pad=0;const lines=s.split('\n').map(l=>{if(/^<\/\w/.test(l))pad=Math.max(0,pad-1);const r='  '.repeat(pad)+l;if(/^<\w[^>]*[^\/]>$/.test(l))pad++;return r});setRes(lines.join('\n'))}}});
+
+R['css-formatter']=()=>({html:ta('CSS','in','.a{color:red;margin:0}')+'<div class="row"><button class="btn" id="go">تنسيق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/\s*{\s*/g,' {\n  ').replace(/;\s*/g,';\n  ').replace(/\s*}\s*/g,'\n}\n').trim())}});
+
+R['js-formatter']=()=>({html:ta('JavaScript','in','function f(){console.log("hi");}')+'<div class="row"><button class="btn" id="go">تنسيق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/\s*{\s*/g,' {\n  ').replace(/;\s*/g,';\n  ').replace(/\s*}\s*/g,'\n}\n').trim())}});
+
+R['xml-formatter']=()=>({html:ta('XML','in','<root><item>1</item></root>')+'<div class="row"><button class="btn" id="go">تنسيق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{try{const p=new DOMParser();const d=p.parseFromString(txt('in'),'application/xml');if(d.querySelector('parsererror')){setRes('❌ XML غير صالح');return}let s=new XMLSerializer().serializeToString(d);s=s.replace(/(>)(<)(\/*)/g,'$1\n$2$3');let pad=0;const lines=s.split('\n').map(l=>{if(/^<\/\w/.test(l))pad=Math.max(0,pad-1);const r='  '.repeat(pad)+l;if(/^<\w[^>]*[^\/]>$/.test(l))pad++;return r});setRes(lines.join('\n'))}catch(e){setRes('❌ '+e.message)}}}});
+
+R['diff-checker']=()=>({html:ta('النص الأول','a')+ta('النص الثاني','b')+'<div class="row"><button class="btn" id="go">مقارنة</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const a=txt('a'),b=txt('b');if(a===b){setRes('✅ متطابقان');return}const la=a.split('\n'),lb=b.split('\n');const out=[];const max=Math.max(la.length,lb.length);for(let i=0;i<max;i++){if(la[i]!==lb[i])out.push('سطر '+(i+1)+':\n  - '+(la[i]||'(فارغ)')+'\n  + '+(lb[i]||'(فارغ)'))}setRes('❌ '+out.length+' اختلاف:\n\n'+out.join('\n\n'))}}});
+
+R['regex-tester']=()=>({html:inp('Regex','r','text','\\w+')+inp('Flags','f','text','g')+ta('النص','in')+'<div class="row"><button class="btn" id="go">اختبار</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{try{const m=txt('in').match(new RegExp(txt('r'),txt('f')));setRes(m?'✅ '+m.length+' نتيجة:\n'+m.join('\n'):'❌ لا نتائج')}catch(e){setRes('❌ '+e.message)}}}});
+
+R['sql-formatter']=()=>({html:ta('SQL','in','SELECT * FROM users WHERE id=1')+'<div class="row"><button class="btn" id="go">تنسيق</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{let s=txt('in');const kw=['SELECT','FROM','WHERE','JOIN','LEFT JOIN','INNER JOIN','GROUP BY','ORDER BY','HAVING','LIMIT','UNION','AND','OR','ON'];kw.forEach(k=>{s=s.replace(new RegExp('\\b'+k+'\\b','gi'),'\n'+k)});setRes(s.replace(/\n+/g,'\n').trim())}}});
+
+R['jwt-decoder']=()=>({html:ta('JWT','in','eyJ...')+'<div class="row"><button class="btn" id="go">فك</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{try{const p=txt('in').trim().split('.');if(p.length!==3){setRes('❌ JWT غير صالح');return}const h=JSON.parse(atob(p[0].replace(/-/g,'+').replace(/_/g,'/')));const b=JSON.parse(atob(p[1].replace(/-/g,'+').replace(/_/g,'/')));setRes('Header:\n'+JSON.stringify(h,null,2)+'\n\nPayload:\n'+JSON.stringify(b,null,2)+'\n\n⚠ التوقيع غير مُتحقق')}catch(e){setRes('❌ '+e.message)}}}});
+
+R['markdown-preview']=()=>({html:ta('Markdown','in','# عنوان\n**عريض** *مائل*')+'<div class="result" id="res"></div>',wire:()=>{const r=s=>'<p>'+s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>').replace(/`(.+?)`/g,'<code style="background:#080713;padding:2px 6px;border-radius:4px">$1</code>').replace(/\n\n/g,'</p><p>')+'</p>';const u=()=>setRes(r(txt('in')),true);$in('in').oninput=u;u();}});
+
+R['text-decorator']=()=>({html:ta('النص','in','محمد')+'<div class="row"><button class="btn" id="go">زخرفة</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const s=txt('in').trim();if(!s){setRes('أدخل نص');return}setRes('┌─ '+s+' ─┐\n★彡 '+s+' 彡★\n꧁༺ '+s+' ༻꧂\n▂▃▄▅▆▇ '+s+' ▇▆▅▄▃▂\n✨ '+s+' ✨\n♔ '+s+' ♔\n【'+s+'】\n༺ '+s+' ༻')}}});
+
+R['text-to-speech']=()=>({html:ta('النص','in','مرحباً بكم')+sel('اللغة','l',[['ar-SA','عربي'],['en-US','English'],['fr-FR','Français']])+inp('السرعة','r','range','1','min="0.5" max="2" step="0.1"')+'<div class="row"><button class="btn" id="go">نطق</button><button class="btn sec" id="stop">إيقاف</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{if(!('speechSynthesis' in window)){setRes('المتصفح لا يدعم TTS');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt('in'));u.lang=txt('l');u.rate=parseFloat(txt('r'))||1;u.onstart=()=>setRes('🔊 جاري النطق...');u.onend=()=>setRes('✅ انتهى');speechSynthesis.speak(u)};$in('stop').onclick=()=>{speechSynthesis.cancel();setRes('⏹ تم الإيقاف')}}});
+
+R['translator']=()=>({html:ta('النص','in')+sel('اللغة','to',[['en','English'],['ar','العربية'],['fr','Français'],['es','Español'],['de','Deutsch']])+'<div class="row"><button class="btn" id="go">ترجم</button></div>'+resultBox()+'<p style="font-size:11px;color:#aaa4c2;margin-top:10px">⚠ يستخدم MyMemory API المجاني</p>',wire:()=>{$in('go').onclick=async()=>{const s=txt('in').trim();if(!s){setRes('أدخل نص');return}setRes('⏳ جاري الترجمة...');try{const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(s.slice(0,500))+'&langpair=ar|'+txt('to'));const j=await r.json();setRes(j.responseData?.translatedText||'❌ لا ترجمة')}catch(e){setRes('❌ فشل الاتصال')}}}});
+
+R['ai-prompts']=()=>({html:'<div id="res"></div>',wire:()=>{const prompts=['Hyper-realistic portrait, 8k, raw photo, natural face, preserving features','Photorealistic cinematic lighting, ultra-detailed skin','True-to-life photography, exact facial geometry','Unedited documentary photo, natural expression','Professional studio, exact likeness, sharp focus'];$in('res').innerHTML=prompts.map((p,i)=>'<div style="background:#080713;padding:12px;border-radius:8px;margin-bottom:8px;font-size:12px;border:1px solid #2a2542">'+(i+1)+'. '+p+'<br><button class="btn sec" style="margin-top:8px;font-size:11px" onclick="navigator.clipboard.writeText(\''+p+'\');toast(\'تم النسخ\')">نسخ</button></div>').join('')}});
+
+R['html-preview']=()=>({html:ta('HTML','in','<h1>Hello</h1>')+'<div class="row"><button class="btn" id="go">معاينة</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=()=>{const i=document.createElement('iframe');i.style.cssText='width:100%;min-height:200px;background:#fff;border:0;border-radius:8px;margin-top:10px';i.sandbox='allow-same-origin';$in('res').innerHTML='';$in('res').appendChild(i);i.contentDocument.open();i.contentDocument.write(txt('in'));i.contentDocument.close()}}});
+
+R['json-to-typescript']=()=>({html:ta('JSON','in','{"name":"HeMa","age":25}')+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{try{const o=JSON.parse(txt('in'));let s='export interface RootObject {\n';for(const[k,v]of Object.entries(o)){let t=typeof v;if(v===null)t='null';else if(Array.isArray(v))t='any[]';s+='  '+k+': '+t+';\n'}setRes(s+'}')}catch(e){setRes('❌ '+e.message)}}}});
+
+R['json-yaml']=()=>({html:ta('JSON','in','{"name":"HeMa"}')+'<div class="row"><button class="btn" id="go">تحويل</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{try{const o=JSON.parse(txt('in'));let s='';for(const[k,v]of Object.entries(o))s+=k+': '+(typeof v==='string'?'"'+v+'"':v)+'\n';setRes(s.trim())}catch(e){setRes('❌ '+e.message)}}}});
+
+R['js-minifier']=()=>({html:ta('JS','in','function f() {\n  return 1;\n}')+'<div class="row"><button class="btn" id="go">ضغط</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/\/\*[\s\S]*?\*\//g,'').replace(/\/\/.*/g,'').replace(/\s+/g,' ').replace(/\s*([{}();,:=+\-*\/<>])\s*/g,'$1').trim())}});
+
+R['css-minifier']=()=>({html:ta('CSS','in','.a {\n  color: red;\n}')+'<div class="row"><button class="btn" id="go">ضغط</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s+/g,' ').replace(/\s*([{}:;,])\s*/g,'$1').replace(/;}/g,'}').trim())}});
+
+R['html-minifier']=()=>({html:ta('HTML','in','<div>\n  <h1>Hello</h1>\n</div>')+'<div class="row"><button class="btn" id="go">ضغط</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes(txt('in').replace(/<!--[\s\S]*?-->/g,'').replace(/>\s+</g,'><').replace(/\s+/g,' ').trim())}});
+
+R['gitignore-generator']=()=>({html:sel('اللغة','l',[['node','Node.js'],['python','Python'],['react','React']])+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const d={node:'node_modules/\n.env\n.DS_Store\n*.log',python:'__pycache__/\n*.pyc\nvenv/\n.env\n*.log',react:'node_modules/\nbuild/\n.env\n.DS_Store'};setRes(d[txt('l')])}}});
+
+R['markdown-table']=()=>({html:inp('الأعمدة (مفصولة بفاصلة)','c','text','Name,Age,City')+ta('الصفوف (كل سطر صف)','r','Ali,25,Cairo\nSara,22,Alex')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>{const cols=txt('c').split(',');const rows=txt('r').split('\n').map(x=>x.split(','));let md='| '+cols.join(' | ')+' |\n|'+cols.map(()=>'---').join('|')+'|\n';rows.forEach(r=>{md+='| '+r.join(' | ')+' |\n'});setRes(md)}}});
+
+R['http-status-codes']=()=>({html:'<div class="result" id="res" style="line-height:1.8"></div>',wire:()=>{const c={200:'OK - نجاح',201:'Created - تم الإنشاء',400:'Bad Request - طلب خاطئ',401:'Unauthorized - غير مصرح',403:'Forbidden - ممنوع',404:'Not Found - غير موجود',500:'Internal Server Error - خطأ بالسيرفر',502:'Bad Gateway',503:'Service Unavailable'};setRes(Object.entries(c).map(([k,v])=>k+': '+v).join('\n'))}});
+
+R['mergepdf']=()=>({html:'<div class="field"><label>اختر ملفات PDF (2+)</label><input type="file" id="file" accept="application/pdf" multiple></div><div class="row"><button class="btn" id="go">دمج</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=async()=>{await loadCDN('https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js');const f=$in('file').files;if(f.length<2){setRes('اختر ملفين على الأقل');return}try{const merged=await PDFLib.PDFDocument.create();for(let i=0;i<f.length;i++){const buf=await f[i].arrayBuffer();const doc=await PDFLib.PDFDocument.load(buf);const pages=await merged.copyPages(doc,doc.getPageIndices());pages.forEach(p=>merged.addPage(p))}const bytes=await merged.save();const url=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));$in('res').innerHTML='<a href="'+url+'" download="merged.pdf" style="color:#7ceaff;font-weight:bold;font-size:16px">⬇ تحميل PDF</a>'}catch(e){setRes('❌ '+e.message)}}}});
+
+R['compresspdf']=()=>({html:'<div class="field"><label>اختر ملف PDF</label><input type="file" id="file" accept="application/pdf"></div><div class="row"><button class="btn" id="go">ضغط</button></div><div id="res"></div>',wire:()=>{$in('go').onclick=async()=>{await loadCDN('https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js');const f=$in('file').files[0];if(!f){setRes('اختر ملف');return}try{const buf=await f.arrayBuffer();const doc=await PDFLib.PDFDocument.load(buf);const bytes=await doc.save({useObjectStreams:true});const url=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));const o=(f.size/1024).toFixed(0),n=(bytes.length/1024).toFixed(0);$in('res').innerHTML='✅ الأصلي: '+o+'KB → الجديد: '+n+'KB<br><a href="'+url+'" download="compressed.pdf" style="color:#7ceaff;font-weight:bold">⬇ تحميل</a>'}catch(e){setRes('❌ '+e.message)}}}});
+
+R['barcode-generator']=()=>({html:inp('النص/الرقم','in','text','1234567890')+'<div class="row"><button class="btn" id="go">توليد</button></div><div id="res" style="text-align:center"></div>',wire:()=>{$in('go').onclick=async()=>{await loadCDN('https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js');const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');try{JsBarcode(svg,txt('in'),{format:'CODE128',background:'#fff',lineColor:'#000',width:2,height:80});$in('res').innerHTML='';svg.style.cssText='max-width:100%;margin-top:15px;border-radius:8px';$in('res').appendChild(svg)}catch(e){setRes('❌ '+e.message)}}}});
+
+R['prompt-generator']=()=>({html:inp('الدور','role','text','خبير تسويق')+ta('المهمة','task','اكتب مقال عن AI')+sel('الأسلوب','style',[['formal','رسمي'],['casual','ودي'],['creative','إبداعي']])+ta('تفاصيل إضافية','extra','الجمهور: المبتدئين')+'<div class="row"><button class="btn" id="go">توليد</button></div>'+resultBox(),wire:()=>{$in('go').onclick=()=>setRes('Act as a '+txt('role')+'.\nTask: '+txt('task')+'\nStyle: '+txt('style')+'\nAdditional Details: '+txt('extra')+'\nFormat: Provide a well-structured response with clear headings and examples.')}});
+
+/* ═══════════════ Router ═══════════════ */
+function renderHome(){
+$('#app').innerHTML='<section class="hero wrap"><div class="eyebrow">مساحتك الرقمية</div><h1>كل الأدوات في <span class="grad">مكان واحد</span></h1><p>أدوات مجانية سريعة وآمنة تعمل داخل متصفحك.</p><div class="search"><input id="search" type="search" placeholder="ابحث..."></div><div class="stats"><b id="count">0</b> أداة متاحة</div></section><section class="wrap"><div class="cats" id="cats">'+Object.entries(CATS).map(([k,v])=>'<button class="chip '+(k==='all'?'active':'')+'" data-cat="'+k+'">'+v+'</button>').join('')+'</div><div class="grid" id="grid"></div></section>';
+let cat='all',q='';
+const draw=()=>{const list=TOOLS.filter(x=>{const co=cat==='all'||x.cat===cat;const hay=(x.name+' '+x.desc+' '+x.slug).toLowerCase();return co&&hay.includes(q)});$('#count').textContent=list.length;$('#grid').innerHTML=list.map(x=>'<a class="card '+(R[x.slug]?'':'coming')+'" href="/tools/'+x.slug+'/"><div class="card-icon">'+x.icon+'</div><div class="card-title">'+x.name+'</div><div class="card-desc">'+x.desc+'</div><span class="card-tag">'+CATS[x.cat]+'</span></a>').join('')||'<div style="text-align:center;grid-column:1/-1;padding:40px;color:#aaa4c2">لا نتائج</div>'};
+$('#search').oninput=e=>{q=e.target.value.toLowerCase();draw()};
+$('#cats').onclick=e=>{const c=e.target.closest('[data-cat]');if(!c)return;cat=c.dataset.cat;document.querySelectorAll('#cats .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');draw()};
+draw();
+}
+
+function renderTool(slug){
+const tool=TOOLS.find(x=>x.slug===slug);
+if(!tool){render404();return}
+document.title=tool.name+' — HeMa Tools';
+const ready=R[slug];
+$('#app').innerHTML='<div class="wrap"><div class="back"><a href="/">← الرئيسية</a></div><div class="tool-head"><div class="icon">'+tool.icon+'</div><h1>'+tool.name+'</h1><p>'+tool.desc+'</p></div><div class="panel" id="panel">'+(ready?'':'<div style="text-align:center;padding:40px;color:#aaa4c2"><div style="font-size:48px;margin-bottom:10px">🚧</div><p>هذه الأداة قيد التطوير وقريبًا ستكون متاحة.</p></div>')+'</div></div>';
+if(ready){const t=R[slug]();$('#panel').innerHTML=t.html;try{t.wire()}catch(e){console.error(e)}}
+}
+
+function render404(){$('#app').innerHTML='<div class="wrap"><div class="notfound"><h1>404</h1><p style="color:#aaa4c2;margin:20px 0">الصفحة غير موجودة</p><a href="/" class="btn">← الرئيسية</a></div></div>'}
+
+function render(){const p=location.pathname.replace(/\/+$/,'')||'/';if(p==='/')return renderHome();const m=p.match(/^\/tools\/([^/]+)$/);if(m)return renderTool(m[1]);return render404()}
+function navigate(p){if(p===location.pathname)return;history.pushState({},'',p);window.scrollTo(0,0);render()}
+document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||!a.href)return;try{const u=new URL(a.href);if(u.origin!==location.origin)return;e.preventDefault();navigate(u.pathname)}catch{}});
+window.addEventListener('popstate',render);
+document.getElementById('year').textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
